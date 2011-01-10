@@ -1,0 +1,10 @@
+; $Id: svn_up.info,v 1.1 2010/05/14 15:06:01 elliotttt Exp $
+name = SVN Up
+description = Updates a drupal codebase that's part of subversion
+core = 6.x
+; Information added by drupal.org packaging script on 2010-07-11
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "svn_up"
+datestamp = "1278835843"
+

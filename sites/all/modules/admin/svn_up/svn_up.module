@@ -1,0 +1,100 @@
+<?php
+// $Id: svn_up.module,v 1.1 2010/05/14 15:06:01 elliotttt Exp $
+
+/**
+ * @file
+ * TODO: Enter file description here.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function svn_up_menu() { 
+  // This is the minimum information you can provide for a menu item.
+  $items['svn-up/update'] = array(
+    'title' => 'Update SVN',
+    'page callback' => 'svn_up_confirm_page',
+    'access arguments' => array('update codebase'),
+  );
+  
+  $items['admin/settings/svn_up'] = array(
+    'title' => 'SVN Up',
+    'description' => t('Update an entire drupal site or specific folder from an external SVN repository.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('svn_up_admin_settings'),
+    'access arguments' => array('administer svn up'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['admin/settings/svn_up/settings'] = array(
+    'title' => 'Settings',
+    'description' => t('Specify SVN information'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('svn_up_admin_settings'),
+    'access arguments' => array('administer svn up'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function svn_up_perm() {
+  return array(
+    'update codebase',
+    'administer svn up'
+  );
+}
+
+function svn_up_admin_settings($form_state) {
+  $form = array();
+      
+  $form['svn_up_local'] = array(
+    '#title' => 'Local Path',
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#default_value' => variable_get('svn_up_local', NULL),
+    '#description' => 'System path to the folder you\'d like to have under svn. Ex: <em>/home/drupal/public_html</em>'
+  );
+    
+  return system_settings_form($form);
+}
+
+function svn_up_confirm_form($form_state) {
+  $form['confirm'] = array(
+    '#title' => 'Please confirm',
+    '#type' => 'item',
+    '#value' => '<p>Are you sure you want to update? This action cannot be undone.</p>',
+  );
+  $form['submit'] = array(
+    '#value' => 'Confirm',
+    '#type' => 'submit',
+  );
+  return $form;
+}
+
+function svn_up_confirm_form_validate($form, &$form_state) {
+  $vars = array(
+    'svn_up_local'
+  );
+  $errors = FALSE;
+  
+  foreach ($vars as $val) {
+    if (variable_get($val, NULL) == NULL) {
+      form_set_error('confirm', 'Please define your SVN data on the '. l('settings', 'admin/settings/svn_up') .' page.');
+    }
+  }  
+}
+
+function svn_up_confirm_form_submit($form, &$form_state) {
+  $command = 'cd '. variable_get('svn_up_local', NULL) .'; svn up;'; 
+  exec($command, $results);
+  foreach ($results as $val) {
+    drupal_set_message($val);
+  }
+}
+
+function svn_up_confirm_page() {
+  return drupal_get_form('svn_up_confirm_form');
+}
