@@ -1,0 +1,13 @@
+; $Id: fivestar_comment.info,v 1.2 2009/05/11 03:12:55 quicksketch Exp $
+name = Fivestar Comments
+description = Rate nodes by leaving comments.
+package = Voting
+core = 6.x
+dependencies[] = votingapi
+dependencies[] = fivestar
+; Information added by drupal.org packaging script on 2010-07-11
+version = "6.x-2.x-dev"
+core = "6.x"
+project = "fivestar"
+datestamp = "1278834264"
+
