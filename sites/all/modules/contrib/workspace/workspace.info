@@ -1,0 +1,12 @@
+; $Id: workspace.info,v 1.4 2009/07/13 17:17:17 frankralf Exp $
+name = "Workspace"
+description = "Allows users to list/manage their own content."
+core = 6.x
+package = "Workflow"
+
+; Information added by drupal.org packaging script on 2010-11-12
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "workspace"
+datestamp = "1289565070"
+

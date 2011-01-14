@@ -1,0 +1,225 @@
+# $Id: de.po,v 1.3 2009/07/21 18:01:16 frankralf Exp $
+#
+# German translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  workspace.module,v 1.36 2009/07/13 17:17:17 frankralf
+#  workspace.info,v 1.4 2009/07/13 17:17:17 frankralf
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Workspace\n"
+"POT-Creation-Date: 2009-07-21 19:40+0200\n"
+"PO-Revision-Date: 2009-07-21 19:55+0100\n"
+"Last-Translator: \n"
+"Language-Team: German <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+
+#: workspace.module:24
+msgid "The workspace module provides a list of content for each user."
+msgstr "Das Workspace-Modul stellt eine Liste der Inhalte für jeden Benutzer bereit."
+
+#: workspace.module:25
+msgid "When enabled, each user will have a 'My workspace' link in the Navigation menu."
+msgstr "Wenn aktiviert hat jeder Benutzer einen Link ‚Mein Arbeitsbereich‘ im Navigationsmenü."
+
+#: workspace.module:144;232;285;400
+msgid "Workspace: @name"
+msgstr "Arbeitsbereich: @name"
+
+#: workspace.module:155
+msgid "Number of items"
+msgstr "Anzahl der Elemente"
+
+#: workspace.module:156
+msgid "Maximum number of items to display in your workspace."
+msgstr "Maximale Anzahl der Einträge, die im Arbeitsbereich angezeigt werden."
+
+#: workspace.module:162
+msgid "Number of files"
+msgstr "Anzahl der Dateien"
+
+#: workspace.module:163
+msgid "Maximum number of filenames to display in your workspace."
+msgstr "Maximale Anzahl der Dateinamen, welche in Ihrem Arbeitsbereich angezeigt werden."
+
+#: workspace.module:170
+msgid "Number of comments"
+msgstr "Anzahl der Kommentare"
+
+#: workspace.module:171
+msgid "Maximum number of comments to display in your workspace."
+msgstr "Maximale Anzahl von Kommentaren, die in Ihrem Arbeitsbereich angezeigt werden sollen."
+
+#: workspace.module:182
+msgid "Save configuration"
+msgstr "Konfiguration speichern"
+
+#: workspace.module:194;197;201
+msgid "Please enter a numeric value."
+msgstr "Bitte geben Sie einen numerischen Wert ein."
+
+#: workspace.module:220
+msgid "The workspace preferences have been saved."
+msgstr "Die Arbeitsbereich-Voreinstellungen wurden gespeichert."
+
+#: workspace.module:257;406
+msgid "Type"
+msgstr "Typ"
+
+#: workspace.module:258;296
+msgid "Title"
+msgstr "Titel"
+
+#: workspace.module:259
+msgid "Owner"
+msgstr "Autor"
+
+#: workspace.module:260;297
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: workspace.module:261;298;407
+msgid "Modified"
+msgstr "Geändert"
+
+#: workspace.module:262;299
+msgid "Replies"
+msgstr "Antworten"
+
+#: workspace.module:263;300;409
+msgid "Operations"
+msgstr "Operationen"
+
+#: workspace.module:318
+msgid "yes"
+msgstr "ja"
+
+#: workspace.module:319
+msgid "no"
+msgstr "nein"
+
+#: workspace.module:361;373
+msgid "edit"
+msgstr "Bearbeiten"
+
+#: workspace.module:362;376
+msgid "delete"
+msgstr "Löschen"
+
+#: workspace.module:402
+msgid "download"
+msgstr "Herunterladen"
+
+#: workspace.module:405
+msgid "Filename"
+msgstr "Dateiname"
+
+#: workspace.module:408
+msgid "Size"
+msgstr "Größe"
+
+#: workspace.module:454
+msgid "Your workspace is currently empty."
+msgstr "Der Arbeitsbereich ist momentan leer."
+
+#: workspace.module:474
+msgid "Choose what kind of content you would like to add."
+msgstr "Auswahl, welcher Inhalt hinzufügt werden soll."
+
+#: workspace.module:474
+msgid "Help?"
+msgstr "Hilfe?"
+
+#: workspace.module:475;511
+msgid "Select..."
+msgstr "Auswahl"
+
+#: workspace.module:496
+msgid "Add new item"
+msgstr "Neues Element hinzufügen"
+
+#: workspace.module:538
+msgid "Select each role for which you want the link to a user's workspace to show up in their user profile."
+msgstr "Wählen Sie alle Rollen, für die der Link zum Arbeitsbereich eines Benutzers in dessen Benutzerprofil angezeigt werden soll."
+
+#: workspace.module:550
+msgid "Name of link to user's workspace"
+msgstr "Name des Links auf den Arbeitsbereich des Benutzers"
+
+#: workspace.module:551
+msgid "This will be used to display the link to a user's workspace on his or her profile page. The %username token will be replaced by the username of the user whose profile is being shown."
+msgstr "Dies wird auf der Profilseite als Link auf den Arbeitsbereich eines Benutzers angezeigt. Das Token %username wird durch den Benutzernamen des Benutzers ersetzt, dessen Profil angezeigt wird."
+
+#: workspace.module:552
+msgid "View recent content created by %username"
+msgstr "Aktuelle Inhalte anzeigen, die von %username erstellt wurden."
+
+#: workspace.module:568
+msgid "View recent content"
+msgstr "Neuesten Inhalt anzeigen"
+
+#: workspace.module:572;43
+msgid "Content"
+msgstr "Inhalt"
+
+#: workspace.module:137
+msgid "access workspace"
+msgstr "Auf Arbeitsbereich zugreifen"
+
+#: workspace.module:137
+msgid "administer own workspace"
+msgstr "Eigenen Arbeitsbereich administrieren"
+
+#: workspace.module:137
+msgid "administer workspaces"
+msgstr "Arbeitsbereiche verwalten"
+
+#: workspace.module:137
+msgid "view all workspaces"
+msgstr "Alle Arbeitsbereiche anzeigen"
+
+#: workspace.module:35
+msgid "My workspace"
+msgstr "Mein Arbeitsbereich"
+
+#: workspace.module:52
+msgid "Comments"
+msgstr "Kommentare"
+
+#: workspace.module:61
+msgid "Attachments"
+msgstr "Anhänge"
+
+#: workspace.module:70
+msgid "Configure"
+msgstr "Konfigurieren"
+
+#: workspace.module:79
+#: workspace.info:0
+msgid "Workspace"
+msgstr "Arbeitsbereich"
+
+#: workspace.module:80
+msgid "Customize workspace behavior."
+msgstr "Arbeitsbereich-Verhalten anpassen."
+
+#: workspace.module:89
+msgid "Delete"
+msgstr "Löschen"
+
+#: workspace.module:0
+msgid "workspace"
+msgstr "Arbeitsbereich"
+
+#: workspace.info:0
+msgid "Allows users to list/manage their own content."
+msgstr "Ermöglicht Benutzern, ihren eigenen Inhalt aufzulisten und zu verwalten."
+
+#: workspace.info:0
+msgid "Workflow"
+msgstr "Workflow"
+
