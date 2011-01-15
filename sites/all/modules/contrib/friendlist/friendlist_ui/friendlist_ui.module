@@ -204,7 +204,7 @@ function friendlist_ui_web_functions($op, $account, $rtid) {
   return $page;
 }
 
-function friendlist_ui_relation_form(&$form_state, &$form_params) {
+function friendlist_ui_relation_form(&$form_state, $form_params) {
 
   $form_state['parameters'] = $form_params;
 
