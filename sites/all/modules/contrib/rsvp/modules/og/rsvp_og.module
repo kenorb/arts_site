@@ -1,0 +1,506 @@
+<?php
+// $Id: rsvp_og.module,v 1.1.2.8 2010/04/07 23:44:49 ulf1 Exp $
+
+/**
+ * @module rsvp_og
+ * 
+ * @package rsvp - A drupal module developed for civicspace - a distribution of drupal.
+ * @description Provides functionality to invite people that are part of og buddylists
+ * @author Ulf Schenk (ulf@schenkunlimited.net)
+ *
+ */
+
+/**
+ * RSVP OG PERMISSIONS
+ */
+define('RSVP_PERM_INVITE_OG',  'rsvp invite og');
+
+/**
+ * RSVP OG SETTINGS
+ */
+define('RSVP_OG_OPTION_CHECKBOXES',  'rsvp_og_checkboxes');
+define('RSVP_OG_OPTION_SHOWUSERS',  'rsvp_og_showusers');
+
+
+
+/**
+ * Provides the rsvp og permission information for the drupal system.
+ *
+ * @ingroup rsvp_og
+ */
+function rsvp_og_perm() {
+  return array(RSVP_PERM_INVITE_OG);
+}
+
+/**
+ * Implementation of hook_menu().
+ *
+ * @ingroup rsvp_og
+ */
+function rsvp_og_menu() {
+
+  $connector = new RsvpConnector();
+  
+  $items = array();
+
+  $items['rsvp/%rsvp/attendees/og/%/%'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rsvp_og_add_form', 1, 4, 5),
+    'access callback' => 'rsvp_function_invitation_by_invite_access',
+    'access arguments' => array($connector, 1, NULL, NULL, RSVP_ACCESS_REPLY, RSVP_PERM_INVITE_OG),
+    'weight' => '2',
+  );
+
+  $items['rsvp/%rsvp/attendees/og/%'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rsvp_og_add_form', 1, 4, null),
+    'access callback' => 'rsvp_function_invitation_by_invite_access',
+    'access arguments' => array($connector, 1, NULL, NULL, RSVP_ACCESS_REPLY, RSVP_PERM_INVITE_OG),
+    'weight' => '2',
+  );
+  
+  $items['admin/settings/rsvp/og'] = array(
+    'title' => t('OG settings'),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rsvp_og_admin_settings'),
+    'access arguments' => array(RSVP_PERM_ADMIN),
+    'description' => t('Configure default options for the Organic Groups plugin'),
+  );
+  
+  return $items;
+}
+
+/**
+ * Menu callback: rsvp_og admin setting form for rsvp.
+ *
+ * @see rsvp_og_admin_settings_submit()
+ * @ingroup rsvp_og
+ */
+
+function rsvp_og_admin_settings(&$form_state) {
+
+  $form = array();
+  
+  $form['rsvp_og'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('OG - Add guest options'),
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+  );
+  
+  $show_checkboxes = variable_get(RSVP_OG_OPTION_CHECKBOXES, RSVP_OPTION_NO);
+  $show_users = variable_get(RSVP_OG_OPTION_SHOWUSERS, RSVP_OPTION_NO);
+  
+  $form['rsvp_og']['show_checkboxes'] =  array(
+    '#type' => 'select',
+    '#title' => t('Show checkboxes'),
+    '#default_value' => $show_checkboxes,
+    '#options' => array(RSVP_OPTION_YES => t('Yes'), RSVP_OPTION_NO => t('No')),
+    '#description' => t('When adding guests from OG groups, select groups/groupmembers through checkboxes instead of links(default is \'No\')'),
+  );
+
+  $form['rsvp_og']['show_users'] =  array(
+    '#type' => 'select',
+    '#title' => t('Show group and group members'),
+    '#default_value' => $show_users,
+    '#options' => array(RSVP_OPTION_YES => t('Yes'), RSVP_OPTION_NO => t('No')),
+    '#description' => t('When adding guests from OG groups, show users additionaly to the groups (default is \'No\')'),
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+    '#weight' => 25,
+    '#name' => 'op'
+  );
+  $form['reset_defaults'] = array(
+    '#type' => 'submit',
+    '#value' => t('Reset to defaults'),
+    '#weight' => 25,
+    '#name' => 'op'
+  );
+  
+  return $form;
+}
+
+/*
+ * @ingroup rsvp_og
+ */
+function rsvp_og_admin_settings_submit($form, &$form_state) {
+
+  $op  = $form_state['values']['op'];
+  
+  if ($op == t('Save')) {
+  $show_checkboxes = variable_get(RSVP_OG_OPTION_CHECKBOXES, RSVP_OPTION_NO);
+  $show_users = variable_get(RSVP_OG_OPTION_SHOWUSERS, RSVP_OPTION_NO);
+    
+    
+    variable_set(RSVP_OG_OPTION_CHECKBOXES, $form_state['values']['show_checkboxes']);
+    variable_set(RSVP_OG_OPTION_SHOWUSERS, $form_state['values']['show_users']);
+    
+    drupal_set_message('Settings have been stored.');
+  }
+  elseif ($op == t('Reset to defaults')) {
+    
+    variable_set(RSVP_OG_OPTION_CHECKBOXES, RSVP_OPTION_NO);  
+    variable_set(RSVP_OG_OPTION_SHOWUSERS, RSVP_OPTION_NO);  
+  }
+}
+
+
+/**
+ * Adding a list of og buddylist members or a single user as invitees to the $rsvp.
+ *
+ * @param $rsvp The rsvp object you want to add the buddylist members to.
+ * @param $bid int The buddylist ID.
+ * @param $uid int The user ID. If $uid is null, we add all users of the group.
+ *  *
+ * @ingroup rsvp_og
+ */
+function rsvp_og_add_form(&$form_state, $rsvp, $bid, $uid) {
+
+  if (is_numeric($bid)) {
+    
+    $guestsarray = array();
+    
+    if ($uid == null)
+    { // if uid is null, get members of the whole group.
+      $guestsarray = rsvp_og_function_list_groupmembers($bid);
+    
+    }
+    else if (is_numeric($uid)) {
+      $user = user_load($rsvp->uid);
+      
+      $guestsarray[$user->uid] = $user->name;
+    }
+      
+    $connector = new RsvpConnector();
+    
+    $statusarray = rsvp_function_add_guests($rsvp, NULL, $guestsarray, false);
+    
+    if (count($statusarray['success_add']) > 0)
+      drupal_set_message(t('New guests have been added. Do not forget to <a href="@url">send the invitation</a>.', array('@url' =>  url('rsvp/'. $rsvp->rid .'/attendees/send'))));      
+ 
+    $content .= theme('rsvp_status', $statusarray);
+    drupal_set_message($content);
+    
+  }
+  
+  $parent = rsvp_function_session_parent(NULL, false);
+  if (!empty($parent));  
+    drupal_goto($parent);
+  
+}
+
+/**
+ * Collects available buddylists and the containing users that can be added to the invitation.
+ *
+ * @param $rsvp The RSVP object.
+ * @param $use_checkboxes If true, then RSVP_OPTION_YES then return option array. Otherwise return list with links.
+ * @return a list with links to buddylists that can be added to the invitation.
+ *
+ * @ingroup rsvp_og
+ */
+function rsvp_og_collect_groups($rsvp, $use_checkboxes) {
+
+  $ret = array();
+  
+  if (module_exists('og')) {
+    if (user_is_anonymous())
+      return $ret;
+      
+    global $user;	
+  	
+    $my_groups = array();
+       
+    if ( in_array('site_administrator', array($user->roles))) {
+      $my_groups = og_all_groups_options();
+
+    }
+    else {
+      $groups = og_get_subscriptions($user->uid);
+      foreach ($groups as $key => $val)
+        $my_groups[$key] = $val['title'];
+    }
+    
+    foreach ($my_groups as $gid => $name) {
+      if ($use_checkboxes == RSVP_OPTION_YES) {
+        $ret['g_'. $gid] = $name;
+      }
+      else {
+        $data = l($name, 'rsvp/'. $rsvp->rid .'/attendees/og/'. $gid, array('attributes' => array('title' => t('Add %term members to this invitation', array('%term' => $name)))));
+        $children = array();     
+      }
+
+      
+      if (variable_get(RSVP_OG_OPTION_SHOWUSERS, RSVP_OPTION_NO) == RSVP_OPTION_YES) {
+        //for each group, go down and collect the users and add as option with indentation.
+        $guestarray = rsvp_og_function_list_groupmembers($gid);
+        foreach ($guestarray as $uid => $name) {
+            //store uid and name as key for easier retrival in case user selects the option.
+          if ($use_checkboxes == RSVP_OPTION_YES) {
+            $ret['u_'. $uid . '_' . $name] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $name;
+          }
+          else {
+            $children[] = array('data' => l($name, 'rsvp/'. $rsvp->rid .'/attendees/og/'. $gid . '/' . $uid, array('attributes' => array('title' => t('Add %term to this invitation', array('%term' => $name))))));
+          }
+        }
+      }
+      
+      if ($use_checkboxes == RSVP_OPTION_NO) {
+        $ret[] = array('data' => $data, 'children' => $children);
+      }
+      
+    }
+    
+  }
+  
+  return $ret;  
+}
+
+/**
+ * Implementation of hook_form_alter().
+ * 
+ * weigth of plugins is always 40
+ * 
+ * to append the og choice to the attendee form if the permissions are right.
+ * 
+ * @ingroup rsvp_og
+ * 
+ */
+function rsvp_og_form_alter(&$form, $form_state, $form_id) {
+
+  
+  
+  if ($form_id == 'rsvp_add_guests_form') {
+    $rsvp = $form['rsvp_add_guests_form']['rsvp']['#value'];
+	  if ( is_null($rsvp) )
+      return;
+    
+    $connector = new RsvpConnector();
+    if (rsvp_function_invitation_by_invite_access($connector, $rsvp, NULL, NULL, RSVP_ACCESS_REPLY, RSVP_PERM_INVITE_OG) == true) {
+
+      $show_checkboxes = variable_get(RSVP_OG_OPTION_CHECKBOXES, RSVP_OPTION_NO);
+      
+      $grouplist = rsvp_og_collect_groups($rsvp, $show_checkboxes);
+      //$title = t('Groups');
+      
+      $form['rsvp']['rsvp_og'] = array(
+        '#weight' => 40,
+        '#value' => '<div class="rsvp_form rsvp_add_guests_form rsvp_color_border rsvp_color_inner">',
+        '#suffix' => '</div>',
+      );
+
+      $form['rsvp']['rsvp_og']['header'] = array(
+        '#value' => t('You may invite members of the following groups'),
+        '#prefix' => '<div class="rsvp_form_header rsvp_add_guests_form_header rsvp_color_outer">',
+        '#suffix' => '</div>',
+      );
+      
+      if ($show_checkboxes == RSVP_OPTION_NO) {
+        $itemlist = theme('item_list', $grouplist, $title);
+        
+        $form['rsvp']['rsvp_og']['users_og'] = array(
+          '#value' => $itemlist,
+          '#prefix' => '<div class="rsvp_form_content rsvp_add_guests_form_content rsvp_color_inner">',
+          '#suffix' => '</div>',
+        );
+      }
+      else {
+        $form['rsvp']['rsvp_og']['users_og'] = array(
+          '#type' => 'checkboxes',
+          '#options' => $grouplist,
+          '#prefix' => '<div class="rsvp_form_content rsvp_add_guests_form_content rsvp_color_inner">',
+          '#suffix' => '</div>',
+        );
+      
+        $form['rsvp']['rsvp_og']['submit_og'] = array(
+          '#type' => 'submit',
+          '#value' => t('Add selected groups/users'),
+          '#prefix' => '<div class="rsvp_form_content rsvp_add_guests_form_content rsvp_color_inner">',
+          '#suffix' => '</div>',
+          '#submit' => array('rsvp_og_add_guests_form_submit'),
+          '#validate' => array('rsvp_og_add_guests_form_validate'),
+          '#description' => t('Add persons to the list of attendees.'),
+        );
+      }  
+    }
+  }
+}
+
+function rsvp_og_add_guests_form_validate($form, &$form_state) {
+  
+// Discover which boxes were checked.
+  $checked = array_intersect(array_keys($form_state['values']['users_og']),
+                          array_values($form_state['values']['users_og']));
+
+  $num_checked = count($checked);
+  
+  if ($num_checked == 0) {
+    form_set_error('', t('No groups or users were selected.'));      
+  }
+}
+
+function rsvp_og_add_guests_form_submit($form, &$form_state) {
+
+  $rsvp = $form_state['values']['rsvp']; 
+  $checked = array_intersect(array_keys($form_state['values']['users_og']),
+                          array_values($form_state['values']['users_og']));
+
+  //result array with uid=>name array
+  $guestsarray = array();
+                          
+  foreach ($checked as $key => $value) {
+    $token = strpos($value, 'g_');
+    if (is_numeric($token))
+    {
+      $gid = substr($value, 2); //cut of the beginning 'g_'
+      $foundguests = rsvp_og_function_list_groupmembers($gid);
+      //merge arrays with numeric keys
+      foreach ($foundguests as $foundkey => $foundvalue) {
+        $guestsarray[$foundkey] = $foundvalue;
+      }
+    }
+    else
+    {
+      //the key consists of uid and name.
+      $token = strpos($value, 'u_');
+      if (is_numeric($token))
+      {
+        $uid_name = substr($value, 2); //cut of the beginning 'u_'
+        $token = strpos($uid_name, '_');
+        $uid = substr($uid_name, 0, $token);
+        $name = substr($uid_name, $token+1);
+        
+        $guestsarray[$uid] = $name;
+      }
+    }
+   
+  }
+
+  $connector = new RsvpConnector();
+    
+  $statusarray = rsvp_function_add_guests($rsvp, NULL, $guestsarray, false);
+    
+  if (count($statusarray['success_add']) > 0)
+    drupal_set_message('New guests have been added. Do not forget to send the invitations.');
+ 
+  $content .= theme('rsvp_status', $statusarray);
+  drupal_set_message($content);
+  
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+* @ingroup rsvp_og_action
+* 
+* Implementation of hook_action_info()
+*/
+/*
+function rsvp_og_action_info() {
+  
+  return array(
+      'rsvp_og_add_guests_action' => array(
+        'description' => t('RSVP: Add OrganicGroup group members to invitation'),
+        'type' => 'node',
+        'configurable' => FALSE,
+        'hooks' => array(
+          'any' => TRUE,
+        ),
+      ),
+  );
+}
+*/
+
+/**
+ * A nonconfigurable Drupal action. Adds guests based on og buddylist to an invitation (host permissions) and send the invitation message
+ *   hook = any
+ *
+ *   Required contexts:
+ *    $context['rid'] The invitation id you want to add guests to.
+ *    $context['bid'] The Buddylist id.
+ *    $context['send_rsvp'] Boolean also send the invitations or just add the guests to the invitation.
+ *
+ * @ingroup rsvp_og_actions
+ * 
+ */
+function rsvp_og_add_guests_action(&$object, $context = array()) {
+
+  if ((!isset($context['rid'])) || (!isset($context['bid'])) || (!isset($context['send_rsvp']))  ) {
+    return false;
+  }
+
+  rsvp_og_api_add_guests($context['rid'], NULL, $context['bid'], $context['send_rsvp']);
+} 
+
+/**
+ * Adds a number of guests based on og buddylist to an invitation(rsvp) and sends out the invitations
+ * 
+ * The function requires the correct user permissions.
+ * 
+ * @ingroup rsvp_og_api
+ * 
+ * @param $rid The Id of the rsvp instance.
+ * @param $hash The hash of the invitation object of the user who adds the invitees, 
+ *        or NULL if the rsvp owner adds the invitees.
+ * @param $bid The id of the buddylist.
+ * @param $send_rsvp Boolean Also send the invitations or just add the guests to the invitation.
+ */
+function rsvp_og_api_add_guests($rid, $hash, $bid, $send_rsvp) {
+  
+  $invite = NULL;
+  
+  if(!isnull($rid)) {
+    $rsvp = rsvp_function_load_rsvp($rid);
+    if ($rsvp == false)
+      return false;
+  }
+  
+  if(!isnull($hash)) {
+    $invite = rsvp_function_load_invitation_hash($hash);
+    if ($invite == false)
+      return false;
+  }
+  
+  $connector = new RsvpConnector();
+
+  $perm_add = rsvp_function_invitation_by_invite_access($connector, $rsvp, NULL, NULL, RSVP_ACCESS_EDIT, RSVP_PERM_INVITE_OG);
+  if ($perm_add == true) {
+    $guestarray = rsvp_og_function_list_groupmembers($nid);
+    rsvp_function_add_guests($rsvp, $invite, $guestarray, $send_rsvp);
+    watchdog('action', 'Added invitees from OG buddylist %bid to invitation %rsvp_name(%rid) successfully.', array('%rsvp_name' => $rsvp->name, '%rid' => $rsvp->rid, '%bid' => $bid)); 
+  }
+}
+
+
+/**
+ * Extracting a list of og subscribers.
+ *
+ * The function requires the correct user permissions.
+ *
+ *
+ * @param $gid int The OG group ID.
+ * @return array of drupal userids to usernames.
+ *
+ * @ingroup rsvp_og_functions
+ */
+function rsvp_og_function_list_groupmembers($gid) {
+
+  $guestsarray = array();
+  
+  if (is_numeric($gid)) {
+    $guestsarray = array();
+    $query = db_query('SELECT u.name, u.uid FROM {users} u, {og_uid} ogu WHERE u.uid = ogu.uid AND ogu.nid = %d',$gid);
+    while ($u = db_fetch_object($query)) {
+      $guestsarray[$u->uid] = $u->name;
+    }
+  }
+  
+  return $guestsarray;  
+}
+

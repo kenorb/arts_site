@@ -1,0 +1,29 @@
+<?php
+// $Id: rsvp_og.install,v 1.1.2.1 2010/01/27 06:12:54 ulf1 Exp $
+
+/**
+ * @module rsvp_og
+ * 
+ * @package rsvp - A drupal module developed for civicspace - a distribution of drupal.
+ * @description Provides functionality to invite people that are part of og buddylists
+ * @author Ulf Schenk (ulf@schenkunlimited.net)
+ *
+ */
+
+function rsvp_og_install() {
+
+  variable_set(RSVP_OG_OPTION_CHECKBOXES, RSVP_OPTION_NO);  
+  variable_set(RSVP_OG_OPTION_SHOWUSERS, RSVP_OPTION_NO);  
+}
+
+function rsvp_og_uninstall() {
+
+  variable_del(RSVP_OG_OPTION_CHECKBOXES);
+  variable_del(RSVP_OG_OPTION_SHOWUSERS);
+}
+
+
+
+
+
+?>

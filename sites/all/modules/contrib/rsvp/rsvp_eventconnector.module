@@ -1,0 +1,93 @@
+<?php
+// $Id: rsvp_eventconnector.module,v 1.2.2.4 2009/11/05 22:36:47 ulf1 Exp $
+
+class RsvpEventConnectorImpl extends RsvpConnectorImpl {
+
+  function get_event_field($field_name, $content_type) {
+    return array('event' => 'event');
+  }
+  
+  
+  function get_datecount($node, $field) {
+    return 1;
+  }
+	
+  //returns startdate as hash
+  function get_startdateAsHash($node, $field, $pos) {
+    return $this->get_startdateAsUTC($node, $field, $pos);
+  }
+
+  //returns startdate as unix timestamp in utc
+  function get_startdateAsUTC($node, $field, $pos) {
+    $eventstart = $node->event['start'];
+    $unixutc = strtotime($eventstart);
+        
+    return $unixutc;
+  }
+  
+  //startdate as string in local timezone
+  function get_startdateAsString($node, $field, $pos) {
+    
+    return $node->event['start'];    
+  }
+  
+  //returns enddate as unix timestamp in utc
+  function get_enddateAsUTC($node, $field, $pos) {
+    $eventend = $node->event['end'];
+    $unixutc = strtotime($eventend);
+    //debug: $r1 = date('r', $unixutc);
+    return $unixutc;
+  }
+  
+  //returns if event has a valid enddate
+  function has_enddate($node, $field, $pos) {
+    return $node->event['has_end_date'];
+  }
+  
+  function format_date($node, $field, $pos, $include_to_date = FALSE) {
+
+    $date_out = $node->event['start'];
+
+    if ($include_to_date && $this->has_enddate($node, $field, $pos)) {
+      $eventend = $node->event['end'];
+      
+      if ($eventend) {
+        $date_out .= t(' to ') . $eventend;
+      }
+    }
+    return $date_out;    
+    
+  }
+  
+  /*
+   * PRIVATE METHOD. Do not use outside. Return type is based on used connector.
+   * returns time zone offset according to Event API. 
+   */
+    function get_offset($node, $field, $pos) {
+    return $node->event['offset'];
+  }
+  
+  //returns the position for a particular hash, or -1 if invalid hash
+  function get_posByHash($node, $field, $hash) {
+  	//event node has only one start_date
+    return 0;
+  }
+  
+  function is_event_enabled($contenttype) {
+    return event_is_enabled($contenttype);
+  }
+  
+  function isTypesAreSelectable() {
+    return false;
+  }
+  
+  //returns true if the connector supports multiple dates per field per content-type. (e.g. Repeatable dates in Date API).
+  function hasMultipleDatesPerField() {
+    return false;
+  }
+  
+}
+
+function rsvp_eventconnector_getconnector() {
+  return new RsvpEventConnectorImpl();  
+}
