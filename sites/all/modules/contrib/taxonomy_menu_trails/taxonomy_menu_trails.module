@@ -1,0 +1,57 @@
+<?php
+
+// $Id: taxonomy_menu_trails.module,v 1.3 2010/11/20 18:58:07 dmitriytrt Exp $
+
+/**
+ * @file
+ * Changes menu trail of current node to its lightest term's 
+ * menu item (only if node doesn't belong to any menu)
+ *
+ * @author Dmitriy.trt      <http://drupal.org/user/329125>
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function taxonomy_menu_trails_init() {
+  $item = menu_get_item();
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $node = $item['page_arguments'][0];
+    $enabled_types = variable_get('taxonomy_menu_trails_node_types', array());
+    if (
+      !empty($node->taxonomy) //Node has terms
+      && !empty($enabled_types[$node->type]) //Processing for this node type was enabled
+      && (
+        !variable_get('taxonomy_menu_trails_only_without_menu', TRUE) //"Only if node doesn't have menu item" option is disabled
+        || db_result(db_query('SELECT COUNT(*) FROM {menu_links} WHERE link_path = "%s" AND hidden = 0', $item['href'])) == 0 //OR node doesn't have menu item
+      )
+    ) {
+      module_load_include('inc', 'taxonomy_menu_trails');
+      _taxonomy_menu_trails_process($item);
+    }
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function taxonomy_menu_trails_menu() {
+  $items = array(
+    'admin/settings/taxonomy-menu-trails' => array(
+      'title' => 'Taxonomy menu trails',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('taxonomy_menu_trails_settings'),
+      'access arguments' => array('administer taxonomy menu trails'),
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'taxonomy_menu_trails.admin.inc',
+    ),
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function taxonomy_menu_trails_perm() {
+  return array('administer taxonomy menu trails');
+}

@@ -1,0 +1,86 @@
+# $Id: taxonomy_menu_trails.pot,v 1.1 2010/10/09 18:01:27 dmitriytrt Exp $
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  taxonomy_menu_trails.admin.inc,v 1.2 2010/10/09 16:39:27 dmitriytrt
+#  taxonomy_menu_trails.module,v 1.2 2010/10/09 14:32:16 dmitriytrt
+#  taxonomy_menu_trails.info,v 1.1 2010/04/07 12:54:24 dmitriytrt
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-10-10 00:50+0700\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: taxonomy_menu_trails.admin.inc:23
+msgid "Only if node doesn't have enabled menu item"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:28
+msgid "Node's term selection method"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:29
+msgid "This option defines how module chooses term for processing:<ul><li><b>First/Last</b> - just select lightest/haviest node's term (but it can be the term without menu item). Best performance.</li><li><b>First/last with menu item</b> - find first/last term with enabled menu item. Low performance</li><li><b>Deepest in lineage</b> - use deepest term in selected lineage. All parent terms in lineage must be attached to node for this function to work. It's highly recommended to use Hierarchical Select for lineage saving. Low performance.</ul>"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:32
+msgid "First term"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:33
+msgid "Last term"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:34
+msgid "First term with menu item"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:35
+msgid "Last term with menu item"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:36
+msgid "Deepest in lineage"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:45
+msgid "Get term's path from Taxonomy Menu modules"
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:46
+msgid "If you set up not default path for terms' menu items with Taxonomy Menu modules, module will use this paths."
+msgstr ""
+
+#: taxonomy_menu_trails.admin.inc:55
+msgid "Vocabularies to select terms from"
+msgstr ""
+
+#: taxonomy_menu_trails.module:56
+msgid "administer taxonomy menu trails"
+msgstr ""
+
+#: taxonomy_menu_trails.module:41
+msgid "Taxonomy menu trails"
+msgstr ""
+
+#: taxonomy_menu_trails.info:0
+msgid "Taxonomy Menu Trails"
+msgstr ""
+
+#: taxonomy_menu_trails.info:0
+msgid "Changes menu trail of current node to its term's menu item. Provides optional integration with Taxonomy Menu modules."
+msgstr ""
+
+#: taxonomy_menu_trails.info:0
+msgid "Taxonomy Menu"
+msgstr ""
+

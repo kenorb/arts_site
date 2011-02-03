@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Taxonomy Menu Trails (6.x-1.1)\n"
+"POT-Creation-Date: 2010-10-10 00:50+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dmitriy.trt <dmitriy.trt@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: taxonomy_menu_trails.admin.inc:23
+msgid "Only if node doesn't have enabled menu item"
+msgstr "Только если у материала нет включенного пункта меню"
+
+#: taxonomy_menu_trails.admin.inc:28
+msgid "Node's term selection method"
+msgstr "Способ выбора термина материала"
+
+#: taxonomy_menu_trails.admin.inc:29
+msgid "This option defines how module chooses term for processing:<ul><li><b>First/Last</b> - just select lightest/haviest node's term (but it can be the term without menu item). Best performance.</li><li><b>First/last with menu item</b> - find first/last term with enabled menu item. Low performance</li><li><b>Deepest in lineage</b> - use deepest term in selected lineage. All parent terms in lineage must be attached to node for this function to work. It's highly recommended to use Hierarchical Select for lineage saving. Low performance.</ul>"
+msgstr "Эта опция определяет как модуль будет выбирать термин для работы:<ul><li><b>Первый/Последний</b> - будет выбран самый легкий/тяжелый термин материала (но это может оказаться термин без пункта меню). Наилучшая производительность.</li><li><b>Первый/Последний с меню</b> - будет найден первый/последний термин с включенным пунктом меню. Низкая производительность.</li><li><b>Самый глубокий в иерархии</b> - будет использован самый глубокий из иерархии. Чтобы эта функция работала, все термины-предки должны быть связаны с данным материалом. Настоятельно рекомендуется использовать Hierarchical Select для сохранения пути в иерархии. Низкая производительность.</ul>"
+
+#: taxonomy_menu_trails.admin.inc:32
+msgid "First term"
+msgstr "Первый термин"
+
+#: taxonomy_menu_trails.admin.inc:33
+msgid "Last term"
+msgstr "Последний термин"
+
+#: taxonomy_menu_trails.admin.inc:34
+#, fuzzy
+msgid "First term with menu item"
+msgstr "Первый термин с пунктом меню"
+
+#: taxonomy_menu_trails.admin.inc:35
+#, fuzzy
+msgid "Last term with menu item"
+msgstr "Последний термин с пунктом меню"
+
+#: taxonomy_menu_trails.admin.inc:36
+msgid "Deepest in lineage"
+msgstr "Самый глубокий в иерархии"
+
+#: taxonomy_menu_trails.admin.inc:45
+msgid "Get term's path from Taxonomy Menu modules"
+msgstr "Получать путь термина из модулей Taxonomy Menu"
+
+#: taxonomy_menu_trails.admin.inc:46
+msgid "If you set up not default path for terms' menu items with Taxonomy Menu modules, module will use this paths."
+msgstr "Если вы настроили нестандартные пути для пунктов меню терминов в модулях Taxonomy Menu, будут использоваться эти пути."
+
+#: taxonomy_menu_trails.admin.inc:55
+msgid "Vocabularies to select terms from"
+msgstr "Словари из которых будут выбираться термины"
+
+#: taxonomy_menu_trails.module:56
+msgid "administer taxonomy menu trails"
+msgstr ""
+
+#: taxonomy_menu_trails.module:41
+msgid "Taxonomy menu trails"
+msgstr ""
+
+#: taxonomy_menu_trails.info:0
+msgid "Taxonomy Menu Trails"
+msgstr ""
+
+#: taxonomy_menu_trails.info:0
+msgid "Changes menu trail of current node to its term's menu item. Provides optional integration with Taxonomy Menu modules."
+msgstr "Изменяет текущий путь в меню для текущего материала на путь его термина. Предоставляет опциональную интеграцию с модулями Taxonomy Menu."
+
+#: taxonomy_menu_trails.info:0
+msgid "Taxonomy Menu"
+msgstr ""
+
