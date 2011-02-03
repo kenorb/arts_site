@@ -1,0 +1,22 @@
+; $Id: simpletest.info,v 1.4.2.2.2.9 2010/11/13 01:03:47 davereid Exp $
+name = SimpleTest
+description = Provides a framework for unit and functional testing.
+package = Development
+core = 6.x
+php = 5.2
+files[] = simpletest.module
+files[] = simpletest.pages.inc
+files[] = simpletest.install
+files[] = simpletest.test
+files[] = drupal_web_test_case.php
+configure = admin/build/testing/settings
+
+; Tests in tests directory.
+files[] = tests/block.test
+
+; Information added by drupal.org packaging script on January 1, 1970 - 00:00
+version = "6.x-2.x-dev"
+core = "6.x"
+project = "simpletest"
+datestamp = "1296520378"
+
