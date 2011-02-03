@@ -1,0 +1,50 @@
+<?php
+// $Id: workflow_fields.install,v 1.1.4.2.2.2 2008/08/29 17:52:53 kratib Exp $
+
+function workflow_fields_install() {
+  drupal_install_schema('workflow_fields');
+}
+
+function workflow_fields_update_1() {
+  $ret = array();
+
+  db_add_field($ret, 'workflow_fields', 'rid', array('type' => 'int', 'not null' => TRUE, 'default' => '-1'));
+  db_drop_primary_key($ret, 'workflow_fields');
+  db_add_primary_key($ret, 'workflow_fields', array('sid', 'rid'));
+
+  return $ret;
+}
+
+function workflow_fields_update_2() {
+  $ret = array();
+  
+  db_add_field($ret, 'workflow_fields', 'visible_userref', array('type' => 'varchar', 'length' => 100, 'not null' => FALSE));
+  db_add_field($ret, 'workflow_fields', 'editable_userref', array('type' => 'varchar', 'length' => 100, 'not null' => FALSE));
+
+  return $ret;
+}
+
+function workflow_fields_uninstall() {
+  drupal_uninstall_schema('workflow_fields');
+}
+
+function workflow_fields_schema() {
+  $schema['workflow_fields'] = array(
+    'fields' => array(
+      'sid' => array('type' => 'int', 'not null' => TRUE, 'default' => 0),
+      'rid' => array('type' => 'int', 'not null' => TRUE, 'default' => 0),
+      'name' => array('type' => 'varchar', 'length' => 100, 'not null' => TRUE),
+      'type' => array('type' => 'varchar', 'length' => 100, 'not null' => TRUE),
+      'visible' => array('type' => 'int', 'size' => 'tiny', 'not null' => TRUE),
+      'editable' => array('type' => 'int', 'size' => 'tiny', 'not null' => TRUE),
+      'visible_userref' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+      'editable_userref' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+    ),
+    'indexes' => array(
+      'sid' => array('sid'),
+      'rid' => array('rid'),
+    ),
+  );
+  return $schema;
+}
+

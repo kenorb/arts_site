@@ -1,0 +1,14 @@
+; $Id: workflow_fields.info,v 1.1.2.2.2.1 2008/08/04 15:08:12 kratib Exp $
+name = Workflow Fields
+description = Adds per-field settings to each workflow state.
+package = Workflow
+dependencies[] = content 
+dependencies[] = workflow
+core = 6.x
+
+; Information added by drupal.org packaging script on 2009-01-01
+version = "6.x-1.1"
+core = "6.x"
+project = "workflow_fields"
+datestamp = "1230811837"
+

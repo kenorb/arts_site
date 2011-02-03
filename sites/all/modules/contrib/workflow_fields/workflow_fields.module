@@ -1,0 +1,480 @@
+<?php
+// $Id: workflow_fields.module,v 1.5.2.13.2.10 2008/12/10 21:52:31 kratib Exp $
+
+/**
+ * @file
+ * This module adds to workflow.module the ability to specify, for each state, which node fields should be visible and/or editable.
+ * It is a useful feature when workflows demand that certain information be hidden or read-only to certain roles.
+ *
+ */
+
+define("FIELD_ROLE_AUTHOR", -1);
+define("FIELD_ROLE_USERREFERENCE", -2);
+
+/**
+ * Implementation of hook_help().
+ */
+function workflow_fields_help($section) {
+  switch ($section) {
+    case 'admin/modules#description':
+      return t('Add per-state CCK field settings to workflows. <em>Note: Requires both workflow.module and content.module</em>.');
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ * Hook on both any CCK node form and on the workflow state form.
+ *
+ * @param object &$node
+ * @return array
+ */
+function workflow_fields_form_alter(&$form, $form_state, $form_id) {
+  if (isset($form['type']) && $form['type']['#value'] .'_node_form' == $form_id) {
+    workflow_fields_node_form_alter($form, $form_state, $form_id);
+  }
+  elseif ('workflow_state_add_form' == $form_id) {
+    workflow_fields_state_form_alter($form, $form_state, $form_id);
+  }
+}
+
+/**
+ * Alter the workflow state form.
+ * Add a table listing the fields for workflow's content type.
+ */
+function workflow_fields_state_form_alter(&$form, $form_state, $form_id) {
+  $wid = $form['wid']['#value'];
+  $sid = $form['sid']['#value'];
+
+  // Get all types that are mapped to this workflow.
+  $types = db_query("SELECT type FROM {workflow_type_map} WHERE wid=%d", $wid);
+  if (empty($types)) return;
+
+  // Fix some fields if dealing with creation state.
+  if (WORKFLOW_CREATION == db_result(db_query("SELECT sysid FROM {workflow_states} WHERE sid = %d", $sid))) {
+    $form['sysid'] = array('#type' => 'value', '#value' => WORKFLOW_CREATION);
+    $form['weight'] = array('#type' => 'value', '#value' => WORKFLOW_CREATION_DEFAULT_WEIGHT);
+    $form['state'] = array('#type' => 'value', '#value' => t('(creation)'));
+  }
+
+  $form['#submit'][] = 'workflow_fields_state_form_submit';
+  $form['fields']['#theme'] = 'workflow_fields_state';
+  $form['fields']['#tree'] = TRUE;
+  $form['fields']['types'] = array('#type' => 'value', '#value' => array());
+
+  // Gather role ids.
+  $rids = array(FIELD_ROLE_AUTHOR => t('author'));
+  $result = db_query("SELECT r.rid, r.name FROM {role} r ORDER BY r.name");
+  while ($obj = db_fetch_object($result)) {
+    $rids[$obj->rid] = $obj->name;
+  }
+
+  // For each type, find out all the fields.
+  $there_is_at_least_one_userref = false;
+  while ($values = db_fetch_array($types)) {
+    $type = $values['type'];
+    if ($content = content_types($type)) {
+      array_push($form['fields']['types']['#value'], $type);
+
+      // Get all user reference fields.
+      $userrefs = array();
+      foreach ($content['fields'] as $userref) {
+        if ($userref['type'] == 'userreference') {
+          $there_is_at_least_one_userref = true;
+          $userrefs[$userref['field_name']] = $userref['widget']['label'];
+        }
+      }
+                                                
+      // For each field, add checkboxes for visible and editable for all roles.
+      $fields = module_invoke_all('workflow_fields', $type) + $content['fields'];
+      foreach ($fields as $field) {
+        $visible = array();
+        $editable = array();
+        $result = db_query("SELECT rid, visible, editable, visible_userref, editable_userref FROM {workflow_fields} WHERE sid=%d AND name='%s'", intval($sid), $field['field_name']);
+        while ($access = db_fetch_array($result)) {
+          if ($access['visible']) {
+            $visible[] = $access['rid'];
+          }
+          if ($access['editable']) {
+            $editable[] = $access['rid'];
+          }
+        }
+
+        $form['fields'][$type][$field['field_name']]['visible'] = array(
+          '#type' => 'checkboxes',
+          '#options' => $rids,
+          '#default_value' => $visible,
+        );
+        $form['fields'][$type][$field['field_name']]['editable'] = array(
+          '#type' => 'checkboxes',
+          '#options' => $rids,
+          '#default_value' => $editable,
+        );
+        if (!empty($userrefs)) {
+          $form['fields'][$type][$field['field_name']]['visible_ref'] = array(
+            '#type' => 'checkbox',
+            '#title' => t('user reference: '),
+            '#default_value' => in_array(FIELD_ROLE_USERREFERENCE, $visible),
+          );
+          $form['fields'][$type][$field['field_name']]['visible_refs'] = array(
+            '#type' => 'select',
+            '#options' => $userrefs,
+            '#default_value' => $access['visible_userref'],
+          );
+          $form['fields'][$type][$field['field_name']]['editable_ref'] = array(
+            '#type' => 'checkbox',
+            '#title' => t('user reference: '),
+            '#default_value' => in_array(FIELD_ROLE_USERREFERENCE, $editable),
+          );
+          $form['fields'][$type][$field['field_name']]['editable_refs'] = array(
+            '#type' => 'select',
+            '#options' => $userrefs,
+            '#default_value' => $access['editable_userref'],
+          );
+        }
+      }
+    }
+    else {
+      watchdog('workflow fields', 'The content type "%type" does not provide metadata information.', array('%type' => $type));
+    }
+
+    // Selection shortcuts.
+    foreach (array('', 'visible', 'editable') as $group) {
+      $shortcuts[$group]['all'] = array(
+        'title' => $group ? t($group) : t('all'),
+        'href' => "javascript:Drupal.workflowFields.select('all', '$group');",
+      );
+      $shortcuts[$group]['none'] = array(
+        'title' => t('none'),
+        'href' => "javascript:Drupal.workflowFields.select('none', '$group');",
+      );
+      $shortcuts[$group]['toggle'] = array(
+        'title' => t('toggle'),
+        'href' => "javascript:Drupal.workflowFields.select('toggle', '$group');",
+      );
+      foreach ($rids as $rid => $rname) {
+        $shortcuts[$group][$rid] = array(
+          'title' => t('role: '). $rname,
+          'href' => "javascript:Drupal.workflowFields.select($rid, '$group');",
+        );
+      }
+      if ($there_is_at_least_one_userref) {
+        $shortcuts[$group]['ref'] = array(
+          'title' => t('user reference'),
+          'href' => "javascript:Drupal.workflowFields.select('ref', '$group');",
+        );
+      }
+    }
+    $form['shortcuts'] = array(
+      '#type' => 'value',
+      '#value' => $shortcuts,
+      '#theme' => 'workflow_fields_shortcuts',
+    );
+  }
+  $form['submit']['#weight'] = 99;
+}
+
+function workflow_fields_theme() {
+  return array(
+    'workflow_fields_state' => array(
+      'arguments' => array('form' => NULL),
+    ),
+    'workflow_fields_shortcuts' => array(
+      'arguments' => array('form' => NULL),
+    ),
+    '_workflow_fields_settings' => array(
+      'arguments' => array('form' => NULL),
+    ),
+  );
+}
+
+function theme_workflow_fields_state($form) {
+  $header = array(t('Content type'), t('Field name'), t('Visible'), t('Editable'));
+  $rows = array();
+  foreach ($form['types']['#value'] as $type) {
+    $content = content_types($type);
+    $fields = module_invoke_all('workflow_fields', $type) + $content['fields'];
+    foreach ($fields as $field) {
+      if (!$field['field_name']) continue; // Avoid type-only fields
+      $rows[] = array(
+        $type,
+        $field['widget']['label'] .' ('. $field['field_name'] .')',
+        drupal_render($form[$type][$field['field_name']]['visible']).
+        drupal_render($form[$type][$field['field_name']]['visible_ref']).
+        drupal_render($form[$type][$field['field_name']]['visible_refs']),
+        drupal_render($form[$type][$field['field_name']]['editable']).
+        drupal_render($form[$type][$field['field_name']]['editable_ref']).
+        drupal_render($form[$type][$field['field_name']]['editable_refs']),
+      );
+    }
+  }
+  $output = theme('table', $header, $rows, array('class' => 'workflow-fields-table')) .'<p />';
+  return $output;
+}
+
+function theme_workflow_fields_shortcuts($form) {
+  drupal_add_js(drupal_get_path('module', 'workflow_fields') .'/workflow_fields.js');
+  $output = '<div class="form-item"><label>'. t('Select: ') .'</label>';
+  foreach ($form['#value'] as $group) {
+    $links = array();
+    foreach ($group as $key => $link) {
+      $links[] = "<a href=\"{$link['href']}\">{$link['title']}</a>";
+    }
+    $output .= implode(', ', $links) .'<br />';
+  }
+  $output .= '</div>';
+  return $output;
+}
+
+function workflow_fields_state_form_submit($form, &$form_state) {
+  if (isset($form_state['values']['fields'])) {
+    if (!isset($form_state['values']['sid'])) {
+      $form_state['values']['sid'] = db_result(db_query("SELECT sid FROM {workflow_states} WHERE wid=%d AND state='%s'", 
+        $form_state['values']['wid'], $form_state['values']['state']));
+    }
+    db_query("DELETE FROM {workflow_fields} WHERE sid=%d", intval($form_state['values']['sid']));
+    foreach ($form_state['values']['fields'] as $type => $fields) {
+      if ($type == 'types') continue;
+      foreach ($fields as $key => $field) {
+        foreach ($field['visible'] as $rid => $checked) {
+          db_query("INSERT INTO {workflow_fields} (sid, rid, name, type, visible, editable) VALUES (%d, %d, '%s', '%s', %d, %d)",
+            $form_state['values']['sid'], $rid, $key, $type, (bool) $checked, (bool) $field['editable'][$rid]
+          );
+        }
+        db_query("INSERT INTO {workflow_fields} (sid, rid, name, type, visible, editable, visible_userref, editable_userref) VALUES (%d, %d, '%s', '%s', %d, %d, '%s', '%s')",
+          $form_state['values']['sid'], FIELD_ROLE_USERREFERENCE, $key, $type, (bool) $field['visible_ref'], (bool) $field['editable_ref'], $field['visible_refs'], $field['editable_refs']
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Alter the node form by hiding/disabling fields depending on the workflow state.
+ * To hide a field, just unset it from the form.
+ * To disable a field, replace its form element by a view-only version (by calling the 'view' CCK function).
+ */
+function workflow_fields_node_form_alter(&$form, $form_state, $form_id) {
+  $node = $form['#node'];
+  $sid = workflow_node_current_state($node);
+  if (!is_numeric($sid)) {
+    $wid = db_result(db_query("SELECT wid FROM {workflow_type_map} WHERE type='%s'", $form['type']['#value']));
+    $sid = db_result(db_query("SELECT sid FROM {workflow_states} WHERE sysid=%d AND wid=%d", WORKFLOW_CREATION, $wid));
+  }
+
+  // Check for visible/editable flags.
+  if ($content = content_types($node->type)) {
+    $form['sid'] = array('#type' => 'value', '#value' => $sid);
+    list($visibles, $editables) = _workflow_fields_get_fields($sid, $node->type, $node);
+    if (!isset($visibles)) return;
+    $fields = module_invoke_all('workflow_fields', $node->type) + $content['fields'];
+    foreach ($visibles as $key => $visible) {
+      $editable = $editables[$key];
+      if ($editable && $visible) continue;
+      $visible = $visible && !variable_get('workflow_fields_hide_read_only_when_editing', FALSE);
+      if (!($element =& _workflow_fields_find_element($key, $form))) {
+        watchdog('workflow fields', 'Could not find field %name while altering the form. Proceeding to delete it from database.', array('%name' => $key));
+        db_query("DELETE FROM {workflow_fields} WHERE type='%s' AND name='%s'", $node->type, $key);
+        continue;
+      }
+      $field = $fields[$key];
+      $node_field = isset($node->$key) ? $node->$key : array();
+      if (isset($field['process'])) { // Does the field need special handling?
+        call_user_func_array($field['process'], array(!$visible ? '!visible' : '!editable', &$form, $key, &$element));
+      }
+      else { // Standard handling
+        if ($visible) { // Show the read-only version of the field
+          if (isset($content['fields'][$key])) { // Is the field CCK ?
+            $form[$key .'_view'] = array(
+              '#type' => 'markup',
+              '#value' => _workflow_fields_node_view($node, $key, $node_field),
+              '#weight' => $element['#weight'],
+            );
+          }
+          else { // Non-CCK
+            $form[$key .'_view'] = $element;
+            $form[$key .'_view']['#disabled'] = TRUE;
+            $form[$key .'_view']['#required'] = FALSE;
+          }
+        }
+          
+        // Now hide the field.
+        $element['#access'] = FALSE;
+        $element['#type'] = 'value';
+        $element['#value'] = $node_field;
+      }
+
+      // This part is useful for field types that require extra processing,
+      // like filefields where another form element is injected.
+      if (isset($fields[$field['type']])) {
+        $type = $fields[$field['type']];
+        if (isset($type['process'])) {
+          call_user_func_array($type['process'], array(!$visible ? '!visible' : '!editable', &$form, $key, &$element));
+        }
+      }
+    }
+  }
+}
+
+/**
+ * hook_workflow_fields($type)
+ * Used to describe special fields to be handled during form rendering.
+ *
+ * $type = content type being handled.
+ * return = array(
+ *   '<field name or field type>' => array(
+ *     'field_name' => '<field name>',
+ *     'type' => '<field type>',
+ *     'widget' => array('label' => '<label for view-only rendering>'),
+ *     'process' => '<function to process field>',
+ *   );
+ * );
+ */
+function workflow_fields_workflow_fields($type) {
+  $content = content_types($type);
+  $fields = array();
+  if ($content['has_title']) {
+    $fields['title'] = array(
+      'field_name' => 'title',
+      'widget' => array('label' => $content['title_label']),
+    );
+  }
+  if ($content['has_body']) {
+    $fields['body'] = array(
+      'field_name' => 'body',
+      'widget' => array('label' => $content['body_label']),
+      'process' => '_workflow_fields_process_body',
+    );
+  }
+  if (module_exists('filefield')) {
+    $fields['file'] = array(
+      'type' => 'file',
+      'process' => '_workflow_field_process_file',
+    );
+  }
+  return $fields;
+}
+
+function _workflow_fields_process_body($state, &$form, $key, &$element) {
+  if ($state == '!visible') {
+    $form['body_field']['#access'] = FALSE;
+  }
+  else {
+    $element['#disabled'] = TRUE;
+  }
+}
+
+function _workflow_field_process_file($state, &$form, $key, &$element) {
+  unset($form[$key .'-attach-url']);
+}
+
+/**
+ * Return an array of rids for the current user, given a node.
+ * Include FIELD_ROLE_AUTHOR if the current user is the node author.
+ */
+function _workflow_fields_compute_groups($node = NULL) {
+  global $user;
+  $groups = array_keys($user->roles);
+  if (isset($node) && ($user->uid == $node->uid)) {
+    array_push($groups, FIELD_ROLE_AUTHOR); // add 'author' group.
+  }
+  return $groups;
+}
+
+function workflow_fields_workflow_operations($mode, $wid, $sid=0) {
+  switch ($mode) {
+  case 'workflow':
+    break;
+  case 'state':
+    if (WORKFLOW_CREATION == db_result(db_query("SELECT sysid FROM {workflow_states} WHERE wid=%d AND sid=%d", $wid, $sid))) { // (creation) state
+      return array(
+        'workflow_creation_edit' => array(
+          'title' => t('Edit'),
+          'href' => "admin/build/workflow/state/$wid/$sid",
+        ),
+      );
+    }
+    break;
+  }
+}
+
+function _workflow_fields_node_view($node, $field, $node_field) {
+  content_view($node);
+  return drupal_render($node->content[$field]);
+}
+
+function workflow_fields_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  if ($op == 'view') {
+    $sid = workflow_node_current_state($node);
+    list($visibles, $editables) = _workflow_fields_get_fields($sid, $node->type, $node);
+    if (!isset($visibles)) return;
+    foreach ($visibles as $key => $visible) {
+      if (!$visible) {
+        $node->content[$key]['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+function workflow_fields_menu() {
+  $items['admin/settings/workflow_fields'] = array(
+    'title' => 'Workflow Fields settings',
+    'description' => 'Global settings for the behaviour of Workflow Fields.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_workflow_fields_settings'),
+    'access arguments' => array('administer workflow'),
+  );
+  return $items;
+}
+
+function _workflow_fields_settings() {
+  $form['workflow_fields_hide_read_only_when_editing'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide read-only fields when editing'),
+    '#default_value' => variable_get('workflow_fields_hide_read_only_when_editing', FALSE),
+    '#description' => t('Check this box to hide read-only fields from the editing form.'),
+  );
+  return system_settings_form($form);
+}
+
+function theme__workflow_fields_settings($form) {
+  $output  = '';
+  $output .= drupal_render($form);
+  $output .= '<p class="cvs-version">$Id: workflow_fields.module,v 1.5.2.13.2.10 2008/12/10 21:52:31 kratib Exp $</p>';
+  return $output;
+}
+
+function _workflow_fields_get_fields($sid, $type, $node) {
+  global $user;
+  $result = db_query("SELECT * FROM {workflow_fields} WHERE sid = %d AND type = '%s' AND rid IN (%d, %s)",
+    $sid, $type, FIELD_ROLE_USERREFERENCE, implode(_workflow_fields_compute_groups($node), ',')
+  );
+  // Compute the OR of permissions among all groups that this user belongs to.
+  while ($row = db_fetch_array($result)) {
+    if ($row['rid'] != FIELD_ROLE_USERREFERENCE) {
+      $visibles[$row['name']] |= $row['visible'];
+      $editables[$row['name']] |= $row['editable'];
+    }
+    else {
+      $visibles[$row['name']] |= ($row['visible'] && isset($node->{$row['visible_userref']}) && $node->{$row['visible_userref']}[0]['uid'] == $user->uid);
+      $editables[$row['name']] |= ($row['editable'] && isset($node->{$row['editable_userref']}) && $node->{$row['editable_userref']}[0]['uid'] == $user->uid);
+    }
+  }
+  return array($visibles, $editables);
+}
+
+function &_workflow_fields_find_element($key, &$form) {
+  if (array_key_exists($key, $form)) {
+    $ret =& $form[$key];
+    return $ret;
+  }
+  foreach ($form as $k => $v) {
+    if (is_array($v)) {
+      $ret =& _workflow_fields_find_element($key, $form[$k]);
+      if ($ret) {
+        return $ret;
+      }
+    }
+  }
+  return FALSE;
+}
+
