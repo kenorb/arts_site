@@ -1,0 +1,22 @@
+Index: modr8.module
+===================================================================
+--- modr8.module	(revision 5)
++++ modr8.module	(working copy)
+@@ -152,6 +152,17 @@
+         );
+       }
+       break;
++    case 'presave' :
++      // A node in moderation should stay there.
++      // A node not in moderation should move to moderation if the user who has
++      // just edited does not have the right permission.
++      // We handle this change in presave so on return to the calling 
++      // node_save() the saving is done for us.
++      if (!$node->moderate && !user_access('bypass moderation queue')) {
++        $node_options = variable_get('node_options_'. $node->type, array('status', 'promote'));
++        $node->moderate = in_array('moderate', $node_options);
++      }
++      break;
+     case 'update' :
+     case 'insert' :
+       db_query('UPDATE {node} SET moderate = %d WHERE nid = %d', $node->moderate, $node->nid);
