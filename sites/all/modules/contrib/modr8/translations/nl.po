@@ -1,0 +1,476 @@
+# Dutch translation of modr8 (6.x-1.1)
+# Copyright (c) 2009 by the Dutch translation team
+# Generated from files:
+#  modr8_admin.inc,v 1.25 2009/02/03 23:33:37 pwolanin
+#  modr8.module,v 1.25 2008/10/21 15:14:07 pwolanin
+#  modr8.info,v 1.2 2008/03/03 02:59:20 pwolanin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: modr8 (6.x-1.1)\n"
+"POT-Creation-Date: 2009-05-10 23:28+0200\n"
+"PO-Revision-Date: 2009-05-10 22:57+0200\n"
+"Language-Team: Dutch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: modr8_admin.inc:11
+msgid "delete"
+msgstr "verwijderen"
+
+#: modr8_admin.inc:299
+msgid "Operations"
+msgstr "Handelingen"
+
+#: modr8_admin.inc:235
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: modr8_admin.inc:288
+msgid "Save"
+msgstr "Opslaan"
+
+#: modr8_admin.inc:34
+msgid "E-mail"
+msgstr "E-mail"
+
+#: modr8_admin.inc:568
+msgid "Date"
+msgstr "Datum"
+
+#: modr8_admin.inc:567
+msgid "User"
+msgstr "Gebruiker"
+
+#: modr8_admin.inc:592
+msgid "No log messages available."
+msgstr "Geen logberichten beschikbaar."
+
+#: modr8_admin.inc:300
+msgid "Content"
+msgstr "Inhoud"
+
+#: modr8_admin.inc:566
+msgid "Action"
+msgstr "Actie"
+
+#: modr8_admin.inc:8
+msgid "Default action"
+msgstr "Standaard actie"
+
+#: modr8_admin.inc:10
+msgid "approve"
+msgstr "goedkeuren"
+
+#: modr8_admin.inc:12
+msgid "no action"
+msgstr "geen actie"
+
+#: modr8_admin.inc:19
+msgid "Number of moderated posts to display per page"
+msgstr "Aantal gemodereerde bijdragen per pagina weergegeven"
+
+#: modr8_admin.inc:24
+msgid "Never"
+msgstr "Nooit"
+
+#: modr8_admin.inc:27
+msgid "Discard log entries older than"
+msgstr "Verwijder logberichten ouder dan"
+
+#: modr8_admin.inc:30
+msgid ""
+"The time log entries should be kept. Older entries will be "
+"automatically discarded. Requires crontab."
+msgstr ""
+"De periode dat logberichten bewaard moeten worden. Oudere berichten "
+"worden automatisch verwijderd (hiervoor is cron nodig)."
+
+#: modr8_admin.inc:39
+msgid "Moderator email adress"
+msgstr "E-mailadres van de moderator"
+
+#: modr8_admin.inc:40
+msgid ""
+"E-mail notices sent by modr8 will have this as the \"From\" address. "
+"Leave empty to use same \"From\" address  as is used for user "
+"registration other administrative notices as set at <a "
+"href=\"@site-info\">Site information</a>."
+msgstr ""
+"E-mailberichten die door modr8 verstuurd worden zullen dit adres "
+"gebruiken als afzender. Laat vak leeg als u de zelfde afzender wilt "
+"gebruiken als voor de registratie van nieuwe gebruikers en andere "
+"administratieve berichten, zoals gespecifieerd onder <a "
+"href=\"@site-info\">Websitegegevens</a>."
+
+#: modr8_admin.inc:46
+msgid "Send approval messages"
+msgstr "Verzend berichten bij een goedkeuring"
+
+#: modr8_admin.inc:52
+msgid "Acceptance e-mail subject"
+msgstr "Onderwerp van bericht bij goedkeuring"
+
+#: modr8_admin.inc:62
+msgid "Acceptance e-mail"
+msgstr "Berichttekst bij goedkeuring"
+
+#: modr8_admin.inc:64,85,106
+msgid "Replacement strings are: %macros"
+msgstr "Beschikbare variabelen zijn:"
+
+#: modr8_admin.inc:69
+msgid "Send denial messages"
+msgstr "Verzend berichten bij een afwijzing"
+
+#: modr8_admin.inc:75
+msgid "Denial e-mail subject"
+msgstr "Onderwerp van bericht bij afwijzing"
+
+#: modr8_admin.inc:83
+msgid "Denial e-mail"
+msgstr "Berichttekst bij afwijzing"
+
+#: modr8_admin.inc:90
+msgid ""
+"Send a message when taking no action, but only if the moderator enters "
+"a \"Note to author\"."
+msgstr ""
+"Verzend een bericht wanneer geen actie wordt ondernomen, maar enkel "
+"als de moderator een 'Opmerking voor de auteur' toevoegt."
+
+#: modr8_admin.inc:96
+msgid "No action e-mail subject"
+msgstr "Onderwerp bericht wanneer geen actie wordt ondernomen"
+
+#: modr8_admin.inc:104
+msgid "No action e-mail note"
+msgstr "Bericht wanneer geen actie wordt ondernomen"
+
+#: modr8_admin.inc:115
+msgid ""
+"You must either enter a valid e-mail address, or leave the moderator "
+"e-mail field empty."
+msgstr ""
+"U dient een correct e-mailadres op te geven, of het e-mailadres van de "
+"moderator blanco laten."
+
+#: modr8_admin.inc:124
+msgid "Submit response regarding %title"
+msgstr ""
+
+#: modr8_admin.inc:128
+msgid "The moderator already approved %title"
+msgstr ""
+
+#: modr8_admin.inc:129
+msgid ""
+"This post has already been approved by the moderator. No response is "
+"needed."
+msgstr ""
+
+#: modr8_admin.inc:137
+msgid "Response title"
+msgstr ""
+
+#: modr8_admin.inc:144
+msgid "Message to the moderator"
+msgstr ""
+
+#: modr8_admin.inc:145
+msgid ""
+"Please respond to the moderation messsage you received and provide "
+"additional information as appropriate to help the moderator."
+msgstr ""
+
+#: modr8_admin.inc:151
+msgid "Submit"
+msgstr ""
+
+#: modr8_admin.inc:184
+msgid "Your response has been logged."
+msgstr ""
+
+#: modr8_admin.inc:201; modr8.module:43
+msgid "Show log of all actions on moderated content."
+msgstr "Toon alle logberichten voor gemodereerde inhoud."
+
+#: modr8_admin.inc:210; modr8.module:248
+msgid "@items in moderation"
+msgstr "@items in moderatie"
+
+#: modr8_admin.inc:233
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#: modr8_admin.inc:237
+msgid "No action"
+msgstr "Geen actie"
+
+#: modr8_admin.inc:247
+msgid "Note to author"
+msgstr "Bericht aan de auteur"
+
+#: modr8_admin.inc:350
+msgid "The %type with title %title has been approved."
+msgstr "De %type met als titel %title is goedgekeurd."
+
+#: modr8_admin.inc:391
+msgid "approval"
+msgstr "goedkeuring"
+
+#: modr8_admin.inc:396
+msgid "denial"
+msgstr "weigering"
+
+#: modr8_admin.inc:401
+msgid "note (no action)"
+msgstr "bericht (geen actie)"
+
+#: modr8_admin.inc:417
+msgid ""
+"You should create an administrator mail address for your site! <a "
+"href=\"@url\">Do it here</a>."
+msgstr ""
+"U dient <a href=\"@url\">hier</a> een e-mailadres voor de beheerder "
+"van de website op te geven."
+
+#: modr8_admin.inc:424
+msgid "Anonymous user; no %type message was sent."
+msgstr "Anonieme gebruiker. Geen %type bericht werd verstuurd."
+
+#: modr8_admin.inc:429
+msgid "%type message was sent to %username"
+msgstr "%type bericht werd verstuurd naar %username"
+
+#: modr8_admin.inc:433
+msgid "There was a problem sending the %type message to %username"
+msgstr ""
+"Er heeft zich een probleem voorgedaan bij het versturen van dit "
+"bericht naar  %username"
+
+#: modr8_admin.inc:439
+msgid "An error occurred when trying to load this content."
+msgstr "Er heeft zich een probleem voorgedaan bij het laden van deze inhoud."
+
+#: modr8_admin.inc:472
+msgid ""
+"Note:\n"
+"  !note"
+msgstr ""
+
+#: modr8_admin.inc:499
+msgid ""
+"Your %type entry entitled \"%title\" has been approved by our content "
+"moderator! Other visitors to %site will now be able to view it.\n"
+"\n"
+"You can visit %node_url to view it yourself.\n"
+"\n"
+"%note\n"
+"\n"
+"Regards,\n"
+"The %site team"
+msgstr ""
+"Uw bericht met de titel \"%title\" is goedgekeurd door een moderator! "
+"Andere bezoekers van  %site kunnen het bericht nu zien.\n"
+"\n"
+"U kunt het bericht zelf bekijken op volgende pagina: %node_url \n"
+"%note\n"
+"\n"
+"Met vriendelijke groeten,\n"
+"Het %site team"
+
+#: modr8_admin.inc:511
+msgid ""
+"Your %type entry entitled \"%title\" has been denied by our content "
+"moderator. The content has been deleted from our site.\n"
+"\n"
+"%note\n"
+"\n"
+"Regards,\n"
+"The %site team"
+msgstr ""
+"Uw bericht met de titel \"%title\" werd geweigerd door een moderator. "
+"De inhoud werd verwijderd van de website.\r\n"
+"\r\n"
+"%note\r\n"
+"\r\n"
+"Met vriendelijke groeten,\r\n"
+"Het %site team"
+
+#: modr8_admin.inc:521
+msgid ""
+"Your %type entry entitled \"%title\" has been reviewed by our content "
+"moderator, but not yet approved.\n"
+"\n"
+"%note\n"
+"\n"
+"To respond to the moderator, you can visit %response_url\n"
+"\n"
+"You can visit %node_url to view it yourself, but is is not yet visible "
+"to other site visitors.\n"
+"\n"
+"Regards,\n"
+"The %site team"
+msgstr ""
+
+#: modr8_admin.inc:554
+msgid "Moderation log event"
+msgstr "Moderatie log"
+
+#: modr8_admin.inc:569
+msgid "Title (view event)"
+msgstr "Titel (bekijk gebeurtenis)"
+
+#: modr8_admin.inc:617
+msgid "Overview of all moderation log events for this post"
+msgstr "Overzicht van alle logberichten over de moderatie van dit bericht"
+
+#: modr8_admin.inc:618
+msgid "Action:"
+msgstr "Actie:"
+
+#: modr8_admin.inc:619
+msgid "Date:"
+msgstr "Datum:"
+
+#: modr8_admin.inc:621,629
+msgid "Author:"
+msgstr "Auteur:"
+
+#: modr8_admin.inc:622
+msgid "Response title:"
+msgstr ""
+
+#: modr8_admin.inc:623
+msgid "Response message:"
+msgstr ""
+
+#: modr8_admin.inc:624
+msgid "Teaser (as of response):"
+msgstr ""
+
+#: modr8_admin.inc:627
+msgid "Moderator:"
+msgstr "Moderator:"
+
+#: modr8_admin.inc:628
+msgid "E-mail message:"
+msgstr "E-mailbericht:"
+
+#: modr8_admin.inc:630
+msgid "Teaser (as reviewed):"
+msgstr "Intro:"
+
+#: modr8_admin.inc:210; modr8.module:248
+msgid "1 post"
+msgid_plural "@count posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: modr8_admin.inc:266
+msgid "See the 1 moderation log event for this post"
+msgid_plural "Overview of the @count moderation log events for this post"
+msgstr[0] "Bekijk het logbericht voor de moderatie van dit bericht."
+msgstr[1] "Overzicht van @count logberichten over de moderatie van dit bericht"
+
+#: modr8.module:15
+msgid ""
+"Easy, dedicated moderation of content. Assign the 'moderate content' "
+"permission to one or mode user roles. Set up the default moderation "
+"option for each node type."
+msgstr ""
+"Eenvoudige, gespecialiseerde moderatie van inhoud, met toegangsrechten "
+"voor 'modereer inhoud' per rol en standaard moderatie voor elk "
+"inhoudstype."
+
+#: modr8.module:164,167,189
+msgid "In moderation queue"
+msgstr "In de wachtrij voor moderatie"
+
+#: modr8.module:167
+msgid ""
+"This %type will be placed in moderation if the %moderate checkbox is "
+"selected."
+msgstr ""
+"Dit %type bericht zal in moderatie geplaatst worden indien  %moderate "
+"aangevinkt staat"
+
+#: modr8.module:236
+msgid "Modr8 moderator's block"
+msgstr "Modr8 moderator blok"
+
+#: modr8.module:241
+msgid "Moderation queue"
+msgstr "Moderatiewachtrij"
+
+#: modr8.module:252
+msgid "Recent additions:"
+msgstr "Recente toevoegingen"
+
+#: modr8.module:281
+msgid "Pending moderation"
+msgstr "Wachten op moderatie"
+
+#: modr8.module:286
+msgid ""
+"The post has been submitted for moderation and won't be listed "
+"publicly until it has been approved."
+msgstr ""
+"Dit bericht werd voorgesteld ter goedkeuring en zal niet in "
+"overzichten worden opgenomen tot het goedgekeurd wordt."
+
+#: modr8.module:289
+msgid ""
+"This %type will be submitted for moderation and will not be accessible "
+"to other users until it has been approved."
+msgstr ""
+"Deze %type zal voorgesteld worden ter goedkeuring en zal niet "
+"toegankelijk zijn voor andere gebruikers tot deze goedgekeurd wordt"
+
+#: modr8.module:107
+msgid "moderate content"
+msgstr "modereer inhoud"
+
+#: modr8.module:34
+msgid "Moderated content"
+msgstr "Gemodereerde inhoud"
+
+#: modr8.module:35
+msgid "Approve or delete moderated content."
+msgstr "Inhoud in moderatie goedkeuren of afwijzen."
+
+#: modr8.module:42
+msgid "Content moderation log"
+msgstr "Logberichten moderatie"
+
+#: modr8.module:50
+msgid "Modr8 settings"
+msgstr "Modr8 instellingen"
+
+#: modr8.module:51
+msgid "Configure content moderation."
+msgstr "Configureer moderatie inhoud"
+
+#: modr8.module:58
+msgid "Moderation"
+msgstr "Moderatie"
+
+#: modr8.module:68
+msgid "Moderation response"
+msgstr ""
+
+#: modr8.module:0
+msgid "modr8"
+msgstr "modr8"
+
+#: modr8.info:0
+msgid "Modr8"
+msgstr "Modr8"
+
+#: modr8.info:0
+msgid "Easy, dedicated moderation of content"
+msgstr "Eenvoudige, gespecialieerde moderatie van inhoud"
+

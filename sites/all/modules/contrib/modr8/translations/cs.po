@@ -1,0 +1,384 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: modr8 drupal module czech translation 0.1\n"
+"POT-Creation-Date: 2008-04-01 07:06+0000\n"
+"PO-Revision-Date: 2009-03-09 20:31+0100\n"
+"Last-Translator: jimbu <archer2@seznam.cz>\n"
+"Language-Team: jimbu <archer2@seznam.cz>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Czech\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=3; plural=((n==1)?(0):(((n>=2)&&(n<=4))?(1):2));\n"
+
+#: modr8_admin.inc:8
+msgid "Default action"
+msgstr "Výchozí akce"
+
+#: modr8_admin.inc:10
+msgid "approve"
+msgstr "schválení"
+
+#: modr8_admin.inc:11
+msgid "delete"
+msgstr "smazat"
+
+#: modr8_admin.inc:12
+msgid "no action"
+msgstr "žádná akce"
+
+#: modr8_admin.inc:19
+msgid "Number of moderated posts to display per page"
+msgstr "Počet moderovaných příspěvků na jedné straně"
+
+#: modr8_admin.inc:24
+msgid "Never"
+msgstr "Nidky"
+
+#: modr8_admin.inc:27
+msgid "Discard log entries older than"
+msgstr "Smazat záznamy logu"
+
+#: modr8_admin.inc:30
+msgid "The time log entries should be kept. Older entries will be automatically discarded. Requires crontab."
+msgstr "Doba, po kterou se mají uchovat záznamy. Záznamy staršího data budou smazány."
+
+#: modr8_admin.inc:34
+msgid "E-mail"
+msgstr "E-mail"
+
+#: modr8_admin.inc:39
+msgid "Moderator email adress"
+msgstr "E-mailová adresa moderátora"
+
+#: modr8_admin.inc:40
+msgid "E-mail notices sent by modr8 will have this as the \"From\" address. Leave empty to use same \"From\" address  as is used for user registration other administrative notices as set at <a href=\"@site-info\">Site information</a>."
+msgstr "E-mailové upozornění poslané modulem modr8 budou mít toto vyplněné jako pole \"Od\". Ponechte prázdné pokud chcete použít stejnou \"Od\" adresu jako je použita v případě registrace uživatelů tak jak je nastaveno na této stránce <a href=\"@site-info\">Informace o webu</a>."
+
+#: modr8_admin.inc:46
+msgid "Send approval messages"
+msgstr "Poslat schvalovací zprávu"
+
+#: modr8_admin.inc:52
+msgid "Acceptance e-mail subject"
+msgstr "Předmět schvalovacího e-mailu"
+
+#: modr8_admin.inc:62
+msgid "Acceptance e-mail"
+msgstr "Schvalovací e-mail"
+
+#: modr8_admin.inc:64;85;106
+msgid "Replacement strings are: %macros"
+msgstr "Nahrazující řetězce jsou: %macros"
+
+#: modr8_admin.inc:69
+msgid "Send denial messages"
+msgstr "Poslat zprávu o zamítnutí"
+
+#: modr8_admin.inc:75
+msgid "Denial e-mail subject"
+msgstr "Předmět e-mailu o zamítnutí"
+
+#: modr8_admin.inc:83
+msgid "Denial e-mail"
+msgstr "E-mail o zamítnutí"
+
+#: modr8_admin.inc:90
+msgid "Send a message when taking no action, but only if the moderator enters a \"Note to author\"."
+msgstr "Poslat zprávu jestliže není zvolena žádná akce, ale moderátor pouze vyplní \"Poznámku autorovi\"."
+
+#: modr8_admin.inc:96
+msgid "No action e-mail subject"
+msgstr "Předmět e-mailu bez akce"
+
+#: modr8_admin.inc:104
+msgid "No action e-mail note"
+msgstr "Poznámka do e-mailu bez akce"
+
+#: modr8_admin.inc:115
+msgid "You must either enter a valid e-mail address, or leave the moderator e-mail field empty."
+msgstr "Musíte zadat buďto platnou e-mailovou adresu, nebo ponechat pole pro adresu moderátora prázdnou "
+
+#: modr8_admin.inc:134
+#: modr8.module:44
+msgid "Show log of all actions on moderated content."
+msgstr "Ukázat záznamy všech akcí na moderovaném obsahu."
+
+#: modr8_admin.inc:143
+#: modr8.module:221
+msgid "@items in moderation"
+msgstr "@items ve schvalování"
+
+#: modr8_admin.inc:168
+msgid "Approve"
+msgstr "Schválit"
+
+#: modr8_admin.inc:169
+msgid "Delete"
+msgstr "Smazat"
+
+#: modr8_admin.inc:170
+msgid "No action"
+msgstr "Žádná akce"
+
+#: modr8_admin.inc:177
+msgid "Note to author"
+msgstr "Poznámka autorovi"
+
+#: modr8_admin.inc:218
+msgid "Save"
+msgstr "Uložit"
+
+#: modr8_admin.inc:229
+msgid "Operations"
+msgstr "Operace"
+
+#: modr8_admin.inc:230
+msgid "Content"
+msgstr "Obsah"
+
+#: modr8_admin.inc:278
+msgid "The %type with title %title has been approved."
+msgstr "%type s názvem %title byl schválen."
+
+#: modr8_admin.inc:315
+msgid "approval"
+msgstr "schválení"
+
+#: modr8_admin.inc:320
+msgid "denial"
+msgstr "zamítnutí"
+
+#: modr8_admin.inc:325
+msgid "note (no action)"
+msgstr "poznámka (bez akce)"
+
+#: modr8_admin.inc:341
+msgid "You should create an administrator mail address for your site! <a href=\"@url\">Do it here</a>."
+msgstr "Měli by jste vytvořit e-mailovou adresu administrátora pro Vaši stránku! <a href=\"@url\">Vytvořit</a>."
+
+#: modr8_admin.inc:348
+msgid "Anonymous user; no %type message was sent."
+msgstr "Anonymní uživatel; žádná zpráva (%type) nebyla poslána "
+
+#: modr8_admin.inc:351
+msgid "%type message was sent to %username"
+msgstr "%type zpráva byla poslána uživateli %username"
+
+#: modr8_admin.inc:355
+msgid "There was a problem sending the %type message to %username"
+msgstr "Nastal problém při posílání zprávy (%type) uživateli %username"
+
+#: modr8_admin.inc:360
+msgid "An error occurred when trying to load this content."
+msgstr "Nastala chyba při nahrávání tohoto obsahu."
+
+#: modr8_admin.inc:390
+msgid ""
+"Note:\n"
+"  @note"
+msgstr ""
+"Poznámka:\n"
+"  @note"
+
+#: modr8_admin.inc:415
+msgid ""
+"Your %type entry entitled \"%title\" has been approved by our content moderator! Other visitors to %site will now be able to view it.\n"
+"\n"
+"You can visit %node_url to view it yourself.\n"
+"\n"
+"%note\n"
+"\n"
+"Regards,\n"
+"The %site team"
+msgstr ""
+"Váš příspěvek (%type) s názvem \"%title\" byl schválen moderátorem webu %site! Oststní návštevníci webu %site si budou nyní moci přečíst Váš příspěvek.\n"
+"\n"
+"Váš příspěvek můžete navštívit zde %node_url.\n"
+"\n"
+"%note\n"
+" \n"
+"S pozdravem,\n"
+"Tým %site"
+
+#: modr8_admin.inc:427
+msgid ""
+"Your %type entry entitled \"%title\" has been denied by our content moderator. The content has been deleted from our site.\n"
+"\n"
+"%note\n"
+"\n"
+"Regards,\n"
+"The %site team"
+msgstr ""
+"Váš příspěvek %type s názvem \"%title\" byl zamítnut našim moderátorem. Váš příspěvek byl smazán z webu %site.\n"
+"\n"
+"%note\n"
+"\n"
+"S pozdravem,\n"
+"Tým %site"
+
+#: modr8_admin.inc:437
+msgid ""
+"Your %type entry entitled \"%title\" has been reviewed by our content moderator, but not yet approved.\n"
+"\n"
+"%note\n"
+"\n"
+"You can visit %node_url to view it yourself, but is is not yet visible to other site visitors.\n"
+"\n"
+"Regards,\n"
+"The %site team"
+msgstr ""
+"Váš příspěvek (%type) s názvem \"%title\" byl zkontrolován našim moderátorem, avšak ještě nebyl schválen.\n"
+"\n"
+"%note\n"
+"\n"
+"Pokud chcete odepsat moderátorovi navštivte %response_urlMůžete se podívat na Váš příspěvek %node_url, který zatím ale není viditelný ostatním navštěvníkům.\n"
+"\n"
+"S pozdravem,\n"
+"Tým %site"
+
+#: modr8_admin.inc:468
+msgid "Moderation log event"
+msgstr "Záznamy událostí moderování"
+
+#: modr8_admin.inc:480
+msgid "Action"
+msgstr "Akce"
+
+#: modr8_admin.inc:481
+msgid "Moderator"
+msgstr "Moderátor"
+
+#: modr8_admin.inc:482
+msgid "Date"
+msgstr "Datum"
+
+#: modr8_admin.inc:483
+msgid "Title (view event)"
+msgstr "Nadpis (událost)"
+
+#: modr8_admin.inc:506
+msgid "No log messages available."
+msgstr "Není dostupný žádný záznam."
+
+#: modr8_admin.inc:531
+msgid "Overview of all moderation log events for this post"
+msgstr "Přehled všech událostí pro tento příspěvek"
+
+#: modr8_admin.inc:532
+msgid "Action:"
+msgstr "Akce:"
+
+#: modr8_admin.inc:533
+msgid "Date:"
+msgstr "Datum:"
+
+#: modr8_admin.inc:534
+msgid "Moderator:"
+msgstr "Moderator:"
+
+#: modr8_admin.inc:535
+msgid "E-mail message:"
+msgstr "E-mailová zpráva:"
+
+#: modr8_admin.inc:536
+msgid "Author:"
+msgstr "Autor:"
+
+#: modr8_admin.inc:537
+msgid "Teaser (as reviewed):"
+msgstr "Problém:"
+
+#: modr8_admin.inc:143
+#: modr8.module:221
+msgid "1 post"
+msgid_plural "@count posts"
+msgstr[0] "1 příspěvek"
+msgstr[1] "@count příspěvky"
+msgstr[2] "@count příspěvků"
+
+#: modr8_admin.inc:196
+msgid "See the 1 moderation log event for this post"
+msgid_plural "Overview of the @count moderation log events for this post"
+msgstr[0] "Zobrazit 1 záznam událostí moderace pro tento příspěvek"
+msgstr[1] "Zobrazit @count záznamy událostí moderace pro tento příspěvek"
+msgstr[2] "Zobrazit @count záznamů událostí moderace pro tento příspěvek"
+
+#: modr8.module:15
+msgid "Easy, dedicated moderation of content. Assign the 'moderate content' permission to one or mode user roles. Set up the default moderation option for each node type."
+msgstr "Lehce, nastavitelný modul pro moderování obsahu. Přiřaďte  'moderate content' povolení jedné nebo více uživatelským rolím. Nastavte výchozí vlastnosti pro moderování u každého typu obsahu. "
+
+#: modr8.module:137;140;162
+msgid "In moderation queue"
+msgstr "Ve frontě ke schválení"
+
+#: modr8.module:140
+msgid "This %type will be placed in moderation if the %moderate checkbox is selected."
+msgstr "Tento %type bude umístěna do moderování pokud bude %moderate checkbox zaškrtnut."
+
+#: modr8.module:209
+msgid "Modr8 moderator's block"
+msgstr "Modr8 moderátorův blok"
+
+#: modr8.module:214
+msgid "Moderation queue"
+msgstr "Řada ke schválení"
+
+#: modr8.module:225
+msgid "Recent additions:"
+msgstr "Poslední příspěvky"
+
+#: modr8.module:249
+msgid "Pending moderation"
+msgstr "Probíhající schvalování"
+
+#: modr8.module:254
+msgid "The post has been submitted for moderation and won't be listed publicly until it has been approved."
+msgstr "Příspěvek byl odeslán ke schválení a nebude zobrazen na stránkách dokud nebude schválen moderátorem."
+
+#: modr8.module:257
+msgid "This %type will be submitted for moderation and will not be accessible to other users until it has been approved."
+msgstr "Tento příspěvek (%type) bude zaslán ke schválení a nebude přístupný ostatním uživatelům dokud nebude schválen."
+
+#: modr8.module:80
+msgid "moderate content"
+msgstr "schválit obsah"
+
+#: modr8.module:34
+msgid "Moderated content"
+msgstr "Schvalovaný obsah"
+
+#: modr8.module:35
+msgid "Approve or delete moderated content."
+msgstr "Schválit nebo smazat moderovaný obsah."
+
+#: modr8.module:43
+msgid "Content moderation log"
+msgstr "Záznamy schvalovaného obsahu"
+
+#: modr8.module:52
+msgid "Modr8 settings"
+msgstr "Nastavení modr8"
+
+#: modr8.module:53
+msgid "Configure content moderation."
+msgstr "Nastavit schvalování obsahu"
+
+#: modr8.module:62
+msgid "Moderation"
+msgstr "Moderování"
+
+#: modr8.module:0
+msgid "modr8"
+msgstr "modr8"
+
+#: modr8.info:0
+msgid "Modr8"
+msgstr "Modr8"
+
+#: modr8.info:0
+msgid "Easy, dedicated moderation of content"
+msgstr "Snadné, účelné moderování obsahu "
+
