@@ -1,5 +1,5 @@
 <?php
-// $Id: taxonomy.views.inc,v 1.50.2.14 2010/04/06 19:59:26 merlinofchaos Exp $
+// $Id: taxonomy.views.inc,v 1.50.2.18 2011/01/20 22:06:57 merlinofchaos Exp $
 /**
  * @file
  *
@@ -46,6 +46,9 @@ function taxonomy_views_data() {
   // vocabulary name
   $data['vocabulary']['name'] = array(
     'title' => t('Vocabulary name'), // The item it appears as on the UI,
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
     'field' => array(
       'help' => t('Name of the vocabulary a term is a member of. This will be the vocabulary that whichever term the "Taxonomy: Term" field is; and can similarly cause duplicates.'),
       'handler' => 'views_handler_field',
@@ -111,6 +114,7 @@ function taxonomy_views_data() {
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_numeric',
+      'name field' => 'name',
       'skip base' => array('node', 'node_revision'),
       'zero is null' => TRUE,
     ),
@@ -167,6 +171,9 @@ function taxonomy_views_data() {
       'group' => t('Taxonomy'), // The group it appears in on the UI,
       'handler' => 'views_handler_field_markup',
       'format' => FILTER_FORMAT_DEFAULT,
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
     ),
   );
 
@@ -482,6 +489,7 @@ function taxonomy_views_plugins() {
         'title' => t('Taxonomy Term ID from URL'),
         'handler' => 'views_plugin_argument_default_taxonomy_tid',
         'path' => drupal_get_path('module', 'views') . '/modules/taxonomy',
+        'parent' => 'fixed',
       ),
     ),
   );
