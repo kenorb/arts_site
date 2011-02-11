@@ -1,0 +1,707 @@
+<?php
+// $Id: cck_field_privacy.module,v 1.3.2.2.2.16 2009/08/16 21:59:16 obsidiandesign Exp $
+
+/* TODO
+   There is a new hook_watchdog in core. This means that contributed modules
+   can implement hook_watchdog to log Drupal events to custom destinations.
+   Two core modules are included, dblog.module (formerly known as watchdog.module),
+   and syslog.module. Other modules in contrib include an emaillog.module,
+   included in the logging_alerts module. See syslog or emaillog for an
+   example on how to implement hook_watchdog.
+function example_watchdog($log = array()) {
+  if ($log['severity'] == WATCHDOG_ALERT) {
+    mysms_send($log['user']->uid,
+      $log['type'],
+      $log['message'],
+      $log['variables'],
+      $log['severity'],
+      $log['referer'],
+      $log['ip'],
+      format_date($log['timestamp']));
+  }
+} */
+
+/* TODO Implement the hook_theme registry. Combine all theme registry entries
+   into one hook_theme function in each corresponding module file.
+function cck_field_privacy_theme() {
+  return array(
+  );
+}; */
+
+/* TODO You may want to take advantage of new form-specific alter hooks.
+   The hook_form_alter() is complemented by hook_form_$form-id_alter().
+   Optionally, modules can implement form-specific alteration functions rather
+   than a single hook_form_alter() with many conditional switch statements.
+   This is optional, and is most useful for tidying the code of modules that
+   alter many forms to customize a site's operations.
+   The new function names are built using the following format:
+   [your-module-name]_form_[$form_id]_alter. */
+
+/**
+ * Display help and module information.
+ *
+ * @param String
+ *   Section which section of the site we're displaying help.
+ * @return String
+ *   Help text for section.
+ */
+function cck_field_privacy_help($path, $arg) {
+  $output = '';
+
+  switch ($path) {
+    case 'admin/help#cck_field_privacy':
+      $output = '<p>'.  t('Allows users to set privacy settings for specific CCK fields.') .'</p>';
+      break;
+  }
+
+  return $output;
+}
+
+/**
+ * Valid permissions for this module.
+ *
+ * @return Array
+ *   An array of valid permissions for the cck_field_privacy module.
+ */
+function cck_field_privacy_perm() {
+  return array(
+    'administer cck field privacy',
+    'modify cck field privacy',
+    'modify own cck field privacy'
+  );
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function cck_field_privacy_menu() {
+  $items = array();
+
+  $items['admin/content/cck_field_privacy'] = array(
+      'title' => 'Content field privacy',
+      'description' => 'Configure field privacy controls.',
+      'page callback' => 'cck_field_privacy_admin_settings',
+      'access arguments' => array('administer cck field privacy'),
+      'type' => MENU_NORMAL_ITEM,
+    );
+    $items['cck_field_privacy/ajax'] = array(
+      'page callback' => 'cck_field_privacy_ajax',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ * Removes fields if a user does not have perms to view it.
+ */
+function cck_field_privacy_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  global $user;
+  $deny = FALSE;
+
+  if ($user->uid != $node->uid) {
+    $node_user = user_load(array('uid' => $node->uid));
+    if ($op == 'view') {
+      //Check to see if the database table is in 'trouble' status
+      if (variable_get('cckfp_trouble', FALSE)) {
+        return;
+      }
+      //Assume we are 'all clear' first, and see if anything changes that status
+      $access_clear = TRUE;
+      $type = $node->type;
+      $permissions = array();
+      $types =  variable_get('cckfp_types', NULL);
+      //check node type is enabled
+      if (in_array($type, $types, TRUE)) {
+        $result = db_query("SELECT field_name, permission FROM {cckfp} WHERE uid = %d AND type_name = '%s' ORDER BY field_name DESC", $node->uid, $node->type);
+     
+        if ($result) {
+          //Put all of the permissions entries into an array so we can process them all at once.      
+          while ($row = db_fetch_object($result)) {
+            $row->permission = unserialize($row->permission);         
+            $permissions[$row->field_name] = $row;
+          }
+          foreach ($permissions as $field_name => $fieldpriv) {
+            //A permission setting exists, so let's handle the permissions
+            foreach ($fieldpriv->permission as $priv) {
+              $clear = _cck_field_privacy_access_check($priv, $node, $user, $node_user);
+              if ($clear) {
+                $access_clear = TRUE;
+                break;
+              }
+              else {
+                $access_clear = FALSE;
+              }
+            }
+            if ($access_clear == FALSE) {
+              $node->$field_name['#access'] = FALSE;
+              $node->content[$field_name]['#access'] = FALSE;
+            }
+            else {
+             //A fieldgroup may be clear for access, but its child fields may not.  Check to see if the field is a group, then process its children.
+              if (is_array($node->content[$field_name]['group'])) {
+                $node_groups = fieldgroup_groups($node->type);
+                $group_fields = $node_groups[$field_name]['fields'];
+              
+                foreach ($group_fields as $child) {
+                  if (array_key_exists($child['field_name'], $permissions)) {
+                    //print_r($permissions[$child['field_name']]);
+                    foreach ($permissions[$child['field_name']]->permission as $child_priv) {
+                      $child_clear = _cck_field_privacy_access_check($child_priv, $node, $user, $node_user);
+                      if ($child_clear) {
+                        $child_access = TRUE;
+                        break;
+                      }
+                      else {
+                        $child_access = FALSE;
+                      }
+                    }
+                    if ($child_access == FALSE) {
+                      //$node->$field_name[$child['field_name']]['#access'] = FALSE;
+                      $node->content[$field_name]['group'][$child['field_name']]['field']['#access'] = FALSE;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Return a specific field's permission setting.
+ * @param $permission
+ *  An object containing the field data from the cckfp database table
+ * @param $node
+ *  A node object
+ * @param $user
+ *  The current user object
+ * @param $node_user
+ *  The user object corresponding to the node's author
+ * @return $access_clear
+ *  A boolean stating whether or not the field has clear/open access 
+ */
+function _cck_field_privacy_access_check($permission, $node, $user, $node_user) {
+  $access_clear = TRUE;
+  
+  if ($permission == 'everyone') {
+  }
+  else if ($permission == 'nobody') {
+    $access_clear = FALSE;
+  }
+  else{
+    foreach (module_invoke_all('cck_field_privacy_access', $node_user, $user, $permission) as $access_result ) {
+      if (!$access_result) {     
+        $access_clear=FALSE;
+      }
+      continue; 
+    }
+  }
+  
+  return $access_clear;
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function cck_field_privacy_form_alter(&$form, &$form_state, $form_id) {
+
+  global $user;
+
+  //Determine if the user has the permission to use CCK Field Privacy settings
+  if (user_access('modify own cck field privacy') || user_access('modify cck field privacy')) {
+    $types = variable_get('cckfp_types', NULL);
+    if (is_array($types)) {
+      if (array_key_exists($form['#node']->type, $types) || in_array($form['page']['#value']->options['content-type'], $types)) {
+      
+        $values = unserialize(variable_get('cckfp_values', NULL));
+        $node_type = $form['type']['#value'];
+
+        // workaround : exclude user_register to avoid fields being treated
+        // two times when the content profile registration module is used
+
+        if (($form_id != "user_register") && is_array($values[$node_type])) {
+
+          $privacyfields = array_filter($values[$node_type]); // get fields which need a padlock
+
+          if (!empty($privacyfields)) {
+
+            // get original author or current user (authoring new node)
+            $u = (int) isset($form['#node']->uid)? $form['#node']->uid : $user->uid;
+            
+            // get the widgets used for fields of this node type
+            $fieldtypes = content_fields(NULL, $node_type); // make use of results cached by _content_type_info, no db hit
+            $needpadlock = array();
+
+            foreach ($privacyfields as $field => $value) {
+              $prefs = array();
+              // Get the current state of the field and set perms that will be used with jQ impromptu
+              $field_pref_sql = db_query("SELECT permission FROM {cckfp} WHERE uid = %d AND type_name = '%s' AND field_name = '%s'", $u, $node_type, $field);
+              //$field_pref = (string) db_result($field_pref_sql);
+              $field_pref = unserialize((string)db_result($field_pref_sql));
+              if ($field_pref == "") {
+                //$field_pref = variable_get('cckfp_'. $node_type .'_default', 'e'); // Set to the default state of the field
+                $pref = variable_get('cckfp_'. $node_type .'_default', 'everyone'); // Set to the default state of the field
+                $prefs[$pref] = $pref;
+              }
+              else {
+                foreach ($field_pref as $pref) {
+                  $prefs[$pref] = $pref;
+                }
+              }
+              //$privacyfields[$field] = $field_pref;
+              $privacyfields[$field] = $prefs;
+              switch ($fieldtypes[$field]['widget']['type']) {
+
+                // treats special cases separately :
+                // $form['#field_info'][$field]['widget']['label'] used insted of ['#title']
+                // some other CCK fields should be treated here
+                // TODO : do not work for date fields if end dates or repetitions are set
+                case "date_select" :
+                case "date_combo" :
+                case "date_popup" :
+                case "date_text" :
+                  if (isset($form['#field_info'][$field]['widget']['label'])) {
+                    $form['#field_info'][$field]['widget']['label'] .= " <a href='#' id='". $field ."link'><img src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
+                  } 
+                  else {
+                    $needpadlock[$field] = TRUE;
+                  }
+                  break;
+                // other special case goes here
+
+                // normal cases that need will be treated  recursively throught the form
+                // case "location_element" : // shown as fieldset with various sub fields
+                // case "link" : // code needs work
+                // case "optionwidgets_select" :
+                // case "userreference_autocomplete" :
+                // case "userreference_select" :
+                // case "email_textfield" :
+                default : $needpadlock[$field] = TRUE; // field still need a padlock
+              }
+            }
+
+            if (!empty($needpadlock)) { // look for fields left recursively throught the form
+              _cck_field_privacy_add_padlock($form, $needpadlock);
+            }
+          //retrieve the types of relationships available
+          $rels = variable_get('cckfp_rel_type_options', 'everyone');
+          
+            // include javascript and css only if needed
+            jquery_impromptu_add();
+            drupal_add_js(drupal_get_path('module', 'cck_field_privacy') .'/cck_field_privacy.js');
+            drupal_add_js(array(
+              'cck_field_privacy' => array(
+                'action' => url('cck_field_privacy/ajax'),
+                'uid' => $u,
+                'content_type' => $node_type,
+                'relationships' => $rels,
+                'default_value' => $privacyfields,
+                ),
+              ), 'setting');
+          }
+        }
+      }
+    }
+  }
+  return $form;
+}
+
+/**
+ * Recursively add a padlock where needed
+ */
+function _cck_field_privacy_add_padlock(&$elements, &$needpadlock) {
+
+  // only treats keys that are not properties (i.e., does not begin with '#')
+  foreach (element_children($elements) as $field) {
+    if (isset($elements[$field]) && $elements[$field]) {    
+      if (array_key_exists($field, $needpadlock)) { // form element is handled by cckfp
+        $lockimg = "<a href='#' id='". $field ."link'><img src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
+        if (isset($elements[$field][0]['#type'])) { // content sub field first
+          switch ($elements[$field][0]['#type']) {
+            case "link" : // link widget
+              // WARNING : possibly 2 text fields with the same label shown 2 times
+              // with different suffix 'Title' and 'URL' : only the 'first label id' will work
+              // should use the widget description or some theming on the widget output
+              $elements[$field][0]['#title'] = $lockimg ." ". $elements[$field][0]['#title'];
+              break;
+
+            case "userreference_autocomplete" :
+              // ugly display if content_multiple_values is used
+              // padlock shoud be shown after $elements[$field]['#title'] but it does not react
+              $elements[$field][0]['#title'] .= " ". $lockimg;
+              break;
+                    
+            default : // assume field is a standard CCK field and not fieldgroup
+              $elements[$field][0]['#title'] .= " ". $lockimg;
+              break;
+          }
+        }
+        elseif (isset($elements[$field]['#type'])) {
+          switch ($elements[$field]['#type']) {
+            case "tabpage" :
+              // fielgroup shown as tab by the cck fieldgroup tabs module
+              // label will be already a link that should be closed first
+              // but an <h2> tag without link also use this label
+              // html validation error without modifiing tabs' template
+              $elements[$field]['#title'] .= $lockimg;
+              break;
+
+            case "fieldset" :
+              if (isset($elements[$field]['#collapsible'])
+                    && ($elements[$field]['#collapsible'] == 1)) { // collapsible fieldset
+                     // using description because a padlock in the clickable legend tag will not work
+                    $elements[$field]['#description'] = $lockimg ." ". $elements[$field]['#description'];
+              }
+              else { $elements[$field]['#title'] .= " ". $lockimg; }
+              break;
+
+            case "userreference_select" :
+            case "optionwidgets_select" :
+              $elements[$field]['#title'] .= " ". $lockimg;
+              break;
+
+            default : // TODO : field probably not properly handled
+              $elements[$field]['#title'] .= " ". $lockimg;
+              break;
+          }
+        }
+        else { 
+          /* field type not properly handled */ 
+        }
+
+        $needpadlock[$field] = FALSE;
+        $needpadlock = array_filter($needpadlock);
+      }
+
+      if (!empty($needpadlock)) {
+          // recursing through children elements if privacy fields left
+          _cck_field_privacy_add_padlock($elements[$field], $needpadlock);
+      }
+    }
+  }
+}
+
+/**
+ * MENU_CALLBACK for cck_field_privacy/ajax.
+ *
+ * @return String
+ *   Server response.
+ */
+function cck_field_privacy_ajax() {
+  global $user;
+
+  if (user_access('modify cck field privacy') || (user_access('modify own cck field privacy') && $user->uid == $_POST['user'])) {
+    if (isset($_POST['user'], $_POST['field'], $_POST['type'], $_POST['settings'])) {
+      $uid = $_POST['user'];
+      $field = $_POST['field'];
+      $type = $_POST['type'];
+      $settings = $_POST['settings'];
+             
+      if ($uid != 'NULL' && $field != 'NULL' && $type != 'NULL' && $settings != 'NULL') {
+        $cckfp = array(
+        'uid' => $uid,
+        'field_name' => $field,
+        'type_name' => $type,
+        'permission' => $settings,         
+        );
+        
+        $select = "SELECT * FROM {cckfp} WHERE uid = %d AND field_name = '%s'";
+        $result = db_fetch_object(db_query($select, $uid, $field));
+        if ($result) {
+          drupal_write_record('cckfp', $cckfp, array('uid', 'field_name', 'type_name'));
+        }
+        else {
+          drupal_write_record('cckfp', $cckfp);
+        }
+        if (db_error()) {
+          drupal_set_message(db_error());
+        } 
+      }
+    }
+  } 
+  exit;
+}
+
+/**
+ * Page for the admin settings form.
+ * Use this instead of standard settings for because
+ * we serialize all the data into one variable.
+ */
+function cck_field_privacy_admin_settings() {
+  $output = drupal_get_form('cck_field_privacy_admin_settings_form');
+  return $output;
+}
+
+/**
+ * Creates the admin form.
+ */
+function cck_field_privacy_admin_settings_form() {
+  $form['field_perms'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Enable field privacy on content types.'),
+    '#description' => t('This module allows an administrator to allow certain roles to customize privacy settings for fields.  Once you have enabled a content type, select which fields you\'d like to permit privacy settings.'),
+  );
+
+  $types = content_types();
+
+  foreach ($types as $key => $value) {
+    $options[$key] = $value['name'];
+  }
+  $enabled_types = variable_get('cckfp_types', array());
+  $form['field_perms']['cckfp_types'] = array(
+   '#type' => 'checkboxes',
+   '#title' => t('Content types'),
+   '#description' => t('Select content types for which you wish to enable custom privacy.'),
+   '#options' => $options,
+   '#default_value' =>  $enabled_types,
+  );
+
+  $the_settings = unserialize(variable_get('cckfp_values', ''));
+
+  if ($enabled_types ) {
+    foreach ($enabled_types as $enabled_type) {
+      if ($enabled_type) {
+        $form['field_fields'][$enabled_type] = array(
+          '#type' => 'fieldset',
+          '#title' => $types[$enabled_type]['name'] .' content fields',
+          '#description' => t('Checking this box will hide this complete field group'),
+        );
+
+        if ($types[$enabled_type]['fields']) {
+          // deal with grouped content
+          _cckfp_group_form_fields($form, $types[$enabled_type]['fields'], $enabled_type, $the_settings);
+
+          foreach ($types[$enabled_type]['fields'] as $field) {
+            $field_perms[$field['field_name']] = $field['widget']['label'];
+
+            $form['field_fields'][$enabled_type][$enabled_type .'_'. $field['field_name']]= array(
+              '#type' => 'checkbox',
+              '#title' => $field['widget']['label'],
+              '#description' => t(''),
+              '#default_value' => $the_settings[$enabled_type][$field['field_name']],
+              '#description' => t('Enable permissions on this field.'),
+            );
+          }
+          
+          $options = array(
+            'everyone' => t('everyone'),
+            'buddies' => t('buddies'),
+            'nobody' => t('nobody')
+          );
+          //if user relationship module exists grab the 
+          //relationship types
+          if (module_exists('user_relationships_api')) {
+            module_load_include('inc', 'user_relationships_api', 'user_relationships_api.api');
+            $ur_types = user_relationships_types_load();
+            unset($options['buddies']); //Unset now so that we don't clear it out if the site admin creates a buddies relationship               
+            //build options array for form.
+            foreach ($ur_types as $rel) {
+              $options[$rel->plural_name] = $rel->plural_name;
+            }
+          }
+          
+          //set what options are so we can retrieve them later in the modal dialog
+          variable_set('cckfp_rel_type_options', $options);
+          
+          $form['field_fields'][$enabled_type]['cckfp_'. $enabled_type .'_default'] = array(
+            '#type' => 'radios',
+            '#title' => t('Default Value'),
+            '#description' => t('You may choose a default privacy value for the fields in this content type.'),
+            '#default_value' => variable_get('cckfp_'. $enabled_type .'_default', 'everyone'),
+            '#options' => $options,
+            '#weight' => 1,
+          );
+        }
+      }
+    }
+  }
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save')
+  );
+  return $form;
+}
+
+/**
+ * Fetches the list of fields contained within a group.
+ * Returns fieldset form of check boxes to handle content.
+ *
+ * @param Array $form
+ *   Form.
+ * @param Array $fields
+ *   Form fields.
+ * @param String $type
+ *   Field type.
+ * @param Array $values
+ *   Field values.
+ */
+function _cckfp_group_form_fields(&$form, &$fields, $type, $values) {
+  if (module_exists('fieldgroup')) {
+    $groups = fieldgroup_groups($type);
+    foreach ($groups as $group_name => $data) {
+      $form['field_fields'][$type][$group_name .'_fields'] = array(
+        '#type' => 'fieldset',
+        '#title' => $data['label'] .' field group',
+      );
+      $form['field_fields'][$type][$group_name .'_fields'][$type .'_'. $group_name] = array(
+        '#type' => 'checkbox',
+        '#title' => $data['label'],
+        '#default_value' => $values[$type][$group_name],
+      );
+
+      foreach ($data['fields'] as $afield) {
+        $form['field_fields'][$type][$group_name .'_fields'][$type .'_'. $afield['field_name']] = array(
+          '#type' => 'checkbox',
+          '#title' => $afield['label'] .' field',
+          '#default_value' => $values[$type][$afield['field_name']],
+        );
+
+        //remove this field from the list of fields that we have
+        unset($fields[$afield['field_name']]);
+      }
+    }
+  }
+}
+
+/**
+ * Implementation of hook_submit().
+ * Save the incoming values.
+ */
+function cck_field_privacy_admin_settings_form_submit($form, &$form_state) {
+  // @TODO: Figure out why it is neccessary to do this.
+  if ($form_state['values']['cckfp_types'][0]) { 
+    unset($form_state['values']['cckfp_types'][0]); 
+  }
+  if ($form_state['values']['cckfp_types'][1]) { 
+    unset($form_state['values']['cckfp_types'][1]); 
+  }
+
+  variable_set('cckfp_types', $form_state['values']['cckfp_types']);
+
+  foreach ($form_state['values'] as $key => $value) {
+    if (strstr($key, '_field_')) {
+      $type = substr($key, 0, strpos($key, '_field'));
+      $field = substr($key, strpos($key, 'field'));
+      $stored_values[$type][$field] = $value;
+    }
+    if (strstr($key, '_group_')) {
+      $type = substr($key, 0, strpos($key, '_group'));
+      $field = substr($key, strpos($key, 'group'));
+      $stored_values[$type][$field] = $value;
+    }
+    if (strstr($key, '_default')) {
+      variable_set($key, $value);
+    }
+  }
+  variable_set('cckfp_values', serialize($stored_values));
+  drupal_set_message('Settings Changed.');
+}
+
+/**
+ * Implementation of hook_views - all views code in cck_field_privacy.module
+ */
+function cck_field_privacy_views_api() {
+  return array(
+    'api' => 2,
+  );
+}
+
+/**
+ * get the names of all inaccessible fields for a given user/node
+ * return array of field names that are inaccessible for given node or TRUE/FALSE if user is specified
+ */
+function _cck_get_inaccessible_fields($user, $node, $field = NULL) {
+  static $cached_results = array();
+  // check node type
+  $active_fields = _cck_field_privacy_get_active_fields($node->type);
+  
+  // do expensive db check only if it's a privacy controlled field (and if field is specified only if the field requested is privacy controlled)
+  if (!empty($active_fields) && (is_null($field) || array_key_exists($field, $active_fields)) && $user->uid != $node->uid) {
+    $cached_result = $cached_results[$node->uid][$node->type];
+    
+    if (isset($cached_result)) {
+      return is_null($field) ? $cached_result : isset($cached_result[$field]);
+    }
+    
+    $result = db_query("SELECT field_name, permission FROM {cckfp} WHERE uid = %d AND type_name = '%s' ORDER BY field_name DESC", $node->uid, $node->type);
+    
+    if ($result) {
+      while ($permissions = db_fetch_object($result)) {
+        if (is_array($permissions->permission)) {
+          foreach ($permissions->permission as $perm) {
+            if ($perm == 'everyone') {
+              continue;
+            } 
+            else if ($perm == 'nobody') {
+              $inaccessible_fields[$permissions->field_name] = $permissions->field_name;
+            } 
+            else if (!empty($perm)) {
+              $node_user = user_load(array('uid' => $node->uid));
+              $plugin_access_result = module_invoke($perm, 'cck_field_privacy_access', $node_user, $user);
+              //Uncomment the next line to enable debug output to the watchdog when testing views access
+              //watchdog('cckfp', 'result of module '.$permissions->permission.' check: '.print_r($plugin_access_result, TRUE));
+              if ($plugin_access_result === FALSE) {
+                $inaccessible_fields[$permissions->field_name] = $permissions->field_name;
+              }
+            }
+          }
+        }
+      }
+    }   
+    $cached_results[$node->uid][$node->type] = $inaccessible_fields;
+    return is_null($field) ? $inaccessible_fields : isset($inaccessible_fields[$field]);
+  }
+}
+
+/**
+ * for a given content type - get the active fields
+ * if not content type given gets all active fields
+ */
+function _cck_field_privacy_get_active_fields($type = NULL) {
+  static $cached_all_active_fields;
+  static $cached_active_fields_by_type = array();
+  
+  if (is_null($type)) {
+    if (isset($cached_all_active_fields)) {
+      return $cached_all_active_fields;
+    }
+  } 
+  else {
+    if (isset($cached_active_fields_by_type[$type])) {
+      return $cached_active_fields_by_type[$type];
+    }
+  }
+  
+  $types = variable_get('cckfp_types', NULL);
+  $active_fields = array();
+
+  $values = unserialize(variable_get('cckfp_values', array()));
+
+  // if (array_key_exists($type, $types) && $types[$type] != '0') {
+  foreach ($types as $key => $value) {
+    // if no type specified or the type matches and is not '0' - add the field names to the list of active fields
+    if ((is_null($type) || $key == $type) && $value != '0') {
+      foreach ($values[$key] as $field_name => $enabled) {
+        if (!strpos($field_name, '_default') && $enabled == TRUE) {
+          $active_fields[$field_name] = $field_name;
+        }
+      }
+    }
+  }
+  
+  if (is_null($type)) {
+    $cached_all_active_fields = $active_fields;
+  } 
+  else {
+    $cached_active_fields_by_type[$type] = $active_fields;
+  }
+  
+  return $active_fields;
+}
