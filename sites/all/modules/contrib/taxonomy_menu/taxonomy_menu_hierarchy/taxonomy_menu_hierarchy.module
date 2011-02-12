@@ -1,5 +1,5 @@
 <?php
-// $Id: taxonomy_menu_hierarchy.module,v 1.1.2.3 2009/10/31 18:39:33 indytechcook Exp $
+// $Id: taxonomy_menu_hierarchy.module,v 1.1.2.4 2010/10/20 01:46:20 dstol Exp $
 
 /**
  * @file
@@ -32,11 +32,15 @@ function taxonomy_menu_hierarchy_path_hierarchy($vid, $tid) {
   //get the parents of the term
   $parents = taxonomy_get_parents_all($tid);
   //cycle through the parents and add them as an item on the menu
-  foreach ($parents as $parent) {
-    $path_tids = '/'. $parent->tid . $path_tids; 
+  if (!empty($parents)) {
+    $path_tids = '';
+    foreach ($parents as $parent) {
+      $path_tids = '/'. $parent->tid . $path_tids;
+    }
+    $path .= $path_tids;
   }
 
-  return $path . $path_tids;
+  return $path;
 }
 
 /**

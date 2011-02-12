@@ -1,6 +1,6 @@
 <?php
 
-// $Id: taxonomy_menu.database.inc,v 1.1.2.18 2009/11/19 20:28:05 indytechcook Exp $
+// $Id: taxonomy_menu.database.inc,v 1.1.2.19 2010/10/20 02:34:49 dstol Exp $
 
 /**
  * @file
@@ -115,7 +115,7 @@ function _taxonomy_menu_delete_item($vid, $tid) {
  */
 function _taxonomy_menu_get_terms($vid) {
   $output = array();
-  $result = db_query(db_rewrite_sql('SELECT t.tid FROM {term_data} t WHERE t.vid = %d','t', 'tid'), $vid);
+  $result = db_query(db_rewrite_sql('SELECT t.tid FROM {term_data} t WHERE t.vid = %d', 't', 'tid'), $vid);
   while ($data = db_fetch_object($result)) {
     $output[] = $data->tid;
   }
@@ -153,6 +153,7 @@ function _taxonomy_menu_get_item($mlid) {
 
 /**
  * Get the vocabulary for a tid
+ *
  * @param $tid array of tids
  * @return $vid
  */

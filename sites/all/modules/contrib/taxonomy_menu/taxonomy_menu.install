@@ -1,20 +1,20 @@
 <?php
-// $Id: taxonomy_menu.install,v 1.2.2.1.2.8 2009/10/31 18:39:33 indytechcook Exp $
+// $Id: taxonomy_menu.install,v 1.2.2.1.2.9 2010/10/20 02:35:59 dstol Exp $
 
 /**
  * @file
- * Install and uninstall all required databases. Also do incremental database updates.
+ * Install and uninstall all required databases. Incremental database updates.
  */
 
 /**
  * Implementation of hook_uninstall().
  */
 function taxonomy_menu_uninstall() {
-  
-  //remove menu items
+
+  // remove menu items
   db_query("DELETE FROM {menu_links} WHERE module = '%s'", 'taxonomy_menu');
 
-  //rebuild the menus
+  // rebuild the menus
   variable_set('menu_rebuild_needed', TRUE);
 
   // Delete variables
