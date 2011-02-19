@@ -1,0 +1,15 @@
+; $Id$
+name = Facebook-style Statuses Twitter
+description = Integrates Twitter with Facebook-style Statuses.
+package = Facebook-style Statuses
+dependencies[] = facebook_status
+dependencies[] = twitter
+dependencies[] = oauth
+core = 6.x
+
+; Information added by drupal.org packaging script on January 1, 1970 - 00:00
+version = "6.x-3.0-beta2"
+core = "6.x"
+project = "facebook_status"
+datestamp = "1297726613"
+
