@@ -1,0 +1,301 @@
+<?php
+// $Id: mp_products.module,v 1.6.2.13 2010/02/22 04:52:07 syndicatestorm Exp $
+
+/**
+ * @file
+ * Handles all things concerning Ubercart marketplace products.
+ *
+ * The Ubercart marketplace product enhancement allows sellers to view their
+ * items and edit them.  This module also includes concept code for manipulating the product edit page to suit the sellers' needs.
+ *
+ */
+
+/*******************************************************************************
+ * Hook Functions (Drupal)
+ ******************************************************************************/
+
+/**
+ * Implementation of hook_perm().
+ */
+function mp_products_perm() {
+  return array('view own products', 'act as seller', 'administer sellers');
+}
+
+/**
+ * Implementation of hook_help().
+ */
+function mp_products_help($path, $arg) {
+  switch ($path) {
+    case 'user/%/selling/view':
+      return 
+        '<h1 class="title">' . t("Products") . '</h1>' .
+        '<p>'. t("The following is a list of all the products you have submitted. You can edit a product by clicking the edit icon next to its name.") .'</p>';
+  }
+}
+
+/**
+ * Implementation of hook_user().
+ */
+function mp_products_user($op, &$edit, &$account, $category = NULL) {
+
+  global $user;
+  switch ($op) {
+    case 'view':
+  	  if (user_access('act as seller') && $user->uid == $account->uid) {
+  	    $links = array();
+        if (module_exists(mp_orders) && user_access('fulfill own orders')) {
+          $links['fulfill']['#type'] = 'user_profile_item';
+          $links['fulfill']['#value'] = l(t('Click here to fulfill your orders.'), 'user/'. $account->uid .'/selling/fulfill');
+        }
+        if (user_access('view own products')) {
+          $links['products']['#type'] = 'user_profile_item';
+          $links['products']['#value'] = l(t('Click here to view your products.'), 'user/'. $account->uid .'/selling/view');
+          $links['overview']['#type'] = 'user_profile_item';
+          $links['overview']['#value'] = l(t('Click here for your sales overview.'), 'user/'. $account->uid .'/selling');
+        }
+        if (!empty($links)) {
+        $account->content['products'] = array(
+          '#type' => 'user_profile_category',
+          '#title' => t('Selling'),
+          $links,
+          );
+        }
+  	  }
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function mp_products_menu() {
+  $items = array();
+
+  $items['user/%user/selling'] = array(
+    'title' => 'Selling',
+    'description' => 'View and manage your products and orders.',
+    'page callback' => 'mp_products_selling_overview',
+    'page arguments' => array(1),
+    'access callback' => 'mp_products_can_view_seller',
+    //'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'mp_products.admin.inc',
+  );
+  $items['user/%user/selling/overview'] = array(
+    'title' => 'Summary',
+    'weight' => 1,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['user/%user/selling/view'] = array(
+    'title' => 'Products',
+    'weight' => 9,
+    'description' => 'View and edit your products.',
+    'page callback' => 'mp_products_selling',
+    'page arguments' => array(1),
+    'access callback' => 'mp_products_can_view_seller',
+    //'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'mp_products.admin.inc',
+  );
+  $items['admin/store/settings/seller'] = array( 
+    'title' => 'Seller settings',
+    'access arguments' => array('administer sellers'),
+    'description' => 'Configure the marketplace seller settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mp_products_settings_seller_form'),
+    'file' => 'mp_products.admin.inc',
+  );
+  $items['admin/store/settings/seller/commission'] = array(
+    'title' => 'Commission rate settings',
+    'access arguments' => array('administer sellers'),
+    'description' => 'Configure the marketplace seller commission rates.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mp_products_commission_form'),
+    'type' => MENU_CALLBACK,
+    'file' => 'mp_products.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_form_alter().
+ *
+ * Adds minimum sell price field and adds validate handler.
+ */
+function mp_products_form_alter(&$form, $form_state, $form_id) {
+  $node = $form['#node'];
+  if (is_object($node)) {
+    $product_types = module_invoke_all('product_types');
+    if (module_exists('uc_product_kit')) {
+      unset($product_types[array_search('product_kit', $product_types)]);  // TODO fix admin base price for product kits
+    }
+    if ($form_id == $node->type .'_node_form' && in_array($node->type, $product_types)) {
+      // Modify cost field depending on auto calc commission status
+      $form['base']['prices']['cost']['#title'] = t('Seller commission');
+      if (!variable_get('mp_products_auto_calc', FALSE)) {
+        $form['base']['prices']['cost']['#required'] = TRUE;
+        $form['base']['prices']['cost']['#description'] = t('The amount you will be paid.');
+        if (!variable_get('mp_products_enable_list', TRUE) && !user_access('administer sellers')) {
+          $form['base']['prices']['list_price']['#access'] = FALSE;
+        }
+      }
+      else {
+        $form['base']['prices']['cost']['#access'] = user_access('administer sellers');
+        if (!variable_get('mp_products_admin_override', FALSE)) {
+          $form['base']['prices']['cost']['#attributes'] = array('readonly' => 'readonly');
+        }
+        $form['base']['prices']['cost']['#description'] = t('The amount seller will be paid.');
+        // determine if list_price should be required
+        if (variable_get('mp_products_auto_calc_field', 'sell_price') == 'list_price') {
+          $form['base']['prices']['list_price']['#required'] = TRUE;
+        }
+        else if (!variable_get('mp_products_enable_list', TRUE) && !user_access('administer sellers')) {
+          $form['base']['prices']['list_price']['#access'] = FALSE;
+        }
+      }
+
+      // Add Base Price amount to Sell Price description, if there is a base price.
+      if (variable_get('mp_products_admin_base', FALSE)) {
+        $form['base']['prices']['sell_price']['#description'] .= t(' (Must be at least '. uc_currency_format(variable_get('mp_products_admin_base', FALSE)) .')');
+      }
+
+      // hide unneccessary fields if desired
+      if (!user_access('administer sellers') && variable_get('mp_products_hide_fields', TRUE)) {
+        $form['base']['weight']['#access'] = FALSE;
+        $form['base']['dimensions']['#access'] = FALSE;
+        $form['base']['pkg_qty']['#access'] = FALSE;
+        $form['base']['default_qty']['#access'] = FALSE;
+        $form['base']['ordering']['#access'] = FALSE;
+        $form['shipping']['#access'] = FALSE;
+      }
+      
+      // The default breadcrumb points to inaccessible admin pages unless we change it
+      $breadcrumb[] = l('Home', null);
+      drupal_set_breadcrumb($breadcrumb);
+    }
+  }
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ */
+function mp_products_nodeapi(&$node, $op, $a3 = NULL) {
+  $product_types = module_invoke_all('product_types');
+  if (module_exists('uc_product_kit')) {
+    unset($product_types[array_search('product_kit', $product_types)]);
+  }
+  if (in_array($node->type, $product_types)) {
+    switch ($op) {
+      case 'presave':
+        $commission_rate = mp_products_get_commission_rate($node->type);
+        // auto calc commission if enabled and needed
+        if (variable_get('mp_products_auto_calc', FALSE) && !(user_access('administer sellers') && variable_get('mp_products_admin_override', FALSE))) {
+          if (variable_get('mp_products_auto_calc_field', 'sell_price') == 'list_price') {
+            $node->cost = $node->list_price * $commission_rate;
+          }
+          else {
+            $node->cost = $node->sell_price * $commission_rate;
+          }
+        }
+        // invoke hook_list_product()
+        module_invoke_all('list_product', $node);
+      break;
+      case 'prepare':
+        if (!variable_get('mp_products_auto_calc', FALSE) && variable_get('mp_products_insert_js', FALSE)) {
+          $commission_rate = mp_products_get_commission_rate($node->type);
+          $fieldid = variable_get('mp_products_auto_calc_field', 'sell_price') == 'list_price' ? 'list-price' : 'sell-price';
+          drupal_add_js("$(document).ready(function(){ $('#edit-". $fieldid ."').blur(function(){ $('#edit-cost').val(Math.floor($('#edit-". $fieldid ."').val() * ". drupal_to_js($commission_rate)* 100 .")/100);});});", 'inline');
+        }
+      break;
+      case 'validate':
+        // handle cost field validation depending on auto calc commission or admin status
+        if (!variable_get('mp_products_auto_calc', FALSE) && !(user_access('administer sellers') && variable_get('mp_products_admin_override', FALSE))) {
+          $commission_rate = mp_products_get_commission_rate($node->type);
+          if ($node->cost > ($commission_rate * $node->sell_price)) {
+            form_set_error('cost', t('Commission must be less than or equal to @rate% of the sell price. Consider decreasing commission or increasing sell price.', array('@rate' => $commission_rate*100)));
+          }
+          else if ($node->cost == 0 && $node->sell_price > 0) {
+            form_set_error('cost', t('Commission must be greater than zero.'));
+          }
+        }
+
+        // handle base price error, if a base price exists
+        if (variable_get('mp_products_admin_base', FALSE)) {
+          if ($node->sell_price < variable_get('mp_products_admin_base', FALSE)) {
+            form_set_error('sell_price', t('Sell price must be greater than or equal to sitewide base price of '. uc_currency_format(variable_get('mp_products_admin_base', FALSE))));
+          }
+        }
+      break;
+    }
+  }
+}
+
+function mp_products_get_commission_rate($type) {
+  global $user;
+  $user_roles = array_keys($user->roles);
+  $roles_array = array_keys(user_roles(true, 'act as seller'));
+  $rid = -1;
+  foreach ($user_roles as $role) {
+    if (in_array($role, $roles_array)) {
+      $rid = $role;
+    }
+  }
+  $result = db_result(db_query("SELECT rate FROM {mp_seller_rates} WHERE class = '%s' AND rid = %d", $type, $rid));
+  if ($result > 0) {
+    return floatval($result);
+  }
+  else {
+    return floatval(variable_get('mp_products_commission_rate', '.75'));
+  }
+}
+
+function mp_products_can_view_seller() {
+  global $user;
+  
+  // mp_reports and this function probably need restructuring
+  // For now let's add conditionals for clarity
+  if (user_access('administer sellers')) {
+    return TRUE;
+  }
+  elseif (user_access('act as seller') && ($user->uid == arg(1))) {
+    switch (arg(3)) {
+      case '':
+        return TRUE;
+      case 'view':
+        return user_access('view own products');
+      case 'settings':                            // From mp_quote
+        return user_access('view own products');  // Seems wrong but consistent with the way it has been
+      default:
+        return TRUE;
+    }
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/*
+ * Implementation of theme_preprocess_page.
+ *
+ * Drupal doesn't seem to hide nested menu items even if users don't have access, so...
+ */
+function mp_products_preprocess_page(&$vars) {
+  if (arg(2) == 'selling' && !(user_access('administer sellers') || user_access('view own products'))) {
+    // The user doesn't have permission to view these page, so don't show the menu tab
+    mp_products_removetab('Products', $vars);
+    mp_products_removetab('Settings', $vars);   // From mp_quote
+  }
+}
+
+function mp_products_removetab($label, &$vars) 
+{
+  $tabs = explode("\n", $vars['tabs']);
+  $vars['tabs'] = '';
+
+  foreach ($tabs as $tab) {
+    if (strpos($tab, '>' . $label . '<') === FALSE) {
+      $vars['tabs'] .= $tab . "\n";
+    }
+  }
+}

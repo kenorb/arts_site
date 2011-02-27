@@ -1,0 +1,576 @@
+<?php
+// $Id: mp_orders.module,v 1.1.4.12 2010/02/13 05:57:36 syndicatestorm Exp $
+
+/**
+ * @file
+ * Handles all things concerning Ubercart Marketplace orders.
+ *
+ * The Ubercart marketplace order system allows sellers to view
+ * and edit orders containing products created by them.
+ *
+ */
+
+require_once('mp_orders.ca.inc');
+
+/*******************************************************************************
+ * Hook Functions (Drupal)
+ ******************************************************************************/
+
+/**
+ * Implementation of hook_help().
+ */
+function mp_orders_help($path, $arg) {
+  switch ($path) {
+    case 'user/%/selling/fulfill':
+      return l(t('View Orders'),'user/'. $arg[1] .'/selling/fulfill') .' | '. l(t('Fulfill Orders'),'user/'. $arg[1] .'/selling/fulfill/edit') .'<p>'. t("The following is a list of all the orders placed on your products. You can view an order by clicking the view icon next to its name.") .'</p>';
+    case 'user/%/selling/fulfill/edit':
+      return l(t('View Orders'),'user/'. $arg[1] .'/selling/fulfill') .' | '. l(t('Fulfill Orders'),'user/'. $arg[1] .'/selling/fulfill/edit') .'<p>'. t("The following is a list of all the orders placed on your products. You can record that you shipped an order by selecting the checkbox and pressing update.") .'</p>';
+  }
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function mp_orders_perm() {
+  return array('fulfill own orders', 'write own order comments');
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function mp_orders_menu() {
+  $items = array();
+  
+  $items['user/%user/selling/fulfill'] = array(
+    'title' => 'Orders',
+    'description' => 'View and fulfill orders placed on your products.',
+    'weight' => 10,
+    'page callback' => 'mp_orders_fulfill',
+    'page arguments' => array(1),
+    'access callback' => 'mp_orders_can_view_orders',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['user/%user/selling/fulfill/edit'] = array(
+    'title' => 'Fulfill Orders',
+    'description' => 'View and fulfill orders placed on your products.',
+    'weight' => 10,
+    'page callback' => 'mp_orders_edit_orders',
+    'access callback' => 'mp_orders_can_view_orders',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['user/%user/selling/fulfill/%uc_order'] = array(
+    'title callback' => 'uc_order_page_title',
+    'title arguments' => array(4),
+    'description' => 'View and fulfill an order.',
+    'page callback' => 'mp_orders_view',
+    'page arguments' => array(1, 4),
+    'access callback' => 'mp_orders_seller_can_view_order',
+    'access arguments' => array(1, 4),
+    'type' => MENU_CALLBACK,
+  );
+  $items['user/%user/selling/fulfill/%uc_order/print'] = array(
+    'page callback' => 'mp_orders_print_packingslip',
+    'page arguments' => array(1, 4),
+    'access callback' => 'mp_orders_seller_can_view_order',
+    'access arguments' => array(1, 4),
+    'type' => MENU_CALLBACK,
+  );
+      
+  return $items;
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function mp_orders_form_alter(&$form, $form_state, $form_id) {
+  global $user;
+  switch ($form_id) {
+    case 'uc_order_view_update_form':
+    if (user_access('write own order comments') && (arg(0) == 'user') && (is_numeric(arg(1))) && (arg(1) == $user->uid || $user->uid == 1) && (arg(2) == 'sold' || arg(2) == 'selling'))  {
+      $form['admin_comment_field']['#access'] = FALSE;
+      $form['controls']['status']['#access'] = FALSE;
+    }
+    break;
+  }
+}
+
+/*******************************************************************************
+ * Hook Functions (Ubercart)
+ ******************************************************************************/
+
+/**
+ * Implementation of hook_order in uc_order.
+ * Load an order (w/ only seller's product(s) visible) from the database.
+ */
+function mp_orders_order($op, &$order, $arg1 = NULL) {
+  global $user;
+  switch ($op) {
+    case 'update':
+          // echo '<pre>'. print_r($order, true) .'</pre>';
+            $products = $order->products;
+          foreach ($products as $product) {
+           if (isset($product->data['kit_id'])) {
+             $sid = db_result(db_query("SELECT uid FROM {node} WHERE nid = %d", $product->nid));
+             $seller = user_load(array('uid' => $sid));
+                 $seller_roles = array_keys($seller->roles);
+         $roles_array = array_keys(user_roles(true, 'act as seller'));
+         $rid = -1;
+         foreach ($seller_roles as $role) {
+           if (in_array($role, $roles_array)) {
+             $rid = $role;
+           }
+         }
+         $result = db_result(db_query("SELECT rate FROM {mp_seller_rates} WHERE class = 'product_kit' AND rid = %d", $rid));
+         $commission = 0;
+                 if ($result > 0) {
+           $commission = floatval($result);
+         }
+         else {
+           $commission = floatval(variable_get('mp_products_commission_rate', '.75'));
+         }
+             $product->cost = $product->price * $commission;
+                 db_query("UPDATE {uc_order_products} SET cost = %f WHERE order_product_id = %d", round($product->cost, 2), $product->order_product_id);
+           }
+            }
+          break;
+    case 'load':
+      if ((user_access('fulfill own orders') && (arg(0) == 'user') && (arg(2) == 'selling')) || (is_numeric($arg1)))  {
+        $order_id = $order->order_id;
+        $products = $order->products;
+        $uid = (is_numeric($arg1)) ? $arg1 : arg(1);
+        $result = db_query("SELECT n.nid FROM {node} AS n INNER JOIN {uc_order_products} AS p USING (nid) WHERE p.order_id = %d AND n.uid = %d", $order_id, $uid);
+        $sellernids = array();
+        while ($data = db_fetch_array($result)) {
+          $sellernids[] = $data['nid'];
+        }
+        $sellerproducts = array();
+        foreach ($products as $product) {
+          if (in_array($product->nid, $sellernids)) {
+            $sellerproducts[] = $product;
+          }
+        }
+        $order->products = $sellerproducts;
+       }
+      break;
+    case 'can_update':
+      if ($arg1 == 'payment_received' || $arg1 == 'completed') {
+        $products = $order->products;
+        $flag = FALSE;
+        foreach ($products as $product) {
+          $uid = db_result(db_query('SELECT uid FROM {node} WHERE nid = %d', $product->nid));
+          if (db_result(db_query('SELECT COUNT(*) FROM {mp_seller_order_statuses} WHERE uid = %d AND order_id = %d', $uid, $order->order_id)) == 0) {
+            db_query('INSERT INTO {mp_seller_order_statuses} (uid,order_id,order_status,seller_paid_status) VALUES (%d,%d,"complete","0")', $uid, $order->order_id);
+            $flag = TRUE;
+          }
+          if ($flag && (db_result(db_query('SELECT shippable FROM {uc_products} WHERE nid = %d', $product->nid)) == 1)) {
+            db_query('UPDATE {mp_seller_order_statuses} SET order_status = "not complete" WHERE order_id = %d AND uid = %d', $order->order_id, $uid);
+          }
+        }
+      }
+      return TRUE;
+    break;
+    case 'delete':
+      db_query('DELETE FROM {mp_seller_order_statuses} WHERE order_id = %d', $order->order_id);
+    break;
+  }
+}
+
+/**
+ * Returns a table showing the details of an order to a seller.
+ *
+ * @param $uid
+ *   The user/seller ID whose marketplace order to show.
+ * @param $order_id
+ *   The order ID of order to show.
+ */
+function mp_orders_view($user, $order) {
+  $uid = $user->uid;
+  $order_id = $order->order_id;
+  
+  $breadcrumb = drupal_get_breadcrumb();
+  $breadcrumb[] = l(t('Selling'), 'user/'. arg(1) .'/selling');
+  $breadcrumb[] = l(t('Orders'), 'user/'. arg(1) .'/selling/fulfill');
+  $breadcrumb[] = l(t('Order @order', array('@order' => $order_id)), 'user/'. arg(1) .'/selling/fulfill/'. $order_id);
+  drupal_set_breadcrumb($breadcrumb);
+  
+  $output .= '<div class="order-pane pos-left"><div class="order-pane-title">'. t('Ship to') .'</div>'. uc_order_pane_ship_to('view', $order) .'</div>';
+  $output .= '<div class="order-pane abs-left"><div class="order-pane-title">'. t('Products') .'</div>'. drupal_render(tapir_get_table('op_products_view_table', $order)) .'</div>';
+
+  if (user_access('write own order comments')) {
+    $comments = mp_orders_load_comments($uid, $order_id);
+    $output .= '<div class="order-pane abs-left"><div class="order-pane-title">'. t('Order comments') .'</div>'. drupal_render(tapir_get_table('mp_orders_comments_view_table', $comments)) .'</div>';
+    $output .= '<div class="order-pane abs-left"><div class="order-pane-title">'. t('New comment') .'</div>'. drupal_get_form('uc_order_view_update_form', $order) .'</div>';
+  }
+  return $output;
+}
+
+function mp_orders_edit_orders() {
+  drupal_set_title(t('Fulfill Orders'));
+  return drupal_get_form('mp_orders_edit_orders_form'); 
+}
+
+function mp_orders_edit_orders_form() {
+  // create form
+  $uid = arg(1);
+  $mp_quote_present = module_exists('mp_quote');
+  $form['header'] = array('#type' => 'value', '#value' => array(
+    array('data' => t('ID'), 'field' => 'order_id'),
+    array('data' => t('Date'), 'field' => 'created', 'sort' => 'desc'),
+    array('data' => t('Product(s)*')),
+    array('data' => t('Shipping')),
+    array('data' => t('Total')),
+    array('data' => t('Actions')),
+    array('data' => t('Shipped'), 'field' => 'order_status'),
+  ));
+  if ($mp_quote_present) {
+    //array_splice($form['header']['#value'], 3, 0, array('data' => t('Shipping')));
+  }
+  $result = pager_query("SELECT DISTINCT sos.order_id, o.created, o.delivery_last_name, sos.order_status FROM {mp_seller_order_statuses} AS sos INNER JOIN {uc_orders} as o ON sos.order_id = o.order_id WHERE (sos.uid = %d) AND ((o.order_status = 'payment_received') OR (o.order_status = 'completed') OR (o.order_status = 'processing'))"  . tablesort_sql($form['header']['#value']), 20, 0, NULL, $uid, $uid);
+  
+  while ($order = db_fetch_object($result)) {
+    $products = '';
+    $total = 0;
+    $nonshippable = TRUE;
+    $productresult = db_query("SELECT p.title, p.nid, p.model, p.cost, p.qty, up.shippable, p.order_product_id FROM {uc_order_products} AS p INNER JOIN {node} AS n INNER JOIN {uc_products} as up ON p.nid = n.nid AND up.nid = p.nid WHERE n.uid = %d AND order_id = %d", $uid, $order->order_id);
+    while ($product = db_fetch_object($productresult)) {
+      $temp = $product->qty .' '. l($product->title, 'node/'. $product->nid) .' ['. $product->model .'] @ '. uc_currency_format($product->cost) .'<br/>';
+      if ($product->shippable) {
+        $products .= '<div class="shippable">'. $temp .'</div>';
+        $nonshippable = FALSE;
+      } 
+      else {
+        $products .= '<div class="not_shippable">'. $temp .'</div>';
+      }
+      $total += $product->qty * $product->cost;
+    }
+    
+    if ($nonshippable) 
+      continue;
+      
+    if ($mp_quote_present) {
+      $shipping_total = db_result(db_query("SELECT SUM(rate) FROM {mp_quote_shipping_rates} WHERE order_id = %d AND uid = %d", $order->order_id, $uid));
+      $total += $shipping_total;
+    }
+    
+    $default_shipped_value = ($order->order_status == 'complete'); 
+    
+    // Add the manual's row to the report table.
+    $form['order_id'][$order->order_id] = array('#value' => $order->order_id);
+    $form['created'][$order->order_id] = array('#value' => format_date($order->created, 'custom', variable_get('uc_date_format_default', 'm/d/Y')));
+    $form['products'][$order->order_id] = array('#value' => $products);
+    if ($mp_quote_present) {
+      $form['shipping'][$order->order_id] = array('#value' => uc_currency_format($shipping_total));
+    } 
+    $form['total'][$order->order_id] = array('#value' => uc_currency_format($total));
+    $form['actions'][$order->order_id] = array('#value' => '<span class="order-admin-icons">'. mp_orders_actions($uid, $order->order_id, $order->order_status) .'</span>');
+    $form['shipped'][$order->order_id] = array('#type' => 'checkbox', '#default_value' => $default_shipped_value);
+  }
+  
+  $form['pager'] = array('#value' => theme('pager', NULL, 50, 0));
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Update'));
+
+  return $form;
+}
+
+function mp_orders_edit_orders_form_submit($form, &$form_state) {
+  //echo '<pre>'. print_r($form_state, TRUE) .'</pre>';
+  foreach($form_state['values'] AS $oid => $value) {
+    if (is_numeric($value)) {
+      $status = ($value) ? 'complete' : 'not complete';
+      db_query("UPDATE {mp_seller_order_statuses} SET order_status = '%s' WHERE order_id = %d and uid = %d", $status, $oid, arg(1));
+    }  
+  }
+  drupal_set_message("Orders Updated");
+}
+
+function mp_orders_theme() {
+  return array(
+    'mp_orders_edit_orders_form' => array(
+      'arguments' => array('form' => NULL),
+    ),);
+}
+
+function theme_mp_orders_edit_orders_form($form) {
+  if (isset($form['order_id']) && is_array($form['order_id'])) {
+    foreach (element_children($form['order_id']) as $key) {
+      $row = array();
+      $row[] = drupal_render($form['order_id'][$key]);
+      $row[] = drupal_render($form['created'][$key]);
+      $row[] = drupal_render($form['products'][$key]);
+      if (module_exists('mp_quote')) {
+         $row[] = drupal_render($form['shipping'][$key]);
+      } 
+      $row[] = drupal_render($form['total'][$key]);
+      $row[] = drupal_render($form['actions'][$key]);
+      $row[] = drupal_render($form['shipped'][$key]);
+      $rows[] = $row;
+    }
+  }
+
+  $output .= theme('table', $form['header']['#value'], $rows);
+  if ($form['pager']['#value']) {
+    $output .= drupal_render($form['pager']);
+  }
+
+  $output .= drupal_render($form);
+
+  return $output;
+}
+
+/**
+ * Returns the sortable table listing of a seller's orders.
+ *
+ * @param $uid
+ *   The user/seller ID whose marketplace orders to show.
+ */
+function mp_orders_fulfill($user) {
+  $uid = $user->uid;
+  
+  drupal_set_title(t('View Orders'));
+  $breadcrumb = drupal_get_breadcrumb();
+  $breadcrumb[] = l(t('Selling'), 'user/'. arg(1) .'/selling');
+  drupal_set_breadcrumb($breadcrumb);
+  
+  $mp_quote_present = module_exists('mp_quote');
+  
+  $header = array(
+    array('data' => t('ID'), 'field' => 'p.order_id'),
+    array('data' => t('Actions')),
+    array('data' => t('Product(s)*')),
+    array('data' => t('Last Name')),
+    array('data' => t('Total*')),
+    array('data' => t('Date'), 'field' => 'o.created', 'sort' => 'desc'),
+    array('data' => t('Status'), 'field' => 'sos.order_status'),
+  ); 
+  
+  if ($mp_quote_present) {
+    array_splice($header, 4, 0, array('data' => t('Shipping')));
+  }
+  
+  $result = pager_query("SELECT DISTINCT sos.order_id, o.created, o.delivery_last_name, sos.order_status FROM {mp_seller_order_statuses} AS sos INNER JOIN {uc_orders} as o ON sos.order_id = o.order_id WHERE (sos.uid = %d) AND ((o.order_status = 'payment_received') OR (o.order_status = 'completed') OR (o.order_status = 'processing'))"  . tablesort_sql($header), 20, 0, "SELECT COUNT(DISTINCT order_id) FROM {mp_seller_order_statuses} WHERE uid = %d", $uid, $uid);
+
+  // Build a table based on the seller's orders.
+  while ($order = db_fetch_object($result)) {
+    $products = '';
+    $total = 0;
+    if ($mp_quote_present) {
+      $shipping_total = db_result(db_query("SELECT SUM(rate) FROM {mp_quote_shipping_rates} WHERE order_id = %d AND uid = %d", $order->order_id, $uid));
+      $total += $shipping_total;
+    }
+    $productresult = db_query("SELECT p.title, p.nid, p.model, p.cost, p.qty, up.shippable, p.order_product_id FROM {uc_order_products} AS p INNER JOIN {node} AS n INNER JOIN {uc_products} as up ON p.nid = n.nid AND up.nid = p.nid AND up.vid = n.vid WHERE n.uid = %d AND order_id = %d", $uid, $order->order_id);
+    while ($product = db_fetch_object($productresult)) {
+      $temp = $product->qty .' '. l($product->title, 'node/'. $product->nid) .' ['. $product->model .'] @ '. uc_currency_format($product->cost) .'<br/>';
+      if ($product->shippable) {
+        $products .= '<div class="shippable">'. $temp .'</div>';
+      } 
+      else {
+        $products .= '<div class="not_shippable">'. $temp .'</div>';
+      }
+      $total += $product->qty * $product->cost;
+    }
+    
+    $rows[] = array(
+      array('data' => $order->order_id),
+      array('data' => '<span class="order-admin-icons">'. mp_orders_actions($uid, $order->order_id, $order->order_status) .'</span>'),
+      array('data' => $products),
+      array('data' => $order->delivery_last_name),
+      array('data' => uc_currency_format($total)),
+      array('data' => format_date($order->created, 'custom', variable_get('uc_date_format_default', 'm/d/Y'))),
+      array('data' => t($order->order_status))
+    );
+    
+    if ($mp_quote_present) {
+      array_splice($rows[sizeof($rows) - 1], 4, 0, array('data' => uc_currency_format($shipping_total)));
+    }   
+  }
+  
+  $output .= theme('table', $header, $rows) . theme('pager', NULL, 20, 0);
+  $output .= '<p>'. t('*The products listed for each order only include the products that you sell.  The total field doesn\'t represent what the customer actually paid, but rather the amount you will be paid for the order.') .'</p>';
+
+  return $output;
+}
+
+/**
+ * Return the actions a seller may perform on an order.
+ */
+function mp_orders_actions($uid, $order_id, $status) {
+  static $added = FALSE;
+  if (!$added) {
+    drupal_add_css(drupal_get_path('module', 'mp_orders') .'/mp_orders.css');
+    $url = url('user/'. $uid .'/selling/fulfill');
+    drupal_add_js("function open_packingslip(order_id) { window.open('". $url ."/' + order_id + '/print', '". t('Packing slip') ."', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=600,height=480,left=50,top=50'); }", 'inline');
+    $added = TRUE;
+  }
+ 
+  $actions[] = array(
+    'name' => t('View'),
+    'url' => 'user/'. $uid .'/selling/fulfill/'. $order_id,
+    'icon' => '<img src="'. base_path() . drupal_get_path('module', 'uc_store') .'/images/order_view.gif" alt="'. t('View order !order', array('!order' => $order_id)) .'" />',
+    'title' => t('View order !order ', array('!order' => $order_id)),
+  );
+
+  if (module_exists(mp_shipping)) {
+    if (db_result(db_query("SELECT COUNT(p.nid) FROM {uc_order_products} AS p LEFT JOIN {node} AS n ON n.nid = p.nid WHERE n.uid = %d AND order_id = %d AND data LIKE '%%s:9:\"shippable\";s:1:\"1\";%%'", $uid, $order_id))) {
+      $actions[] = array(
+        'name' => t('Package'),
+        'url' => 'user/'. $uid .'/selling/fulfill/'. $order_id .'/packages',
+        'icon' => '<img src="'. base_path() . drupal_get_path('module', 'uc_shipping') .'/images/package.gif" />',
+        'title' => t('Package order !order products.', array('!order' => $order_id)),
+      );
+    }
+    if (db_result(db_query("SELECT COUNT(p.package_id) FROM {uc_packages} AS p LEFT JOIN {mp_seller_packages} AS sp ON p.package_id = sp.package_id WHERE sp.uid = %d AND order_id = %d", $uid, $order_id))) {
+      $title = t('Ship order !order_id packages.', array('!order_id' => $order_id));
+      $actions[] = array(
+        'name' => t('Ship'),
+        'url' => 'user/'. $uid .'/selling/fulfill/'. $order_id .'/shipments',
+        'icon' => '<img src="'. base_path() . drupal_get_path('module', 'uc_shipping') .'/images/ship.gif" />',
+        'title' => t('Ship order !order packages.', array('!order' => $order_id)),
+      );
+    }
+  }
+
+  foreach ($actions as $action) {
+    $output .= l($action['icon'], $action['url'], array('attributes' => array('title' => $action['title']), 'html' => TRUE));
+  }
+
+  $output .= l(uc_store_get_icon('file:print'), 'user/'. $uid .'/selling/fulfill/'. $order_id .'/print', array('attributes' => array('title' => t('View packing slip.'), 'onclick' => 'open_packingslip('. $order_id .'); return false;'), 'html' => TRUE));
+  
+  return $output;
+}
+
+/**
+ * Overrides uc_order_comments_load().
+ * Return an array of only the seller's comments for an order.
+ */
+function mp_orders_load_comments($uid, $order_id) {
+  $result = db_query("SELECT * FROM {uc_order_comments} AS oc LEFT JOIN {uc_order_statuses} AS os ON oc.order_status = os.order_status_id WHERE oc.order_id = %d AND (oc.uid = %d OR oc.uid = 0) ORDER BY oc.created, oc.comment_id", $order_id, $uid);
+  while ($comment = db_fetch_object($result)) {
+    $comments[] = $comment;
+  }
+  return $comments;
+}
+
+/**
+ * Overrides op_order_comments_view_table().
+ * Return a table of comments for an order.
+ */
+ function mp_orders_comments_view_table($comments) {
+  $table = array(
+    '#type' => 'tapir_table',
+    '#attributes' => array('class' => 'order-pane-table'),
+  );
+
+  $table['#columns']['date'] = array(
+    'cell' => array('data' => t('Date'), 'class' => 'text-center'),
+    'weight' => 0,
+  );
+  $table['#columns']['notified'] = array(
+    'cell' => t('Notified'),
+    'weight' => 2,
+  );
+  $table['#columns']['comment'] = array(
+    'cell' => array('data' => t('Comment'), 'width' => '80%'),
+    'weight' => 4,
+  );
+
+  if (is_array($comments)) {
+    foreach ($comments as $comment) {
+      $data = array();
+      $data['date'] = array(
+        '#value' => format_date($comment->created, 'custom', variable_get('uc_date_format_default', 'm/d/Y') .'<\b\r />g:i:s A'),
+        '#cell_attributes' => array('align' => 'center', 'nowrap' => 'true'),
+      );
+      $data['notified'] = array(
+        '#value' => (($comment->notified == 1)
+          ? '<img src="'. base_path() . drupal_get_path('module', 'uc_order') .'/images/true-icon.gif" />'
+          : '<img src="'. base_path() . drupal_get_path('module', 'uc_order') .'/images/false-icon.gif" />'),
+        '#cell_attributes' => array('align' => 'center'),
+      );
+      $data['comment'] = array(
+        '#value' => filter_xss_admin($comment->message),
+      );
+      $table['#rows'][] = $data;
+    }
+  }
+  else {
+    $data['comment'] = array(
+      '#value' => t('This order has no comments associated with it.'),
+      '#cell_attributes' => array('colspan' => 'full'),
+    );
+    $table['#rows'][] = $data;
+  }
+  return $table;
+}
+
+
+function mp_orders_print_packingslip($user, $order) {
+  $order_id = $order->order_id;
+  $order = uc_order_load($order_id);
+
+  if ($order === FALSE) {
+    drupal_set_message(t('Order @order_id does not exist.', array('@order_id' => $order_id)));
+    drupal_goto('admin/store/orders');
+  }
+
+  $output = uc_order_load_invoice($order, $op, 'packingslip');
+
+  $output .= '<div align="right" style="margin-top: 1em; margin-right: 1em;"><input type="button" value="'. t('Print') .'" onclick="window.print();" /> '
+          .'<input type="button" value="'. t('Close window') .'" onclick="window.close();" /></div>';
+
+  print $output;
+  exit();
+}
+
+/**
+ * Access helper method to check if order actually belongs to a seller trying to access it.
+ * Kills foreign seller order access.
+ * 
+ * @returns FALSE if access denied, TRUE otherwise.
+ */
+function mp_orders_seller_can_view_order($order_user, $order) {
+  global $user;
+  
+  if (($user->uid == $order_user->uid) && user_access('fulfill own orders')) {
+    if (db_result(db_query("SELECT COUNT(*) FROM {mp_seller_order_statuses} WHERE uid = %d AND order_id = %d", $user->uid, $order->order_id))) {
+      return TRUE;
+    }
+  }
+  elseif (user_access('administer sellers')) {
+    return TRUE;
+  }
+  
+  return FALSE;
+}
+
+function mp_orders_can_view_orders($seller) {
+  global $user;
+  
+  return ((user_access('fulfill own orders') && ($user->uid == $seller->uid)) || user_access('administer sellers'));
+}
+
+function mp_orders_mail($key, &$message, $settings) {
+  switch($key) {
+    case 'sellercheckout':
+      // Set up the header so the email shows up as html instead of plain text
+      $headers = array(
+        'MIME-Version' => '1.0',
+        'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
+        'Content-Transfer-Encoding' => '8Bit',
+        'X-Mailer' => 'Drupal'
+      );
+      foreach ($headers as $key => $value) {
+        $message['headers'][$key] = $value;
+      }
+      
+      // Subject and body of the email
+      $subject = token_replace_multiple($settings['subject'], $settings['token_filters']);
+      $body = token_replace_multiple($settings['message'], $settings['token_filters']);
+      $body = check_markup($body, 3, FALSE);
+      $body = str_replace('*uid*', check_plain($settings['uid']), $body);
+      $message['subject'] = $subject;
+      $message['body'] = $body;
+    break;
+  }
+}

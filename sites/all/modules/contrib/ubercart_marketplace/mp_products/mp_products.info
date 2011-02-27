@@ -1,0 +1,13 @@
+; $Id: mp_products.info,v 1.2.2.4 2009/12/01 14:11:44 longwave Exp $
+name = Marketplace Products
+description = Facilitates the handling of products created by marketplace sellers.
+core = 6.x
+dependencies[] = uc_product
+dependencies[] = uc_order
+package = Ubercart - Marketplace
+; Information added by drupal.org packaging script on 2010-03-20
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "ubercart_marketplace"
+datestamp = "1269061219"
+

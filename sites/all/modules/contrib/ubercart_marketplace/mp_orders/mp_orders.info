@@ -1,0 +1,12 @@
+; $Id: mp_orders.info,v 1.1.4.4 2009/12/01 14:11:44 longwave Exp $
+name = Marketplace Orders
+description = Tweaks the functionality of uc_order to support marketplace features
+core = 6.x
+dependencies[] = mp_products
+package = Ubercart - Marketplace
+; Information added by drupal.org packaging script on 2010-03-20
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "ubercart_marketplace"
+datestamp = "1269061219"
+

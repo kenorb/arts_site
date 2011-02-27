@@ -1,0 +1,82 @@
+<?php
+// $Id: mp_reports.install,v 1.1.4.3 2009/05/09 19:37:03 turgrid Exp $
+
+/**
+ * @file
+ * Database installation, uninstallation, and updates for the marketplace reports module.
+ */
+
+function mp_reports_install() {
+  drupal_install_schema('mp_reports');
+}
+
+function mp_reports_schema() {
+  $schema = array();
+
+  $schema['mp_seller_payments'] = array(
+    'description' => t('The list of seller Masspay payments.'),
+    'fields' => array(
+      'payment_id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'txn_id' => array(
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 40,
+        'default' => '',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => 0,
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 60,
+        'default' => '',
+      ),
+      'gross' => array(
+        'type' => 'numeric',
+        'not null' => TRUE,
+        'precision' => 7,
+        'scale' => 2,
+        'default' => 0.0,
+      ),
+      'fee' => array(
+        'type' => 'numeric',
+        'not null' => TRUE,
+        'precision' => 4,
+        'scale' => 2,
+        'default' => 0.0,
+      ),
+      'status' => array(
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 10,
+        'default' => '',
+      ),
+      'method' => array(
+        'type' => 'varchar',
+        'not null' => TRUE,
+        'length' => 10,
+        'default' => '',
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'status' => array('status'),
+      'txn_id' => array('txn_id'),
+    ),
+    'primary key' => array('payment_id'),
+  );
+
+  return $schema;
+}
+
+function  mp_reports_uninstall() {
+  drupal_uninstall_schema('mp_reports');
+}

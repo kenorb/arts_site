@@ -1,0 +1,5 @@
+/* $Id: mp_orders.css,v 1.1.4.3 2009/05/09 19:42:12 turgrid Exp $ */
+
+.not_shippable, .not_shippable a, .not_shippable a.active, .not_shippable a:link, .not_shippable a:active, .not_shippable a:visited {
+  color:#CCCCCC;
+}
