@@ -1,0 +1,40 @@
+<?php
+  //$Id: role_weights.install,v 1.8 2008/02/19 18:09:35 leafishpaul Exp $
+
+  // role_weights.install
+
+  function role_weights_install() {
+  
+    // Create tables.
+    drupal_install_schema('role_weights');
+  
+    db_query("INSERT INTO {role_weights} (rid, weight) VALUES (1, 0)");
+    db_query("INSERT INTO {role_weights} (rid, weight) VALUES (2, -1)");
+  }
+
+  function role_weights_schema() {
+    $schema['role_weights'] = array(
+      'fields' => array(
+        'rid'    => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0),
+        'weight' => array('type' => 'int', 'not null' => TRUE, 'default' => 0, 'size' => 'tiny')
+      ),
+      'primary key' => array('rid'),
+    );
+
+    return $schema;
+  }
+  
+  function role_weights_uninstall() {
+    // Remove tables.
+    drupal_uninstall_schema('role_weights');
+  }
+
+  /* updates */
+  function role_weights_update_1() {
+    // invert the weights of all role_weights set
+    // part of reversing our weights to coincide with Drupal standards: http://drupal.org/node/75877
+    $items = array();
+    $items[] = update_sql("UPDATE {role_weights} SET weight = 0 - weight");
+    return $items;
+  }
+
