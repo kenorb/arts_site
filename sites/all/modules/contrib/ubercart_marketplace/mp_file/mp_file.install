@@ -1,5 +1,4 @@
 <?php
-// $Id: mp_file.install,v 1.1.2.4 2010/01/01 00:59:37 syndicatestorm Exp $
 
 /**
  * @file
@@ -7,11 +6,81 @@
  */
 
 /**
+ * Implementation of hook_schema().
+ */
+function mp_file_schema() {
+  $schema = array();
+  $schema['mp_file_class_settings'] = array(
+    'description' => t('Table for Marketplace file settings.'),
+    'fields'            => array(
+      'pcid'            => array(
+        'description'   => t('product class ID'),
+        'type'          => 'varchar',
+        'length'        => 32,
+        'not null'      => TRUE,
+        'default'       => '',
+      ),
+      'enabled'         => array(
+        'description'   => t('boolean'),
+        'type'          => 'int',
+        'size'          => 'tiny',
+        'not null'      => TRUE,
+        'unsigned'      => TRUE,
+        'default'       => 0,
+      ),
+    ),
+    'primary key'     => array('pcid'),
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function mp_file_install() {
+  drupal_install_schema('mp_file');
+}
+ 
+/**
  * Implements hook_uninstall()
  */
 function  mp_file_uninstall() {
+  drupal_uninstall_schema('mp_file');
+  
   variable_del('mp_file_show_feature_list');
   variable_del('mp_file_show_commit_checkbox');
   variable_del('mp_file_require_upload');
   variable_del('mp_file_replace_feature_on_upload');
+}
+
+/**
+ * Add the mp_file_class_settings table
+ */
+function mp_file_update_6000() {
+  $ret = array();
+
+  $schema['mp_file_class_settings'] = array(
+    'description' => t('Table for Marketplace file settings.'),
+    'fields'            => array(
+      'pcid'            => array(
+        'description'   => t('product class ID'),
+        'type'          => 'varchar',
+        'length'        => 32,
+        'not null'      => TRUE,
+        'default'       => '',
+      ),
+      'enabled'         => array(
+        'description'   => t('boolean'),
+        'type'          => 'int',
+        'size'          => 'tiny',
+        'not null'      => TRUE,
+        'unsigned'      => TRUE,
+        'default'       => 0,
+      ),
+    ),
+    'primary key'     => array('pcid'),
+  );
+  db_create_table($ret, 'mp_file_class_settings', $schema['mp_file_class_settings']);
+  
+  return $ret;
 }

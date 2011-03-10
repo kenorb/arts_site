@@ -1,5 +1,4 @@
 <?php
-// $Id: mp_quote.module,v 1.1.2.4 2010/01/18 07:28:59 syndicatestorm Exp $
 
 /**
  * @file
@@ -23,7 +22,7 @@ function mp_quote_menu() {
   $items['user/%user/selling/settings'] = array(
     'title' => 'Settings',
     'description' => 'Configure your shipping settings.',
-    'access callback' => 'mp_products_can_view_seller',
+    'access callback' => 'mp_marketplace_can_view_seller',
     //'access arguments' => array(1),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('mp_quote_seller_settings', 1),
@@ -67,7 +66,7 @@ function mp_quote_form_alter(&$form, $form_state, $form_id) {
       unset($product_types[array_search('product_kit', $product_types)]);
     }
     if ($form_id == $node->type .'_node_form' && in_array($node->type, $product_types)) {
-      if(empty($node->nid)) {  // new Product
+      if (empty($node->nid)) {  // new Product
         global $user;
         $seller = db_fetch_object(db_query("SELECT * FROM {mp_quote_sellers} WHERE uid = %d", $user->uid));
         $form['shipping']['default_address']['first_name']['#default_value'] = $seller->first_name;
@@ -129,7 +128,7 @@ function mp_quote_nodeapi(&$node, $op, $a3 = NULL) {
   }
 }
 
-function mp_quote_node_submit($form, $form_state) {
+function mp_quote_node_submit($form, &$form_state) {
   $node = $form['#node'];
   db_query("UPDATE {mp_quote_products} SET quote_method = '%s' WHERE nid = %d", $form_state['values']['quote_method'], $node->nid);
 }
@@ -282,7 +281,7 @@ function mp_quote_quote($products, $details) {
   // sqr = shipping quote rate
   // vp = vendor's products
   // loop through vendors and perform operations (i.e. shipping calculations)
-  foreach ($pbv as $uid=>$vp) {
+  foreach ($pbv as $uid => $vp) {
     $quotes = array();
     // retrieve a shipping quote for this vendor's products based on methods selected
     
@@ -290,7 +289,7 @@ function mp_quote_quote($products, $details) {
     if (isset($pbv[$uid][0])) {
       $flatrate_name = 'flatrate_'. variable_get('mp_quote_flatrate_id', 1);
       $quote = uc_flatrate_quote($pbv[$uid][0], $details, array('id' => $flatrate_name));
-      if(empty($quote)) { // return if error retrieving quote
+      if (empty($quote)) { // return if error retrieving quote
         return $quote;
       }
       $sqr += $quote[0]['rate'];
@@ -300,7 +299,7 @@ function mp_quote_quote($products, $details) {
     // ===USPS QUOTE METHOD===
     if (isset($pbv[$uid][1])) {
       $quote = uc_usps_quote($pbv[$uid][1], $details, array('id' => 'usps'));
-      if(empty($quote)) { // return if error retrieving quote
+      if (empty($quote)) { // return if error retrieving quote
         return $quote;
       }
       $markup_rate = db_result(db_query("SELECT markup_rate FROM {mp_quote_sellers} WHERE uid = %d", $uid));
@@ -322,7 +321,7 @@ function mp_quote_quote($products, $details) {
  */
 function mp_quote_order($op, &$order, $arg2)  {
   if ($op == 'submit') {
-    foreach($_SESSION['mp_quote_rate'] as $uid=>$rate) {
+    foreach ($_SESSION['mp_quote_rate'] as $uid => $rate) {
       db_query("INSERT INTO {mp_quote_shipping_rates} (uid, order_id, rate) VALUES (%d, %d, %f)", $uid, $order->order_id, $rate); 
     }
     unset($_SESSION['mp_quote_rate']);

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Database installation, uninstallation, and updates for the marketplace masspay module.
+ */
+
+function mp_masspay_install() {
+  drupal_install_schema('mp_masspay');
+}
+
+function mp_masspay_schema() {
+  $schema = array();
+
+  return $schema;
+}
+
+function  mp_masspay_uninstall() {
+  drupal_uninstall_schema('mp_masspay');
+  
+  variable_del('mp_reports_display_email');
+  variable_del('mp_reports_enable_check');
+  variable_del('mp_masspay_subject');
+}

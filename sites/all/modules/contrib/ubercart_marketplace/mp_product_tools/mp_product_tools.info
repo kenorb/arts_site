@@ -1,9 +1,6 @@
-name = Marketplace File Downloads
-description = Manages Marketplace downloadable product features.
+name = Marketplace Product Tools
+description = "Setup product class specific attributes, including the ability to disable/enable marketplace capabilities on a class by class case."
 core=6.x
-dependencies[] = mp_products
-dependencies[] = uc_file
-dependencies[] = filefield
 package = Ubercart - Marketplace - optional
 
 ; Information added by drupal.org packaging script on 2011-02-25

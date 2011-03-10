@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Schema for Ubercart Marketplace Product Tools module
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function mp_product_tools_schema() {
+  $schema = array();
+  $schema['mp_product_tools'] = array(
+    'description' => t('Table for settings of Ubercart Marketplace Product Tools module.'),
+    'fields'            => array(
+      'pcid'            => array(
+        'description'   => t('product class ID'),
+        'type'          => 'varchar',
+        'length'        => 32,
+        'not null'      => TRUE,
+        'default'       => '',
+      ),
+      'enabled'         => array(
+        'description'   => t('boolean'),
+        'type'          => 'int',
+        'size'          => 'tiny',
+        'not null'      => TRUE,
+        'unsigned'      => TRUE,
+        'default'       => 0,
+      ),
+    ),
+    'primary key'     => array('pcid'),
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function mp_product_tools_install() {
+  drupal_install_schema('mp_product_tools');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function mp_product_tools_uninstall() {
+  drupal_uninstall_schema('mp_product_tools');
+  
+  variable_del('mp_product_tools_enabled_classes');
+}

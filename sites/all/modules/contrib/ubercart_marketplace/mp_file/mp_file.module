@@ -1,5 +1,4 @@
 <?php
-// $Id: mp_file.module,v 1.1.4.9 2010/03/06 23:10:08 syndicatestorm Exp $
 
 /**
  * @file
@@ -69,7 +68,7 @@ function mp_file_widget_validate($element, &$form_state) { ; }
  * Implements hook_nodeapi().
  */
 function mp_file_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
-  if (in_array($node->type, module_invoke_all('product_types'))) {
+  if (mp_file_product_class_is_enabled($node->type)) {//in_array(, variable_get('mp_product_tools_enabled_classes', array()))) {
     if ($op === 'insert' || $op === 'update') {
       if ($node->mp_file_attached) {
         $file_committed = mp_file_commit($node, $node->mp_file_path, $node->mp_file_description, $node->mp_file_title, $node->mp_file_fid);
@@ -79,7 +78,7 @@ function mp_file_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
         }
       }
     }
-    else if ($op === 'load') {
+    elseif ($op === 'load') {
       $node->feature_count = 0;
       $node->feature_file_name = array();
       $result = db_query("SELECT * FROM {uc_product_features} WHERE nid = %d ORDER BY pfid ASC", $node->nid);
@@ -99,18 +98,43 @@ function mp_file_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
 }
 
 /**
+ * Checks to see if this product class has mp_file features enabled
+ */
+function mp_file_product_class_is_enabled($product_class) {
+  if ($product_class) {
+    if (module_exists('mp_product_tools')) {
+      // Is this even a marketplace product?
+      if (in_array($product_class, variable_get('mp_product_tools_enabled_classes', array()))) {
+        $enabled_mp_file_classes = array();
+        $classes = db_query("SELECT pcid FROM {mp_file_class_settings} WHERE enabled = 1");
+        while ($class = db_fetch_object($classes)) {
+          $enabled_mp_file_classes[] = $class->pcid;
+        }
+        return in_array($product_class, $enabled_mp_file_classes);
+      }
+      else {
+        FALSE;    // This is a standard Ubercart product (non-marketplace)
+      }
+    }
+    else {
+      TRUE;       // If we aren't managing classes, assume we want this product to be digital (otherwise why even enable mp_file?)
+    }
+  }
+  else {
+    return FALSE; 
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function mp_file_form_alter(&$form, $form_state, $form_id) {
-  // Collect all product class IDs
-  $form_ids = array('product_node_form');
-  $result = db_query("SELECT pcid, name, description FROM {uc_product_classes}");
-  while ($line = db_fetch_array($result)) {
-    $form_ids[]= $line['pcid'].'_node_form';
-  }
-
+  // Strip the class name from the form name, if this is a product class form
+  $position = strpos($form_id, "_node_form");
+  $product_class = $position ? substr($form_id, 0, $position) : NULL;
+  
   switch ($form_id) {
-    case in_array($form_id,$form_ids,true):
+    case mp_file_product_class_is_enabled($product_class): 
       // Append data to the field download data
       $field_name = 'field_'. variable_get('mp_file_field_name', 'download');
 
@@ -155,7 +179,7 @@ function mp_file_form_alter(&$form, $form_state, $form_id) {
       $form['#submit'][] = 'mp_file_form_submit';
 
       break;
-    case 'mp_products_settings_seller_form':
+    case 'mp_marketplace_settings_seller_form':
       $form['mp_file_fieldset']['mp_file_replace_feature_on_upload'] = array(
         '#type' => 'checkbox',
         '#title' => t('Replace feature on upload'),
@@ -188,21 +212,21 @@ function mp_file_form_alter(&$form, $form_state, $form_id) {
   return $form;
 }
 
-function mp_file_form_validate($form_id, $form_values) {
+function mp_file_form_validate($form, &$form_state) {
   $field_name = 'field_'. variable_get('mp_file_field_name', 'download');
-  $feature_count = $form_values['values']['feature_count'];
-  $upload_filename = $form_values['values'][t($field_name)]['0']['filename'];
+  $feature_count = $form_state['values']['feature_count'];
+  $upload_filename = $form_state['values'][t($field_name)]['0']['filename'];
 
   if (variable_get('mp_file_require_upload', FALSE) && empty($feature_count) && empty($upload_filename)) {
     form_set_error(t($field_name), t('No file upload attached.'));
   }
 }
 
-function mp_file_form_submit($form_id, &$form_values) {
+function mp_file_form_submit($form, &$form_state) {
   if (mp_file_uc_mp_feature_access() || variable_get('mp_file_allow_sellers_perm', FALSE) ) {    
     // Get ready to commit a file if necessary
     $field_name = 'field_'. variable_get('mp_file_field_name', 'download');
-    $field = $form_values['values'][$field_name];
+    $field = $form_state['values'][$field_name];
 
     // Collect file features/downloads that are to be deleted, FIX ME, the code below is overkill...
     $delete_all_files = TRUE;
@@ -235,11 +259,11 @@ function mp_file_form_submit($form_id, &$form_values) {
       if ($commit_feature && variable_get('mp_file_allow_sellers_perm', FALSE)) {
         // nid is not available for new nodes so we have to call mp_file commit 
         // from nodeapi (an oversite on my part which is leading to less than simple code)
-        $form_values['values']['mp_file_attached']    = TRUE;
-        $form_values['values']['mp_file_path']        = $file_path;
-        $form_values['values']['mp_file_description'] = $description;
-        $form_values['values']['mp_file_title']       = $title;
-        $form_values['values']['mp_file_fid']         = $fid;
+        $form_state['values']['mp_file_attached']    = TRUE;
+        $form_state['values']['mp_file_path']        = $file_path;
+        $form_state['values']['mp_file_description'] = $description;
+        $form_state['values']['mp_file_title']       = $title;
+        $form_state['values']['mp_file_fid']         = $fid;
         
         $file_committed = TRUE;
       }

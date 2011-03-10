@@ -1,5 +1,4 @@
 <?php
-// $Id: mp_orders.ca.inc,v 1.1.2.2 2009/05/09 19:42:24 turgrid Exp $
 
 /**
  * @file
@@ -14,7 +13,7 @@ function mp_orders_ca_predicate() {
   $predicates = array();
 
   $predicates['mp_orders_email_seller'] = array(
-    '#title' => t('E-mail an order notification to seller'),
+    '#title' => t('E-mail an order notification to seller (UC Marketplace)'),
     '#description' => t('Notify the seller when an order is placed on his/her product(s).'),
     '#class' => 'order',
     '#status' => 1,
@@ -73,7 +72,7 @@ function mp_orders_ca_action() {
 }
 
 function mp_orders_action_seller_email($order, $settings) {
-  $result = false;
+  $result = FALSE;
   $result = db_query("SELECT uid FROM {mp_seller_order_statuses} WHERE order_id = %d", $order->order_id);
   while ($seller = db_fetch_object($result)) {
     mp_orders_send_seller_email($seller->uid, $order, $settings);

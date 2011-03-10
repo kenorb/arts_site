@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * @file
+ * Provides an interface to manage payments to sellers via PayPal MassPay. 
+ *
+ * The mp_masspay module provides an admin interface to PayPal MassPay.
+ *
+ */
+ 
+/**
+* Implementation of hook_menu().
+*/
+function mp_masspay_menu() {
+  $items = array();
+
+  $items['admin/store/reports/seller/custom'] = array(
+    'title' => 'Seller reports',
+    'description' => 'View reports of your sellers and their sales.',
+    'page callback' => 'mp_masspay_seller',
+    'access arguments' => array('view reports'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'mp_masspay.admin.inc',
+   );
+  $items['admin/store/reports/seller/payments'] = array(
+    'page callback' => 'mp_masspay_seller_payments',
+    'access arguments' => array('view reports'),
+    'type' => MENU_CALLBACK,
+    'file' => 'mp_masspay.admin.inc',
+  );
+  $items['masspay/ipn'] = array(
+    'title' => 'Masspay IPN',
+    'page callback' => 'mp_masspay_ipn',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'mp_masspay.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_user().
+ * 
+ * Adds seller payment options to seller profile edit pages.
+ * Options available are set in mp_products settings page.
+ */
+function mp_masspay_user($op, &$edit, &$account, $category = NULL) {
+  if ($op == 'form' && $category == 'account') {
+    if (user_access('act as seller', $account) && (variable_get('mp_reports_display_email', TRUE) || variable_get('mp_reports_enable_check', FALSE))) {
+      $form['payment_settings'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Payment options'),
+      );
+      $form['payment_settings']['payment_method'] = array(
+        '#title' => t('Preferred payment method'),
+        '#description' => t('Select the method you would like to be paid with.  Payments for your product sales will be sent using the selected method.'),
+        '#default_value' => $edit['payment_method'],
+        '#type' => 'select',
+      );
+      if (variable_get('mp_reports_display_email', TRUE)) {
+        $form['payment_settings']['payment_method']['#options'][] = t('Paypal');
+      }
+      if (variable_get('mp_reports_enable_check', FALSE)) {
+        $form['payment_settings']['payment_method']['#options'][] = t('Check');
+      }
+      if (variable_get('mp_reports_display_email', TRUE)) {
+        $form['payment_settings']['paypal_email'] = array(
+          '#title' => t('Paypal email address'),
+          '#description' => t('Enter your valid Paypal account email address.  Payment for your product sales will be sent to this address.'),
+          '#type' => 'textfield',
+          '#default_value' => $edit['paypal_email'],
+        );
+      }
+      if (variable_get('mp_reports_enable_check', FALSE)) {
+        $form['payment_settings']['manual_pay_details'] = array(
+          '#title' => t('Check payment details'),
+          '#description' => t('Enter valid check payment instructions. This should include an address, check recipient identification, etc.'),
+          '#type' => 'textarea',
+          '#default_value' => $edit['manual_pay_details'],
+        );
+      }
+      return $form;
+    }
+  }
+  elseif ($op == 'validate' && isset($edit['paypal_email'])) {
+    if ($edit['payment_method'] == 0) {
+      if (!eregi('^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$' , $edit['paypal_email'])) {
+        form_set_error('paypal_email', t('Please enter a valid Paypal email address.'));
+       }
+    }
+  }
+}
+
+function mp_masspay_theme() {
+  return array(
+    'mp_masspay_seller_fieldset' => array(
+      'arguments' => array('fieldset' => NULL),
+    ),
+  );
+}
+
+/**
+ * Theme handler for mp_masspay_seller_form().
+ */
+function theme_mp_masspay_seller_fieldset($fieldset) {
+  $output = '';
+  $header = array(t('Seller'), t('# of orders'), t('Products sold'), t('Total revenue'), t('Total commission'), t('Payment method'), theme('table_select_header_cell'));
+  $rows = array();
+  foreach (element_children($fieldset) as $op_id) {
+    $row = array();
+    $row[] = drupal_render($fieldset[$op_id]['link']);
+    $row[] = drupal_render($fieldset[$op_id]['order_data']);
+    $row[] = drupal_render($fieldset[$op_id]['product_data']);
+    $row[] = drupal_render($fieldset[$op_id]['revenue_count']);
+    $row[] = drupal_render($fieldset[$op_id]['commission_count']);
+    $row[] = drupal_render($fieldset[$op_id]['payment_method']);
+    $row[] = drupal_render($fieldset[$op_id]['checked']);
+    $rows[] = $row;
+  }
+  $output .= theme('table', $header, $rows);
+  $output .= drupal_render($fieldset);
+  return $output;
+}
+
+/**
+ * Theme handler for mp_masspay_manuals_form().
+ */
+function theme_mp_masspay_manuals_fieldset($fieldset) {
+  $output = '';
+  $header = array(t('uid'), t('order ids'), t('manual payment details'), t('commission'), theme('table_select_header_cell'));
+  $rows = array();
+  foreach (element_children($fieldset) as $op_id) {
+    $row = array();
+    $row[] = drupal_render($fieldset[$op_id]['uid_print']);
+    $row[] = drupal_render($fieldset[$op_id]['order_ids_print']);
+    $row[] = drupal_render($fieldset[$op_id]['manual_details']);
+    $row[] = drupal_render($fieldset[$op_id]['commission_print']);
+    $row[] = drupal_render($fieldset[$op_id]['checked']);
+    $rows[] = $row;
+  }
+  $output .= theme('table', $header, $rows);
+  $output .= drupal_render($fieldset);
+  return $output;
+}

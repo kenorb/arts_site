@@ -1,5 +1,4 @@
 <?php
-// $Id: packingslip.itpl.php,v 1.1.4.3 2009/11/28 21:19:15 longwave Exp $
 
 /**
  * This file is the default packing slip template for Ubercart marketplace.

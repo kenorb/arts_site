@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.2.2.3 2009/02/12 03:41:20 turgrid Exp $
 
 Ubercart Marketplace
 ====================

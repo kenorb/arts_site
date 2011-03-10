@@ -1,8 +1,9 @@
-name = Marketplace Orders
-description = REQUIRED. Tweaks the functionality of uc_order to support marketplace features
-core = 6.x
-dependencies[] = mp_products
+name = Marketplace
+description = REQUIRED. Setup marketplaces settings and manage your site.
+core=6.x
+dependencies[] = uc_store
 package = Ubercart - Marketplace - core
+
 ; Information added by drupal.org packaging script on 2011-02-25
 version = "6.x-1.x-dev"
 core = "6.x"

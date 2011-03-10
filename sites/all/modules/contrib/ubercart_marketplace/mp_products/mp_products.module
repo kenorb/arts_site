@@ -1,12 +1,12 @@
 <?php
-// $Id: mp_products.module,v 1.6.2.13 2010/02/22 04:52:07 syndicatestorm Exp $
 
 /**
  * @file
  * Handles all things concerning Ubercart marketplace products.
  *
  * The Ubercart marketplace product enhancement allows sellers to view their
- * items and edit them.  This module also includes concept code for manipulating the product edit page to suit the sellers' needs.
+ * items and edit them.  This module also includes concept code for manipulating 
+ * the product edit page to suit the sellers' needs.
  *
  */
 
@@ -18,7 +18,7 @@
  * Implementation of hook_perm().
  */
 function mp_products_perm() {
-  return array('view own products', 'act as seller', 'administer sellers');
+  return array('view own products');
 }
 
 /**
@@ -34,84 +34,20 @@ function mp_products_help($path, $arg) {
 }
 
 /**
- * Implementation of hook_user().
- */
-function mp_products_user($op, &$edit, &$account, $category = NULL) {
-
-  global $user;
-  switch ($op) {
-    case 'view':
-  	  if (user_access('act as seller') && $user->uid == $account->uid) {
-  	    $links = array();
-        if (module_exists(mp_orders) && user_access('fulfill own orders')) {
-          $links['fulfill']['#type'] = 'user_profile_item';
-          $links['fulfill']['#value'] = l(t('Click here to fulfill your orders.'), 'user/'. $account->uid .'/selling/fulfill');
-        }
-        if (user_access('view own products')) {
-          $links['products']['#type'] = 'user_profile_item';
-          $links['products']['#value'] = l(t('Click here to view your products.'), 'user/'. $account->uid .'/selling/view');
-          $links['overview']['#type'] = 'user_profile_item';
-          $links['overview']['#value'] = l(t('Click here for your sales overview.'), 'user/'. $account->uid .'/selling');
-        }
-        if (!empty($links)) {
-        $account->content['products'] = array(
-          '#type' => 'user_profile_category',
-          '#title' => t('Selling'),
-          $links,
-          );
-        }
-  	  }
-      break;
-  }
-}
-
-/**
  * Implementation of hook_menu().
  */
 function mp_products_menu() {
   $items = array();
 
-  $items['user/%user/selling'] = array(
-    'title' => 'Selling',
-    'description' => 'View and manage your products and orders.',
-    'page callback' => 'mp_products_selling_overview',
-    'page arguments' => array(1),
-    'access callback' => 'mp_products_can_view_seller',
-    //'access arguments' => array(1),
-    'type' => MENU_LOCAL_TASK,
-    'file' => 'mp_products.admin.inc',
-  );
-  $items['user/%user/selling/overview'] = array(
-    'title' => 'Summary',
-    'weight' => 1,
-    'type' => MENU_DEFAULT_LOCAL_TASK,
-  );
   $items['user/%user/selling/view'] = array(
     'title' => 'Products',
     'weight' => 9,
     'description' => 'View and edit your products.',
     'page callback' => 'mp_products_selling',
     'page arguments' => array(1),
-    'access callback' => 'mp_products_can_view_seller',
+    'access callback' => 'mp_marketplace_can_view_seller',
     //'access arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
-    'file' => 'mp_products.admin.inc',
-  );
-  $items['admin/store/settings/seller'] = array( 
-    'title' => 'Seller settings',
-    'access arguments' => array('administer sellers'),
-    'description' => 'Configure the marketplace seller settings.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('mp_products_settings_seller_form'),
-    'file' => 'mp_products.admin.inc',
-  );
-  $items['admin/store/settings/seller/commission'] = array(
-    'title' => 'Commission rate settings',
-    'access arguments' => array('administer sellers'),
-    'description' => 'Configure the marketplace seller commission rates.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('mp_products_commission_form'),
-    'type' => MENU_CALLBACK,
     'file' => 'mp_products.admin.inc',
   );
 
@@ -126,7 +62,7 @@ function mp_products_menu() {
 function mp_products_form_alter(&$form, $form_state, $form_id) {
   $node = $form['#node'];
   if (is_object($node)) {
-    $product_types = module_invoke_all('product_types');
+    $product_types = variable_get('mp_product_tools_enabled_classes', array());
     if (module_exists('uc_product_kit')) {
       unset($product_types[array_search('product_kit', $product_types)]);  // TODO fix admin base price for product kits
     }
@@ -142,15 +78,17 @@ function mp_products_form_alter(&$form, $form_state, $form_id) {
       }
       else {
         $form['base']['prices']['cost']['#access'] = user_access('administer sellers');
+        $form['base']['prices']['cost']['#description'] = t('The amount seller will be paid.');
         if (!variable_get('mp_products_admin_override', FALSE)) {
           $form['base']['prices']['cost']['#attributes'] = array('readonly' => 'readonly');
+          $commission_rate = mp_products_get_commission_rate($node->type);
+          $form['base']['prices']['cost']['#description'] = t('Amount seller will be paid (%percent%).', array('%percent' => $commission_rate * 100));
         }
-        $form['base']['prices']['cost']['#description'] = t('The amount seller will be paid.');
         // determine if list_price should be required
         if (variable_get('mp_products_auto_calc_field', 'sell_price') == 'list_price') {
           $form['base']['prices']['list_price']['#required'] = TRUE;
         }
-        else if (!variable_get('mp_products_enable_list', TRUE) && !user_access('administer sellers')) {
+        elseif (!variable_get('mp_products_enable_list', TRUE) && !user_access('administer sellers')) {
           $form['base']['prices']['list_price']['#access'] = FALSE;
         }
       }
@@ -171,9 +109,69 @@ function mp_products_form_alter(&$form, $form_state, $form_id) {
       }
       
       // The default breadcrumb points to inaccessible admin pages unless we change it
-      $breadcrumb[] = l('Home', null);
+      $breadcrumb[] = l('Home', NULL);
       drupal_set_breadcrumb($breadcrumb);
     }
+  }
+  
+  // Admin attribute interface
+  if ($form_id == 'uc_attribute_option_form') {
+    $form['adjustments']['cost']['#title'] = t('Cost or Seller Commission');
+  }
+  
+  // Alter the attributes form for validation & submission (for commission, etc.)
+  $product_types = variable_get('mp_product_tools_enabled_classes', array());
+  if ($form_id == 'uc_object_options_form' && in_array($form['type']['#value'], $product_types)) {
+    foreach ($form['attributes']['1']['options'] as $key => $value) {
+      if ($form['attributes']['1']['options'][$key]['cost']) {
+        // Make seller commission read only?
+        $form['attributes']['1']['options'][$key]['cost']['#attributes'] = array('readonly' => 'readonly');
+        
+        // js magic on the cost field
+        if (variable_get('mp_products_insert_js', FALSE)) {
+          $commission_rate = mp_products_get_commission_rate($node->type);
+          $price_id = '#edit-attributes-1-options-' . $key . '-price';
+          $cost_id = '#edit-attributes-1-options-' . $key . '-cost';
+          drupal_add_js("$(document).ready(function(){ " . 
+            "$('". $price_id ."').blur(function(){ " . 
+              "$('" . $cost_id . "').val(Math.floor($('". $price_id ."').val() * ". drupal_to_js($commission_rate)* 100 .")/100);" . 
+            "});" . 
+          "});", 'inline');
+        }
+      }
+    }
+    
+    // Validation magic
+    $form['#validate'][] = 'mp_products_object_options_form_validate';
+  }
+}
+
+function mp_products_object_options_form_validate($form, &$form_state) {
+  // Validate the commission rate is correct for each option
+  $commission_rate = mp_products_get_commission_rate($form_state['values']['type']);
+  foreach ($form_state['values']['attributes']['1']['options'] as $key => $value) {
+    if (!variable_get('mp_products_auto_calc', FALSE) && !(user_access('administer sellers') && variable_get('mp_products_admin_override', FALSE))) {
+      if ($value['cost'] > ($commission_rate * $value['price'])) {
+        form_set_error("attributes][1][options][$key][cost", t('Commission must be less than or equal to @rate% of the sell price. Consider decreasing commission or increasing sell price.', array('@rate' => $commission_rate*100)));
+      }
+    }
+    elseif (variable_get('mp_products_auto_calc', FALSE) && !(user_access('administer sellers') && variable_get('mp_products_admin_override', FALSE))) {
+      $form_state['values']['attributes']['1']['options'][$key]['cost'] = $commission_rate * $value['price'];
+    }
+  }
+}
+
+/**
+ * Quick and dirty replacement of the uc_attribute table title 'Cost' with 'Seller Commission'.
+ */
+function mp_products_preprocess_page(&$vars) {
+  if (arg(0) == 'node' && arg(3) == 'options') {
+    $vars['content'] = preg_replace("/<th>Cost</", "<th>Seller Commission<", $vars['content']);
+  }
+  
+  // Admin table header change
+  if (arg(0) == 'admin' && arg(1) == 'store' && arg(2) == 'attributes' && arg(4) == 'options') {
+    $vars['content'] = preg_replace("/<th>Default cost</", "<th>Default cost or commission<", $vars['content']);
   }
 }
 
@@ -181,7 +179,7 @@ function mp_products_form_alter(&$form, $form_state, $form_id) {
  * Implementation of hook_nodeapi().
  */
 function mp_products_nodeapi(&$node, $op, $a3 = NULL) {
-  $product_types = module_invoke_all('product_types');
+  $product_types = variable_get('mp_product_tools_enabled_classes', array());
   if (module_exists('uc_product_kit')) {
     unset($product_types[array_search('product_kit', $product_types)]);
   }
@@ -202,7 +200,7 @@ function mp_products_nodeapi(&$node, $op, $a3 = NULL) {
         module_invoke_all('list_product', $node);
       break;
       case 'prepare':
-        if (!variable_get('mp_products_auto_calc', FALSE) && variable_get('mp_products_insert_js', FALSE)) {
+        if (variable_get('mp_products_insert_js', FALSE)) {
           $commission_rate = mp_products_get_commission_rate($node->type);
           $fieldid = variable_get('mp_products_auto_calc_field', 'sell_price') == 'list_price' ? 'list-price' : 'sell-price';
           drupal_add_js("$(document).ready(function(){ $('#edit-". $fieldid ."').blur(function(){ $('#edit-cost').val(Math.floor($('#edit-". $fieldid ."').val() * ". drupal_to_js($commission_rate)* 100 .")/100);});});", 'inline');
@@ -215,7 +213,7 @@ function mp_products_nodeapi(&$node, $op, $a3 = NULL) {
           if ($node->cost > ($commission_rate * $node->sell_price)) {
             form_set_error('cost', t('Commission must be less than or equal to @rate% of the sell price. Consider decreasing commission or increasing sell price.', array('@rate' => $commission_rate*100)));
           }
-          else if ($node->cost == 0 && $node->sell_price > 0) {
+          elseif ($node->cost == 0 && $node->sell_price > 0) {
             form_set_error('cost', t('Commission must be greater than zero.'));
           }
         }
@@ -247,55 +245,5 @@ function mp_products_get_commission_rate($type) {
   }
   else {
     return floatval(variable_get('mp_products_commission_rate', '.75'));
-  }
-}
-
-function mp_products_can_view_seller() {
-  global $user;
-  
-  // mp_reports and this function probably need restructuring
-  // For now let's add conditionals for clarity
-  if (user_access('administer sellers')) {
-    return TRUE;
-  }
-  elseif (user_access('act as seller') && ($user->uid == arg(1))) {
-    switch (arg(3)) {
-      case '':
-        return TRUE;
-      case 'view':
-        return user_access('view own products');
-      case 'settings':                            // From mp_quote
-        return user_access('view own products');  // Seems wrong but consistent with the way it has been
-      default:
-        return TRUE;
-    }
-  }
-  else {
-    return FALSE;
-  }
-}
-
-/*
- * Implementation of theme_preprocess_page.
- *
- * Drupal doesn't seem to hide nested menu items even if users don't have access, so...
- */
-function mp_products_preprocess_page(&$vars) {
-  if (arg(2) == 'selling' && !(user_access('administer sellers') || user_access('view own products'))) {
-    // The user doesn't have permission to view these page, so don't show the menu tab
-    mp_products_removetab('Products', $vars);
-    mp_products_removetab('Settings', $vars);   // From mp_quote
-  }
-}
-
-function mp_products_removetab($label, &$vars) 
-{
-  $tabs = explode("\n", $vars['tabs']);
-  $vars['tabs'] = '';
-
-  foreach ($tabs as $tab) {
-    if (strpos($tab, '>' . $label . '<') === FALSE) {
-      $vars['tabs'] .= $tab . "\n";
-    }
   }
 }

@@ -1,5 +1,4 @@
 <?php
-// $Id: mp_products.install,v 1.3.2.4 2010/01/30 06:33:29 syndicatestorm Exp $
 
 /**
  * @file
@@ -58,6 +57,4 @@ function  mp_products_uninstall() {
   variable_del('mp_products_insert_js');
   variable_del('mp_file_field_name');
   variable_del('mp_file_allow_sellers_perm');
-  variable_del('mp_reports_display_email');
-  variable_del('mp_reports_enable_check');
 }

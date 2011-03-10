@@ -1,5 +1,4 @@
 <?php
-// $Id: mp_orders.module,v 1.1.4.12 2010/02/13 05:57:36 syndicatestorm Exp $
 
 /**
  * @file
@@ -22,9 +21,9 @@ require_once('mp_orders.ca.inc');
 function mp_orders_help($path, $arg) {
   switch ($path) {
     case 'user/%/selling/fulfill':
-      return l(t('View Orders'),'user/'. $arg[1] .'/selling/fulfill') .' | '. l(t('Fulfill Orders'),'user/'. $arg[1] .'/selling/fulfill/edit') .'<p>'. t("The following is a list of all the orders placed on your products. You can view an order by clicking the view icon next to its name.") .'</p>';
+      return l(t('View Orders'), 'user/' . $arg[1] . '/selling/fulfill') . ' | ' . l(t('Fulfill Orders'), 'user/' . $arg[1] . '/selling/fulfill/edit') . '<p>' . t("The following is a list of all the orders placed on your products. You can view an order by clicking the view icon next to its name.") . '</p>';
     case 'user/%/selling/fulfill/edit':
-      return l(t('View Orders'),'user/'. $arg[1] .'/selling/fulfill') .' | '. l(t('Fulfill Orders'),'user/'. $arg[1] .'/selling/fulfill/edit') .'<p>'. t("The following is a list of all the orders placed on your products. You can record that you shipped an order by selecting the checkbox and pressing update.") .'</p>';
+      return l(t('View Orders'), 'user/' . $arg[1] . '/selling/fulfill') . ' | ' . l(t('Fulfill Orders'), 'user/' . $arg[1] . '/selling/fulfill/edit') . '<p>' . t("The following is a list of all the orders placed on your products. You can record that you shipped an order by selecting the checkbox and pressing update.") . '</p>';
   }
 }
 
@@ -108,33 +107,32 @@ function mp_orders_order($op, &$order, $arg1 = NULL) {
   global $user;
   switch ($op) {
     case 'update':
-          // echo '<pre>'. print_r($order, true) .'</pre>';
-            $products = $order->products;
-          foreach ($products as $product) {
-           if (isset($product->data['kit_id'])) {
-             $sid = db_result(db_query("SELECT uid FROM {node} WHERE nid = %d", $product->nid));
-             $seller = user_load(array('uid' => $sid));
-                 $seller_roles = array_keys($seller->roles);
-         $roles_array = array_keys(user_roles(true, 'act as seller'));
-         $rid = -1;
-         foreach ($seller_roles as $role) {
-           if (in_array($role, $roles_array)) {
-             $rid = $role;
-           }
-         }
-         $result = db_result(db_query("SELECT rate FROM {mp_seller_rates} WHERE class = 'product_kit' AND rid = %d", $rid));
-         $commission = 0;
-                 if ($result > 0) {
-           $commission = floatval($result);
-         }
-         else {
-           $commission = floatval(variable_get('mp_products_commission_rate', '.75'));
-         }
-             $product->cost = $product->price * $commission;
-                 db_query("UPDATE {uc_order_products} SET cost = %f WHERE order_product_id = %d", round($product->cost, 2), $product->order_product_id);
-           }
+      $products = $order->products;
+      foreach ($products as $product) {
+        if (isset($product->data['kit_id'])) {
+          $sid = db_result(db_query("SELECT uid FROM {node} WHERE nid = %d", $product->nid));
+          $seller = user_load(array('uid' => $sid));
+          $seller_roles = array_keys($seller->roles);
+          $roles_array = array_keys(user_roles(true, 'act as seller'));
+          $rid = -1;
+          foreach ($seller_roles as $role) {
+            if (in_array($role, $roles_array)) {
+              $rid = $role;
             }
-          break;
+          }
+          $result = db_result(db_query("SELECT rate FROM {mp_seller_rates} WHERE class = 'product_kit' AND rid = %d", $rid));
+          $commission = 0;
+          if ($result > 0) {
+            $commission = floatval($result);
+          }
+          else {
+            $commission = floatval(variable_get('mp_products_commission_rate', '.75'));
+          }
+          $product->cost = $product->price * $commission;
+          db_query("UPDATE {uc_order_products} SET cost = %f WHERE order_product_id = %d", round($product->cost, 2), $product->order_product_id);
+        }
+      }
+      break;
     case 'load':
       if ((user_access('fulfill own orders') && (arg(0) == 'user') && (arg(2) == 'selling')) || (is_numeric($arg1)))  {
         $order_id = $order->order_id;
@@ -188,12 +186,6 @@ function mp_orders_order($op, &$order, $arg1 = NULL) {
 function mp_orders_view($user, $order) {
   $uid = $user->uid;
   $order_id = $order->order_id;
-  
-  $breadcrumb = drupal_get_breadcrumb();
-  $breadcrumb[] = l(t('Selling'), 'user/'. arg(1) .'/selling');
-  $breadcrumb[] = l(t('Orders'), 'user/'. arg(1) .'/selling/fulfill');
-  $breadcrumb[] = l(t('Order @order', array('@order' => $order_id)), 'user/'. arg(1) .'/selling/fulfill/'. $order_id);
-  drupal_set_breadcrumb($breadcrumb);
   
   $output .= '<div class="order-pane pos-left"><div class="order-pane-title">'. t('Ship to') .'</div>'. uc_order_pane_ship_to('view', $order) .'</div>';
   $output .= '<div class="order-pane abs-left"><div class="order-pane-title">'. t('Products') .'</div>'. drupal_render(tapir_get_table('op_products_view_table', $order)) .'</div>';
@@ -276,7 +268,7 @@ function mp_orders_edit_orders_form() {
 
 function mp_orders_edit_orders_form_submit($form, &$form_state) {
   //echo '<pre>'. print_r($form_state, TRUE) .'</pre>';
-  foreach($form_state['values'] AS $oid => $value) {
+  foreach ($form_state['values'] AS $oid => $value) {
     if (is_numeric($value)) {
       $status = ($value) ? 'complete' : 'not complete';
       db_query("UPDATE {mp_seller_order_statuses} SET order_status = '%s' WHERE order_id = %d and uid = %d", $status, $oid, arg(1));
@@ -289,7 +281,7 @@ function mp_orders_theme() {
   return array(
     'mp_orders_edit_orders_form' => array(
       'arguments' => array('form' => NULL),
-    ),);
+    ), );
 }
 
 function theme_mp_orders_edit_orders_form($form) {
@@ -329,9 +321,6 @@ function mp_orders_fulfill($user) {
   $uid = $user->uid;
   
   drupal_set_title(t('View Orders'));
-  $breadcrumb = drupal_get_breadcrumb();
-  $breadcrumb[] = l(t('Selling'), 'user/'. arg(1) .'/selling');
-  drupal_set_breadcrumb($breadcrumb);
   
   $mp_quote_present = module_exists('mp_quote');
   
@@ -551,7 +540,7 @@ function mp_orders_can_view_orders($seller) {
 }
 
 function mp_orders_mail($key, &$message, $settings) {
-  switch($key) {
+  switch ($key) {
     case 'sellercheckout':
       // Set up the header so the email shows up as html instead of plain text
       $headers = array(
