@@ -1,0 +1,600 @@
+<?php
+// $Id: uc_tracking.module,v 1.22 2011/02/16 18:28:37 tr Exp $
+
+/**
+ * @file
+ * Module to provide themed package tracking information
+ *
+ * Operates by defining a hook, hook_uc_tracking(), that shipping modules
+ * need to implement.  hook_uc_tracking() implementations take the tracking
+ * number as the sole argument and return an associative array of strings
+ * containing tracking details for that tracking number.  This array is
+ * expected to be in the following form:
+ *
+ * $details['tracking_number']
+ * $details['carrier'] - same string as shipping method key
+ * $details['status']
+ * $details['event'][#]['type']
+ * $details['event'][#]['date']
+ * $details['event'][#]['time']
+ * $details['event'][#]['location']
+ *
+ * The theme_uc_tracking_detail() function allows easy themeing of the
+ * tracking results.
+ *
+ * @author Tim Rohaly.    <http://drupal.org/user/202830>
+ * @version $Id: uc_tracking.module,v 1.22 2011/02/16 18:28:37 tr Exp $
+ */
+
+
+/**
+ * Implements hook_menu().
+ *
+ * Registers _uc_tracking_dispatch() callback for displaying
+ * tracking information.
+ *
+ * Callback is invoked when tracking request is posted to
+ * user/[user_number]/orders/track/[carrier]/[tracking_number]
+ *
+ * @return
+ *   An array with the menu path, callback, and parameters.
+ */
+function uc_tracking_menu() {
+  $items = array();
+
+  $items['user/%user/orders/track/%/%'] = array(
+    'title'            => 'Package Tracking',
+    'page callback'    => '_uc_tracking_dispatch',
+    'page arguments'   => array(4, 5),
+    'access callback'  => 'uc_order_can_view_order',
+    'access arguments' => array(1),
+    'type'             => MENU_CALLBACK,
+  );
+  // element 'access' is deliberately not set - that makes this menu
+  // inherit permissions, so anyone who can view user/%/orders
+  // can execute this tracking request
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_menu_alter().
+ *
+ * Modify user/%user/orders menu to callback to uc_tracking_order_history()
+ * instead of uc_order_history().  Allows us to modify core behavior
+ * without hacking uc_order.module.
+ */
+function uc_tracking_menu_alter(&$items) {
+  $items['user/%user/orders']['page callback'] = 'uc_tracking_order_history';
+}
+
+
+/**
+ * Implements hook_theme() used to declare module theme functions.
+ */
+function uc_tracking_theme() {
+  return array(
+    'uc_tracking_detail' => array(
+      'file'      => 'uc_tracking.module',
+      'arguments' => array(
+        'detail'  => NULL,
+      ),
+    ),
+  );
+}
+
+
+/**
+ * Dispatches tracking requests to carrier-specific modules.
+ *
+ * This function is a callback registered by this module's hook_menu().
+ *
+ * @param $carrier
+ *   Carrier name used to load carrier-specific module.
+ * @param $tracking_number
+ *   Package tracking number.
+ */
+function _uc_tracking_dispatch($carrier, $tracking_number) {
+  global $user;
+
+  // Set breadcrumb so user can return to order summary page
+  $breadcrumb   = drupal_get_breadcrumb();
+  $breadcrumb[] = l(t('My order history'), 'user/'. $user->uid .'/orders');
+  drupal_set_breadcrumb($breadcrumb);
+
+  // Find out which shipping methods implement hook_uc_tracking()
+  $quote_modules = module_implements('uc_tracking');
+
+  // See if there's a hook_uc_tracking() for the requested $carrier
+  $methods     = module_invoke_all('shipping_method');
+  $module_name = $methods[$carrier]['module'];
+  if (in_array($module_name, $quote_modules)) {
+    // dispatch tracking to carrier-specific function
+    $detail = module_invoke($module_name, 'uc_tracking', $tracking_number);
+  }
+  else {
+    drupal_set_message(t("Can\'t track package - no tracking function available for carrier !carrier", $carrier), 'error');
+  }
+
+  // Theme tracking details
+  $output  = theme('uc_tracking_detail', $detail);
+
+  // Add link for return to order history page i.e. user/#/orders
+  $output .= theme('links', array(array('title' => t('Return to order history'), 'href' => 'user/'. $user->uid .'/orders')));
+
+  return $output;
+}
+
+
+/**
+ * Outputs a string of themed HTML to desplay the tracking results.
+ *
+ * Input is an should be in the format shown below: an associative array
+ * of strings containing tracking details for that tracking number.
+ *
+ * $details['tracking_number']
+ * $details['carrier']  - same string as shipping method key
+ * $details['status']
+ * $details['event'][#]['type']
+ * $details['event'][#]['date']
+ * $details['event'][#]['time']
+ * $details['event'][#]['location']
+ *
+ * This function outputs two tables like this:
+ *
+ * Shipping Information                    Tracking Results
+ *
+ * Carrier      UPS|USPS|FEDEX             Date      Time   Location Event
+ * Tracking #   01234567890123             01/01/08  21:15  Anytown  Scan
+ * Status       Delivered|In Transit       01/01/08  21:15  Anytown  Scan
+ *
+ */
+function theme_uc_tracking_detail($detail) {
+  $output = '<div class="uc_tracking_detail">';
+
+  $header = array(array('data' => t('Shipment Information'), 'colspan' => 2));
+  $rows   = array();
+
+  // Fill rows of first table
+  $rows[] = array(
+    array('data' => t('Carrier:'), 'style' => 'font-weight:bold;'),
+    $detail['carrier'],
+  );
+  $rows[] = array(
+    array('data' => t('Tracking #:'), 'style' => 'font-weight:bold;'),
+    $detail['tracking_number'],
+  );
+  $rows[] = array(
+    array('data' => t('Status:'), 'style' => 'font-weight:bold;'),
+    $detail['status'],
+  );
+
+  // Output first table
+  $output .= theme('table', $header, $rows);
+
+  $header = array(t('Date'), t('Time'), t('Location'), t('Status'));
+  $rows = array();
+
+  // Fill rows of second table
+  if (isset($detail['event'])) {
+    foreach ($detail['event'] as $event) {
+      $row    = array();
+      $row[]  = $event['date'];
+      $row[]  = $event['time'];
+      $row[]  = $event['location'];
+      $row[]  = $event['type'];
+      $rows[] = $row;
+    }
+  }
+
+  // I don't like this nested table structure, but theme('table') doesn't
+  // support multiple header rows, and I think it's better to generate
+  // the output with the theme function rather than write raw HTML.
+  $header2 = array(array('data' => t('Tracking Results'), 'colspan' => 4));
+  $rows2   = array();
+  $row2    = array();
+  $row2[]  = theme('table', $header, $rows);
+  $rows2[] = $row2;
+
+  // Output second table
+  $output .= theme('table', $header2, $rows2);
+
+  $output .= '</div>';
+
+  return $output;
+}
+
+
+/******************************************************************************
+ * hook_uc_tracking() implementations.  These functions should really be
+ * moved to be in the corresponding shipping modules, but until then they're
+ * provided here to accomplish the task.
+ *****************************************************************************/
+
+
+/**
+ * Implements hook_uc_tracking().
+ *
+ * @param $tracking_number
+ *   UPS Tracking Number.
+ *
+ * @return $detail
+ *   Array containing tracking details ready for themeing.
+ */
+function uc_ups_uc_tracking($tracking_number) {
+  $request = uc_ups_access_request() . uc_ups_track_request($tracking_number);
+  $resp    = drupal_http_request(variable_get('uc_ups_connection_address', 'https://wwwcie.ups.com/ups.app/xml/') .'Track', array(), 'POST', $request);
+
+  $response = new SimpleXMLElement($resp->data);
+
+  $details = array();
+  $details['carrier'] = 'UPS';
+  $details['tracking_number'] = $tracking_number;
+
+  // Check to see if tracking request failed
+  if (!$response->Response->ResponseStatusCode) {
+    drupal_set_message(t('UPS could not locate the shipment details for your request. Please verify your information and try again later.'), 'error');
+    $details['status'] = 'ERROR';
+    return $details;
+  }
+
+  $details['status'] = $response->Shipment->Package->Activity[0]->Status->StatusType->Description;
+
+  foreach ($response->Shipment->Package->Activity as $activity) {
+    $temp = array();
+    $temp['type'] = $activity->Status->StatusType->Description;
+    $temp['date'] = format_date(strtotime($activity->Date), 'custom', 'F j, Y');
+    $temp['time'] = format_date(strtotime($activity->Time), 'custom', 'g:i a');
+    $address = $activity->ActivityLocation->Address;
+    if (!empty($address->City)) {
+      $temp['location']  = $address->City;
+      if (!empty($address->StateProvinceCode)) {
+        $temp['location'] .= ", ". $address->StateProvinceCode;
+        if (!empty($address->CountryCode)) {
+          $temp['location'] .= ", ". $address->CountryCode;
+        }
+      }
+    }
+    $details['event'][] = $temp;
+  }
+
+  return $details;
+}
+
+
+/**
+ * Helper function used by uc_ups_uc_tracking().
+ *
+ * Return string containing XML tracking request formatted
+ * according to the UPS webservice.
+ */
+function uc_ups_track_request($tracking_number) {
+  return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<TrackRequest>
+  <Request>
+    <RequestAction>Track</RequestAction>
+    <RequestOption>activity</RequestOption>
+  </Request>
+  <TrackingNumber>$tracking_number</TrackingNumber>
+</TrackRequest>
+";
+}
+
+
+/**
+ * Implements hook_uc_tracking().
+ *
+ * @param $tracking_number
+ *   USPS Tracking Number.
+ * @return $detail
+ *   Array containing tracking details ready for themeing.
+ */
+function uc_usps_uc_tracking($tracking_number) {
+
+  $usps_server    = 'production.shippingapis.com';
+  $api_dll        = 'ShippingAPI.dll';
+  $connection_url = 'http://'. $usps_server .'/'. $api_dll;
+
+  $request  = '<TrackFieldRequest USERID="'. variable_get('uc_usps_user_id', '') .'">';
+  $request .= '<TrackID ID="'. $tracking_number .'"></TrackID>';
+  $request .= '</TrackFieldRequest>';
+  $request  = 'API=TrackV2&XML='. urlencode($request);
+
+  $result = drupal_http_request($connection_url, array(), 'POST', $request);
+
+  $response = new SimpleXMLElement($result->data);
+
+  $details = array();
+  $details['carrier'] = 'U.S.P.S.';
+  $details['tracking_number'] = $tracking_number;
+
+  // Check to see if tracking request failed
+  if (strtolower($response->Name) == 'error') {
+    drupal_set_message(t('USPS has encountered an error processing your tracking requst.'), 'error');
+    $details['status'] = 'ERROR';
+    return $details;
+  }
+
+  foreach ($response->TrackInfo as $info) {
+    if (isset($info->Error)) {
+      drupal_set_message(t('USPS has no record of this item. Please verify your information and try again later.'), 'error');
+      $details['status'] = 'ERROR';
+      return $details;
+    }
+
+    $details['status'] = $info->TrackSummary->Event;
+
+    $temp = array();
+    $temp['time'] = $info->TrackSummary->EventTime;
+    $temp['date'] = $info->TrackSummary->EventDate;
+    $temp['type'] = $info->TrackSummary->Event;
+    if ($info->TrackSummary->EventCity != "") {
+      $temp['location'] = $info->TrackSummary->EventCity;
+      if ($info->TrackSummary->EventState != "") {
+        $temp['location'] = $temp['location'] .", ". $info->TrackSummary->EventState;
+        }
+    }
+    else {
+      $temp['location'] = $info->TrackSummary->EventCountry;
+    }
+
+    $details['event'][] = $temp;
+    foreach ($info->TrackDetail as $detail) {
+      $temp['time'] = $detail->EventTime;
+      $temp['date'] = $detail->EventDate;
+      $temp['type'] = $detail->Event;
+      if ($detail->EventCity != "") {
+        $temp['location'] = $detail->EventCity;
+        if ($detail->EventState != "") {
+          $temp['location'] = $temp['location'] .", ". $detail->EventState;
+          }
+      }
+      else {
+        $temp['location'] = $detail->EventCountry;
+      }
+      $details['event'][] = $temp;
+    }
+  }
+
+  return $details;
+}
+
+
+/**
+ * Implements hook_uc_tracking().
+ *
+ * @param $tracking_number
+ *   FedEx Tracking Number.
+ * @return $detail
+ *   Array containing tracking details ready for themeing.
+ */
+function uc_fedex_uc_tracking($tracking_number) {
+  // Set up SOAP call.
+  //  Allow tracing so details of request can be retrieved for error logging
+  $client = new SoapClient(drupal_get_path('module', 'uc_fedex')
+              .'/wsdl-'. variable_get('uc_fedex_server_role', 'testing')
+              .'/TrackService_v4.wsdl', array('trace' => 1));
+
+  // FedEx user key and password filled in by user on admin form
+  $request['WebAuthenticationDetail'] = array(
+    'UserCredential' => array(
+      'Key'      => variable_get('uc_fedex_user_credential_key', 0),
+      'Password' => variable_get('uc_fedex_user_credential_password', 0),
+    )
+  );
+
+  // FedEx account and meter number filled in by user on admin form
+  $request['ClientDetail'] = array(
+      'AccountNumber' => variable_get('uc_fedex_account_number', 0),
+      'MeterNumber'   => variable_get('uc_fedex_meter_number', 0),
+  );
+
+  // Optional parameter, contains anything
+  $request['TransactionDetail'] = array(
+    'CustomerTransactionId' => '*** Track Service Request v4 from Ubercart ***'
+  );
+
+  // Track Request v4.0.0
+  $request['Version'] = array(
+    'ServiceId'    => 'trck',
+    'Major'        => '4',
+    'Intermediate' => '0',
+    'Minor'        => '0',
+  );
+
+  // Tracking Number
+  $request['PackageIdentifier'] = array(
+    'Value' => $tracking_number,
+    'Type'  => 'TRACKING_NUMBER_OR_DOORTAG',
+  );
+
+  // Include Details
+  $request['IncludeDetailedScans'] = TRUE;
+
+  //
+  // Send the SOAP request to the FedEx server
+  //
+  try {
+    $response = $client->track($request);
+
+    $details = array();
+    $details['carrier'] = 'FedEx';
+    $details['tracking_number'] = $tracking_number;
+
+    if ($response->HighestSeverity != 'FAILURE' &&
+        $response->HighestSeverity != 'ERROR')     {
+
+      $reply = $response->TrackDetails;
+
+      $details['tracking_number'] = $reply->TrackingNumber;
+      $details['status']          = $reply->StatusDescription;
+
+      // Handle situation where only one "Events" is present, in
+      // which case SimpleXML returns an object instead of an array
+      if (!is_array($reply->Events)) {
+        $reply->Events = array($reply->Events);
+      }
+
+      // Iterate over Events
+      foreach ($reply->Events as $event) {
+        $temp  = array();
+        $dtime = strtotime(str_replace('T', ' ', $event->Timestamp));
+        //$temp['time']       = date('g:i a', $dtime);
+        $temp['time']       = format_date($dtime, 'custom', 'g:i a');
+        $temp['date']       = format_date($dtime, 'custom', 'F j, Y');
+        $temp['type']       = $event->EventDescription;
+        $temp['location']   = $event->Address->City .", ".
+                              $event->Address->StateOrProvinceCode;
+        // Location may be empty for initial scan
+        if ($temp['location'] == ", ") {
+          $temp['location'] = "";
+        }
+        $details['event'][] = $temp;
+      }
+    }
+    else {
+      drupal_set_message(t('Error in processing FedEx tracking transaction.'), 'error');
+      foreach ($response->Notifications as $notification) {
+        if (is_array($response->Notifications)) {
+          drupal_set_message($notification->Severity .': '.
+                             $notification->Message, 'error');
+        }
+        else {
+          drupal_set_message($notification, 'error');
+        }
+      }
+      $details['status'] = 'ERROR';
+    }
+    return $details;
+  }
+  catch (SoapFault $exception) {
+    drupal_set_message('<h2>Fault</h2><br /><b>Code:</b>'. $exception->faultcode .'<br /><b>String:</b>'. $exception->faultstring .'<br />', 'error');
+  }
+}
+
+
+/*******************************************************************************
+ * Overrides of Ubercart core
+ ******************************************************************************/
+
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Modify uc_shipping_shipment_edit form so that admin can only
+ * select "known" carriers when entering tracking numbers.
+ *
+ * Choices for shipping are dynamically determined by installed modules:
+ * Even if module is not used for shipping quotes, it must be installed
+ * if we are going to be able to track packages sent by that method.
+ */
+function uc_tracking_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'uc_shipping_shipment_edit') {
+    $modules  = module_implements('uc_tracking');
+    foreach ($modules as $module) {
+       $key = strtoupper(substr($module, 3));
+       $carriers[$key] = $key;
+    }
+    $carriers[] = t('Other');
+
+    $form['shipment']['carrier'] = array(
+      '#type'          => 'select',
+      '#title'         => t('Carrier'),
+      '#options'       => $carriers,
+      '#default_value' => t('Other'),
+      '#required'      => TRUE,
+    );
+  }
+}
+
+
+/**
+ * Modified version of uc_order_history, changed to add tracking
+ * number column into table of orders.
+ *
+ * @param $user
+ *   The user ID whose orders you wish to list.
+ */
+function uc_tracking_order_history($user) {
+  drupal_set_title(t('My order history'));
+
+  $header = array(
+    array('data' => t('Date'), 'field' => 'o.created', 'sort' => 'desc'),
+    array('data' => t('Order #'), 'field' => 'o.order_id'),
+    array('data' => t('Status'), 'field' => 'os.title'),
+    array('data' => t('Products'), 'field' => 'products'),
+    array('data' => t('Total'), 'field' => 'o.order_total'),
+    array('data' => t('Tracking')),
+  );
+
+  $result = pager_query("SELECT o.order_id, o.created, os.title, SUM(op.qty) AS products, o.order_total AS total FROM {uc_orders} AS o LEFT JOIN {uc_order_statuses} AS os ON o.order_status = os.order_status_id LEFT JOIN {uc_order_products} AS op ON o.order_id = op.order_id WHERE o.uid = %d AND o.order_status IN ". uc_order_status_list('general', TRUE) ." GROUP BY o.order_id, o.created, os.title, o.order_total". tablesort_sql($header), 20, 0, "SELECT COUNT(*) FROM {uc_orders} WHERE uid = %d AND order_status NOT IN ". uc_order_status_list('specific', TRUE), $user->uid);
+  $context = array(
+    'revision' => 'themed-original',
+    'type'     => 'amount',
+  );
+  // Build a table based on the customer's orders.
+  while ($order = db_fetch_object($result)) {
+    $context['subject'] = array('order' => $order);
+    $link = l($order->order_id, 'user/'. $user->uid .'/order/'. $order->order_id);
+    if (user_access('view all orders')) {
+      $link .= '<span class="order-admin-icons">'. uc_order_actions($order, TRUE) .'</span>';
+    }
+    $rows[] = array(
+      array('data' => format_date($order->created, 'custom', variable_get('uc_date_format_default', 'm/d/Y'))),
+      array('data' => $link, 'nowrap' => 'nowrap'),
+      array('data' => $order->title),
+      array('data' => (!is_null($order->products) ? $order->products : 0), 'align' => 'center'),
+      array('data' => uc_price($order->total, $context), 'align' => 'right'),
+      array('data' => uc_tracking_get_order_tracking_numbers($order), 'align' => 'left'),
+    );
+  }
+
+  $output = theme('table', $header, $rows, array('class' => 'uc-order-history')) . theme('pager', NULL, 20, 0);
+
+  return $output;
+}
+
+
+/**
+ * Code copied from uc_shipping_order_pane_packages, changed to add link
+ * to tracking number.
+ *
+ * @param $order
+ *   Order number.
+ *
+ * @return
+ *   Themed HTML containing list of tracking numbers as links.
+ */
+function uc_tracking_get_order_tracking_numbers($order) {
+  global $user;
+
+  $tracking = array();
+  $result = db_query("SELECT sid FROM {uc_shipments} WHERE order_id = %d", $order->order_id);
+  while ($shipment = db_fetch_object($result)) {
+    $shipment = uc_shipping_shipment_load($shipment->sid);
+    if ($shipment->tracking_number) {
+      $tracking[$shipment->carrier]['children'][] = check_plain($shipment->tracking_number);
+    }
+    else {
+      foreach ($shipment->packages as $package) {
+        if ($package->tracking_number) {
+          $tracking[$shipment->carrier]['children'][] = check_plain($package->tracking_number);
+        }
+      }
+    }
+  }
+
+  $links = array();
+  foreach ($tracking as $carrier => $item) {
+    foreach ($item['children'] as $number) {
+      $links[] = array(
+        'title' => $number,
+        'href'  => 'user/'. $user->uid .'/orders/track/'. strtolower($carrier) .'/'. $number,
+      );
+    }
+  }
+
+  // Output tracking number(s) as themed links
+  return theme('links', $links, array('class' => ''));
+}

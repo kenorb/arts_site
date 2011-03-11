@@ -1,0 +1,16 @@
+; $Id: uc_tracking.info,v 1.5 2010/01/13 22:05:20 tr Exp $
+name = Package Tracking
+description = Functions for tracking shipments using FedEx, UPS, or USPS tracking number
+dependencies[] = uc_order
+dependencies[] = uc_shipping
+package = Ubercart - fulfillment
+
+core = 6.x
+php = 5.0
+
+; Information added by drupal.org packaging script on 2011-02-17
+version = "6.x-1.2"
+core = "6.x"
+project = "uc_tracking"
+datestamp = "1297908310"
+

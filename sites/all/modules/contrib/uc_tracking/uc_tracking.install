@@ -1,0 +1,38 @@
+<?php
+// $Id: uc_tracking.install,v 1.6 2011/02/16 18:28:37 tr Exp $
+
+/**
+ * @file
+ * Module to provide themed package tracking information
+ *
+ * @author Tim Rohaly.    <http://drupal.org/user/202830>
+ * @version $Id: uc_tracking.install,v 1.6 2011/02/16 18:28:37 tr Exp $
+ */
+
+
+/**
+ * Implements hook_install().
+ *
+ * Creates database tables needed by this module.
+ */
+function uc_tracking_install() {
+  // Because we are redefining the uc_order menu user/#/orders,
+  // we need to ensure this module gets loaded AFTER uc_order
+  $sql = "SELECT weight FROM {system} WHERE name = 'uc_order'";
+  $weight_order = (int) db_result(db_query($sql));
+  $sql = "UPDATE {system} SET weight = %d WHERE name = 'uc_tracking'";
+  db_query($sql, $weight_order+1);
+}
+
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Removes all tables and variables inserted into the
+ * database by this module.
+ */
+function uc_tracking_uninstall() {
+
+  /* Remove all module tables from the database */
+  /* Remove all module variables from the database */
+}

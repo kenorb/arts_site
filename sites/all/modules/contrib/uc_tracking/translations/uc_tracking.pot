@@ -1,0 +1,113 @@
+# $Id: uc_tracking.pot,v 1.2 2009/04/11 16:48:11 tr Exp $
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  uc_tracking.module,v 1.5 2009/04/09 01:04:12 tr
+#  uc_tracking.info,v 1.4 2009/04/09 03:39:15 tr
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-04-11 11:46-0500\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: uc_tracking.module:109;513
+msgid "My order history"
+msgstr ""
+
+#: uc_tracking.module:121
+msgid "Can't track package - no tracking function available for carrier !carrier"
+msgstr ""
+
+#: uc_tracking.module:128
+msgid "Return to order history"
+msgstr ""
+
+#: uc_tracking.module:160
+msgid "Shipment Information"
+msgstr ""
+
+#: uc_tracking.module:165
+msgid "Carrier:"
+msgstr ""
+
+#: uc_tracking.module:169
+msgid "Tracking #:"
+msgstr ""
+
+#: uc_tracking.module:173
+msgid "Status:"
+msgstr ""
+
+#: uc_tracking.module:180;516
+msgid "Date"
+msgstr ""
+
+#: uc_tracking.module:180
+msgid "Time"
+msgstr ""
+
+#: uc_tracking.module:180
+msgid "Location"
+msgstr ""
+
+#: uc_tracking.module:180;518
+msgid "Status"
+msgstr ""
+
+#: uc_tracking.module:198
+msgid "Tracking Results"
+msgstr ""
+
+#: uc_tracking.module:448
+msgid "Error in processing FedEx tracking transaction."
+msgstr ""
+
+#: uc_tracking.module:492;498
+msgid "Other"
+msgstr ""
+
+#: uc_tracking.module:496
+msgid "Carrier"
+msgstr ""
+
+#: uc_tracking.module:517
+msgid "Order #"
+msgstr ""
+
+#: uc_tracking.module:519
+msgid "Products"
+msgstr ""
+
+#: uc_tracking.module:520
+msgid "Total"
+msgstr ""
+
+#: uc_tracking.module:521
+msgid "Tracking"
+msgstr ""
+
+#: uc_tracking.module:49 uc_tracking.info:0
+msgid "Package Tracking"
+msgstr ""
+
+#: uc_tracking.module:0
+msgid "uc_tracking"
+msgstr ""
+
+#: uc_tracking.info:0
+msgid "Functions for tracking shipments using FedEx, UPS, or USPS tracking number"
+msgstr ""
+
+#: uc_tracking.info:0
+msgid "Ubercart - fulfillment"
+msgstr ""
+
