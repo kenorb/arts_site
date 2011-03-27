@@ -1,5 +1,4 @@
 <?php
-// $Id: admin_menu.inc,v 1.11.2.20.2.29 2010/03/06 01:19:53 sun Exp $
 
 /**
  * @file
@@ -96,10 +95,32 @@ function admin_menu_links_icon() {
     '#access' => user_access('display drupal links'),
     '#href' => 'http://drupal.org',
   );
+
   // Add links to project issue queues.
+  // Set defaults for module info, in case hook_system_info_alter() is invoked.
+  $defaults = array(
+    'dependencies' => array(),
+    'dependents' => array(),
+    'description' => '',
+    'version' => NULL,
+    'php' => DRUPAL_MINIMUM_PHP,
+  );
+  $cvs_deploy_exists = module_exists('cvs_deploy');
   foreach (module_list(FALSE, FALSE, TRUE) as $module) {
-    $info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
-    if (!isset($info['project']) || isset($links['icon']['drupal.org'][$info['project']])) {
+    $path = drupal_get_path('module', $module);
+    $info = drupal_parse_info_file($path . '/' . $module . '.info');
+    // Invoke hook_system_info_alter() for CVS Deploy module.
+    if ($cvs_deploy_exists) {
+      // @see file_scan_directory()
+      $file = new stdClass;
+      $file->filename = $path . '/' . $module . '.module';
+      $file->basename = basename($file->filename);
+      $file->name = $module;
+      // @see module_rebuild_cache()
+      $info += $defaults;
+      drupal_alter('system_info', $info, $file);
+    }
+    if (empty($info['project']) || isset($links['icon']['drupal.org'][$info['project']])) {
       continue;
     }
     $links['icon']['drupal.org'][$info['project']] = array(
@@ -111,6 +132,7 @@ function admin_menu_links_icon() {
       ),
     );
   }
+
   // Add items to flush caches.
   $links['icon']['flush-cache'] = array(
     '#title' => t('Flush all caches'),

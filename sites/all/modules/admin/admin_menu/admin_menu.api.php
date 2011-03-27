@@ -1,5 +1,4 @@
 <?php
-// $Id: admin_menu.api.php,v 1.1.2.3 2009/07/22 20:33:17 sun Exp $
 
 /**
  * @file
@@ -27,7 +26,7 @@
  */
 function hook_admin_menu_output_alter(&$content) {
   // Add new top-level item.
-  $content['links']['myitem'] = array(
+  $content['menu']['myitem'] = array(
     '#title' => t('My item'),
     // #attributes are used for list items (LI). Note the special syntax for
     // the 'class' attribute.
@@ -42,7 +41,7 @@ function hook_admin_menu_output_alter(&$content) {
     '#weight' => 50,
   );
   // Add link to manually run cron.
-  $content['links']['myitem']['cron'] = array(
+  $content['menu']['myitem']['cron'] = array(
     '#title' => t('Run cron'),
     '#access' => user_access('administer site configuration'),
     '#href' => 'admin/reports/status/run-cron',

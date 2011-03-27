@@ -1,0 +1,4 @@
+name = Administration Development tools
+description = Administration and debugging functionality for developers and site builders.
+package = Administration
+core = 6.x
