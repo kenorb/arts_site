@@ -1,0 +1,15 @@
+<?php
+// $Id: modr8_bypass.install,v 1.1 2009/08/29 00:00:28 johngriffin Exp $
+/**
+ * @file
+ * Modr8 Bypass permits selected roles to bypass node moderation
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function modr8_bypass_install() {
+  // Make sure that modr8_bypass gets executed after modr8
+  $weight = (int) db_result(db_query("SELECT weight FROM {system} WHERE name = 'modr8'"));
+  db_query("UPDATE {system} SET weight = %d WHERE name = 'modr8_bypass'", $weight + 1);
+}

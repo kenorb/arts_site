@@ -1,0 +1,12 @@
+; $Id: modr8_bypass.info,v 1.1 2009/08/29 00:00:28 johngriffin Exp $
+name = Modr8 Bypass
+description = "Allow users with selected roles to bypass node moderation."
+core = 6.x
+
+dependencies[] = modr8
+; Information added by drupal.org packaging script on 2010-04-05
+version = "6.x-1.4"
+core = "6.x"
+project = "modr8_bypass"
+datestamp = "1270479619"
+
