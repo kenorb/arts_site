@@ -1,0 +1,20 @@
+name = Flag Note
+description = Allows users to add notes while flagging content with the Flag module
+core = 6.x
+dependencies[] = flag
+dependencies[] = views
+package = Flags
+
+; Information added by drupal.org packaging script on 2010-12-15
+version = "6.x-2.x-dev"
+core = "6.x"
+project = "flag_note"
+datestamp = "1292371984"
+
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-2.x-dev"
+core = "6.x"
+project = "flag_note"
+datestamp = "1298619275"
+
