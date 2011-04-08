@@ -1,5 +1,4 @@
 <?php
-// $Id: userpoints.author-pane.inc,v 1.1.2.2.2.4 2010/10/04 14:59:56 michellec Exp $
 
 /**
  * @file
@@ -24,15 +23,15 @@ function userpoints_preprocess_author_pane(&$variables) {
     static $cached_userpoints_categories;
 
     if (isset($cached_userpoints_points[$account_id])) {
-      $variables['userpoints_points'] = $cached_userpoints_points;
+      $variables['userpoints_points'] = $cached_userpoints_points[$account_id];
     }
     else {
       $variables['userpoints_points'] = userpoints_get_current_points($account_id, 'all');
-      $cached_userpoints_points = $variables['userpoints_points'];
+      $cached_userpoints_points[$account_id] = $variables['userpoints_points'];
     }
 
     if (isset($cached_userpoints_categories[$account_id])) {
-      $variables['userpoints_categories'] = $cached_userpoints_categories;
+      $variables['userpoints_categories'] = $cached_userpoints_categories[$account_id];
     }
     else{
       $variables['userpoints_categories'] = array();
@@ -40,7 +39,7 @@ function userpoints_preprocess_author_pane(&$variables) {
       foreach ($categories AS $tid => $category) {
         $variables['userpoints_categories'][$category] = userpoints_get_current_points($account_id, $tid);
       }
-      $cached_userpoints_categories = $variables['userpoints_categories'];
+      $cached_userpoints_categories[$account_id] = $variables['userpoints_categories'];
     }
   }
 }

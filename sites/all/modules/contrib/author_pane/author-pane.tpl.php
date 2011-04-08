@@ -1,5 +1,4 @@
 <?php
-// $Id: author-pane.tpl.php,v 1.1.2.13.2.13 2010/10/04 15:33:48 michellec Exp $
 
 /**
  * @file
@@ -150,28 +149,28 @@
     <div class="author-pane-section author-pane-contact">
       <?php /* Contact / Email */ ?>
       <?php if (!empty($contact)): ?>
-        <div class="author-pane-line author-contact">
+        <div class="author-pane-line author-pane-link-line author-contact">
           <?php print $contact; ?>
         </div>
       <?php endif; ?>
 
       <?php /* Private message */ ?>
       <?php if (!empty($privatemsg)): ?>
-        <div class="author-pane-line author-privatemsg">
+        <div class="author-pane-line author-pane-link-line author-privatemsg">
           <?php print $privatemsg; ?>
         </div>
       <?php endif; ?>
 
       <?php /* User relationships */ ?>
       <?php if (!empty($user_relationships_api)): ?>
-        <div class="author-pane-line author-user-relationship">
+        <div class="author-pane-line author-pane-link-line author-user-relationship">
           <?php print $user_relationships_api; ?>
         </div>
       <?php endif; ?>
 
       <?php /* Flag friend */ ?>
       <?php if (!empty($flag_friend)): ?>
-        <div class="author-pane-line">
+        <div class="author-pane-line author-pane-link-line author-flag-friend">
           <?php print $flag_friend; ?>
         </div>
       <?php endif; ?>

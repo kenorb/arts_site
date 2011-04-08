@@ -1,5 +1,4 @@
 <?php
-// $Id: flag_friend.module,v 1.3.4.44 2010/05/05 18:30:10 sirkitree Exp $
 
 /**
  * @file flag.module
@@ -38,11 +37,11 @@ function flag_friend_flag($event, $flag, $content_id, $account) {
         $flag->flag('unflag', $account->uid, $friend_account);
 
         // fire trigger
-        module_invoke_all('flag_friend', 'approve', $friend_account, $account);
+        module_invoke_all('flag_friend', 'approve', $friend_account, $account, $flag);
       }
       else {
         // fire trigger
-        module_invoke_all('flag_friend', 'request', $friend_account, $account);
+        module_invoke_all('flag_friend', 'request', $friend_account, $account, $flag);
       }
     }
   }
@@ -441,7 +440,7 @@ function flag_friend_unfriend($event, $flag, $content_id, $account, $status) {
       $content_id = $user->uid;
 
       // Fire trigger
-      module_invoke_all('flag_friend', 'deny', $user, $account);
+      module_invoke_all('flag_friend', 'deny', $user, $account, $flag);
     }
     // remove any messages
     flag_friend_message($event, $flag, $content_id, $account->uid);
@@ -456,7 +455,7 @@ function flag_friend_unfriend($event, $flag, $content_id, $account, $status) {
     $account = user_load(array('uid' => $content_id));
     
     // Fire trigger
-    module_invoke_all('flag_friend', 'remove', $account, $user);
+    module_invoke_all('flag_friend', 'remove', $account, $user, $flag);
   }
 }
 
@@ -623,23 +622,47 @@ function flag_friend_theme() {
  */
 function flag_friend_flag_default_flags() {
   $flags = array();
-  $flags[] = array(
+  // Exported flag: "Friend".
+  $flags[] = array (
     'content_type' => 'user',
     'name' => 'friend',
     'title' => 'Friend',
-    'roles' => array(
-      0 => '2',
+    'global' => false,
+    'types' => 
+    array (
     ),
-    'global' => FALSE,
     'flag_short' => 'Add friend',
     'flag_long' => 'Add this user to your list of friends.',
-    'flag_confirmation' => 'Are you sure you want to add [user] to your list of friends?',
+    'flag_message' => '',
     'unflag_short' => 'Remove friend',
     'unflag_long' => 'Remove this user from your list of friends.',
-    'unflag_confirmation' => 'Are you sure you want to remove [user] from your list of friends?',
-    'status' => FALSE,
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
     'link_type' => 'confirm',
-    'locked' => array('name', 'global', 'link_type'),
+    'roles' => 
+    array (
+      'flag' => 
+      array (
+        0 => '2',
+      ),
+      'unflag' => 
+      array (
+        0 => '2',
+      ),
+    ),
+    'show_on_profile' => true,
+    'access_uid' => '',
+    'flag_confirmation' => 'Are you sure you want to add [user] to your list of friends?',
+    'unflag_confirmation' => 'Are you sure you want to remove [user] from your list of friends?',
+    'status' => false,
+    'locked' => 
+    array (
+      'name' => 'name',
+      'global' => 'global',
+      'link_type' => 'link_type',
+    ),
+    'module' => 'flag_friend',
+    'api_version' => 2,
   );
   return $flags;
 }
@@ -789,8 +812,8 @@ function flag_friend_token_list($type = 'all') {
 function flag_friend_token_values($type, $object = NULL, $options = array()) {
   if (($type == 'flag_friend') && !empty($object)) {
     $data = array();
-    $data['requestor'] = $object->friend->name;
-    $data['requestee'] = $object->name;
+    $data['requestor'] = theme('username', $object->friend->name);
+    $data['requestee'] = theme('username', $object->name);
     $data['requestor-uid'] = $object->friend->uid;
     $data['requestee-uid'] = $object->uid;
     $data['requestor-url'] = base_path().drupal_get_path_alias('user/'.$object->friend->uid);
@@ -811,7 +834,7 @@ function flag_friend_preprocess_author_pane(&$variables) {
   // flag out-of-the-box so I feel it's pretty safe to use this permisssion.
   if ($account_id != 0 && user_access('access user profiles') && $user->uid != $account_id) {
     $flag = flag_get_flag('friend');
-    $flag_status = flag_friend_determine_friend_status($flag, $user->uid, $account_id);
+    $flag_status = $flag ? flag_friend_determine_friend_status($flag, $user->uid, $account_id) : FALSE;
 
     switch ($flag_status) {
       case (FLAG_FRIEND_FLAGGED):

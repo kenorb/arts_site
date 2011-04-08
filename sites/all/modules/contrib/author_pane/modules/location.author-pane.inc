@@ -1,5 +1,4 @@
 <?php
-// $Id: location.author-pane.inc,v 1.1.2.3.2.1 2009/11/13 04:27:57 michellec Exp $
 
 /**
  * @file
