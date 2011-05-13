@@ -1,0 +1,11 @@
+; $Id: gtranslate.info,v 1.1.2.2 2010/12/03 13:04:35 edo888 Exp $
+name = GTranslate
+description = Uses Google power to translate your web site.
+version = 6.x-1.6
+core = 6.x
+; Information added by drupal.org packaging script on 2010-12-03
+version = "6.x-1.6"
+core = "6.x"
+project = "gtranslate"
+datestamp = "1291382467"
+
