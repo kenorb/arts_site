@@ -1,0 +1,21 @@
+name = Student Art World
+description = 
+base theme = fusion_core
+core = 6.x
+engine = phptemplate
+
+stylesheets[all][] = style.css
+stylesheets[print][] = print.css
+
+regions[left] = sidebar left
+regions[right] = sidebar right
+regions[main_nav] = top menu
+regions[sec_nav] = secondary top menu
+regions[login] = login
+regions[search] = search
+regions[footer_pos_1] = footer_pos_1
+regions[footer_pos_2] = footer_pos_2
+regions[footer_pos_3] = footer_pos_3
+regions[content] = content
+regions[header] = Header
+regions[footer] = Footer
