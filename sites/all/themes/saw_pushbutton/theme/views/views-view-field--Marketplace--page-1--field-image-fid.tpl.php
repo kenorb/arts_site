@@ -20,4 +20,5 @@
   * the view is modified.
   */
 ?>
+<?php print "<img width=50 height=50 src='sites/all/themes/saw_pushbutton/images/nophoto.jpg'>"; ?> 
 <?php print $output; ?>
