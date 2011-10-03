@@ -109,6 +109,7 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 .secondary-links, .secondary-links a:link, .secondary-links a:visited {
   color: #fdfdfd;
   padding: 4px;
+  font-size: 0.9em;
 }
 .secondary-links a:hover {
   background: #111;
@@ -527,7 +528,7 @@ div.admin-panel h3 {
   margin: 0;
 }
 div.admin-panel .body {
-  background: #fdfdfd;
+  background: #fffaf0;
 }
 
 /*
