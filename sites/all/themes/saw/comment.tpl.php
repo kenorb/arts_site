@@ -1,29 +1,22 @@
 <?php
-// $Id: comment.tpl.php,v 1.1 2009/02/28 23:33:58 jwolf Exp $
+// $Id: comment.tpl.php,v 1.6 2008/01/04 19:24:24 goba Exp $
 ?>
-<!-- start comment.tpl.php -->
-<div class="comment <?php print $comment_classes;?> clear-block">
-  <?php print $picture ?>
-  <?php if ($comment->new): ?>
-  <a id="new"></a>
-  <span class="new"><?php print $new ?></span>
+<div class="comment<?php print ' '. $status; ?>">
+  <?php if ($picture) : ?>
+    <?php print $picture ?>
   <?php endif; ?>
   <h3 class="title"><?php print $title ?></h3>
-  <div class="submitted">
-    <?php print $submitted ?>
-  </div>
+  <div class="submitted"><?php print $submitted ?><?php if ($comment->new) : ?><span class="new"> *<?php print $new ?></span><?php endif; ?></div>
   <div class="content">
     <?php print $content ?>
     <?php if ($signature): ?>
-    <div class="signature">
-      <?php print $signature ?>
-    </div>
+      <div class="clear-block">
+        <div>—</div>
+        <?php print $signature ?>
+      </div>
     <?php endif; ?>
   </div>
-  <?php if ($links): ?>
-  <div class="links">
-    <?php print $links ?>
-  </div>
-  <?php endif; ?>
+  <!-- BEGIN: links -->
+  <div class="links">&raquo; <?php print $links ?></div>
+  <!-- END: links -->
 </div>
-<!-- /end comment.tpl.php -->
