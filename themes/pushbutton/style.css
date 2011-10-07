@@ -409,7 +409,7 @@ div.links {
 }
 .block .title h3 {
   border-bottom: 2px solid #b3b3b3;
-  color: #ffe400;
+  color: #666465;
   font-size: 18px;
   font-weight: bold;
   padding: 10px 5px 10px 30px; /* LTR */
@@ -527,7 +527,7 @@ div.admin-panel h3 {
   margin: 0;
 }
 div.admin-panel .body {
-  background: #fdfdfd;
+  background: #f0f5f9;
 }
 
 /*
