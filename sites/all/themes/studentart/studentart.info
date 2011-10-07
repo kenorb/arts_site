@@ -1,0 +1,7 @@
+name = Student Art 3.0
+description = A custom theme for Student Art World.
+version = 3.0
+core = 6.x
+engine = phptemplate
+
+
