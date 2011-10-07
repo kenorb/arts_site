@@ -16,16 +16,16 @@
 <div id="banner">
 <table id="primary-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
-    <td id="home" width="30%" rowspan="2">
+    <td id="home" rowspan="2" width="22%">
 
     </td>
-    <td class="primary-links" width="70%" valign="middle" >
+    <td class="primary-links" valign="middle">
       <?php print theme('links', $primary_links, array('class' => 'links', 'id' => 'navlist')) ?>
     </td>
-    <td td class="login-box" valign="middle" width="20%">
-	  <p>/ 
-      <a class="active" href="/user/register">Sign up</a>
-      <a class="active" href="/user">Sign in</a></p>
+    <td td class="login-box" valign="middle" >
+	  <p> 
+      <a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>   
+      <a class="active" href="/user"><img src="/sites/all/themes/saw/klodka.png" alt=""> Sign in </a>  </p>
 	</td>
    </tr>
     <tr>
@@ -87,20 +87,14 @@
 <td rowspan="2" width="55%">
 <table id="footer-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
-    <td align="center" margin-left="50px">
-    <?php if (isset($primary_links)) : ?>
-      <?php print theme('links', $primary_links, array('class' => 'links primary-links')) ?>
-    <?php endif; ?>
+    <td id="footer-menu-list" width="25%" align="left">
+    <?php print $footer1; ?>
     </td> 
-    <td align="center">
-    <?php if (isset($secondary_links)) : ?>
-      <?php print theme('links', $secondary_links, array('class' => 'links secondary-links')) ?>
-    <?php endif; ?>
+    <td id="footer-menu-list" width="25%" align="left">
+    <?php print $footer2; ?>
     </td>
-    <td align="center">
-    <?php if (isset($thirdly_links)) : ?>
-      <?php print theme('links', $thirdly_links, array('class' => 'links thirdly-links')) ?>
-    <?php endif; ?>
+    <td id="footer-menu-list" width="50%" align="left">
+	<?php print $footer3; ?>
     </td>
   </tr>
 </table>

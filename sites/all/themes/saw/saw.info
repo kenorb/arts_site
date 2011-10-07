@@ -1,7 +1,18 @@
-name = Student Art 3.0
+name = StudentArt
 description = A custom theme for Student Art World.
 version = 3.0
 core = 6.x
 engine = phptemplate
 
+regions[left] = Left sidebar
+regions[right] = Right sidebar
+regions[content] = Content
+regions[footer1] = Footer Menu 1
+regions[footer2] = Footer Menu 2
+regions[footer3] = Footer Menu 3
 
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = favicon
+features[] = primary_links
+features[] = secondary_links

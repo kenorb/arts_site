@@ -129,23 +129,20 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 
 #primary-menu p {
   color: #fdfdfd;
-  padding: 10px 10px 0px 10px;
+  padding: 9px 5px 0px 10px;
   margin-top: 10px;
-  font-family: Tahoma;
-  font-size: 14px;
-  font-weight: bold;
+  font-family:  "Myriad Pro","Myriad Web Pro Regular","Lucida Grande",Geneva,"Trebuchet MS",sans-serif;
+  font-size: 14px; 
 }
 
 #primary-menu p a:link, #primary-menu p a:visited {
-  padding: 4px;
+  padding: 4px 8px;
   color: #fdfdfd;
 }
 
 #primary-menu p a:hover {
-  background: #1d6b9b;
-  border-radius: 5px;
   color: #fdfdfd;
-  padding: 4px;
+  padding: 4px 8px;
 }
   
 #primary-menu .primary-links h1, #primary-menu .primary-links h2, #primary-menu .primary-links h3 {
@@ -284,33 +281,17 @@ ul.links li {
  }
  
 #search .form-submit {
-  border: none;
-  font-weight: bold;
-  font-size: 0.85em;
-  text-transform: uppercase;
+  width: 41px;
+  height: 27px;
   margin: 0.2em;
-  color: #fefffa;
-  background: #1d6b9b;
-  border-radius: 5px;
+  background: transparent url('go.png') center no-repeat;
+  border: none;
 }
 
 #search .form-text {
   width: 9em;
 }
-#search .form-submit {
-  height: 1.5em;
-}
-#mission {
-  background-color: #fff;
-  color: #696969;
-  border-top: 2px solid #dcdcdc;
-  border-bottom: 2px solid #dcdcdc;
-  padding: 10px;
-  margin: 20px 35px 0 35px;
-  font-family: "Trebuchet MS", Geneva, Arial, Helvetica, SunSans-Regular, Verdana, sans-serif;
-  font-size: 1.1em;
-  font-weight: normal;
-}
+
 #site-info {
   max-width: 10px;
   color: #fdfdfd;
@@ -397,19 +378,7 @@ ul.links li {
   padding: 5px;
   font-size: 0.75em;
 }
-#footer-menu .primary-links, #footer-menu a:link, #footer-menu a:visited {
-  text-align: left;
-  color: #fefffa;
-  padding: 4px;
 
-
-}
-#footer-menu a:hover {
-  color: #fdfdfd;
-  background: #1d6b9b;
-  border-radius: 5px;
-  padding: 4px;
-}
 #footer-menu .primary-links h1, #footer-menu .primary-links h2, #footer-menu .primary-links h3 {
   font-size: 1.3em;
   color: #fdfdfd;
@@ -437,23 +406,46 @@ ul.links li {
   margin-top: 30px;
 }
 
-#footer-menu ul.links li{
-  border: none;
-  display: list-item;
-  margin: 0;
-  padding: 0;
-  list-style-type: disc;
+#main .block .title h3 {
+ text-transform: none;
 }
 
+#footer-menu-list .block .title{
+ display: none;
+}
 
+#footer-menu-list a:link, #footer-menu-list a:visited, #footer-menu-list a:active{
+  font-size: 11px;
+  font-family: Arial, "Trebuchet MS", sans-serif;
+  text-align: left;
+  color: #fefffa;
+  padding: 4px;
+}
+
+#footer-menu-list a:hover {
+  color: #fdfdfd;
+  background: #1d6b9b;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+li.leaf {
+  list-style-type: disc;
+  list-style-image: none;
+  color: #fdfdfd;
+}
 /*
 ** Common declarations for child classes of node, comment, block, box, etc.
 ** If you want any of them styled differently for a specific parent, add
 ** additional rules /with only the differing properties!/ to .parent .class.
 ** See .comment .title for an example.
 */
-#content .title, #content .title a {
+#content .title, #content .title a, #content .title a:hover, #content .title a:visited,
+ #content .title a:link, #content .title a:active {
+  color: #333;
+  border-bottom: 1px solid #b3b3b3;
 }
+
 .content h1 {
   color: #369;
   font-size: 1.9em;
@@ -493,7 +485,6 @@ div.links {
   font-size: 9px;
 }
 .block .title h3 {
-  border-bottom: 1px solid #b3b3b3;
   color: #666465;
   font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, "Trebuchet MS", sans-serif;
   font-size: 15px;

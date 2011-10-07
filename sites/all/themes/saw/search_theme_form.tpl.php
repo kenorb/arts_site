@@ -9,7 +9,7 @@
  * - $search_form: The complete search form ready for print.
  * - $search: Array of keyed search elements. Can be used to print each form
  *   element separately.
- *
+ *   <?php print str_replace('Search','Go',$search_form);?>
  * Default keys within $search:
  * - $search['search_theme_form']: Text input area wrapped in a div.
  * - $search['submit']: Form submit button.
@@ -33,5 +33,5 @@
  */
 ?>
 <div id="search" class="container-inline">
-  <?php print str_replace('Search','Go',$search_form);?>
+  <?php print str_replace('Search','',$search_form);?>
 </div>
