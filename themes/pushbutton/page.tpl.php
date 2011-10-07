@@ -2,14 +2,13 @@
 // $Id: page.tpl.php,v 1.25.2.2 2009/04/30 00:13:31 goba Exp $
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php print $language->language ?>" xml:lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>">
-  <head>
-    <title>
-         <?php print $head_title; ?>
-    </title>
-    <?php print $head; ?>
-    <?php print $styles; ?>
-    <?php print $scripts; ?>
-  </head>
+<head>
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <?php print $head ?>
+  <title><?php print $head_title ?></title>
+  <?php print $styles ?>
+  <?php print $scripts ?>
+</head>
 
 <body>
 
@@ -17,23 +16,38 @@
 
 <table id="primary-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
-    <td id="home" width="30%" rowspan="2">
+    <td id="home" width="10%">
       <?php if ($logo) : ?>
         <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>"><img src="<?php print($logo) ?>" alt="<?php print t('Home') ?>" border="0" /></a>
       <?php endif; ?>
     </td>
-    <td class="primary-links" width="70%" valign="middle" colspan="2">
+
+    <td id="site-info" width="20%">
+      <?php if ($site_name) : ?>
+        <div class='site-name'><a href="<?php print $front_page ?>" title="<?php print t('Home') ?>"><?php print($site_name) ?></a></div>
+      <?php endif;?>
+      <?php if ($site_slogan) : ?>
+        <div class='site-slogan'><?php print($site_slogan) ?></div>
+      <?php endif;?>
+    </td>
+    <td class="primary-links" width="70%" align="center" valign="middle">
       <?php print theme('links', $primary_links, array('class' => 'links', 'id' => 'navlist')) ?>
     </td>
-   </tr>
-    <tr>
-		<td class="secondary-links" width="50%" valign="middle">
+  </tr>
+</table>
+
+<table id="secondary-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td class="secondary-links" width="75%"  align="center" valign="middle">
       <?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
-      </td>
-      <td td class="search-box" valign="middle" width="20%">
+    </td>
+    <td width="25%" align="center" valign="middle">
       <?php print $search_box ?>
-	  </td>
-    </tr>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><div><?php print $header ?></div></td>
+  </tr>
 </table>
 
 <table id="content" border="0" cellpadding="15" cellspacing="0" width="100%">
@@ -83,32 +97,24 @@
   </tr>
 </table>
 
-<table id="footer" border="0" cellpadding="0" cellspacing="0" width="100%" height="158px">
-<tr>
-<td rowspan="2" width="20%">	
-</td>
-<td rowspan="2" width="30%">
 <table id="footer-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
     <td align="center" valign="middle">
     <?php if (isset($primary_links)) : ?>
       <?php print theme('links', $primary_links, array('class' => 'links primary-links')) ?>
     <?php endif; ?>
-    </td> 
-    <td>
     <?php if (isset($secondary_links)) : ?>
       <?php print theme('links', $secondary_links, array('class' => 'links secondary-links')) ?>
     <?php endif; ?>
     </td>
   </tr>
 </table>
-</td><td id="flogo" width="50%" height="90px"></td></tr>
-<tr><td>
+
 <?php if ($footer_message || $footer) : ?>
 <div id="footer-message">
     <?php print $footer_message . $footer;?>
 </div>
 <?php endif; ?>
-</td></tr></table>
+<?php print $closure;?>
 </body>
 </html>
