@@ -432,6 +432,7 @@ function og_forum_db_rewrite_sql($query, $primary_table = 'n', $primary_field = 
 	    if (isset($_GET['gids']) && is_array($_GET['gids']) && isset($_GET['gids'][0]) && is_numeric($_GET['gids'][0])) {
         // if a &gids is present in the URL
 	      if (in_array($_GET['gids'][0], array_keys($user->og_groups))) {
+				
 	        return array();
 	      }
 	    }
@@ -450,7 +451,11 @@ function og_forum_get_sql() {
   $return['distinct'] = TRUE;
   $return['join'] = "LEFT JOIN {og_term} ogt ON ogt.tid = t.tid";
   // Either the forum is unconfigured or public or public
-  $return['where'] = "ogt.public > " . PRIVATE_BY_GROUP_OWNER;
+	
+	/* BEGIN: #159: Now shows all the forums. It won't check if forum is made public(Setting the forum to be public didn't change anthing). */
+  //$return['where'] = "ogt.public > " . PRIVATE_BY_GROUP_OWNER;
+	$return['where'] = "TRUE";
+	/* END: #159 */
   
   if (!empty($user->og_groups)) { 
     // Add own user groups into accessible forums/TIDs
@@ -942,9 +947,9 @@ function og_forum_form_alter(&$form, &$form_state, $form_id) {
         '#type' => 'checkbox',
         '#title' => t('Make container public'),
         '#description' => t('This will allow all users to <em>view</em> this container. Only forums within this container that are also marked public will be visible to anonymous users.'),
-        '#default_value' => FALSE,
+        '#default_value' => TRUE,
         '#weight' => 0.004,
-        '#access' => 0,
+        '#access' => 1,
       );
     }
   }
@@ -955,9 +960,9 @@ function og_forum_form_alter(&$form, &$form_state, $form_id) {
         '#type' => 'checkbox',
         '#title' => t('Make forum public'),
         '#description' => t('This will allow all users to <em>view</em> this forum. The parent container must also be public to browse here. Otherwise users will need a direct link to this forum.'),
-        '#default_value' => FALSE,
+        '#default_value' => TRUE,
         '#weight' => 0.004,
-        '#access' => 0,
+        '#access' => 1,
       );
     }
   }
