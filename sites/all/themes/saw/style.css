@@ -278,13 +278,16 @@ ul.links li {
   margin: 0.4em;
   color: #333;
   background-color: #fdfdfd;
+  float: left;
  }
  
 #search .form-submit {
+  display: block;
+  float: left;
   width: 41px;
   height: 27px;
   margin: 0.2em;
-  background: transparent url('go.png') center no-repeat;
+  background: transparent url('go.png') center center no-repeat;
   border: none;
 }
 
