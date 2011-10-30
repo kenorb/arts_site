@@ -425,9 +425,9 @@ ul.links li {
   border-collapse: separate;
 }
 #flogo {
-  background: transparent url('images/logo.png') no-repeat left bottom;
-  padding: 0 50px 0 50px;
-  margin-top: 30px;
+  /* Removed. (#253) */
+  vertical-align: bottom;
+  padding-bottom: 32px;
 }
 
 #main .block .title h3 {
