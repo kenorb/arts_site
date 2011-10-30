@@ -24,8 +24,12 @@
     </td>
     <td td class="login-box" valign="middle" >
 	  <p> 
-      <a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>   
-      <a class="active" href="/user"><img src="/sites/all/themes/saw/klodka.png" alt=""> Sign in </a>  </p>
+	  <?php if (!$logged_in): ?>
+      	<a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>   
+      	<a class="active" href="/user"><img src="/sites/all/themes/saw/klodka.png" alt=""> Sign in </a>  </p>
+      <?php else: ?>
+      	<a class="active" href="/logout"><img src="/sites/all/themes/saw/kreska.png" alt=""> Logout </a>  </p>
+      <?php endif; ?>
 	</td>
    </tr>
     <tr>
