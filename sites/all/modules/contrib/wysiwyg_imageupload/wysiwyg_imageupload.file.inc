@@ -124,7 +124,7 @@ function _wysiwyg_imageupload_save(&$entity) {
 
     $node = (array) $entity;
     foreach ($node as $key => $field) {
-      if (strpos($key, 'field_') === 0) {
+      if (strpos($key, 'field_') === 0 && is_array($field)) {
         foreach ($field as $index => $field_item) {
           if (!empty($field_item['value'])) {
             $value = $field_item['value'];
