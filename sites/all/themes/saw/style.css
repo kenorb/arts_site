@@ -37,6 +37,27 @@ a:visited {
 a:hover, a:active {
   color: #2b5676;
 }
+
+/* Aligning field paragraph left, because it is defaulty justified and justification makes problem when urls are long. (#266) */
+td.views-field-teaser > div > p {
+  text-align: left;
+}
+
+/* Right margin for the extlink's icon. It makes some space between url and following text. (#266) */
+span.ext {
+  margin-right: 5px;
+}
+
+/* Resloving problem with too-wide text/urls in the fields. (#266) */
+td.views-field-teaser > div > p > a {
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  display: inline-block;
+}
+
 fieldset {
   border: 1px solid #ccc;
 }
