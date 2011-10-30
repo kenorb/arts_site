@@ -8,6 +8,7 @@
   <title><?php print $head_title ?></title>
   <?php print $styles ?>
   <?php print $scripts ?>
+  <?php print $closure ?>
 </head>
 
 <body>
