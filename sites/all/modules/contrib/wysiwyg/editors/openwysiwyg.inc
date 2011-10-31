@@ -1,5 +1,4 @@
 <?php
-// $Id: openwysiwyg.inc,v 1.4.2.3 2010/11/13 18:31:25 sun Exp $
 
 /**
  * @file
@@ -103,7 +102,7 @@ function wysiwyg_openwysiwyg_settings($editor, $config, $theme) {
     if ($config['css_setting'] == 'theme') {
       $settings['CSSFile'] = reset(wysiwyg_get_css());
     }
-    else if ($config['css_setting'] == 'self' && isset($config['css_path'])) {
+    elseif ($config['css_setting'] == 'self' && isset($config['css_path'])) {
       $settings['CSSFile'] = strtr($config['css_path'], array('%b' => base_path(), '%t' => path_to_theme()));
     }
   }

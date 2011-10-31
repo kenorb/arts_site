@@ -1,5 +1,4 @@
 <?php
-// $Id: nicedit.inc,v 1.6.2.2 2010/11/13 18:31:25 sun Exp $
 
 /**
  * @file
@@ -83,7 +82,7 @@ function wysiwyg_nicedit_settings($editor, $config, $theme) {
         $settings['externalCSS'] = base_path() . $css;
       }
     }
-    else if ($config['css_setting'] == 'self' && isset($config['css_path'])) {
+    elseif ($config['css_setting'] == 'self' && isset($config['css_path'])) {
       $settings['externalCSS'] = strtr($config['css_path'], array('%b' => base_path(), '%t' => path_to_theme()));
     }
   }

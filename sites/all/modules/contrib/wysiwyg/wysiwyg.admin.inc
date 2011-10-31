@@ -1,5 +1,4 @@
 <?php
-// $Id: wysiwyg.admin.inc,v 1.15.2.12 2010/12/19 21:00:25 sun Exp $
 
 /**
  * @file
@@ -136,7 +135,7 @@ function wysiwyg_profile_form($form_state, $profile) {
           }
           $icon = file_exists($img_src) ? '<img src="' . base_path() . $img_src . '" title="' . $button . '" style="border: 1px solid grey; vertical-align: middle;" />' : '';
         }
-        $title = (isset($meta['url']) ? l($title, $meta['url'], array('target' => '_blank')) : $title);
+        $title = (isset($meta['url']) ? l($title, $meta['url'], array('target' => '_blank')) : check_plain($title));
         $title = (!empty($icon) ? $icon . ' ' . $title : $title);
         $form['buttons'][$name][$button] = array(
           '#type' => 'checkbox',
@@ -145,11 +144,11 @@ function wysiwyg_profile_form($form_state, $profile) {
         );
       }
     }
-    else if (isset($meta['extensions']) && is_array($meta['extensions'])) {
+    elseif (isset($meta['extensions']) && is_array($meta['extensions'])) {
       foreach ($meta['extensions'] as $extension => $title) {
         $form['buttons'][$name][$extension] = array(
           '#type' => 'checkbox',
-          '#title' => isset($meta['url']) ? l($title, $meta['url'], array('target' => '_blank')) : $title,
+          '#title' => isset($meta['url']) ? l($title, $meta['url'], array('target' => '_blank')) : check_plain($title),
           '#default_value' => !empty($profile->settings['buttons'][$name][$extension]) ? $profile->settings['buttons'][$name][$extension] : FALSE,
         );
       }
