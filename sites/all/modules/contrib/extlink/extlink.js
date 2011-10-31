@@ -62,20 +62,20 @@ function extlinkAttach(context) {
   if (Drupal.settings.extlink.extClass) {
     // Apply the "ext" class to all links not containing images.
     if (parseFloat($().jquery) < 1.2) {
-      $(external_links).not('[img]').addClass(Drupal.settings.extlink.extClass).each(function() { if (true/*$(this).css('display') == 'inline'*/) $(this).after('<span class=' + Drupal.settings.extlink.extClass + '></span>'); });
+      $(external_links).not('[img]').addClass(Drupal.settings.extlink.extClass).each(function() { if ($(this).css('display') == 'inline') $(this).after('<span class=' + Drupal.settings.extlink.extClass + '></span>'); });
     }
     else {
-      $(external_links).not($(external_links).find('img').parents('a')).addClass(Drupal.settings.extlink.extClass).each(function() { if (true/*$(this).css('display') == 'inline'*/) $(this).after('<span class=' + Drupal.settings.extlink.extClass + '></span>'); });
+      $(external_links).not($(external_links).find('img').parents('a')).addClass(Drupal.settings.extlink.extClass).each(function() { if ($(this).css('display') == 'inline') $(this).after('<span class=' + Drupal.settings.extlink.extClass + '></span>'); });
     }
   }
 
   if (Drupal.settings.extlink.mailtoClass) {
     // Apply the "mailto" class to all mailto links not containing images.
     if (parseFloat($().jquery) < 1.2) {
-      $(mailto_links).not('[img]').addClass(Drupal.settings.extlink.mailtoClass).each(function() { if (true/*$(this).css('display') == 'inline'*/) $(this).after('<span class=' + Drupal.settings.extlink.mailtoClass + '></span>'); });
+      $(mailto_links).not('[img]').addClass(Drupal.settings.extlink.mailtoClass).each(function() { if ($(this).css('display') == 'inline') $(this).after('<span class=' + Drupal.settings.extlink.mailtoClass + '></span>'); });
     }
     else {
-      $(mailto_links).not($(mailto_links).find('img').parents('a')).addClass(Drupal.settings.extlink.mailtoClass).each(function() { if (true/*$(this).css('display') == 'inline'*/) $(this).after('<span class=' + Drupal.settings.extlink.mailtoClass + '></span>'); });
+      $(mailto_links).not($(mailto_links).find('img').parents('a')).addClass(Drupal.settings.extlink.mailtoClass).each(function() { if ($(this).css('display') == 'inline') $(this).after('<span class=' + Drupal.settings.extlink.mailtoClass + '></span>'); });
     }
   }
 
