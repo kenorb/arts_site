@@ -86,5 +86,21 @@ function wysiwyg_imageupload_admin_settings() {
     '#default_value' => variable_get('wysiwyg_imageupload_relative_user', '$uid')
   );
 
+  $form['align']  = array(
+    '#type' => 'fieldset',
+    '#title' => t('Align'),
+    '#collapsed' => TRUE,
+    '#collapsible' => TRUE,
+    '#weight' => -2,
+  );
+  $form['align']['wysiwyg_imageupload_align_by_default'] = array(
+    '#type' => 'select',
+    '#title' => t('Align by default'),
+    '#description' => t('Align by default for new uploaded image.'),
+    '#default_value' => variable_get('wysiwyg_imageupload_align_by_default', 0),
+    '#options' => _wysiwyg_imagegupload_align_options(),
+    '#after_build' => array('drupalwiki_imageselect_element_register'),
+  );
+
   return system_settings_form($form);
 }

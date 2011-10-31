@@ -194,27 +194,29 @@ function _wysiwyg_imageupload_details_form($img, $iid, $defaults = array()) {
     '#size' => 50
   );
   // Alignment / Floating
-  $m = drupal_get_path('module','wysiwyg_imageupload');
+  $align_value = (isset($defaults['alignment']) && $defaults['alignment'] != '') ? $defaults['alignment'] : variable_get('wysiwyg_imageupload_align_by_default', '');
   $form['image_upload_details']['alignment'] = array(
     '#type' => 'select',
     '#title' => t('Image alignment'),
-    '#options' => array(
-      'imgupl_floating_left' => theme('image',"$m/images/left_float.png", $t = t('Image on left, text on right'), $t),
-      'imgupl_floating_none_left' => theme('image',"$m/images/none_left_float.png", $t = t('Image is inline with the text (left)'), $t),
-      'imgupl_floating_none' => theme('image',"$m/images/none_float.png", $t = t('Image is inline with the text (none)'), $t),
-      'imgupl_floating_none_right' => theme('image',"$m/images/none_right_float.png", $t = t('Image is inline with the text (right)'), $t),
-      'imgupl_floating_right' => theme('image',"$m/images/right_float.png", $t = t('Image on right, text on left'), $t),      
-    ),
-    '#default_value' => $defaults['alignment'],
+    '#options' => _wysiwyg_imagegupload_align_options(),
+    '#default_value' => $align_value,
     '#after_build' => array('drupalwiki_imageselect_element_register'),
   );
   // Imagecache preset
-  $form['image_upload_details']['imagecache'] = array(
-    '#type' => 'select',
-    '#title' => t('Size'),
-    '#default_value' => $defaults['imagecache'],
-    '#options' => _wysiwyg_imagegupload_allowed_presets(),
-  );
+  $ic_options = _wysiwyg_imagegupload_allowed_presets();
+  if (count($ic_options) == 1) {
+    $form['image_upload_details']['imagecache'] = array(
+      '#type' => 'hidden',
+      '#value' => array_pop($ic_options),
+    );
+  } else {
+    $form['image_upload_details']['imagecache'] = array(
+      '#type' => 'select',
+      '#title' => t('Size'),
+      '#default_value' => $defaults['imagecache'],
+      '#options' => $ic_options,
+    );
+  }
 
   // We group all those extras into this fieldset to hide them from the general UI.
   $form['image_upload_details']['extras'] = array(

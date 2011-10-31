@@ -124,7 +124,7 @@ function _wysiwyg_imageupload_save(&$entity) {
 
     $node = (array) $entity;
     foreach ($node as $key => $field) {
-      if (strpos($key, 'field_') === 0) {
+      if (strpos($key, 'field_') === 0 && is_array($field)) {
         foreach ($field as $index => $field_item) {
           if (!empty($field_item['value'])) {
             $value = $field_item['value'];
@@ -141,7 +141,10 @@ function _wysiwyg_imageupload_save(&$entity) {
  */
 function _wysiwyg_imagegupload_save_images(&$entity, $value) {
   $images = array();
-  preg_match_all(_wysiwyg_imageupload_filter_pattern(), $value, $matches);
+  $matches = NULL;
+  if (is_string($value)) {
+      preg_match_all(_wysiwyg_imageupload_filter_pattern(), $value, $matches);
+  }
 
   if(empty($matches)) {
     return;
@@ -185,7 +188,8 @@ function _wysiwyg_imagegupload_save_images(&$entity, $value) {
  * Cleanup all wui entries which have no corresponding file objects anymore
  */
 function _wysiwyg_imageupload_cleanup_temps() {
-  db_query('DELETE wui,wuir FROM {wysiwyg_imageupload_entity} AS wui LEFT JOIN {wysiwyg_imageupload_entity_revision} AS wuir ON wui.iid=wuir.iid WHERE NOT EXISTS (SELECT fid from {files} as f WHERE wui.fid=f.fid)');
+  db_query('DELETE FROM {wysiwyg_imageupload_entity} WHERE fid NOT IN (SELECT fid FROM {files});');
+  db_query('DELETE FROM {wysiwyg_imageupload_entity_revision} WHERE iid NOT IN (SELECT iid FROM {wysiwyg_imageupload_entity});');
 }
 
 /**
@@ -200,7 +204,8 @@ function _wysiwyg_imageupload_handle_node_delete($nid) {
     $entities[] = $entity;
   }
   // Delete all inline entities for all version.
-  db_query('DELETE e,r FROM {wysiwyg_imageupload_entity} AS e LEFT JOIN {wysiwyg_imageupload_entity_revision} AS r ON e.iid=r.iid WHERE nid=%d', $nid);
+  db_query('DELETE FROM {wysiwyg_imageupload_entity_revision}  AS r USING {wysiwyg_imageupload_entity} AS e WHERE e.iid=r.iid AND nid=%d', $nid);
+  db_query('DELETE FROM {wysiwyg_imageupload_entity} WHERE nid=%d', $nid);
 
   // Cleanup files which are no longer used.
   foreach ($entities as $entity) {

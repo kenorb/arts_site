@@ -29,6 +29,9 @@ class wysiwyg_imageupload_handler_field_images extends views_handler_field_prere
     $iids = wysiwyg_imageupload_get_images_by_vids($vids);
     foreach ($iids as $item) {
       $this->items[$item['vid']][$item['iid']] = $item;
+      if ($this->options['images'] == 'one_image') {
+        break;
+      }
     }
     $this->items[$this->field_alias] = $iids;
   }
@@ -36,6 +39,7 @@ class wysiwyg_imageupload_handler_field_images extends views_handler_field_prere
   function option_definition() {
     $options = parent::option_definition();
     $options['wui_preset'] = array('default' => TRUE);
+    $options['images'] = array('default' => TRUE);
     return $options;
   }
 
@@ -54,12 +58,21 @@ class wysiwyg_imageupload_handler_field_images extends views_handler_field_prere
       '#default_value' =>  $this->options['wui_preset'],
       '#options' => $styles,
     );
+    $form['images'] = array(
+      '#type' => 'radios',
+      '#title' => 'Choose images',
+      '#default_value' => $this->options['images'],
+      '#options' => array(
+        'all_images' => 'All images',
+        'one_image' => 'One image',
+      ),
+    );
 
     return $form;
   }
 
   function render_item($key, $value) {
     $img_obj = (object) $value;
-    return theme('imagecache', $this->options['preset'], $img_obj->filepath, NULL, $img_obj->title);
+    return theme('imagecache', $this->options['wui_preset'], $img_obj->filepath, NULL, $img_obj->title);
   }
 }

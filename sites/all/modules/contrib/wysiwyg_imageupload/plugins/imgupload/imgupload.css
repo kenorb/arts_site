@@ -1,15 +1,27 @@
+span.wysiwyg_imageupload {
+  border: 1px solid #CCC;
+  padding: 4px 4px 0px 4px;
+  background: #F3F3F3;
+  text-align: center;
+  margin: 0 auto;
+}
+
 .imgupl_floating_none
 {
 	float:none;
-	display:block;
+	display:table;
 	text-align:center;
 }
 
 .imgupl_floating_none_left
 {
 	float:none;
-	display:block;
+	display:table;
 	text-align:left;
+}
+
+span.wysiwyg_imageupload.imgupl_floating_none_left {
+  margin: 0 0;
 }
 
 .imgupl_floating_none_right
@@ -17,6 +29,10 @@
 float:none;
 display:block;
 text-align:right;
+}
+
+span.wysiwyg_imageupload.imgupl_floating_none_right {
+  margin: 0 0;
 }
 
 .imgupl_floating_left
@@ -69,8 +85,7 @@ div.imgupl_styles_spacing_20_black_border .image_title, div.imgupl_styles_black_
 }
 
 .image_title {
-   text-decoration:underline;
-   color: #CCCCCC;
+   font-size: 0.857em;
 }
 
 #image_preview {
