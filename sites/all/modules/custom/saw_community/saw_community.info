@@ -1,7 +1,7 @@
 name = Community
-description = Provides general Community functionality for Student Community World site
+description = Provides general Community functionality for Student Art World site
 core = 6.x
 version = 6.x-dev
 files[] = saw_community.test
-package = Student Community World
+package = Student Art World
 

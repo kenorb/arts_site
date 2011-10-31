@@ -1,7 +1,7 @@
 name = Market
-description = Provides general Market functionality for Student Market World site
+description = Provides general Market functionality for Student Art World site
 core = 6.x
 version = 6.x-dev
 files[] = saw_market.test
-package = Student Market World
+package = Student Art World
 

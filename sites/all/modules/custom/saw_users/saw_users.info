@@ -1,7 +1,7 @@
 name = Users
-description = Provides general Users functionality for Student Users World site
+description = Provides general Users functionality for Student Art World site
 core = 6.x
 version = 6.x-dev
 files[] = saw_users.test
-package = Student Users World
+package = Student Art World
 

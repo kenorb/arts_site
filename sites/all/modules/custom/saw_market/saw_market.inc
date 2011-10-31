@@ -2,7 +2,7 @@
 
 /**
  * Include file
- * Package: Student Market World (SAW) module
+ * Package: Student Art World (SAW) module
  *
  * Developers:
  *  Rafal Wieczorek <kenorb@gmail.com>

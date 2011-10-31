@@ -15,7 +15,7 @@ class WafSawCommunity extends DrupalWebTestCase {
     return array (
       'name' => t('Community test'),
       'description' => t('Tests related to Community'),
-      'group' => t('Student Community World'),
+      'group' => t('Student Art World'),
     );
   }
 

@@ -15,7 +15,7 @@ class WafSawUsers extends DrupalWebTestCase {
     return array (
       'name' => t('Users test'),
       'description' => t('Tests related to Users'),
-      'group' => t('Student Users World'),
+      'group' => t('Student Art World'),
     );
   }
 
