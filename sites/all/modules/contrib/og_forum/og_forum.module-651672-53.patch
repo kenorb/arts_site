@@ -1,0 +1,13 @@
+diff --git a/og_forum.module b/og_forum.module
+index 93d2330..1a620d6 100644
+--- a/og_forum.module
++++ b/og_forum.module
+@@ -306,7 +306,7 @@ function og_forum_get_sql() {
+   $return['distinct'] = TRUE;
+   $return['join'] = "LEFT JOIN {og_term} ogt ON ogt.tid = t.tid";
+   // Either the forum is unconfigured or public or public
+-  $return['where'] = "ogt.public > " . PRIVATE_BY_GROUP_OWNER;
++  $return['where'] = "ogt.public is NULL OR ogt.public > " . PRIVATE_BY_GROUP_OWNER;
+   
+   if (!empty($user->og_groups)) { 
+     // Add own user groups into accessible forums/TIDs

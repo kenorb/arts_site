@@ -450,15 +450,7 @@ function og_forum_get_sql() {
   $return['distinct'] = TRUE;
   $return['join'] = "LEFT JOIN {og_term} ogt ON ogt.tid = t.tid";
   // Either the forum is unconfigured or public or public
-  
-  /**
-   * #159 Bug: after enabled og_forum, can't add normal forum topic
-   * Fix from http://drupal.org/node/1168000, compatible with changes to the "OG Forum Resurrection" project at http://drupal.org/sandbox/thepanz/1110446
-   * More description: http://drupal.org/node/651672#comment-3573210
-   * There is no other releases and no planned release for og_forum module available. We have to live with it for some time.
-   */
-  // - $return['where'] = "ogt.public > " . PRIVATE_BY_GROUP_OWNER;
-  $return['where'] = "ogt.public is NULL OR ogt.public > " . PRIVATE_BY_GROUP_OWNER;
+  $return['where'] = "ogt.public > " . PRIVATE_BY_GROUP_OWNER;
   
   if (!empty($user->og_groups)) { 
     // Add own user groups into accessible forums/TIDs
@@ -468,7 +460,6 @@ function og_forum_get_sql() {
   if ($og_forum_container = variable_get('forum_default_container', FALSE)) {
     $return['where'] .= " AND t.tid != $og_forum_container"; 
   }
-  
   return $return;
 }
 
