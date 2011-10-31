@@ -1,0 +1,7 @@
+name = Events
+description = Provides general Events functionality for Student Art World site
+core = 6.x
+version = 6.x-dev
+files[] = saw_events.test
+package = Student Art World
+

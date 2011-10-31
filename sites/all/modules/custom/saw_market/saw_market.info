@@ -1,0 +1,7 @@
+name = Market
+description = Provides general Market functionality for Student Market World site
+core = 6.x
+version = 6.x-dev
+files[] = saw_market.test
+package = Student Market World
+

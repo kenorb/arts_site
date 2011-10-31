@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Simpletest unit test for Art (SAW)
+ * 
+ */
+
+
+class WafSawArt extends DrupalWebTestCase {
+
+  /**
+   * Implements getInfo().
+   */
+  public static function getInfo() {
+    return array (
+      'name' => t('Art test'),
+      'description' => t('Tests related to Art'),
+      'group' => t('Student Art World'),
+    );
+  }
+
+  public function setUp() {
+    // Enable any module that you will need in your tests.
+    parent::setUp('saw_art');
+  }
+
+}
+

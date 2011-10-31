@@ -1,0 +1,11 @@
+<?php 
+
+/**
+ * Provides general Events functionality for Student Art World site
+ * Package: Student Art World (SAW) module
+ *
+ * Developers:
+ *  Rafal Wieczorek <rafal.wieczorek@itv.com>
+ *
+ */
+
