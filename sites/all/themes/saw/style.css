@@ -735,9 +735,23 @@ div.admin-panel .body {
 }
 
 .view-content .calendar-calendar .date-prev, .view-content .calendar-calendar .date-next  {
-   /** background: none repeat scroll 0 0 #ab1017;**/
-    background: none repeat scroll 0 0 #fdfdfd;
+	background: none;
 }
+
+.calendar-calendar tr,
+.calendar-calendar td.empty,
+.calendar-calendar table.mini td.empty {
+	background: none;
+}
+
+
+.calendar-calendar .month-view .full td.single-day .calendar-empty,
+.calendar-calendar .month-view .full td.single-day.empty,
+.calendar-calendar .month-view .full td.date-box.empty {
+  background-color: #ede9e2;	
+}
+
+
 .view-content .calendar-calendar .date-prev a, .view-content .calendar-calendar .date-next a {
     color: #ab1017;
     font-size: 13px;
@@ -749,4 +763,8 @@ div.admin-panel .body {
     text-decoration: none;
     font-size: 0.85em;
     text-transform: uppercase;
+}
+
+.author-user-flag {
+  padding-left: 1.63em;
 }
