@@ -349,9 +349,12 @@ ul.links li {
   font-size: 0.9em;
   margin-bottom: 1em;
 }
+
 .breadcrumb {
-  margin-bottom: .5em;
+  margin-left: 34px;
+  text-align: left;
 }
+
 .messages {
   background-color: #eee;
   border: 1px solid #ccc;
