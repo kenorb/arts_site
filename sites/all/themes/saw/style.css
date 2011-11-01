@@ -9,7 +9,7 @@ body {
   min-height: 100%;
   color: #343331;
   text-align: center;
-  background: #1d4c6a url('images/footer.jpg') repeat-x bottom;  
+  background: #1d4c6a;  
 }
 p, td, li, ul, ol {
 }
@@ -413,17 +413,61 @@ ul.links li {
   color: #fdfdfd;
 } 
 
+#footer table {
+  margin: 0px auto 0 auto;
+  margin-bottom: 10px;
+  border: 0px; border: none; border-collapse: separate;
+}
+#footer_container {
+  background: url('images/footer2.jpg') no-repeat top center;
+  padding: 40px 0 16px 0;
+}
+
 #footer {
-  background: url('images/footer2.jpg') no-repeat center;
+  background: #164362 url('images/footer.jpg') repeat-x top;
+  
   border: none;
   border-collapse: separate;
-  width: 1200px;
-  height: 157px;
   margin: auto;
 }
-#footer tr{
-  border-collapse: separate;
+
+#footer .content {
+  padding: 0px;
+  margin: 4px 0px 0px 0px;
 }
+
+#footer #copyright {
+  padding-top: 8px;
+  color: #ddd;
+}
+
+#footer .block {
+  margin-bottom: 0;
+}
+
+#footer .content a {
+  color: #fff;
+}
+#footer .title {
+  display: none;
+}
+
+#footer ul {
+  padding: 0;
+}
+
+#footer li {
+  text-align: left;
+  float: left;
+  list-style: disc;
+  margin: 5px 5px 5px 15px;
+  
+}
+
+footer-menu-list {
+	
+}
+
 #flogo {
   /* Removed. (#253) */
   vertical-align: bottom;
@@ -434,12 +478,12 @@ ul.links li {
  text-transform: none;
 }
 
-#footer-menu-list .block .title{
+#footer-menu-list .block .title {
  display: none;
 }
 
 #footer-menu-list a:link, #footer-menu-list a:visited, #footer-menu-list a:active{
-  font-size: 11px;
+  font-size: 13px;
   font-family: Arial, "Trebuchet MS", sans-serif;
   text-align: left;
   color: #fefffa;

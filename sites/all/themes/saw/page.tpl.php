@@ -17,7 +17,7 @@
 <div id="banner">
 <table id="primary-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
-    <td id="home" rowspan="2" width="22%">
+    <td id="home" rowspan="2" width="22%" onclick="window.location.href = '/';">
 
     </td>
     <td class="primary-links" valign="middle">
@@ -86,31 +86,28 @@
   </tr>
 </table>
 
-<table id="footer" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td rowspan="2" width="20%"></td>	
-    <td rowspan="2" width="55%">
-      <table id="footer-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-          <td id="footer-menu-list" width="25%" align="left">
-            <?php print $footer1; ?>
-          </td> 
-          <td id="footer-menu-list" width="25%" align="left">
-            <?php print $footer2; ?>
-          </td>
-          <td id="footer-menu-list" width="50%" align="left">
-  	      <?php print $footer3; ?>
-          </td>
-        </tr>
-      </table>
-    </td>
-    <td id="flogo" width="25%" height="120px">
-      <div id="footer-message">
-        <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
-      </div>
-    </td>
-  </tr>
-</table>
+<div id="footer">
+  <div id="footer_container">
+    <table id="footer-menu-list">
+      <tr>
+        <td colspan="3" id="copyright">
+          <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
+        </td>
+      </tr>
+      <tr>
+        <td>  
+          <?php print $footer1; ?>
+        </td>
+        <td>  
+          <?php print $footer1; ?>
+        </td>
+        <td>  
+          <?php print $footer1; ?>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 </div>
 </body>
 </html>
