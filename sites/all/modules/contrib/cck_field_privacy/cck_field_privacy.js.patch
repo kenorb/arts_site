@@ -1,0 +1,22 @@
+Index: cck_field_privacy.js
+===================================================================
+--- cck_field_privacy.js	(revision 152)
++++ cck_field_privacy.js	(working copy)
+@@ -54,7 +54,7 @@
+ 	    show: 'slideDown',
+ 	    loaded: (function(field_name) {
+ 		  	return function() {
+-	      	$("input[@type='checkbox']", this).each(function() {
++	      	$("input[type='checkbox']", this).each(function() {
+ 	        	// set default checked on load
+ 	          var e = $(this);        
+ 	          e.attr('checked', field_states[e.val()] == e.val()? 'checked' : '');
+@@ -63,7 +63,7 @@
+ 	        	var name = $(this).attr('name');    		
+ 	        	if ($(this).is(':checked')) {
+ 	  					// Uncheck all other checkboxes.
+-	  					$("input[@name!='"+$(this).attr('name')+"']").each(function(){
++	  					$("input[name!='"+$(this).attr('name')+"']").each(function(){
+ 	  						$(this).attr('checked',false);
+ 	  					});
+ 					  }
