@@ -54,7 +54,7 @@ var cck_field_privacy = {
 	    show: 'slideDown',
 	    loaded: (function(field_name) {
 		  	return function() {
-	      	$("input[@type='checkbox']", this).each(function() {
+	      	$("input[type='checkbox']", this).each(function() {
 	        	// set default checked on load
 	          var e = $(this);        
 	          e.attr('checked', field_states[e.val()] == e.val()? 'checked' : '');
@@ -63,7 +63,7 @@ var cck_field_privacy = {
 	        	var name = $(this).attr('name');    		
 	        	if ($(this).is(':checked')) {
 	  					// Uncheck all other checkboxes.
-	  					$("input[@name!='"+$(this).attr('name')+"']").each(function(){
+	  					$("input[name!='"+$(this).attr('name')+"']").each(function(){
 	  						$(this).attr('checked',false);
 	  					});
 					  }
