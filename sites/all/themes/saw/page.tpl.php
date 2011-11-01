@@ -89,15 +89,27 @@
   </tr>
 </table>
 
-<table id="footer">
-  <tr>
-    <td>  
-      <?php print $footer1; ?>
-    t/<
-      <?php print $footer2; ?>
-      <?php print $footer3; ?>
-      <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
-     
+<div id="footer">
+  <div id="footer_container">
+    <table id="footer-menu-list">
+      <tr>
+        <td colspan="3" id="copyright">
+          <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
+        </td>
+      </tr>
+      <tr>
+        <td>  
+          <?php print $footer1; ?>
+        </td>
+        <td>  
+          <?php print $footer1; ?>
+        </td>
+        <td>  
+          <?php print $footer1; ?>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 </div>
 </body>
