@@ -1,0 +1,11 @@
+name = "Quickbar"
+description = "Adds a toolbar to the top of the page.  Will work for any menu. This is taken from admin 1.x"
+package = "Administration"
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-08-13
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "quickbar"
+datestamp = "1313195722"
+

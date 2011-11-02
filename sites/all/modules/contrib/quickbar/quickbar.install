@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implementation of hook_enable().
+ */
+function quickbar_enable() {
+  // Weight quickbar to come after other modules.
+  db_query("UPDATE {system} SET weight = 1 WHERE name = 'quickbar' AND type = 'module'");
+
+  drupal_set_message(t('Please go to the !quick_config screen to configure Quickbar.', array('!quick_config' => l('Quickbar configuration', 'admin/settings/quickbar'))));
+}
+
+function quickbar_update_6101() {
+  $ret = array();
+  // Icon bypass doesn't exist anymore.
+  variable_del('quickbar_icon_bypass');
+  return $ret;
+}
