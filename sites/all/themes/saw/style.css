@@ -10,6 +10,12 @@ body {
   margin: 0;
   padding: 0; 
   background: #164362;
+  font-family: Verdana;
+  
+}
+
+table {
+  border-collapse: separate;
 }
 
 #page {
@@ -117,17 +123,20 @@ pre {
   height: 92px;
   background: url('images/gora.jpg') center top repeat-x;
   text-align: center;
+  border-collapse: separate;
 }
 
 #primary-menu {
   border-collapse: separate;
   margin: auto;
   font-family: Verdana;
-  background: transparent url('images/banner.jpg') center top no-repeat;
+  background: transparent url('images/banner.jpg') top center no-repeat;
+  background-color: transparent;
   height: 92px;
   width: 1200px;
   text-align: left;
-  font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, "Trebuchet MS", sans-serif; 
+  font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, "Trebuchet MS", sans-serif;
+  border: none; 
 }
 
 #search-theme-form {
@@ -359,11 +368,6 @@ ul.links li {
   margin-bottom: 1em;
 }
 
-.breadcrumb {
-  margin-left: 34px;
-  text-align: left;
-}
-
 .messages {
   background-color: #eee;
   border: 1px solid #ccc;
@@ -384,6 +388,7 @@ ul.links li {
   /* padding in px not ex because IE messes up 100% width tables otherwise */
   padding: 25px 10px 75px 10px;
   vertical-align: top;
+  border-collapse: separate;
 }
 
 #sidebar-left li, #sidebar-right li {
@@ -948,3 +953,130 @@ div.admin-panel .body {
   
 
 /* #forum: END */
+
+
+
+/* #toolbar: BEGIN */
+
+  #toolbar-area {
+    border-top: 1px solid #ddd;
+  }
+  
+  #toolbar {
+    width: 100%;
+    background: url('images/toolbar-background.png') repeat-x top left #215c80;
+    height: 66px;
+    clear: both;
+  }
+  
+  #quickbar {
+    top: 170px;
+    left: 450px;
+  }
+  
+  div#quickbar div.shadow {
+    background: none;
+    display: none;
+  }
+  
+  div#quickbar {
+    background: none;
+    position: absolute;
+    top: 88px;
+  }
+  
+  #quickbar span.icon {
+    background-repeat: no-repeat  !important;
+    background-position: center center !important;
+    display: inline-block !important;
+  }
+  
+  #quickbar .path-messages span.icon {
+    background-image: url('images/toolbar-icons/message.png') !important;
+  }
+
+  #quickbar .path-node-add span.icon {
+    background-image: url('images/toolbar-icons/add_content.png') !important;
+  }
+
+  #quickbar .path-calendar span.icon {
+    background-image: url('images/toolbar-icons/calendar.png') !important;
+  }
+  
+  #quickbar .path-marketplace span.icon {
+    background-image: url('images/toolbar-icons/marketplace.png') !important;
+  }
+
+  div#quickbar div.depth-0 .icon {
+    display: block;
+    width: 68px;
+    height: 32px;
+    margin: 0 auto;
+  }
+  
+  div#quickbar div.depth-0 ul.links li {
+    text-align: center;
+    padding: 8px 0;
+  }
+    
+  div#quickbar div.depth-0 ul.links li a,
+  div#quickbar div.depth-0 ul.links li a.active
+   {
+    border-radius: 0px;
+    margin: 0;
+    width: 68px;
+    height: 64px;
+    text-align: center;
+  }
+  
+  div#quickbar div.depth-0 ul.links li:hover {
+    background: url('images/toolbar-tool-hover.png') no-repeat top left !important;
+  }
+  
+  div#quickbar div.depth-0 ul.links li:active,
+  div#quickbar div.depth-0 ul.links li.active {
+    background: url('images/toolbar-tool-click.png') no-repeat top left !important;
+  }
+  
+  div#quickbar div.depth-0 ul.links li.active a
+  {
+  width: 68px;
+    margin: 0;
+    background: none;
+    display: inline-block;
+  }
+  
+  div#quickbar div.depth-0 {
+    height: auto;
+  }
+    
+
+  #toolbar .breadcrumb-container {
+    empty-cell: show;
+    margin: auto 0 auto 34px;
+    text-align: left;
+    vertical-align: middle;
+  }
+  
+  #toolbar .breadcrumb {
+    text-align: left;
+    padding: 12px 10px;
+    color: #fff;
+    font-size: 0.8em;
+  }
+  
+  #toolbar .breadcrumb a {
+    color: #ddd;
+  }
+  
+  #toolbar .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  #toolbar #tools {
+    height: 25px;
+  }
+
+/* #toolbar: END */
+
+

@@ -46,6 +46,16 @@
         </table>
       </div>
       
+      <div id="toolbar-area">
+        <table id="toolbar" cellspacing="0" cellpadding="0">
+          <tr>
+            <td id="breadcrumb-container">
+              <?php print $breadcrumb ?>
+            </td>
+          </tr>
+        </table>
+       </div>
+      
       <table id="content" border="0" cellpadding="15" cellspacing="0" width="100%">
         <tr>
           <?php if ($left != ""): ?>
@@ -55,9 +65,6 @@
           <?php endif; ?>
       
           <td valign="top">
-            <div id="breadcrumb-container">
-              <?php print $breadcrumb ?>
-            </div>
             <div id="main">
               <?php if ($title != ""): ?>
       
