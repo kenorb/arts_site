@@ -33,7 +33,7 @@
  * @see theme_forum_topic_list()
  */
 ?>
-<table id="forum-topic-<?php print $topic_id; ?>" class="forum-topics">
+<table id="forum-topic-<?php print $topic_id; ?>" class="forum-topics" cellspacing="0">
   <thead>
     <tr><?php print $header; ?></tr>
   </thead>

@@ -773,6 +773,7 @@ div.admin-panel .body {
     width: 100%;
     margin: 20px 0 15px 0;
     color: #3a6c87;
+    border-collapse: separate;
   }
   
   #forum th {
@@ -782,8 +783,9 @@ div.admin-panel .body {
   
   #forum th,
   #forum td {
-    padding: 4px 8px;
+    padding: 6px 8px;
   }
+
 
   #forum tr.index-0 td {
     padding: 12px 8px 4px 8px;
@@ -794,7 +796,11 @@ div.admin-panel .body {
     height: 40px;
   }
   
-  #forum td,
+  #forum table tr td {
+    border-top: 1px solid transparent !important;
+    border-bottom: 1px solid transparent !important;
+  }
+  
   #forum td a {
     border-bottom: none !important;
   }
@@ -824,10 +830,25 @@ div.admin-panel .body {
   
   #forum td.forum .name a,
   #forum td.container .name a {
-    padding: 5px;
+    padding: 2px 5px;
     border-radius: 5px;
+    margin-top: 2px;
   }
   
+  #forum div.description {
+    font-size: 0.7em;
+    margin: 0px 0px 0px 10px;
+    color: #333;
+    font-style: italic;
+  }
+  
+  #forum table tr:hover td {
+    border-top: 1px dotted #ccc !important;
+    border-bottom: 1px dotted #ccc !important;
+    background-color: rgba(0, 0, 255, 0.05) !important;
+  }
+  
+
   #forum td.forum .name a:hover  {
     background-color: #3a6c87 !important;
     color: #fff !important;
