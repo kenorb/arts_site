@@ -13,104 +13,111 @@
 
 <body>
 <div id="page">
-<div class="hide"><a href="#content" title="<?php print t('Skip navigation') ?>." accesskey="2"><?php print t('Skip navigation') ?></a>.</div>
-<div id="banner">
-<table id="primary-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
-  <tr>
-    <td id="home" rowspan="2" width="22%" onclick="window.location.href = '/';">
 
-    </td>
-    <td class="primary-links" valign="middle">
-      <?php print theme('links', $primary_links, array('class' => 'links', 'id' => 'navlist')) ?>
-    </td>
-    <td td class="login-box" valign="middle" >
-	  <p> 
-	  <?php if (!$logged_in): ?>
-      	<a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>   
-      	<a class="active" href="/user"><img src="/sites/all/themes/saw/klodka.png" alt=""> Sign in </a>  </p>
-      <?php else: ?>
-      	<a class="active" href="/logout"><img src="/sites/all/themes/saw/kreska.png" alt=""> Logout </a>  </p>
-      <?php endif; ?>
-	</td>
-   </tr>
-    <tr>
-		<td class="secondary-links" width="50%" valign="middle">
-      <?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
-      </td>
-      <td td class="search-box" valign="middle" width="20%">
-      <?php print $search_box ?>
-	  </td>
-    </tr>
-</table>
-</div>
-<table id="content" border="0" cellpadding="15" cellspacing="0" width="100%">
-  <tr>
-    <?php if ($left != ""): ?>
-    <td id="sidebar-left">
-      <?php print $left ?>
-    </td>
-    <?php endif; ?>
-
-    <td valign="top">
-      <div id="breadcrumb-container">
-        <?php print $breadcrumb ?>
+  <div class="wrapper">
+  
+    <div class="hide"><a href="#content" title="<?php print t('Skip navigation') ?>." accesskey="2"><?php print t('Skip navigation') ?></a>.</div>
+    
+      <div id="banner">
+        <table id="primary-menu" summary="Navigation elements." border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td id="home" rowspan="2" width="22%" onclick="window.location.href = '/';"></td>
+            <td class="primary-links" valign="middle">
+              <?php print theme('links', $primary_links, array('class' => 'links', 'id' => 'navlist')) ?>
+            </td>
+            <td td class="login-box" valign="middle" >
+          	  <p> 
+          	  <?php if (!$logged_in): ?>
+                	<a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>   
+                	<a class="active" href="/user"><img src="/sites/all/themes/saw/klodka.png" alt=""> Sign in </a>  </p>
+                <?php else: ?>
+                	<a class="active" href="/logout"><img src="/sites/all/themes/saw/kreska.png" alt=""> Logout </a>  </p>
+                <?php endif; ?>
+            </td>
+          </tr>
+          <tr>
+            <td class="secondary-links" width="50%" valign="middle">
+              <?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
+            </td>
+            <td td class="search-box" valign="middle" width="20%">
+              <?php print $search_box ?>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div id="main">
-        <?php if ($title != ""): ?>
-
-          <h1 class="title"><?php print $title ?></h1>
-
-          <?php if ($tabs != ""): ?>
-            <div class="tabs"><?php print $tabs ?></div>
+      
+      <table id="content" border="0" cellpadding="15" cellspacing="0" width="100%">
+        <tr>
+          <?php if ($left != ""): ?>
+          <td id="sidebar-left">
+            <?php print $left ?>
+          </td>
           <?php endif; ?>
-
-        <?php endif; ?>
-
-        <?php if ($show_messages && $messages != ""): ?>
-          <?php print $messages ?>
-        <?php endif; ?>
-
-        <?php if ($help != ""): ?>
-            <div id="help"><?php print $help ?></div>
-        <?php endif; ?>
-
-      <!-- start main content -->
-      <?php print $content; ?>
-      <?php print $feed_icons; ?>
-      <!-- end main content -->
-
-      </div><!-- main -->
-    </td>
-    <?php if ($right != ""): ?>
-    <td id="sidebar-right">
-      <?php print $right ?>
-    </td>
-    <?php endif; ?>
-  </tr>
-</table>
-
-<div id="footer">
-  <div id="footer_container">
-    <table id="footer-menu-list">
-      <tr>
-        <td colspan="3" id="copyright">
-          <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
-        </td>
-      </tr>
-      <tr>
-        <td>  
-          <?php print $footer1; ?>
-        </td>
-        <td>  
-          <?php print $footer1; ?>
-        </td>
-        <td>  
-          <?php print $footer1; ?>
-        </td>
-      </tr>
-    </table>
+      
+          <td valign="top">
+            <div id="breadcrumb-container">
+              <?php print $breadcrumb ?>
+            </div>
+            <div id="main">
+              <?php if ($title != ""): ?>
+      
+                <h1 class="title"><?php print $title ?></h1>
+      
+                <?php if ($tabs != ""): ?>
+                  <div class="tabs"><?php print $tabs ?></div>
+                <?php endif; ?>
+      
+              <?php endif; ?>
+      
+              <?php if ($show_messages && $messages != ""): ?>
+                <?php print $messages ?>
+              <?php endif; ?>
+      
+              <?php if ($help != ""): ?>
+                  <div id="help"><?php print $help ?></div>
+              <?php endif; ?>
+      
+            <!-- start main content -->
+            <?php print $content; ?>
+            <?php print $feed_icons; ?>
+            <!-- end main content -->
+      
+            </div><!-- main -->
+          </td>
+          <?php if ($right != ""): ?>
+          <td id="sidebar-right">
+            <?php print $right ?>
+          </td>
+          <?php endif; ?>
+        </tr>
+      </table>
+      
+      <div class="push"></div>
+      
   </div>
-</div>
+  
+  <div id="footer">
+    <div id="footer_container">
+      <table id="footer-menu-list">
+        <tr>
+          <td colspan="3" id="copyright">
+            <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
+          </td>
+        </tr>
+        <tr>
+          <td>  
+            <?php print $footer1; ?>
+          </td>
+          <td>  
+            <?php print $footer1; ?>
+          </td>
+          <td>  
+            <?php print $footer1; ?>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
 </body>
 </html>

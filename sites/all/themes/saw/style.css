@@ -1,15 +1,24 @@
+body.admin-menu {
+  margin-top: 0px !important;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0; 
-  height: 100%;
   background: #164362;
 }
+
 #page {
   min-width: 1200px;
   min-height: 100%;
+  height: 100%;
   color: #343331;
   text-align: center;
-  background: #1d4c6a;  
+  background: #F0F5F9;  
 }
 p, td, li, ul, ol {
 }
@@ -416,9 +425,25 @@ ul.links li {
   color: #fdfdfd;
 } 
 
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto 0;
+  margin-bottom: -93px;
+}
+
+#footer,
+.push {
+  margin-bottom: -80px;
+  clear: both;
+}
+
+#footer {
+  width: 100%;
+}
+
 #footer table {
   margin: 0px auto 0 auto;
-  margin-bottom: 10px;
   border: 0px; border: none; border-collapse: separate;
 }
 #footer_container {
@@ -428,7 +453,6 @@ ul.links li {
 
 #footer {
   background: #164362 url('images/footer.jpg') repeat-x top;
-  
   border: none;
   border-collapse: separate;
   margin: auto;
