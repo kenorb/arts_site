@@ -972,7 +972,8 @@ div.admin-panel .body {
   #quickbar {
     top: 170px;
     left: 450px;
-  }
+    overflow: hidden;
+}
   
   div#quickbar div.shadow {
     background: none;
@@ -986,11 +987,31 @@ div.admin-panel .body {
   }
   
   #quickbar span.icon {
-    background-repeat: no-repeat  !important;
-    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important;
     display: inline-block !important;
   }
   
+  /* @TODO: Temporary link just show other icons in the toolbar */
+  #quickbar .path-manage-events span.icon {
+    background-image: url('images/toolbar-icons/online.png') !important;
+  }
+
+  /* @TODO: Temporary link just show other icons in the toolbar */
+  #quickbar .path-manage-items span.icon {
+    background-image: url('images/toolbar-icons/news.png') !important;
+  }
+  
+  /* @TODO: Temporary link just show other icons in the toolbar */
+  #quickbar .path-manage-arts span.icon {
+    background-image: url('images/toolbar-icons/chat.png') !important;
+  }
+
+
+  #quickbar .path-user span.icon {
+    background-image: url('images/toolbar-icons/account.png') !important;
+  }
+
   #quickbar .path-messages span.icon {
     background-image: url('images/toolbar-icons/message.png') !important;
   }
@@ -1010,7 +1031,7 @@ div.admin-panel .body {
   div#quickbar div.depth-0 .icon {
     display: block;
     width: 68px;
-    height: 32px;
+    height: 35px;
     margin: 0 auto;
   }
   
@@ -1047,7 +1068,7 @@ div.admin-panel .body {
   }
   
   div#quickbar div.depth-0 {
-    height: auto;
+    height: 65px;
   }
     
 

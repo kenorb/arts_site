@@ -19,7 +19,6 @@ function feature_users_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
-  $handler->display->display_options['title'] = 'Authors';
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -94,7 +93,6 @@ function feature_users_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['author_list'] = array(
     t('Defaults'),
-    t('Authors'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -122,8 +120,6 @@ function feature_users_views_default_views() {
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->display->display_options['display_comment'] = 'Who’s online from art critics and moderators';
-  $handler->display->display_options['use_more'] = TRUE;
-  $handler->display->display_options['use_more_always'] = TRUE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -196,8 +192,6 @@ function feature_users_views_default_views() {
 
   /* Display: Moderators */
   $handler = $view->new_display('block', 'Moderators', 'block_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Who is online';
   $translatables['who_is_online'] = array(
     t('Defaults'),
     t('more'),
@@ -210,7 +204,6 @@ function feature_users_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('Moderators'),
-    t('Who is online'),
   );
 
   $views[$view->name] = $view;
