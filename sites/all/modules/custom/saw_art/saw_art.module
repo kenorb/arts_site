@@ -9,3 +9,17 @@
  *
  */
 
+	function saw_art_form_alter (&$form, $form_state, $form_id)
+	{
+		if ($form_id == 'art_node_form')
+		{
+			drupal_add_js (drupal_get_path ('module', 'saw_art') . "/node_edit_type_art.js", "saw_art");
+			
+			$form ['#validate'][] = 'saw_art_form_validate';
+		}
+	}
+	
+	function saw_art_form_validate (&$form, $form_state, $form_id)
+	{
+		drupal_add_js (drupal_get_path ('module', 'saw_art') . "/node_edit_type_art.js", "saw_art");
+	}
