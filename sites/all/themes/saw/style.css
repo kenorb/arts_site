@@ -963,20 +963,19 @@ div.admin-panel .body {
   }
   
   #quickbar {
-    top: 170px;
     left: 450px;
     overflow: hidden;
     background: url('images/toolbar-background.png') repeat-x top left #215c80 !important;
-  }
+}
   
   #quickbar.stick {
     top: 0px;
     background-color: #215c80;
-    position: fixed;
     border-bottom-left-radius: 11px;
     border-bottom-right-radius: 11px;
     box-shadow: 0px 2px 4px #000;
     border-bottom: 1px solid #8ad;
+    position: fixed;
   }
   
   div#quickbar div.shadow {
@@ -987,8 +986,8 @@ div.admin-panel .body {
   div#quickbar {
     background: none;
     position: absolute;
-    top: 94px;
-  }
+    top: 93px;
+}
   
   #quickbar span.icon {
     background-repeat: no-repeat !important;
