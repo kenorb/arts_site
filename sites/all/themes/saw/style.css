@@ -965,7 +965,7 @@ div.admin-panel .body {
   #toolbar {
     width: 100%;
     background: url('images/toolbar-background.png') repeat-x top left #215c80;
-    height: 66px;
+    height: 67px;
     clear: both;
   }
   
@@ -973,7 +973,18 @@ div.admin-panel .body {
     top: 170px;
     left: 450px;
     overflow: hidden;
-}
+    background: url('images/toolbar-background.png') repeat-x top left #215c80 !important;
+  }
+  
+  #quickbar.stick {
+    top: 0px;
+    background-color: #215c80;
+    position: fixed;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+    box-shadow: 0px 2px 4px #000;
+    border-bottom: 1px solid #8ad;
+  }
   
   div#quickbar div.shadow {
     background: none;
@@ -983,7 +994,7 @@ div.admin-panel .body {
   div#quickbar {
     background: none;
     position: absolute;
-    top: 88px;
+    top: 94px;
   }
   
   #quickbar span.icon {
@@ -1031,13 +1042,13 @@ div.admin-panel .body {
   div#quickbar div.depth-0 .icon {
     display: block;
     width: 68px;
-    height: 35px;
+    height: 30px;
     margin: 0 auto;
   }
   
   div#quickbar div.depth-0 ul.links li {
     text-align: center;
-    padding: 8px 0;
+    padding: 9px 0 0 0;
   }
     
   div#quickbar div.depth-0 ul.links li a,
@@ -1046,7 +1057,7 @@ div.admin-panel .body {
     border-radius: 0px;
     margin: 0;
     width: 68px;
-    height: 64px;
+    height: 66px;
     text-align: center;
   }
   
@@ -1061,14 +1072,15 @@ div.admin-panel .body {
   
   div#quickbar div.depth-0 ul.links li.active a
   {
-  width: 68px;
+    width: 68px;
     margin: 0;
     background: none;
     display: inline-block;
   }
   
   div#quickbar div.depth-0 {
-    height: 65px;
+    height: 66px;
+    padding: 0px;
   }
     
 
