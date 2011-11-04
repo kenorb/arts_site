@@ -239,19 +239,11 @@ ul.links li {
   line-height: 2.2em;
   border: 1px solid;
   border-color: #fff #69c #69c #fff;
-background-image: linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-background-image: -o-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-
-background-image: -webkit-gradient(
-  linear,
-  left bottom,
-  left top,
-  color-stop(0, rgb(209,209,209)),
-  color-stop(1, rgb(237,237,237))
-);
+  background-image: linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
   border-radius: 5px;
 }
 .tabs ul.primary li {
@@ -261,7 +253,7 @@ background-image: -webkit-gradient(
   background-color: #fff;
   padding: 5px 10px;
   border-color: #69C;
-  border-width: 2px;
+  border-width: 1px;
   border-style: none solid solid none; /* LTR */
   border-radius: 3px;
   height: auto;
@@ -322,7 +314,7 @@ background-image: -webkit-gradient(
   background-color: #fff;
   padding: 5px 10px;
   border-color: #69C;
-  border-width: 2px;
+  border-width: 1px;
   border-style: none solid solid none; /* LTR */
   border-radius: 3px;
   height: auto;
