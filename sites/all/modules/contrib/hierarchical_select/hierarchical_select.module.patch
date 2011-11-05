@@ -1,0 +1,13 @@
+Index: hierarchical_select.module
+===================================================================
+--- hierarchical_select.module	(revision 165)
++++ hierarchical_select.module	(working copy)
+@@ -1012,7 +1012,7 @@
+       $label = trim($element['#value']['hierarchical_select']['create_new_item']['input']);
+       $selects = isset($element['#value']['hierarchical_select']['selects']) ? $element['#value']['hierarchical_select']['selects'] : array();
+       $depth = count($selects);
+-      $parent = ($depth > 0) ? end($selects) : 0;
++      $parent = ($depth > 0) ? end($selects) : (@$config['params']['tid'] ? $config['params']['tid'] : 0);
+ 
+       // Disallow items with empty labels; allow the user again to create a
+       // (proper) new item.
