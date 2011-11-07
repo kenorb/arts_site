@@ -7,12 +7,11 @@
   <?php print $head ?>
   <title><?php print $head_title ?></title>
   <?php print $styles ?>
-  
   <?php print $scripts ?>
-  <?php print $closure ?>
 </head>
 
 <body>
+<?php print $closure ?>
 <div id="page">
 
   <div class="wrapper">
