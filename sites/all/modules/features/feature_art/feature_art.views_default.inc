@@ -94,7 +94,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['link_to_node'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_image_fid']['format'] = 'imagefield__lightshow2_compact__Thumb_200__original';
+  $handler->display->display_options['fields']['field_image_fid']['format'] = 'imagefield__lightbox2_compact__Thumb_200__original';
   $handler->display->display_options['fields']['field_image_fid']['multiple']['group'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['multiple']['multiple_reversed'] = 0;
   /* Sort criterion: Node: Post date */
