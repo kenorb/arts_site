@@ -85,6 +85,8 @@ function feature_users_views_default_views() {
 
   /* Display: Top authors */
   $handler = $view->new_display('block', 'Top authors', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Top authors';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -192,6 +194,8 @@ function feature_users_views_default_views() {
 
   /* Display: Moderators */
   $handler = $view->new_display('block', 'Moderators', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Online critics and moderators';
   $translatables['who_is_online'] = array(
     t('Defaults'),
     t('more'),
@@ -204,6 +208,7 @@ function feature_users_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('Moderators'),
+    t('Online critics and moderators'),
   );
 
   $views[$view->name] = $view;
