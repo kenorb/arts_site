@@ -1,0 +1,11 @@
+name = "404 Blocks"
+description = "On a 404 page, ensure blocks and Primary links are displayed properly."
+
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "blocks404"
+datestamp = "1298618889"
+
