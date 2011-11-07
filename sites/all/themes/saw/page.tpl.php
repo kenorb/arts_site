@@ -108,18 +108,12 @@
     <div id="footer_container">
       <table id="footer-menu-list">
         <tr>
-          <td colspan="3" id="copyright">
+          <td id="copyright">
             <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
           </td>
         </tr>
         <tr>
-          <td>  
-            <?php print $footer1; ?>
-          </td>
-          <td>  
-            <?php print $footer1; ?>
-          </td>
-          <td>  
+          <td id="footer_menu">  
             <?php print $footer1; ?>
           </td>
         </tr>

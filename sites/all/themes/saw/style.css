@@ -505,6 +505,10 @@ ul.links li {
   color: #ddd;
 }
 
+#footer #footer_menu .block .content .menu {
+  margin: 0 auto;
+}
+
 #footer .block {
   margin-bottom: 0;
 }
@@ -522,10 +526,14 @@ ul.links li {
 
 #footer li {
   text-align: left;
-  float: left;
-  list-style: disc;
-  margin: 5px 5px 5px 15px;
-  
+  display: inline;
+  list-style: none;
+  margin: 5px 3px 5px 8px;
+  background: url('bullet-white.png') left 0.8px no-repeat;'
+}
+
+#footer li a {
+  margin-left: 20px;
 }
 
 footer-menu-list {
