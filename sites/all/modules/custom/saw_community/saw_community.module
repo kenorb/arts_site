@@ -9,3 +9,11 @@
  *
  */
 
+function saw_preprocess_forums (&$variables)
+{
+	$variables ['links'] [] =
+		array (
+			'title' => 'manage my posts',
+			'href' => 'manage/forums'
+		);
+}

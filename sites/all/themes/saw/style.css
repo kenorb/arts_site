@@ -214,9 +214,10 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 #secondary-menu .secondary-links {
   font-size: 0.85em;
 }
+
 ul.links li {
-  border-left: 1px solid #ff8c00; /* LTR */
 }
+
 #navlist li {
   border-left: 1px solid #2e4d59; /* LTR */
 }
@@ -884,6 +885,7 @@ div.admin-panel .body {
     font-size: 0.95em;
     font-weight: bold;
     padding: 5px 12px;
+    text-transform: lowercase;
   }
   
   #forum .links a:hover {
@@ -918,16 +920,11 @@ div.admin-panel .body {
   }
   
 
-  #forum td.forum .name a:hover  {
+  #forum td.forum .name a:hover,
+  #forum td.container .name a:hover {
     background-color: #3a6c87 !important;
     color: #fff !important;
     text-shadow: 1px 0px 1px #258; 
-  }
-  
-  #forum td.container .name a:hover  {
-    background-color: #888 !important;
-    color: #fff !important;
-    text-shadow: 1px 1px 1px #444; 
   }
   
   #forum tr.even,
@@ -965,15 +962,6 @@ div.admin-panel .body {
   #forum td.container {
     font-size: 1.1em;
     padding-left: 8px !important;
-  }
-  
-  #forum td.container {
-    height: auto !important;
-  }
-  
-  #forum td.container a {
-    color: #000 !important;
-    
   }
   
   #forum tr td.forum {
