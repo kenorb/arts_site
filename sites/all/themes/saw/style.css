@@ -839,6 +839,7 @@ div.admin-panel .body {
     font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
   }
   
+  
   #forum table {
     width: 100%;
     margin: 20px 0 15px 0;
@@ -879,21 +880,62 @@ div.admin-panel .body {
     margin-top: 15px;
   }
   
+  #forum .links .search span {
+  	font-weight: bold;
+  	margin-right: 0px;
+  	color: #336699;
+  }
+  
+  .forums-search {
+  }
+  
+  td.forums-search-post-body {
+  	width: 300px;
+  	height: 4em;
+  	
+  }
+  
+  #forum .links .search input[type=text] {
+    background: transparent;
+    border: 2px solid #336699;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 0.95em;
+    padding: 5px 7px;
+    color: #239;
+  }
+  
+  #forum .links .search input[type=submit] {
+  	background: transparent;
+  	color: #239;
+    border: 2px solid #336699;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 0.95em;
+    padding: 4px 7px;
+    margin: 0;
+  }
+  
+  #forum .links .search input[type=submit]:hover {
+	background: #336699;
+	color: #fff;
+	cursor: pointer;
+  }
+  
+  
   #forum .links a {
     border: 2px solid #336699;
     border-radius: 7px 7px 7px 7px;
     font-size: 0.95em;
-    font-weight: bold;
     padding: 5px 12px;
     text-transform: lowercase;
+    color: #239;
   }
   
   #forum .links a:hover {
     background: #336699;
     color: #fff;
     font-weight: normal;
-
   }
+  
 
   #forum tr.index-0 td {
     height: 48px;
