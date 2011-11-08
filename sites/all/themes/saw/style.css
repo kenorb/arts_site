@@ -11,7 +11,10 @@ body {
   padding: 0; 
   background: #164362;
   font-family: Verdana;
-  
+}
+
+body.cke_show_borders {
+  background: #fff;				
 }
 
 table {
@@ -812,8 +815,25 @@ div.admin-panel .body {
 .calendar-calendar .month-view .full td.single-day .calendar-empty,
 .calendar-calendar .month-view .full td.single-day.empty,
 .calendar-calendar .month-view .full td.date-box.empty {
-  background-color: #ede9e2;	
+  display: none;
+  color: #bbb;	
 }
+
+.calendar-calendar td {
+  border: 1px dashed #999;				
+}
+
+.month-view td.week {
+	border: 0px !important;
+	vertical-align: middle;
+}
+
+.month-view td.week div.inner {
+	margin-right: 10px;
+	margin-top: 20px; 
+}
+
+
 
 
 .view-content .calendar-calendar .date-prev a, .view-content .calendar-calendar .date-next a {
@@ -855,6 +875,9 @@ div.admin-panel .body {
 /* view-filters: END */
 
 
+
+/* views-table: BEGIN */
+
   table.views-table {
     width: 100%;
     margin: 20px 0 15px 0;
@@ -883,6 +906,130 @@ div.admin-panel .body {
     max-width: 120px;
     margin-right: 15px;
   }
+  
+/* views-table: END */
+
+
+
+
+/* featured-events: BEGIN */
+
+  .featured-events {
+    font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+    border-radius: 6px;
+  }
+  
+  .featured-events .description p {
+  }
+  
+  .featured-events table {
+    width: 100%;
+  }
+  
+  .featured-events-row {
+    border-radius: 6px;
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    min-height: 120px;
+    background: #d5ead9;
+  }
+  
+  .featured-events .image {
+    width: 140px;
+    height: 120px;
+    padding: 4px;
+    margin-right: 5px;
+    border-radius: 6px;
+  }
+  
+  .featured-events .left-column,
+  .featured-events .middle-column,
+  .featured-events .right-column {
+    vertical-align: top;
+  }
+  
+  .featured-events .left-column {
+    width: 150px;
+  }
+  
+  .featured-events .right-column {
+    width: 280px;
+  }
+
+  .featured-events .location {
+    font-size: 1.1em;
+  }
+  
+  .featured-events .title {
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2px;
+  }
+  
+  .featured-events a {
+    color: #225776 !important;
+    border-bottom: none !important;
+	}
+	
+	.featured-events a:hover {
+    text-decoration: underline;
+	}
+	
+	.background-0,
+	.background-1,
+	.background-2,
+	.background-3,
+	.background-4 {
+    background-image: url('images/events-backgrounds.png');
+    background-repeat: repeat-x;
+	}
+	
+	.background-0 { background-position: left 0; }
+	.background-1 { background-position: left -200px; }
+	.background-2 { background-position: left -400px; }
+	.background-3 { background-position: left -600px; }
+	.background-4 { background-position: left -800px; }
+	
+	.featured-events .datetime {
+    font-weight: bold;
+    font-size: 1.2em;
+	}
+	
+	.featured-events .datetime .date {
+	}
+	
+	.featured-events .reservations .available,
+	.featured-events .reservations .occupied {
+    font-size: 1.2em;
+    font-weight: bold
+	}
+	
+  .featured-events .reservations .available {
+    color: #292;
+  }
+  
+  .featured-events .reservations .occupied {
+    color: #229;
+  }
+
+	.featured-events .price .currency,
+	.featured-events .price .amount {
+    font-size: 1.8em;
+	}
+  
+  .featured-events .price .currency {
+    color: #888;
+  }
+  
+  .featured-events .price .amount {
+    color: #225776;
+    font-weight: bold;
+  }
+
+/* featured-events: END */
+
+
 
 
 /* #forum: BEGIN */

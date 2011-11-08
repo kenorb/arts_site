@@ -250,6 +250,49 @@ function feature_events_views_default_views() {
   );
   $handler->display->display_options['filters']['date_filter']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'Upcoming';
+
+  /* Display: Featured */
+  $handler = $view->new_display('block', 'Featured', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'event-list';
+  $handler->display->display_options['defaults']['items_per_page'] = FALSE;
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Node: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Node: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = '';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: Node: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter: Content: Featured in (field_featured_in) */
+  $handler->display->display_options['filters']['field_featured_in_nid']['id'] = 'field_featured_in_nid';
+  $handler->display->display_options['filters']['field_featured_in_nid']['table'] = 'node_data_field_featured_in';
+  $handler->display->display_options['filters']['field_featured_in_nid']['field'] = 'field_featured_in_nid';
+  $handler->display->display_options['filters']['field_featured_in_nid']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_featured_in_nid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['block_description'] = 'Upcoming';
   $translatables['Events'] = array(
     t('Defaults'),
     t('Calendar'),
@@ -274,6 +317,7 @@ function feature_events_views_default_views() {
     t('Week view'),
     t('Block view'),
     t('Upcoming'),
+    t('Featured'),
   );
 
   $views[$view->name] = $view;
