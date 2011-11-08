@@ -14,3 +14,18 @@ function saw_art_init ()
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/toolbar.js", "saw_users");
 }
 
+/**
+ * Views SQL Query modifier
+ * Provides:
+ *  - Adding more informations to the location.name such as country and city
+ * @param view $view
+ */
+function saw_users_views_query_alter (view &$view)
+{
+	foreach ($view -> query -> where as &$where)
+		if (array_key_exists ('clauses', $where))
+			foreach ($where ['clauses'] as $name => &$clause)
+				if (($position = strpos ($clause, 'UPPER(location.name)')) !== false)
+				// If view is using location.name field then replace the occurences with more descriptional data such as country and city
+					$clause = str_replace ('UPPER(location.name)', "UPPER(CONCAT(CONCAT(CONCAT(CONCAT(location.name, ' '), location.country), ' '), location.city))", $clause);
+}

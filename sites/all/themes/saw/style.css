@@ -833,12 +833,64 @@ div.admin-panel .body {
   padding-left: 1.63em;
 }
 
-/* #forum: BEGIN */
 
-  #forum {
+
+/* view-filters: BEGIN */
+
+  .view-filters .views-exposed-widget label {
     font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+    color: #3a6c87;
+    display: inline;
   }
   
+  .view-filters .edit-in-wrapper,
+  .view-filters .views-widget {
+    display: inline-block;
+  }
+  
+  .views-exposed-form .views-exposed-widget .form-submit {
+    margin-top: 0px;
+  }
+
+/* view-filters: END */
+
+
+  table.views-table {
+    width: 100%;
+    margin: 20px 0 15px 0;
+    color: #3a6c87;
+    border-collapse: collapse;
+    border: 0px;
+  }
+  
+  table.views-table th,
+  table.views-table td {
+    border: 0;
+    padding: 6px 8px;
+  }
+  
+  table.views-table th {
+    color: #555;
+    border-bottom: 1px solid #aaa; 
+  }
+
+  table.views-table tr {
+    background: none;
+    border: 0;
+  }
+  
+  .views-exposed-form .form-text {
+    max-width: 120px;
+    margin-right: 15px;
+  }
+
+
+/* #forum: BEGIN */
+
+  #forum,
+  table.views-table {
+    font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+  }
   
   #forum table {
     width: 100%;
@@ -895,7 +947,10 @@ div.admin-panel .body {
   	
   }
   
-  #forum .links .search input[type=text] {
+  #forum .links .search input[type=text],
+  #forum .links .search input[type=submit],
+  .views-exposed-widget input,
+  .views-exposed-widget select {
     background: transparent;
     border: 2px solid #336699;
     border-radius: 7px 7px 7px 7px;
@@ -904,17 +959,12 @@ div.admin-panel .body {
     color: #239;
   }
   
-  #forum .links .search input[type=submit] {
-  	background: transparent;
-  	color: #239;
-    border: 2px solid #336699;
-    border-radius: 7px 7px 7px 7px;
-    font-size: 0.95em;
-    padding: 4px 7px;
-    margin: 0;
-  }
-  
-  #forum .links .search input[type=submit]:hover {
+  #forum .links .search input[type=submit]:hover,
+  #forum .links .search input[type=submit]:focus,
+  .views-exposed-widget input:hover,
+  .views-exposed-widget input:focus,
+  .views-exposed-widget select:hover,
+  .views-exposed-widget select:focus {
 	background: #336699;
 	color: #fff;
 	cursor: pointer;
@@ -955,18 +1005,17 @@ div.admin-panel .body {
     font-style: italic;
   }
   
-  #forum table tr:hover td {
-    border-top: 1px dotted #ccc !important;
-    border-bottom: 1px dotted #ccc !important;
-    background-color: rgba(0, 0, 255, 0.05) !important;
+  
+  
+  #forum table tr:hover td,
+  table.views-table tr:hover td {
+    background-color: #ddd !important;
   }
   
 
   #forum td.forum .name a:hover,
   #forum td.container .name a:hover {
-    background-color: #3a6c87 !important;
-    color: #fff !important;
-    text-shadow: 1px 0px 1px #258; 
+    text-decoration: underline;
   }
   
   #forum tr.even,
