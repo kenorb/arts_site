@@ -204,7 +204,7 @@ function _wysiwyg_imageupload_handle_node_delete($nid) {
     $entities[] = $entity;
   }
   // Delete all inline entities for all version.
-  db_query('DELETE FROM {wysiwyg_imageupload_entity_revision}  AS r USING {wysiwyg_imageupload_entity} AS e WHERE e.iid=r.iid AND nid=%d', $nid);
+  db_query('DELETE FROM {wysiwyg_imageupload_entity_revision} USING {wysiwyg_imageupload_entity_revision}, {wysiwyg_imageupload_entity} WHERE {wysiwyg_imageupload_entity}.iid={wysiwyg_imageupload_entity_revision}.iid AND nid=%d', $nid);
   db_query('DELETE FROM {wysiwyg_imageupload_entity} WHERE nid=%d', $nid);
 
   // Cleanup files which are no longer used.

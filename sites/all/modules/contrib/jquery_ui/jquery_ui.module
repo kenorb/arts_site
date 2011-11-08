@@ -1,5 +1,4 @@
 <?php
-// $Id: jquery_ui.module,v 1.6.2.3 2010/11/10 20:52:26 sun Exp $
 
 /**
  * @file
@@ -87,8 +86,7 @@ function jquery_ui_get_path() {
   // Libraries API integration.
   if (function_exists('libraries_get_path')) {
     $path = libraries_get_path('jquery.ui');
-    // Earlier/current versions of Libraries API return a default path; only
-    // later versions return FALSE.
+    // Libraries API 1.x returns a default path; 2.x returns FALSE.
     if ($path !== FALSE && !file_exists($path)) {
       $path = FALSE;
     }
@@ -97,8 +95,10 @@ function jquery_ui_get_path() {
   elseif (file_exists('./sites/all/libraries/jquery.ui')) {
     $path = 'sites/all/libraries/jquery.ui';
   }
-  // Check the module directory for backwards compatibility.
-  else {
+
+  // Check the module directory for backwards compatibility if other methods
+  // failed.
+  if (!$path) {
     // drupal_get_path() is not available during Drupal installation.
     if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE == 'install') {
       $path = drupal_substr(dirname(__FILE__), drupal_strlen(getcwd()) + 1);

@@ -1,9 +1,6 @@
 
 Wysiwyg 6.x-2.x, xxxx-xx-xx
 ---------------------------
-#1153458 by TwoD: Fixed TinyMCE 'Verify HTML' setting ignored.
-#1125582 by TwoD: Fixed TinyMCE fullscreen plugin deletes content.
-#1078834 by sun: Fixed coding standards errors.
 
 
 Wysiwyg 6.x-2.4, 2011-06-19
