@@ -5,18 +5,22 @@
       <tbody>
         <tr>
           <td class="button groups">
-            <div class="icon">
-            </div>
-            <div class="title">
-              GROUPS
-            </div>
+            <a href="/group">
+	            <div class="icon">
+	            </div>
+	            <div class="title">
+	              GROUPS
+	            </div>
+             </a>
           </td>
           <td class="button forums">
-            <div class="icon">
-            </div>
-            <div class="title">
-              FORUMS
-             </div>
+            <a href="/forum">
+	            <div class="icon">
+	            </div>
+	            <div class="title">
+	              FORUMS
+	             </div>
+              </a>
           </td>
         </tr>
       </tbody>
