@@ -1161,6 +1161,10 @@ div.admin-panel .body {
     margin: 0 auto;
   }
   
+  .community-view td.active {
+    background-color: transparent !important;
+  }
+  
   .community-view .buttons {
     padding: 0px 15px 15px 15px;
   }
