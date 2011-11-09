@@ -920,6 +920,138 @@ function feature_users_views_default_views() {
 
   $views[$view->name] = $view;
 
+  // Exported view: recent_activity
+  $view = new view;
+  $view->name = 'recent_activity';
+  $view->description = 'Recent activity on a site.';
+  $view->tag = 'recent_activity';
+  $view->base_table = 'activity';
+  $view->human_name = 'recent_activity';
+  $view->core = 6;
+  $view->api_version = '3.0-alpha1';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Defaults */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['link_display'] = 'user';
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = 25;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Activity: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'activity';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = 0;
+  /* Relationship: Activity: User */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'activity';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['required'] = 1;
+  /* Field: Activity: Message */
+  $handler->display->display_options['fields']['message']['id'] = 'message';
+  $handler->display->display_options['fields']['message']['table'] = 'activity_messages';
+  $handler->display->display_options['fields']['message']['field'] = 'message';
+  $handler->display->display_options['fields']['message']['label'] = '';
+  $handler->display->display_options['fields']['message']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['message']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['message']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['message']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['message']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['message']['alter']['html'] = 0;
+  /* Field: Activity: Activity Creation Date */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'activity';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['created']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['created']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['created']['date_format'] = 'time ago';
+  /* Sort criterion: Activity: Activity Creation Date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'activity';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Activity: Activity Unique ID */
+  $handler->display->display_options['sorts']['aid']['id'] = 'aid';
+  $handler->display->display_options['sorts']['aid']['table'] = 'activity';
+  $handler->display->display_options['sorts']['aid']['field'] = 'aid';
+  $handler->display->display_options['sorts']['aid']['order'] = 'DESC';
+  /* Filter: Activity: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'activity';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['path'] = 'activity/all';
+  $handler->display->display_options['menu']['name'] = 'navigation';
+
+  /* Display: User */
+  $handler = $view->new_display('page', 'User', 'user');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'recent-activity';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Argument: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['relationship'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['uid']['validate_type'] = 'user';
+  $handler->display->display_options['arguments']['uid']['validate_options']['restrict_roles'] = 0;
+  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['uid']['not'] = 0;
+  $handler->display->display_options['path'] = 'user/%/activity';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Activity';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'navigation';
+
+  /* Display: Recent Activity */
+  $handler = $view->new_display('block', 'Recent Activity', 'recent_activity');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Recent Activity';
+  $translatables['recent_activity'] = array(
+    t('Defaults'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort By'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('Node'),
+    t('User'),
+    t('Activity Creation Date'),
+    t('Page'),
+    t('All'),
+    t('Recent Activity'),
+  );
+
+  $views[$view->name] = $view;
+
   // Exported view: who_is_online
   $view = new view;
   $view->name = 'who_is_online';

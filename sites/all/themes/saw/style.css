@@ -1137,6 +1137,36 @@ div.admin-panel .body {
 
 /* featured-events: END */
 
+  .recent-activity-row {
+    padding: 4px 8px;
+    margin-bottom: 3px;
+    padding-bottom: 5px;
+    font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .recent-activity-row a {
+    color: #336699 !important;
+    text-decoration: none;
+    border-bottom: 0 !important;
+  }
+  
+  .recent-activity-row a:hover {
+    text-decoration: underline;
+  }
+  
+  .recent-activity-row .time-elapsed {
+    font-size: 0.9em;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+
+  .recent-activity-row .message {
+    font-size: 0.95em;
+    width: 140px;
+    text-align: left;
+    font-weight: bold;
+  }
 
 
 
