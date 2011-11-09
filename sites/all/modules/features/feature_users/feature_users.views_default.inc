@@ -270,17 +270,17 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
   $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['relationship'] = 'nid_or_self';
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Forum';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'forum';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['reduce'] = 0;
   $handler->display->display_options['filters']['term_node_tid_depth']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth']['vid'] = '2';
   $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth']['error_message'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '2';
   /* Filter: Search: Search Terms */
   $handler->display->display_options['filters']['keys']['id'] = 'keys';
