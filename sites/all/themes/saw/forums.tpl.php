@@ -24,7 +24,7 @@
 		<ul class="links">
 			<li class="search">
 				<span>find</span> <input type="text" name="keys" />
-				<input type="text" style="display:none" name="forum" value="<?php echo $variables ['tid'] ?>" />
+				<input type="text" style="display:none" name="forum" value="<?php echo @$variables ['tid'] ? $variables ['tid'] : 'All'; ?>" />
 				<input type="submit" value="go" />
 			</li>
 		<?php $links = theme('links', $links); print substr ($links, 18, strlen ($links) - 18 - 5);  ?>
