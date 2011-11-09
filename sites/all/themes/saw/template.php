@@ -31,11 +31,12 @@ function saw_preprocess_forum_list (&$variables) {
 		// This forum is a container
 			for ($j = 0; $j < count ($keys); $j++)
 			// Traversing all the forums again
-				foreach ($variables ['forums'] [$keys [$j]] -> parents as $parent)
-				// Traversing this forum parents
-					if ($parent == $keys [$i])
-					// If this forum has visible parent container then it is destroyed
-						unset ($variables ['forums'] [$keys [$j]]);
+				if (@$variables ['forums'] [$keys [$j]] -> parents)
+					foreach ($variables ['forums'] [$keys [$j]] -> parents as $parent)
+					// Traversing this forum parents
+						if ($parent == $keys [$i])
+						// If this forum has visible parent container then it is destroyed
+							unset ($variables ['forums'] [$keys [$j]]);
 }
 
 ?>
