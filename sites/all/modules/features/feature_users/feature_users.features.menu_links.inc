@@ -161,8 +161,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-50',
+    'expanded' => '0',
+    'weight' => '0',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/events
@@ -170,36 +170,13 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'manage/events',
     'router_path' => 'manage/events',
-    'link_title' => 'Events',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'Manage Events',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-49',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/forums
-  $menu_links['navigation:manage/forums'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/forums',
-    'router_path' => 'manage/forums',
-    'link_title' => 'Forum Topics',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Manage my forum topics',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
+    'expanded' => '0',
     'weight' => '0',
     'parent_path' => 'workspace/%',
   );
@@ -214,8 +191,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-48',
+    'expanded' => '0',
+    'weight' => '0',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:node/add/art
@@ -223,12 +200,8 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/art',
     'router_path' => 'node/add/art',
-    'link_title' => 'Add Art',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'Art',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
@@ -242,18 +215,14 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/event',
     'router_path' => 'node/add/event',
-    'link_title' => 'Add Event',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Here you can add a new event.',
-      ),
-    ),
+    'link_title' => 'Event',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-50',
+    'weight' => '0',
     'parent_path' => 'manage/events',
   );
   // Exported menu link: navigation:node/add/forum
@@ -273,17 +242,17 @@ function feature_users_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '0',
-    'parent_path' => 'manage/forums',
+    'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:node/add/item
   $menu_links['navigation:node/add/item'] = array(
     'menu_name' => 'navigation',
     'link_path' => 'node/add/item',
     'router_path' => 'node/add/item',
-    'link_title' => 'Add Item',
+    'link_title' => 'Item',
     'options' => array(
       'attributes' => array(
-        'title' => '',
+        'title' => 'Buy & Exchange',
       ),
     ),
     'module' => 'system',
@@ -291,7 +260,7 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-50',
+    'weight' => '0',
     'parent_path' => 'manage/items',
   );
   // Exported menu link: navigation:workspace/%
@@ -299,36 +268,31 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'workspace/%',
     'router_path' => 'workspace/%',
-    'link_title' => 'Manage',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'My workspace',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
     'expanded' => '0',
-    'weight' => '-50',
+    'weight' => '-10',
   );
   // Translatables
   // Included for use with string extractors like potx.
   t('Account');
-  t('Add Art');
-  t('Add Event');
-  t('Add Item');
   t('Add Topic');
   t('Add content');
+  t('Art');
   t('Arts');
   t('Calendar');
   t('Chat');
-  t('Events');
-  t('Forum Topics');
+  t('Event');
+  t('Item');
   t('Items');
-  t('Manage');
+  t('Manage Events');
   t('Market');
   t('Message');
+  t('My workspace');
   t('News');
   t('Online');
 

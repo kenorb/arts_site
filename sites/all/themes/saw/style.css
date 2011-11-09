@@ -986,12 +986,34 @@ div.admin-panel .body {
     width: 147px;
 	}
 	
+	.background-0 a { color: #027 !important; }
+	.background-1 a { color: #027 !important; }
+	.background-2 a { color: #027 !important; }
+	.background-3 a { color: #027 !important; }
+	.background-4 a { color: #027 !important; } 
+	
+	.calendar-calendar .cutoff {
+	}
+	
+	.view-label-node-data-field-event-date-field-event-date-value {
+    display: none;
+	}
+	
+	.calendar-calendar .continues {
+    background: none !important;
+	}
+	
+	.multi-day div.calendar.monthview {
+    padding: 0 !important;
+    margin: 0 !important;
+	}
+	
 	.background-0,
 	.background-1,
 	.background-2,
 	.background-3,
 	.background-4 {
-    background-image: url('images/events-backgrounds.png');
+    background-image: url('images/events-backgrounds.png') !important;
     background-repeat: repeat-x;
 	}
 
@@ -1000,8 +1022,9 @@ div.admin-panel .body {
   .background-m2,
   .background-m3,
   .background-m4 {
-    background-image: url('images/events-backgrounds-m.png');
+    background-image: url('images/events-backgrounds-m.png') !important;
     background-repeat: repeat-x;
+    color: #000 !important;
   }
 
   .background-0 { background-position: left 0; }

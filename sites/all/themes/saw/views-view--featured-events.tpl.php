@@ -40,6 +40,9 @@
       // Will colorize callendar
       $('td[id=calendar-<?php echo $dateStart -> year; ?>-<?php echo $dateStart -> month; ?>-<?php echo $dateStart -> dayOfMonth; ?>]').addClass ('background-m' + '<?php echo $fieldId; ?>');
       $('td[date=<?php echo $dateStart -> year; ?>-<?php echo $dateStart -> month; ?>-<?php echo $dateStart -> dayOfMonth; ?>]').addClass ('background-' + '<?php echo $fieldId; ?>')
+      $('td[date=<?php echo $dateStart -> year; ?>-<?php echo $dateStart -> month; ?>-<?php echo $dateStart -> dayOfMonth; ?>] .calendar').addClass ('background-m' + '<?php echo $fieldId; ?>');
+      $('td[date=<?php echo $dateStart -> year; ?>-<?php echo $dateStart -> month; ?>-<?php echo $dateStart -> dayOfMonth; ?>] .cutoff').addClass ('background-m' + '<?php echo $fieldId; ?>');
+      
     });
   </script>
 	<div class="featured-events-row background-<?php echo $fieldId; ?>">
