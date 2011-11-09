@@ -815,7 +815,6 @@ div.admin-panel .body {
 .calendar-calendar .month-view .full td.single-day .calendar-empty,
 .calendar-calendar .month-view .full td.single-day.empty,
 .calendar-calendar .month-view .full td.date-box.empty {
-  display: none;
   color: #bbb;	
 }
 
@@ -919,7 +918,8 @@ div.admin-panel .body {
     border-radius: 6px;
   }
   
-  .featured-events .description p {
+  .featured-events .description > p {
+    padding: 3px;
   }
   
   .featured-events table {
@@ -927,19 +927,24 @@ div.admin-panel .body {
   }
   
   .featured-events-row {
-    border-radius: 6px;
+    border-radius: 5px;
     margin-bottom: 8px;
-    padding: 6px 10px;
-    min-height: 120px;
+    padding: 4px 4px;
+    min-height: 110px;
     background: #d5ead9;
   }
   
   .featured-events .image {
-    width: 140px;
-    height: 120px;
-    padding: 4px;
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    background-color: #eee;
     margin-right: 5px;
-    border-radius: 6px;
+    border-radius: 4px;
+  }
+  
+  .featured-events .image img {
+    border-radius: 4px;
   }
   
   .featured-events .left-column,
@@ -949,21 +954,22 @@ div.admin-panel .body {
   }
   
   .featured-events .left-column {
-    width: 150px;
+    width: 107px;
   }
   
   .featured-events .right-column {
-    width: 280px;
+    width: 340px;
   }
 
   .featured-events .location {
     font-size: 1.1em;
   }
   
-  .featured-events .title {
+  .featured-events .title,
+  .featured-events .user {
     font-weight: bold;
     font-size: 1.1em;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #B3B3B3;
     padding-bottom: 2px;
   }
   
@@ -976,6 +982,10 @@ div.admin-panel .body {
     text-decoration: underline;
 	}
 	
+	.featured-events .datetime {
+    width: 147px;
+	}
+	
 	.background-0,
 	.background-1,
 	.background-2,
@@ -984,25 +994,100 @@ div.admin-panel .body {
     background-image: url('images/events-backgrounds.png');
     background-repeat: repeat-x;
 	}
-	
-	.background-0 { background-position: left 0; }
-	.background-1 { background-position: left -200px; }
-	.background-2 { background-position: left -400px; }
-	.background-3 { background-position: left -600px; }
-	.background-4 { background-position: left -800px; }
-	
-	.featured-events .datetime {
+
+  .background-m0,
+  .background-m1,
+  .background-m2,
+  .background-m3,
+  .background-m4 {
+    background-image: url('images/events-backgrounds-m.png');
+    background-repeat: repeat-x;
+  }
+
+  .background-0 { background-position: left 0; }
+  .background-1 { background-position: left -200px; }
+  .background-2 { background-position: left -400px; }
+  .background-3 { background-position: left -600px; }
+  .background-4 { background-position: left -800px; }
+  
+  .background-m0 { background-position: left 0; }
+  .background-m1 { background-position: left -50px; }
+  .background-m2 { background-position: left -100px; }
+  .background-m3 { background-position: left -150px; }
+  .background-m4 { background-position: left -200px; }
+  
+  .calendar-rounded-m {
+    border-radius: 6px;
+  }
+  
+  .month-view .mini {
+  }
+  
+  .month-view,
+  .month-view h3 {
+    font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+  }
+  
+  .month-view .mini th {
+    font-size: 0.9em;
+  }
+  
+  .month-view .mini td.has-events {
+    background-color: #def;
+    font-weight: bold;
+    border: 1px solid #bbb !important;
+  }
+  
+  .year-view >table >tbody >tr >td {
+    padding: 6px !important;
+  }
+  
+  .month-view .mini td.has-events a {
+    text-decoration: none !important;
+  }
+  
+  .month-view .mini td {
+    text-align: center;
+  }
+  
+  .month-view .mini thead tr {
+    background-color: #ddd;
+  }
+  
+  .month-view .mini {
+    border: 1px solid #ddd !important;
+  }
+  
+  .month-view .mini td {
+    padding: 6px 6px !important;
+  }
+  
+  #sidebar-right .month-view .mini td {
+    padding: 2px 6px !important;
+  }
+  
+  
+  .month-view .today {
+    background-color: #ffa !important;
+    font-weight: bold !important;
+  }
+
+  .featured-events .datetime {
     font-weight: bold;
     font-size: 1.2em;
-	}
+  }
 	
 	.featured-events .datetime .date {
+	}
+	
+	.featured-events .reservations {
+	 padding-left: 16px;
 	}
 	
 	.featured-events .reservations .available,
 	.featured-events .reservations .occupied {
     font-size: 1.2em;
-    font-weight: bold
+    font-weight: bold;
 	}
 	
   .featured-events .reservations .available {
