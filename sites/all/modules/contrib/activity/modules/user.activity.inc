@@ -1,5 +1,4 @@
 <?php
-// $Id: user.activity.inc,v 1.1.2.18 2010/07/18 19:03:39 scottreynolds Exp $
 
 /**
  * @file

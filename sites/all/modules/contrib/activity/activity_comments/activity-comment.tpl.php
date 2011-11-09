@@ -1,5 +1,4 @@
 <?php
-// $Id: activity-comment.tpl.php,v 1.1.2.1 2010/01/13 05:25:29 scottreynolds Exp $
 
 /**
  * @file activity-comment.tpl.php

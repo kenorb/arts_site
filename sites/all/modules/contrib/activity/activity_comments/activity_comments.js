@@ -1,4 +1,3 @@
-// $Id: activity_comments.js,v 1.1.2.3 2010/08/03 16:27:29 scottreynolds Exp $
 
 (function ($) {
   /**

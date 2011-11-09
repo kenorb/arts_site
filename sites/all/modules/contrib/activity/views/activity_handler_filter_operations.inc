@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_handler_filter_operations.inc,v 1.1.2.1 2009/09/20 00:12:34 scottreynolds Exp $
 /**
  * Filter by Activity Operation
  */

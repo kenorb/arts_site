@@ -1,5 +1,4 @@
 <?php
-// $Id: activity.admin.inc,v 1.1.2.43 2010/07/18 19:03:39 scottreynolds Exp $
 
 /**
  * @file activity.admin.inc
@@ -687,7 +686,28 @@ function activity_access_rebuild_process(&$context) {
  *
  * @return none
  */
-function activity_batch_regenerate($batches) {
+function activity_batch_regenerate($aid) {
+  $trigger_assignment = db_fetch_object(db_query("SELECT hook, op FROM {trigger_assignments} WHERE aid = '%s'", $aid));
+  
+  if (!empty($trigger_assignment)) {
+    $batch = array(
+      'title' => t('Regenerating @description Activity', array('@description' => db_result(db_query("SELECT description from {actions} WHERE aid = '%s'", $aid)))),
+      'operations' => array(
+        array('activity_batch_delete', array($aid)),
+        array('activity_batch_regenerate_step', array($aid, $trigger_assignment->hook, $trigger_assignment->op)),
+      ),
+      'file' => drupal_get_path('module', 'activity') . '/activity.admin.inc',
+    );
+
+    batch_set($batch);
+      
+    batch_process('admin/build/activity');
+  } else {
+    return '';
+  }
+  
+  return;
+
   $batch_set = FALSE;
   foreach ($batches as $aid => $batch) {
     $trigger_assignment = db_fetch_object(db_query("SELECT hook, op FROM {trigger_assignments} WHERE aid = '%s'", $aid));
@@ -761,47 +781,69 @@ function activity_batch_delete($aid, &$batch_context) {
  * @param $batch_context
  *  An array representing the context for the batch operation.
  */
-function activity_batch_regenerate_step($aid, $batch, $hook, $op, &$batch_context) {
+function activity_batch_regenerate_step($aid, $hook, $op, &$batch_context) {
   $module = activity_module_name($hook);
   $info  = activity_get_module_info($module);
   $load_callback = $info->context_load_callback;
-  $limit = 50;
 
   // Set up the sandbox for the regeneration.
-  if (!isset($batch_context['sandbox']['list'])) {
-    $batch_context['sandbox']['list'] = $batch;
-    $batch_context['sandbox']['max'] = count($batch_context['sandbox']['list']);
-    $batch_context['sandbox']['progress'] = 0;
+  if (!isset($batch_context['sandbox']['progress'])) {
+    $batch_context['sandbox']['progress'] = -1;
 
     $parameters = db_result(db_query("SELECT a.parameters FROM {actions} a WHERE aid = '%s'", $aid));
     $batch_context['sandbox']['parameters'] = unserialize($parameters);
+    
+    $batch_context['sandbox']['list'] = activity_batch_load($aid, 0, 0);
+    
+    $batch_context['sandbox']['sql_limit'] = empty($batch_context['sandbox']['list']);
+    
+    $batch_context['sandbox']['limit'] = 50;
   }
-
-  $count = 0;
-  foreach ($batch_context['sandbox']['list'] as $key => $event) {
-    $context = array();
-    if (++$count > $limit) {
-      break;
-    }
-    else {
-      $context = $load_callback($hook, $op, $event['id']);
-      if (!empty($context)) {
-        $context += array(
-          'created' => $event['created'],
-          'actor' => $event['actor'],
-        );
-        activity_record(NULL, $context + $batch_context['sandbox']['parameters']);
+  
+  if (!empty($batch_context['sandbox']['finished_last_cycle'])) {
+    $batch_context['sandbox']['limit'] += 10;
+  }
+  
+  $batch_context['sandbox']['finished_last_cycle'] = FALSE;
+  
+  if ($batch_context['sandbox']['sql_limit']) {
+    $list = activity_batch_load($aid, $batch_context['sandbox']['progress'] + 1, $batch_context['sandbox']['limit']);
+    
+    $batch_context['finished'] = 0.5;
+  } 
+  else {
+    $list =& $batch_context['sandbox']['list'];
+    
+    $batch_context['finished'] = ($batch_context['sandbox']['progress'] == -1 ? 0 : $batch_context['sandbox']['progress']) / count($list);
+  }
+  
+  if (!empty($list)) {
+    $count = 0;
+    
+    foreach ($list as $key => $event) {
+      $context = array();
+      if (++$count > $batch_context['sandbox']['limit']) {
+        break;
       }
-      $batch_context['sandbox']['progress']++;
+      else {
+        $context = $load_callback($hook, $op, $event['id']);
+        if (!empty($context)) {
+          $context += array(
+            'created' => $event['created'],
+            'actor' => $event['actor'],
+          );
+          activity_record(NULL, $context + $batch_context['sandbox']['parameters']);
+        }
+        $batch_context['sandbox']['progress']++;
+      }
+      unset($list[$key]);
     }
-    unset($batch_context['sandbox']['list'][$key]);
-  }
-  // Check if not finished.
-  if ($batch_context['sandbox']['progress'] < $batch_context['sandbox']['max']) {
-    $batch_context['finished'] = $batch_context['sandbox']['progress'] / $batch_context['sandbox']['max'];
+    
+    $batch_context['message'] = t('Processing activity message %progress% ...', array('%progress%' => $batch_context['sandbox']['progress']));
+    
+    $batch_context['sandbox']['finished_last_cycle'] = TRUE;
   }
   else {
-    // If finished, delete the sandbox.
-    unset($batch_context['sandbox']);
+    $batch_context['finished'] = 1;
   }
 }

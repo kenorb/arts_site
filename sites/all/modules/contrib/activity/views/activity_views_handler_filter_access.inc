@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_views_handler_filter_access.inc,v 1.1.2.8 2010/03/31 05:11:20 scottreynolds Exp $
 
 /**
  * @file

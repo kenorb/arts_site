@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_handler_field_activity_link_delete.inc,v 1.1.2.3 2009/12/09 17:18:17 scottreynolds Exp $
 /**
  * Field handler to present a link to delete an activity.
  */

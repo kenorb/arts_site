@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_comments.views.inc,v 1.1.2.1 2010/01/13 05:25:29 scottreynolds Exp $
 
 /**
  * Implementation of hook_views_data().

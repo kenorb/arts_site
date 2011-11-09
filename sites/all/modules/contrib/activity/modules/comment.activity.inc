@@ -1,5 +1,4 @@
 <?php
-// $Id: comment.activity.inc,v 1.1.2.26 2010/09/26 21:15:55 scottreynolds Exp $
 
 /**
  * @file

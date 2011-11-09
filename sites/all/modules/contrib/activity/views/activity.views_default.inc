@@ -1,5 +1,4 @@
 <?php
-// $Id: activity.views_default.inc,v 1.1.2.15 2010/07/18 21:17:20 scottreynolds Exp $
 
 /**
  * Implementation of hook_views_default_views().
@@ -62,14 +61,21 @@ function activity_views_default_views() {
       ),
     ));
   $handler->override_option('sorts', array(
-      'aid' => array(
-        'order' => 'DESC',
-        'id' => 'aid',
-        'table' => 'activity',
-        'field' => 'aid',
-        'relationship' => 'none',
-      ),
-    ));
+    'created' => array(
+      'order' => 'DESC',
+      'id' => 'created',
+      'table' => 'activity',
+      'field' => 'created',
+      'relationship' => 'none',
+    ),
+    'aid' => array(
+      'order' => 'DESC',
+      'id' => 'aid',
+      'table' => 'activity',
+      'field' => 'aid',
+      'relationship' => 'none',
+    ),
+  ));
   $handler->override_option('filters', array(
       'status' => array(
         'operator' => '=',
@@ -111,6 +117,75 @@ function activity_views_default_views() {
       'weight' => 0,
       'name' => 'navigation',
     ));
+  $handler = $view->new_display('page', 'User', 'user');
+  $handler->override_option('arguments', array(
+    'uid' => array(
+      'default_action' => 'ignore',
+      'style_plugin' => 'default_summary',
+      'style_options' => array(),
+      'wildcard' => 'all',
+      'wildcard_substitution' => 'All',
+      'title' => '',
+      'breadcrumb' => '',
+      'default_argument_type' => 'fixed',
+      'default_argument' => '',
+      'validate_type' => 'user',
+      'validate_fail' => 'not found',
+      'break_phrase' => 0,
+      'not' => 0,
+      'id' => 'uid',
+      'table' => 'users',
+      'field' => 'uid',
+      'relationship' => 'uid',
+      'validate_user_argument_type' => 'uid',
+      'validate_user_roles' => array(
+        '2' => 0,
+        '3' => 0,
+      ),
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'default_options_div_prefix' => '',
+      'default_argument_fixed' => '',
+      'default_argument_user' => 0,
+      'default_argument_php' => '',
+      'validate_argument_node_type' => array(
+        'project_project' => 0,
+        'project_release' => 0,
+        'project_issue' => 0,
+        'page' => 0,
+        'story' => 0,
+      ),
+      'validate_argument_node_access' => 0,
+      'validate_argument_nid_type' => 'nid',
+      'validate_argument_vocabulary' => array(
+        '1' => 0,
+      ),
+      'validate_argument_type' => 'tid',
+      'validate_argument_transform' => 0,
+      'validate_user_restrict_roles' => 0,
+      'validate_argument_project_term_argument_type' => 'tid',
+      'validate_argument_project_term_argument_action_top_without' => 'pass',
+      'validate_argument_project_term_argument_action_top_with' => 'pass',
+      'validate_argument_project_term_argument_action_child' => 'pass',
+      'validate_argument_php' => '',
+    ),
+  ));
+  $handler->override_option('path', 'user/%/activity');
+  $handler->override_option('menu', array(
+    'type' => 'tab',
+    'title' => 'Activity', 
+    'description' => '',
+    'weight' => '0',
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
   $views[$view->name] = $view;
   
   // Activity Maintenance

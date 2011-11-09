@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_views_handler_field_message.inc,v 1.1.2.6 2009/08/02 15:11:53 sirkitree Exp $
 /**
  * @file: renders the message field for the given user
  */

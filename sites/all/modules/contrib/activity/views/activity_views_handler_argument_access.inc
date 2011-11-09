@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_views_handler_argument_access.inc,v 1.1.2.1 2010/06/01 04:41:17 scottreynolds Exp $
 
 /**
  * @file

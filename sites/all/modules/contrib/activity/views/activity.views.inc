@@ -1,5 +1,4 @@
 <?php
-// $Id: activity.views.inc,v 1.1.2.24 2010/07/18 21:17:20 scottreynolds Exp $
 /**
  * @file: provides views data integration for activity module as the base table
  */
@@ -276,6 +275,28 @@ function activity_views_handlers() {
       ),
       'activity_handler_argument_activity_user' => array(
         'parent' => 'views_handler_argument_user_uid',
+      ),
+    ),
+  );
+}
+    
+/**
+ * Implementation of hook_views_plugins
+ */
+function activity_views_plugins() {
+  return array(
+    'module' => 'activity', // This just tells our themes are elsewhere.
+    'row' => array(
+      'activity_rss' => array(
+        'title' => t('Activity'),
+        'help' => t('Display activity.'),
+        'handler' => 'activity_views_plugin_row_activity_rss',
+        'path' => drupal_get_path('module', 'activity') . '/views', // not necessary for most modules
+        'theme' => 'views_view_row_activity_rss',
+        'theme path' => drupal_get_path('module', 'activity') .'/theme',
+        'base' => array('activity'),
+        'type' => 'feed',
+        'help topic' => 'style-node-rss',
       ),
     ),
   );

@@ -1,5 +1,4 @@
 <?php
-// $Id: node.activity.inc,v 1.1.2.22 2010/08/03 15:48:10 scottreynolds Exp $
 
 /**
  * @file

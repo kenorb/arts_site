@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_handler_field_activity_link.inc,v 1.1.2.1 2009/08/25 18:34:42 sirkitree Exp $
 /**
  * Field handler to present a link to the activity.
  */

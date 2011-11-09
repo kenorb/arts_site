@@ -1,5 +1,4 @@
 <?php
-// $Id: activity.test,v 1.1.2.1 2009/04/20 19:06:53 sirkitree Exp $
 
 /**
  * @file: Provide tests for Activity module.

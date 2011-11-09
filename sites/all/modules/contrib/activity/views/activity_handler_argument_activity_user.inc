@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_handler_argument_activity_user.inc,v 1.1.2.2 2009/08/27 01:05:41 scottreynolds Exp $
 /**
  * @file
  * Argument handler to set the 'activity_user' used for all the filters

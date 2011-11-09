@@ -1,5 +1,4 @@
 <?php
-// $Id: activity_comments_handler_field_comments.inc,v 1.1.2.1 2010/01/13 05:25:29 scottreynolds Exp $
  
 /**
  * Activity comments comment form field handler.

@@ -1,5 +1,4 @@
 <?php
-// $Id: activity.activity.inc,v 1.1.2.1 2010/01/24 04:38:23 scottreynolds Exp $
 /**
  * @file:
  * Provides Activity2 hooks for itself.

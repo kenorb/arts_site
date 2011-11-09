@@ -1,5 +1,4 @@
 <?php
-// $Id: activity.module,v 1.1.2.2.2.30.2.31.2.97 2010/10/10 21:34:28 scottreynolds Exp $
 /**
  * @file
  * Primarily Drupal hooks and global API functions to manipulate activity.
@@ -233,7 +232,7 @@ function activity_menu() {
     'file' => 'activity.admin.inc',
     'type' => MENU_CALLBACK,
   );
-  $items['admin/build/activity/batch/%activity_batch/%'] = array(
+  $items['admin/build/activity/batch/%/%'] = array(
     'title' => 'Batch Update',
     'page callback' => 'activity_batch_regenerate',
     'page arguments' => array(4),
@@ -254,7 +253,7 @@ function activity_menu() {
  * @return array / FALSE
  *  An array of events to batch if the action is batch-able or FALSE
  */
-function activity_batch_load($aid) {
+function activity_batch_load($aid, $from, $count) {
   $trigger_assignment = db_fetch_object(db_query("SELECT hook, op FROM {trigger_assignments} WHERE aid = '%s'", $aid));
 
   // Load the action to make sure aid is saved to the parameters, otherwise this
@@ -267,9 +266,9 @@ function activity_batch_load($aid) {
     $info = activity_get_module_info($module);
     if (!empty($info->list_callback) && !empty($info->context_load_callback)) {
       $callback = $info->list_callback;
-      $listing = $callback($trigger_assignment->hook, $trigger_assignment->op, variable_get('activity_expire', 0));
+      $listing = $callback($trigger_assignment->hook, $trigger_assignment->op, variable_get('activity_expire', 0), $from, $count);
       if (!empty($listing)) {
-        return array($aid => $listing);
+        return $listing;
       }
     }
   }
@@ -287,7 +286,7 @@ function activity_batch_load($aid) {
  * @return TRUE/FALSE
  */
 function activity_batch_access($batch, $token) {
-  return user_access('administer activity') && drupal_valid_token($token, key($batch));
+  return user_access('administer activity') && drupal_valid_token($token, $batch);
 }
 
 
@@ -345,7 +344,7 @@ function activity_comment(&$comment, $op) {
   }
 
   if ($op == 'publish') {
-    $rows = db_query("SELECT a.aid, a.status as activity_status, u.status as user_status, n.status as node_status FROM {activity} a INNER JOIN {users} u ON a.uid = u.uid INNER JOIN {node} n ON a.nid = n.nid WHERE a.uid <> 0 AND a.type = 'comment' AND a.eid = %d", $comment->cid);
+    $rows = db_query("SELECT a.aid, a.status as activity_status, u.status as user_status, n.status as node_status FROM {activity} a INNER JOIN {users} u ON a.uid = u.uid INNER JOIN {node} n ON a.nid = n.nid WHERE a.uid <> 0 AND a.type = 'comment' AND a.eid = %d", $comment['cid']);
 
     $update_statuses = array();
 
@@ -962,6 +961,10 @@ function activity_theme($existing, $type, $theme, $path) {
     'activity_username' => array(
       'arguments' => array('account' => NULL),
     ),
+    'views_view_row_activity_rss' => array(
+      'arguments' => array(),
+      'preprocess functions' => array('template_preprocess_views_view_activity_row_rss'),
+    ),
   );
 }
 
@@ -975,7 +978,7 @@ function theme_activity_settings_actions_list($results) {
       l('configure', 'admin/build/activity/configure/'. $result['aid']),
       l('delete', 'admin/build/activity/delete/'. $result['aid'])
     );
-    if (activity_batch_load($result['aid'])) {
+    if (activity_batch_load($result['aid'], 0, 1)) {
       $links[] = l('regenerate', 'admin/build/activity/batch/' . $result['aid'] . '/' . drupal_get_token($result['aid']));
     }
     $rows[] = array(
@@ -1061,4 +1064,20 @@ function theme_activity_username($object) {
   }
 
   return $output;
+}
+
+/**
+ * Template preprocess function for Feed items.
+ */
+function template_preprocess_views_view_activity_row_rss(&$vars) {
+  $view     = &$vars['view'];
+  $options  = &$vars['options'];
+  $item     = &$vars['row'];
+
+  $vars['message'] = strip_tags($item->message);
+  $vars['user_name'] = check_plain($item->user_name);
+  $vars['user_link'] = check_url(url('user/'. $item->user_uid, array('absolute' => TRUE)));
+  $vars['node_title'] = check_plain($item->node_title);
+  $vars['node_link'] = check_url(url('node/'. $item->node_nid, array('absolute' => TRUE)));
+  $vars['created'] = date('D, d M Y H:i:s O', $item->created);
 }
