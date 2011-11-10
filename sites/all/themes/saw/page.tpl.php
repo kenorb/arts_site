@@ -8,6 +8,8 @@
   <title><?php print $head_title ?></title>
   <?php print $styles ?>
   <?php print $scripts ?>
+  <script>
+  </script>
 </head>
 
 <body>
@@ -39,8 +41,12 @@
             <td class="secondary-links" width="50%" valign="middle">
               <?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
             </td>
-            <td td class="search-box" valign="middle" width="20%">
-              <?php print $search_box ?>
+            <td class="search-box" valign="middle" width="20%">
+              <form action="/search" method="get">
+								<div id="search" class="container-inline">
+								  <div class="search-box"></div>
+								</div>
+							</form>
             </td>
           </tr>
         </table>

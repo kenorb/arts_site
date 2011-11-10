@@ -32,6 +32,8 @@
  * @see template_preprocess_search_theme_form()
  */
 ?>
-<div id="search" class="container-inline">
-  <?php print str_replace('Search','',$search_form);?>
-</div>
+<form action="/search" method="get">
+	<div id="search" class="container-inline">
+	  <div class="search-box"></div>
+	</div>
+</form>
