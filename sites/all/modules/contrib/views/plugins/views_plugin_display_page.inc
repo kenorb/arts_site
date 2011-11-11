@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_display_page.inc,v 1.5.2.14 2011/01/04 20:29:56 merlinofchaos Exp $
 /**
  * @file
  * Contains the page display plugin.
@@ -71,40 +70,10 @@ class views_plugin_display_page extends views_plugin_display {
 
     $path = implode('/', $bits);
 
-    $access_plugin = $this->get_plugin('access');
+    $access_plugin = $this->get_access_plugin();
     if (!isset($access_plugin)) {
       $access_plugin = views_get_plugin('access', 'none');
     }
-
-    // Get access callback might return an array of the callback + the dynamic arguments.
-    $access_plugin_callback = $access_plugin->get_access_callback();
-
-    if (is_array($access_plugin_callback)) {
-      $access_arguments = array();
-
-      // Find the plugin arguments.
-      $access_plugin_method = array_shift($access_plugin_callback);
-      $access_plugin_arguments = array_shift($access_plugin_callback);
-      if (!is_array($access_plugin_arguments)) {
-        $access_plugin_arguments = array();
-      }
-
-      $access_arguments[0] = array($access_plugin_method, &$access_plugin_arguments);
-
-      // Move the plugin arguments to the access arguments array.
-      $i = 1;
-      foreach ($access_plugin_arguments as $key => $value) {
-        if (is_int($value)) {
-          $access_arguments[$i] = $value;
-          $access_plugin_arguments[$key] = $i;
-          $i++;
-        }
-      }
-    }
-    else {
-      $access_arguments = array($access_plugin_callback);
-    }
-
     if ($path) {
       $items[$path] = array(
         // default views page entry
@@ -112,7 +81,7 @@ class views_plugin_display_page extends views_plugin_display {
         'page arguments' => $page_arguments,
         // Default access check (per display)
         'access callback' => 'views_access',
-        'access arguments' => $access_arguments,
+        'access arguments' => array($access_plugin->get_access_callback()),
         // Identify URL embedded arguments and correlate them to a handler
         'load arguments'  => array($this->view->name, $this->display->id, '%index'),
       );
@@ -500,7 +469,7 @@ class views_plugin_display_page extends views_plugin_display {
     }
   }
 
-  function options_submit($form, &$form_state) {
+  function options_submit(&$form, &$form_state) {
     // It is very important to call the parent function here:
     parent::options_submit($form, $form_state);
     switch ($form_state['section']) {

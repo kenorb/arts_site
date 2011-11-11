@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_accesslog_path.inc,v 1.1.2.2 2011/01/10 23:14:26 merlinofchaos Exp $
 /**
  * Field handler to provide simple renderer that turns a URL into a clickable link.
  */
@@ -7,10 +6,10 @@ class views_handler_field_accesslog_path extends views_handler_field {
   /**
    * Override init function to provide generic option to link to node.
    */
-  function init(&$view, &$data) {
-    parent::init($view, $data);
-    if (isset($data['display_as_link'])) {
-      $this->additional_fields[] = 'path';
+  function init(&$view, $options) {
+    parent::init($view, $options);
+    if (!empty($this->options['display_as_link'])) {
+      $this->additional_fields['path'] = 'path';
     }
   }
 
@@ -35,17 +34,12 @@ class views_handler_field_accesslog_path extends views_handler_field {
   }
 
   function render($values) {
-    $value = $this->get_value($values);
-    return $this->render_link($this->sanitize_value($value), $values);
-  }
-
-  function render_link($data, $values) {
+    $title = check_plain($values->{$this->field_alias});
     if (!empty($this->options['display_as_link'])) {
-      $this->options['alter']['make_link'] = TRUE;
-      $this->options['alter']['path'] = $this->get_value($values, 'path');
-      $this->options['alter']['html'] = TRUE;
+      return l($title, $values->{$this->aliases['path']}, array('html' => TRUE));
     }
-
-    return $data;
+    else {
+      return $title;
+    }
   }
 }

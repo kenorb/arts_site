@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_file.inc,v 1.3.2.2 2011/01/10 23:14:27 merlinofchaos Exp $
 /**
  * Field handler to provide simple renderer that allows linking to a file.
  */
@@ -7,7 +6,7 @@ class views_handler_field_file extends views_handler_field {
   /**
    * Constructor to provide additional field to add.
    */
-  function init(&$view, $options) {
+  function init(&$view, &$options) {
     parent::init($view, $options);
     if (!empty($options['link_to_file'])) {
       $this->additional_fields['filepath'] = 'filepath';
@@ -41,14 +40,13 @@ class views_handler_field_file extends views_handler_field {
   function render_link($data, $values) {
     if (!empty($this->options['link_to_file']) && $data !== NULL && $data !== '') {
       $this->options['alter']['make_link'] = TRUE;
-      $this->options['alter']['path'] = file_create_url($this->get_value($values, 'filepath'));
+      $this->options['alter']['path'] = file_create_url($values->{$this->aliases['filepath']});
     }
 
     return $data;
   }
 
   function render($values) {
-    $value = $this->get_value($values);
-    return $this->render_link($this->sanitize_value($value), $values);
+    return $this->render_link(check_plain($values->{$this->field_alias}), $values);
   }
 }

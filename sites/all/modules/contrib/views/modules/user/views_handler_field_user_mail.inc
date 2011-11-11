@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_user_mail.inc,v 1.1.2.2 2011/01/10 23:14:27 merlinofchaos Exp $
 /**
  * Field handler to provide acess control for the email field
  */
@@ -24,14 +23,10 @@ class views_handler_field_user_mail extends views_handler_field_user {
     );
   }
 
-  function render_link($data, $values) {
-    parent::render_link($data, $values);
-
+  function render($values) {
     if ($this->options['link_to_user'] == 'mailto') {
-      $this->options['alter']['make_link'] = TRUE;
-      $this->options['alter']['path'] = "mailto:" . $data;
+      return l($values->{$this->field_alias}, "mailto:" . $values->{$this->field_alias});
     }
-
-    return $data;
+    return $this->render_link(check_plain($values->{$this->field_alias}), $values);
   }
 }

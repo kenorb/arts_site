@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_row_aggregator_rss.inc,v 1.1.2.1 2009/12/28 21:11:50 merlinofchaos Exp $
 /**
  * @file
  * Contains the Aggregator Item RSS row style plugin.
@@ -9,9 +8,6 @@
  * Plugin which loads an aggregator item and formats it as an RSS item.
  */
 class views_plugin_row_aggregator_rss extends views_plugin_row {
-  var $base_table = 'aggregator_item';
-  var $base_field = 'iid';
-
   function option_definition() {
     $options = parent::option_definition();
 
@@ -35,13 +31,12 @@ class views_plugin_row_aggregator_rss extends views_plugin_row {
   }
 
   function render($row) {
-    $iid =  $row->{$this->field_alias};
     $sql =  "SELECT ai.iid, ai.fid, ai.title, ai.link, ai.author, ai.description, ";
     $sql .= "ai.timestamp, ai.guid, af.title AS feed_title, ai.link AS feed_LINK ";
     $sql .= "FROM {aggregator_item} ai LEFT JOIN {aggregator_feed} af ON ai.fid = af.fid ";
     $sql .= "WHERE ai.iid = %d";
 
-    $item = db_fetch_object(db_query($sql, $iid));
+    $item = db_fetch_object(db_query($sql, $row->iid));
 
     $item->elements = array(
       array('key' => 'pubDate', 'value' => gmdate('r', $item->timestamp)),

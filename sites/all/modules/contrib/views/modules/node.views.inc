@@ -1,5 +1,4 @@
 <?php
-// $Id: node.views.inc,v 1.93.2.19 2010/12/17 23:54:58 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for node.module
@@ -90,6 +89,7 @@ function node_views_data() {
       'group' => t('Node'), // The group it appears in on the UI. Could be left out.
       'handler' => 'views_handler_field_node',
       'click sortable' => TRUE,
+      'link_to_node default' => TRUE,
      ),
     'sort' => array(
       'handler' => 'views_handler_sort',
@@ -233,7 +233,7 @@ function node_views_data() {
       'handler' => 'views_handler_field_boolean',
       'click sortable' => TRUE,
       'output formats' => array(
-        'sticky' => array('', t('Sticky')),
+        'sticky' => array(t('Sticky'), ''),
       ),
     ),
     'filter' => array(
@@ -272,7 +272,7 @@ function node_views_data() {
       'handler' => 'views_handler_field_node_link_delete',
     ),
   );
-  
+
   $data['node']['path'] = array(
     'field' => array(
       'title' => t('Path'),
@@ -280,7 +280,7 @@ function node_views_data() {
       'handler' => 'views_handler_field_node_path',
     ),
   );
-  
+
 
   // Bogus fields for aliasing purposes.
 
@@ -392,18 +392,6 @@ function node_views_data() {
     ),
   );
 
-  // uid field
-  $data['node']['uid'] = array(
-    'title' => t('Author'),
-    'help' => t('Relate a node to the user who created it.'),
-    'relationship' => array(
-      'handler' => 'views_handler_relationship',
-      'base' => 'users',
-      'base field' => 'uid',
-      'label' => t('user'),
-    ),
-  );
-
   // ----------------------------------------------------------------------
   // Node revisions table
 
@@ -427,15 +415,15 @@ function node_views_data() {
     ),
   );
 
-  // uid field for node revisions
+  // uid field
   $data['node_revisions']['uid'] = array(
     'title' => t('User'),
     'help' => t('Relate a node revision to the user who created the revision.'),
     'relationship' => array(
       'handler' => 'views_handler_relationship',
       'base' => 'users',
-      'field' => 'uid',
-      'label' => t('revision user'),
+      'base field' => 'uid',
+      'label' => t('user'),
     ),
   );
 
@@ -539,8 +527,8 @@ function node_views_data() {
   // revision timestamp
   // changed field
   $data['node_revisions']['timestamp'] = array(
-    'title' => t('Created date'), // The item it appears as on the UI,
-    'help' => t('The date the node revision was created.'), // The help that appears on the UI,
+    'title' => t('Updated date'), // The item it appears as on the UI,
+    'help' => t('The date the node was last updated.'), // The help that appears on the UI,
     'field' => array(
       'handler' => 'views_handler_field_date',
       'click sortable' => TRUE,

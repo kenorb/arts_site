@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_node_new_comments.inc,v 1.6.2.4 2011/01/10 23:53:30 merlinofchaos Exp $
 
 /**
  * Field handler to display the number of new comments
@@ -7,7 +6,7 @@
 class views_handler_field_node_new_comments extends views_handler_field_numeric {
   function init(&$view, $options) {
     parent::init($view, $options);
-
+    
     // translate an older setting:
     if (!empty($options['no_empty'])) {
       $this->options['hide_empty'] = TRUE;
@@ -79,11 +78,11 @@ class views_handler_field_node_new_comments extends views_handler_field_numeric 
   function render_link($data, $values) {
     if (!empty($this->options['link_to_comment']) && $data !== NULL && $data !== '') {
       $node = new stdClass();
-      $node->nid = $this->get_value($values, 'nid');
-      $node->type = $this->get_value($values, 'type');
+      $node->nid = $values->{$this->aliases['nid']};
+      $node->type = $values->{$this->aliases['type']};
       $this->options['alter']['make_link'] = TRUE;
       $this->options['alter']['path'] = 'node/' . $node->nid;
-      $this->options['alter']['query'] = comment_new_page_count($this->get_value($values, 'comment_count'), $this->get_value($values), $node);
+      $this->options['alter']['query'] = comment_new_page_count($values->{$this->aliases['comment_count']}, $values->{$this->field_alias}, $node);
       $this->options['alter']['fragment'] = 'new';
     }
 
@@ -91,8 +90,7 @@ class views_handler_field_node_new_comments extends views_handler_field_numeric 
   }
 
   function render($values) {
-    $value = $this->get_value($values);
-    if (!empty($value)) {
+    if (!empty($values->{$this->field_alias})) {
       return $this->render_link(parent::render($values), $values);
     }
     else {

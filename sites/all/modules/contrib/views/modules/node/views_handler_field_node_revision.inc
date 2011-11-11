@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_node_revision.inc,v 1.1.2.2 2011/01/10 23:14:26 merlinofchaos Exp $
 /**
  * @file
  * Contains the basic 'node_revision' field handler.
@@ -43,14 +42,11 @@ class views_handler_field_node_revision extends views_handler_field_node {
   function render_link($data, $values) {
     if (!empty($this->options['link_to_node_revision']) && $data !== NULL && $data !== '') {
       $this->options['alter']['make_link'] = TRUE;
-      $nid = $this->get_value($values, 'nid');
-      $vid = $this->get_value($values, 'vid');
-      $language = $this->get_value($values, 'language');
-      $this->options['alter']['path'] = "node/" . $nid . '/revisions/' . $vid . '/view';
+      $this->options['alter']['path'] = "node/" . $values->{$this->aliases['nid']} . '/revisions/' . $values->{$this->aliases['vid']} .'/view';
       if (isset($this->aliases['language'])) {
         $languages = language_list();
-        if (isset($languages[$language])) {
-          $this->options['alter']['language'] = $languages[$language];
+        if (isset($languages[$values->{$this->aliases['language']}])) {
+          $this->options['alter']['language'] = $languages[$values->{$this->aliases['language']}];
         }
       }
     }

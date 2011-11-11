@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_display_block.inc,v 1.2.2.4 2010/01/19 21:59:04 merlinofchaos Exp $
 /**
  * @file
  * Contains the block display plugin.
@@ -74,7 +73,7 @@ class views_plugin_display_block extends views_plugin_display {
     }
 
     if (strlen($block_description) > 16) {
-      $block_description = substr($block_description, 0, 16) . '...';
+      $block_description = drupal_substr($block_description, 0, 16) . '...';
     }
 
     $options['block_description'] = array(
@@ -156,7 +155,7 @@ class views_plugin_display_block extends views_plugin_display {
    * Perform any necessary changes to the form values prior to storage.
    * There is no need for this function to actually store the data.
    */
-  function options_submit($form, &$form_state) {
+  function options_submit(&$form, &$form_state) {
     // It is very important to call the parent function here:
     parent::options_submit($form, $form_state);
     switch ($form_state['section']) {
@@ -180,9 +179,9 @@ class views_plugin_display_block extends views_plugin_display {
 
     return FALSE;
   }
-  
+
   /**
-   * Save the block cache setting in the blocks table if this block allready 
+   * Save the block cache setting in the blocks table if this block allready
    * exists in the blocks table. Dirty fix untill http://drupal.org/node/235673 gets in.
    */
   function save_block_cache($delta, $cache_setting) {

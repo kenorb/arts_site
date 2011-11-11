@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_display_feed.inc,v 1.3.2.7 2011/02/04 23:32:01 merlinofchaos Exp $
 /**
  * @file
  * Contains the feed display plugin.
@@ -163,7 +162,7 @@ class views_plugin_display_feed extends views_plugin_display_page {
    * Perform any necessary changes to the form values prior to storage.
    * There is no need for this function to actually store the data.
    */
-  function options_submit($form, &$form_state) {
+  function options_submit(&$form, &$form_state) {
     // It is very important to call the parent function here:
     parent::options_submit($form, $form_state);
     switch ($form_state['section']) {

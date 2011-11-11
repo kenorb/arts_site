@@ -1,5 +1,4 @@
 <?php
-// $Id: taxonomy.views.inc,v 1.50.2.18 2011/01/20 22:06:57 merlinofchaos Exp $
 /**
  * @file
  *
@@ -46,17 +45,10 @@ function taxonomy_views_data() {
   // vocabulary name
   $data['vocabulary']['name'] = array(
     'title' => t('Vocabulary name'), // The item it appears as on the UI,
-    'argument' => array(
-      'handler' => 'views_handler_argument_string',
-    ),
     'field' => array(
       'help' => t('Name of the vocabulary a term is a member of. This will be the vocabulary that whichever term the "Taxonomy: Term" field is; and can similarly cause duplicates.'),
       'handler' => 'views_handler_field',
       'click sortable' => TRUE,
-    ),
-    'sort' => array(
-      'handler' => 'views_handler_sort',
-      'help' => t('The taxonomy vocabulary name'),
     ),
   );
   $data['vocabulary']['vid'] = array(
@@ -65,9 +57,6 @@ function taxonomy_views_data() {
     'argument' => array(
       'handler' => 'views_handler_argument_vocabulary_vid',
       'name field' => 'name',
-    ),
-    'sort' => array(
-      'handler' => 'views_handler_sort',
     ),
   );
 
@@ -172,9 +161,6 @@ function taxonomy_views_data() {
       'handler' => 'views_handler_field_markup',
       'format' => FILTER_FORMAT_DEFAULT,
     ),
-    'filter' => array(
-      'handler' => 'views_handler_filter_string',
-    ),
   );
 
   // Term vocabulary
@@ -183,15 +169,6 @@ function taxonomy_views_data() {
     'help' => t('Filter the results of "Taxonomy: Term" to a particular vocabulary.'),
     'filter' => array(
       'handler' => 'views_handler_filter_vocabulary_vid',
-    ),
-  );
-
-  // Link to edit the term
-  $data['term_data']['edit_term'] = array(
-    'field' => array(
-      'title' => t('Term edit link'),
-      'help' => t('Provide a simple link to edit the term.'),
-      'handler' => 'views_handler_field_term_link_edit',
     ),
   );
 
@@ -242,7 +219,6 @@ function taxonomy_views_data() {
       'help' => t('Display all taxonomy terms associated with a node from specified vocabularies.'),
       'handler' => 'views_handler_field_term_node_tid',
       'skip base' => 'term_data',
-      'no group by' => TRUE,
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_term_node_tid',
@@ -300,7 +276,7 @@ function taxonomy_views_data() {
     'argument' => array(
       'help' => t('A related term of the term.'),
       'handler' => 'views_handler_argument_numeric',
-    ),    
+    ),
   );
 
   // ----------------------------------------------------------------------
@@ -388,7 +364,7 @@ function taxonomy_views_data() {
 function taxonomy_views_data_alter(&$data) {
   $data['node']['term_node_tid'] = array(
     'group' => t('Taxonomy'),
-    'title' => t('Related terms'),
+    'title' => t('Terms on node'),
     'help' => t('Relate nodes to taxonomy terms, specifiying which vocabulary or vocabularies to use. This relationship will cause duplicated records if there are multiple terms.'),
     'relationship' => array(
       'handler' => 'views_handler_relationship_node_term_data',
@@ -464,9 +440,6 @@ function taxonomy_views_handlers() {
       'views_handler_relationship_node_term_data' => array(
         'parent' => 'views_handler_relationship',
       ),
-      'views_handler_field_term_link_edit' => array(
-        'parent' => 'views_handler_field',
-      ),
     ),
   );
 }
@@ -484,14 +457,14 @@ function taxonomy_views_plugins() {
         'path' => drupal_get_path('module', 'views') . '/modules/taxonomy',
       ),
     ),
-    'argument default' => array(
-      'taxonomy_tid' => array(
-        'title' => t('Taxonomy Term ID from URL'),
-        'handler' => 'views_plugin_argument_default_taxonomy_tid',
-        'path' => drupal_get_path('module', 'views') . '/modules/taxonomy',
-        'parent' => 'fixed',
-      ),
-    ),
+//    'argument default' => array(
+//      'taxonomy_tid' => array(
+//        'title' => t('Taxonomy Term ID from URL'),
+//        'handler' => 'views_plugin_argument_default_taxonomy_tid',
+//        'path' => drupal_get_path('module', 'views') . '/modules/taxonomy',
+//        'parent' => 'fixed',
+//      ),
+//    ),
   );
 }
 

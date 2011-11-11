@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_comment_link_edit.inc,v 1.1.2.3 2011/01/10 23:14:26 merlinofchaos Exp $
 /**
  * Field handler to present a link node edit.
  */
@@ -27,24 +26,22 @@ class views_handler_field_comment_link_edit extends views_handler_field_comment_
     );
   }
 
-  function render_link($data, $values) {
-    parent::render_link($data, $values);
+  function render($values) {
     // ensure user has access to edit this comment.
     $comment = new stdClass();
-    $comment->cid = $this->get_value($values, 'cid');
-    $comment->uid = $this->get_value($values, 'uid');
+    $comment->cid = $values->{$this->aliases['cid']};
+    $comment->uid = $values->{$this->aliases['uid']};
     if (!comment_access('edit', $comment)) {
       return;
     }
 
     $text = !empty($this->options['text']) ? $this->options['text'] : t('edit');
-    unset($this->options['alter']['fragment']);
-
-    if (!empty($this->options['destination'])) {
-      $this->options['alter']['query'] = drupal_get_destination();
+    if (!$this->options['destination']) {
+      return l($text, "comment/edit/" . $values->{$this->aliases['cid']});
     }
-
-    return $text;
+    else {
+      return l($text, "comment/edit/" . $values->{$this->aliases['cid']}, array('query' => drupal_get_destination()));
+    }
   }
 }
 

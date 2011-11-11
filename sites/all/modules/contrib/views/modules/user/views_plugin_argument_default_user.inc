@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_argument_default_user.inc,v 1.1.2.3 2011/01/20 20:12:34 merlinofchaos Exp $
 /**
  * @file
  * Contains the user from URL argument default plugin.
@@ -9,25 +8,20 @@
  * Default argument plugin to extract a user via menu_get_object
  */
 class views_plugin_argument_default_user extends views_plugin_argument_default {
-  function option_definition() {
-    $options = parent::option_definition();
-    $options['user'] = array('default' => '', 'bool' => TRUE, 'translatable' => FALSE);
+  var $option_name = 'default_argument_user';
 
-    return $options;
-  }
-
-  function options_form(&$form, &$form_state) {
-    $form['user'] = array(
+  function argument_form(&$form, &$form_state) {
+    $form[$this->option_name] = array(
       '#type' => 'checkbox',
       '#title' => t('Also look for a node and use the node author'),
-      '#default_value' => $this->options['user'],
+      '#default_value' => !empty($this->argument->options[$this->option_name]),
+      '#process' => array('views_process_dependency'),
+      '#dependency' => array(
+        'radio:options[default_action]' => array('default'),
+        'radio:options[default_argument_type]' => array($this->id)
+      ),
+      '#dependency_count' => 2,
     );
-  }
-
-  function convert_options(&$options) {
-    if (!isset($options['user']) && isset($this->argument->options['default_argument_user'])) {
-      $options['user'] = $this->argument->options['default_argument_user'];
-    }
   }
 
   function get_argument() {
@@ -45,7 +39,7 @@ class views_plugin_argument_default_user extends views_plugin_argument_default {
       }
     }
 
-    if (!empty($this->options['user'])) {
+    if (!empty($this->argument->options[$this->option_name])) {
       foreach (range(1, 3) as $i) {
         $node = menu_get_object('node', $i);
         if (!empty($node)) {
@@ -58,7 +52,7 @@ class views_plugin_argument_default_user extends views_plugin_argument_default {
       return arg(1);
     }
 
-    if (!empty($this->options['user'])) {
+    if (!empty($this->argument->options[$this->option_name])) {
       if (arg(0) == 'node' && is_numeric(arg(1))) {
         $node = node_load(arg(1));
         if ($node) {

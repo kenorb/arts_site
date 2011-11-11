@@ -1,4 +1,3 @@
-// $Id: base.js,v 1.10.2.6 2010/10/15 00:53:57 merlinofchaos Exp $
 /**
  * @file base.js
  *
@@ -21,18 +20,6 @@ Drupal.behaviors.viewsTabs = function (context) {
       var id = $(this).attr('id').replace('views-remove-link-', '');
       $('#views-row-' + id).hide();
       $('#views-removed-' + id).attr('checked', true);
-      return false;
-    });
-  /**
-   * Here is to handle display deletion 
-   * (checking in the hidden checkbox and hiding out the row) 
-   */
-  $('a.display-remove-link')
-    .addClass('display-processed')
-    .click(function() {
-      var id = $(this).attr('id').replace('display-remove-link-', '');
-      $('#display-row-' + id).hide();
-      $('#display-removed-' + id).attr('checked', true);
       return false;
     });
 }
@@ -133,5 +120,3 @@ Drupal.Views.getPath = function (href) {
   }
   return href;
 };
-
-
