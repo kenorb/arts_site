@@ -1501,7 +1501,10 @@ div.admin-panel .body {
     float: left;
   }
   
-  .search-box label {
+  #views-exposed-form-Arts-default .hierarchical-select .form-select {
+  }
+  
+  #views-exposed-form-Arts-default  .search-box label {
     padding: 0;
     margin: 0;
     width: 120px;
@@ -1510,10 +1513,122 @@ div.admin-panel .body {
   }
 
 
+  #views-exposed-form-Arts-default  .views-exposed-widget,
+  #views-exposed-form-Arts-default  .views-exposed-widget .selects,
+  #views-exposed-form-Arts-default .views-exposed-widget select,
+  #views-exposed-form-Arts-default .views-exposed-widget input[type=text] {
+    width: 100% !important;
+  }
+
 
 /* search box: END */
 
 
+  .view-image-block .imagefield {
+    padding: 2px;
+    border: 1px solid #ddd;
+    margin: 3px;
+    display: inline-block;
+  }
+  
+  .view-image-block .imagefield:hover {
+    border: 1px solid #888;
+    background-color: #fff;
+    padding: 3px;
+    margin: 2px;
+    border-radius: 3px;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .arts-filters {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+  }
+  
+  .arts-filters .preface {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .arts-filters a.filter {
+    font-size: 1.2em;
+    margin: 4px 10px;
+  }
+  
+  .arts-filters a.filter:hover {
+    text-decoration: underline;
+  }
+  
+  .arts-filters a.filter.active {
+    font-weight: bold;
+  }
+  
+  .arts-rows {
+    margin-top: 10px;
+  }
+  
+  .arts-row {
+    padding: 2px;
+    border: 1px solid #ddd;
+    float: left;
+    margin: 6px;
+    
+  }
+  
+  .arts-row:hover {
+    border: 1px solid #888;
+    background-color: #fff;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 5px;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .arts-row .details {
+    width: 200px;
+    position: absolute;
+    margin-top: 116px;
+    height: 34px;
+    background-color: rgba(255,255,255,0.7);
+    font-size: 0.7em;
+  }
+  
+  .arts-row .details table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+  }
+  
+  .arts-row .details td {
+    vertical-align: middle;
+  }
+  
+  .arts-row a {
+    border: 0px !important;
+    color: #05a !important;
+  }
+  
+  .arts-row a:hover {
+    text-decoration: underline;
+  }
+  
+  .arts-row .details td.title,
+  .arts-row .details td.original-price {
+    padding-left: 5px;
+    border: 0px !important;
+  }
+  
+  .arts-row .details td.price {
+    text-align: right;
+    padding-right: 5px;
+  }
+  
+  .arts-rows .clear {
+    clear: both;
+  } 
+  
 
 
 
