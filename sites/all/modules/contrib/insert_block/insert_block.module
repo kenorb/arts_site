@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Insert blocks into the body of a node
+ *
+ * Sidebar blocks contain all sorts of nifty stuff, but sometimes you
+ * want to stick that stuff into the body of your node. Instead of using
+ * PHP snippets (a possible security hole on public sites), you can use
+ * this module. When it's activated...
+ *
+ * [block:name of module=delta of block]
+ *
+ * ...will insert the contents of a rendered sidebar block into the body
+ * of your node. If no delta is specified, the default block for that
+ * module will be displayed.
+ */
+
+/**
+ * Implementation of hook_filter_tips().
+ */
+function insert_block_filter_tips($delta, $format, $long = FALSE) {
+  if ($long) {
+    return t('<a name="filter-insert_block"></a>You may use [block:<em>module</em>=<em>delta</em>] tags to display the contents of block <em>delta</em> for module <em>module</em>. To discover module names and deltas, visit admin/build/block and hover over a block\'s configure link and look in your browser\'s status bar. The last "word" you see is the name of the module and the number following that is the delta. If you leave off the delta in an Insert Block tag, the default delta will be used.');
+  }
+  else {
+    return t('You may use <a href="@insert_block_help">[block:<em>module</em>=<em>delta</em>] tags</a> to display the contents of block <em>delta</em> for module <em>module</em>.',
+    array("@insert_block_help" => url("filter/tips/$format", array('fragment' => 'filter-insert_block'))));
+  }
+}
+
+/**
+ * Implementation of hook_help().
+ */
+function insert_block_help($section = 'admin/help#insert_block', $args = array()) {
+  $output = '';
+  switch ($section) {
+    case 'admin/help#insert_block':
+      return t('<p>Use special tags to insert the contents of a block into a node.</p><p>You may use [block:<em>module</em>=<em>delta</em>] tags in the body of a node or anywhere that Drupal\'s filter system runs to display the contents of block <em>delta</em> for module <em>module</em>.</p><p>To discover module names and deltas, visit admin/build/block and hover over a block\'s configure link and look in your browser\'s status bar. The last "word" you see is the name of the module and the number following that is the delta. If you leave off the delta in an Insert Block tag, the default delta will be used.</p>');
+  }
+}
+
+/**
+ * Implementation of hook_filter().
+ */
+function insert_block_filter($op, $delta = 0, $format = -1, $text = '') {
+  // The "list" operation provides the module an opportunity to declare both how
+  // many filters it defines and a human-readable name for each filter. Note that
+  // the returned name should be passed through t() for translation.
+  if ($op == 'list') {
+    return array(
+      0 => t('insert block filter'));
+  }
+
+  // go ahead and set this up for multiple filters, though I doubt we'll use it
+  switch ($delta) {
+    case 0:
+      switch ($op) {
+        case 'description':
+          return t('Inserts the contents of a block into a node using [block:module=delta] tags.');
+        case 'prepare':
+          return $text;
+        case 'process':
+          return _insert_block_substitute_tags($text);
+        case 'no cache':
+          return TRUE;
+        }
+      break;
+  }
+}
+
+function _insert_block_substitute_tags($text) {
+  if (preg_match_all("/\[block:([^=\\]]+)=?([^\\]]*)?\]/i", $text, $match)) {
+    $raw_tags = $repl = array();
+    foreach ($match[2] as $key => $value) {
+      $module = $match[1][$key];
+      $delta = $match[2][$key];
+
+      $block = (object) module_invoke($module, 'block', 'view', $delta);
+      if (isset($block->content)) {
+        init_theme();
+        global $theme_key;
+        $title = db_result(db_query_range("SELECT b.title FROM {blocks} b WHERE b.theme = '%s' AND b.module = '%s' AND b.delta = '%s'", $theme_key, $module, $delta, 0, 1));
+        if ($title) {
+          $block->subject = $title == '<none>' ? '' : check_plain($title);
+        }
+        $block->module = $module;
+        $block->delta = $delta;
+        $block->region = 'insert_block';
+
+        $raw_tags[] = $match[0][$key];
+        $repl[] = theme('block', $block);
+      }
+    }
+    return str_replace($raw_tags, $repl, $text);
+  }
+  return $text;
+}
