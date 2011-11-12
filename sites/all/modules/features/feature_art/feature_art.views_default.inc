@@ -115,7 +115,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['link_to_node'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_image_fid']['format'] = 'shadowbox_gallery_field___wysiwyg_imageupload_preview___Thumb_200';
+  $handler->display->display_options['fields']['field_image_fid']['format'] = 'Thumb_200_linked';
   $handler->display->display_options['fields']['field_image_fid']['multiple']['group'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['multiple']['multiple_number'] = '1';
   $handler->display->display_options['fields']['field_image_fid']['multiple']['multiple_from'] = '0';
