@@ -1,4 +1,5 @@
 <?php
+// $Id: views_handler_relationship.inc,v 1.1.2.3 2010/12/17 21:42:23 merlinofchaos Exp $
 /**
  * @file
  * Views' relationship handlers.
@@ -72,6 +73,7 @@ class views_handler_relationship extends views_handler {
    * should have.
    */
   function options_form(&$form, &$form_state) {
+    parent::options_form($form, $form_state);
     $form['label'] = array(
       '#type' => 'textfield',
       '#title' => t('Label'),

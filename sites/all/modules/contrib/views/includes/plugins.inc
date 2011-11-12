@@ -1,16 +1,15 @@
 <?php
+// $Id: plugins.inc,v 1.152.2.16 2011/02/04 23:34:12 merlinofchaos Exp $
 /**
  * @file plugins.inc
  * Built in plugins for Views output handling.
  *
  */
-
 /**
  * Implementation of hook_views_plugins
  */
 function views_views_plugins() {
   $path = drupal_get_path('module', 'views') . '/js';
-
   $plugins = array(
     'module' => 'views', // This just tells our themes are elsewhere.
     'display' => array(
@@ -66,6 +65,9 @@ function views_views_plugins() {
         'handler' => 'views_plugin_display_attachment',
         'theme' => 'views_view',
         'use ajax' => TRUE,
+        'use pager' => FALSE,
+        'use more' => TRUE,
+        'accept attachments' => FALSE,
         'help topic' => 'display-attachment',
       ),
       'feed' => array(
@@ -95,6 +97,7 @@ function views_views_plugins() {
         'handler' => 'views_plugin_style_default',
         'theme' => 'views_view_unformatted',
         'uses row plugin' => TRUE,
+        'uses row class' => TRUE,
         'uses grouping' => TRUE,
         'uses options' => TRUE,
         'type' => 'normal',
@@ -106,6 +109,7 @@ function views_views_plugins() {
         'handler' => 'views_plugin_style_list',
         'theme' => 'views_view_list',
         'uses row plugin' => TRUE,
+        'uses row class' => TRUE,
         'uses options' => TRUE,
         'type' => 'normal',
         'help topic' => 'style-list',
@@ -116,6 +120,7 @@ function views_views_plugins() {
         'handler' => 'views_plugin_style_grid',
         'theme' => 'views_view_grid',
         'uses row plugin' => TRUE,
+        'uses row class' => TRUE,
         'uses options' => TRUE,
         'type' => 'normal',
         'help topic' => 'style-grid',
@@ -126,6 +131,7 @@ function views_views_plugins() {
         'handler' => 'views_plugin_style_table',
         'theme' => 'views_view_table',
         'uses row plugin' => FALSE,
+        'uses row class' => TRUE,
         'uses fields' => TRUE,
         'uses options' => TRUE,
         'type' => 'normal',
@@ -181,16 +187,18 @@ function views_views_plugins() {
       ),
     ),
     'argument default' => array(
-      // This type of plugin does not conform to the standard and
-      // uses 'fixed' as the parent rather than having a separate parent.
+      'parent' => array(
+        'no ui' => TRUE,
+        'handler' => 'views_plugin_argument_default',
+        'parent' => '',
+      ),
       'fixed' => array(
         'title' => t('Fixed entry'),
-        'handler' => 'views_plugin_argument_default',
+        'handler' => 'views_plugin_argument_default_fixed',
       ),
       'php' => array(
         'title' => t('PHP Code'),
         'handler' => 'views_plugin_argument_default_php',
-        'parent' => 'fixed',
       ),
     ),
     'argument validator' => array(
@@ -235,6 +243,18 @@ function views_views_plugins() {
         'help topic' => 'access-perm',
       ),
     ),
+    'query' => array(
+      'parent' => array(
+        'no ui' => TRUE,
+        'handler' => 'views_plugin_query',
+        'parent' => '',
+      ),
+      'views_query' => array(
+        'title' => t('SQL Query'),
+        'help' => t('Query will be generated and run using the Drupal database API.'),
+        'handler' => 'views_plugin_query_default'
+      ),
+    ),
     'cache' => array(
       'parent' => array(
         'no ui' => TRUE,
@@ -255,7 +275,89 @@ function views_views_plugins() {
         'help topic' => 'cache-time',
       ),
     ),
+    'exposed_form' => array(
+      'parent' => array(
+        'no ui' => TRUE,
+        'handler' => 'views_plugin_exposed_form',
+        'parent' => '',
+      ),
+      'basic' => array(
+        'title' => t('Basic'),
+        'help' => t('Basic exposed form'),
+        'handler' => 'views_plugin_exposed_form_basic',
+        'uses options' => TRUE,
+        'help topic' => 'exposed-form-basic',
+      ),
+      'input_required' => array(
+        'title' => t('Input required'),
+        'help' => t('An exposed form that only renders a view if the form contains user input.'),
+        'handler' => 'views_plugin_exposed_form_input_required',
+        'uses options' => TRUE,
+        'help topic' => 'exposed-form-input-required',
+      ),
+    ),
+    'pager' => array(
+      'parent' => array(
+        'no ui' => TRUE,
+        'handler' => 'views_plugin_pager',
+        'parent' => '',
+      ),
+      'none' => array(
+        'title' => t('Display all items'),
+        'help' => t("Display all items that this view might find"),
+        'handler' => 'views_plugin_pager_none',
+        'help topic' => 'pager-none',
+        'uses options' => TRUE,
+        'type' => 'basic',
+      ),
+      'some' => array(
+        'title' => t('Display a specified number of items'),
+        'help' => t('Display a limited number items that this view might find.'),
+        'handler' => 'views_plugin_pager_some',
+        'help topic' => 'pager-some',
+        'uses options' => TRUE,
+        'type' => 'basic',
+      ),
+      'full' => array(
+        'title' => t('Paged output, full pager'),
+        'help' => t('Paged output, full Drupal style'),
+        'handler' => 'views_plugin_pager_full',
+        'help topic' => 'pager-full',
+        'uses options' => TRUE,
+      ),
+      'mini' => array(
+        'title' => t('Paged output, mini pager'),
+        'help' => t('Use the mini pager output.'),
+        'handler' => 'views_plugin_pager_mini',
+        'help topic' => 'pager-mini',
+        'uses options' => TRUE,
+        'parent' => 'full',
+      ),
+    ),
+    'localization' => array(
+      'parent' => array(
+        'no ui' => TRUE,
+        'handler' => 'views_plugin_localization',
+        'parent' => '',
+      ),
+     'none' => array(
+        'title' => t('None'),
+        'help' => t('Do not pass admin strings for translation.'),
+        'handler' => 'views_plugin_localization_none',
+        'help topic' => 'localization-none',
+      ),
+      'core' => array(
+        'title' => t('Core'),
+        'help' => t("Use Drupal core t() function. Not recommended, as it doesn't support updates to existing strings."),
+        'handler' => 'views_plugin_localization_core',
+        'help topic' => 'localization-core',
+      ),
+    ),
   );
+  // Add a help message pointing to the i18views module if it is not present.
+  if (!module_exists('i18nviews')) {
+    $plugins['localization']['core']['help'] .= ' ' . t('If you need to translate Views labels into other languages, consider installing the <a href="!path">Internationalization</a> package\'s Views translation module.', array('!path' => url('http://drupal.org/project/i18n', array('absolute' => TRUE))));
+  }
 
   if (module_invoke('ctools', 'api_version', '1.3')) {
     $plugins['style']['jump_menu_summary'] = array(
@@ -289,7 +391,7 @@ function views_views_plugins() {
  * @return Nested array of plugins, grouped by type.
  */
 function views_discover_plugins() {
-  $cache = array('display' => array(), 'style' => array(), 'row' => array(), 'argument default' => array(), 'argument validator' => array(), 'access' => array(), 'cache' => array());
+  $cache = array('display' => array(), 'style' => array(), 'row' => array(), 'argument default' => array(), 'argument validator' => array(), 'access' => array(), 'cache' => array(), 'exposed_form' => array());
   // Get plugins from all mdoules.
   foreach (module_implements('views_plugins') as $module) {
     $function = $module . '_views_plugins';
@@ -347,6 +449,20 @@ function views_discover_plugins() {
  */
 class views_plugin extends views_object {
   /**
+   * The top object of a view.
+   * 
+   * @var view
+   */
+  var $view = NULL;
+  
+  /**
+   * The current used display plugin.
+   *
+   * @var views_plugin_display
+   */
+  var $display = NULL;
+
+  /**
    * Init will be called after construct, when the plugin is attached to a
    * view and a display.
    */
@@ -368,7 +484,7 @@ class views_plugin extends views_object {
   /**
    * Handle any special handling on the validate form.
    */
-  function options_submit(&$form, &$form_state) { }
+  function options_submit($form, &$form_state) { }
 
   /**
    * Add anything to the query that we might need to.

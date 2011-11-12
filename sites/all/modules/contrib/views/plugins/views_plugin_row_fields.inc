@@ -1,4 +1,5 @@
 <?php
+// $Id: views_plugin_row_fields.inc,v 1.1.2.3 2010/12/04 00:15:14 merlinofchaos Exp $
 /**
  * @file
  * Contains the base row style plugin.
@@ -26,6 +27,7 @@ class views_plugin_row_fields extends views_plugin_row {
    * Provide a form for setting options.
    */
   function options_form(&$form, &$form_state) {
+    parent::options_form($form, $form_state);
     $options = $this->display->handler->get_field_labels();
 
     if (empty($this->options['inline'])) {
@@ -54,6 +56,7 @@ class views_plugin_row_fields extends views_plugin_row {
       '#default_value' => $this->options['hide_empty'],
       '#description' => t('Do not display fields, labels or markup for fields that are empty.'),
     );
+
   }
 
   /**

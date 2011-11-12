@@ -1,4 +1,5 @@
 <?php
+//$Id: comment.views_convert.inc,v 1.2.2.2 2009/06/30 19:14:17 merlinofchaos Exp $
 
 /**
  * @file

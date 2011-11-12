@@ -1,4 +1,5 @@
 <?php
+// $Id: views_handler_field_math.inc,v 1.1.4.3 2011/01/10 23:14:26 merlinofchaos Exp $
 /**
  * Render a mathematical expression as a numeric value
  *
@@ -66,7 +67,7 @@ class views_handler_field_math extends views_handler_field_numeric {
       return '';
     }
 
-    return check_plain($this->options['prefix'] . $value . $this->options['suffix']);
+    return $this->sanitize_value($this->options['prefix'] . $value . $this->options['suffix']);
   }
 
   function query() { }

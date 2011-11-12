@@ -1,4 +1,5 @@
 <?php
+// $Id: views_handler_filter_date.inc,v 1.3.2.5 2010/12/10 00:46:54 merlinofchaos Exp $
 
 /**
  * Filter to handle dates stored as a timestamp.
@@ -8,7 +9,7 @@ class views_handler_filter_date extends views_handler_filter_numeric {
     $options = parent::option_definition();
 
     // value is already set up properly, we're just adding our new field to it.
-    $options['value']['type']['default'] = 'date';
+    $options['value']['contains']['type']['default'] = 'date';
 
     return $options;
   }

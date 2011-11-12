@@ -1,4 +1,5 @@
 <?php
+// $Id: search.views_default.inc,v 1.6.2.2 2010/10/12 23:20:32 merlinofchaos Exp $
 /**
  * @file
  * Contains default views on behalf of the search module.

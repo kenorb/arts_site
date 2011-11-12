@@ -1,4 +1,5 @@
 <?php
+// $Id: views_plugin_style_jump_menu.inc,v 1.1.4.8 2011/02/05 01:08:32 merlinofchaos Exp $
 /**
  * @file
  * Contains the table style plugin.
@@ -98,7 +99,7 @@ class views_plugin_style_jump_menu extends views_plugin_style {
     foreach ($sets as $title => $records) {
       foreach ($records as $row_index => $row) {
         $this->view->row_index = $row_index;
-        $path = html_entity_decode(strip_tags($this->get_field($this->view->row_index, $this->options['path'])), ENT_QUOTES);
+        $path = strip_tags($this->get_field($this->view->row_index, $this->options['path']));
         // Putting a '/' in front messes up url() so let's take that out
         // so users don't shoot themselves in the foot.
         if (strpos($path, '/') === 0) {
@@ -119,7 +120,7 @@ class views_plugin_style_jump_menu extends views_plugin_style {
         }
 
         $path = url($path, $url_options);
-        $field = html_entity_decode(strip_tags($this->row_plugin->render($row)), ENT_QUOTES);
+        $field = strip_tags($this->row_plugin->render($row));
         if ($title) {
           $options[$title][$path] = $field;
         }

@@ -1,4 +1,5 @@
 <?php
+// $Id: views_plugin_style_summary_jump_menu.inc,v 1.1.4.7 2011/02/04 23:44:05 merlinofchaos Exp $
 /**
  * @file
  * Contains the default summary style plugin, which displays items in an HTML list.
@@ -24,14 +25,12 @@ class views_plugin_style_summary_jump_menu extends views_plugin_style {
   }
 
   function query() {
-    // We can't have an offset without a limit, so provide a very large limit instead.
-    if (!empty($this->display->handler->options['offset'])) {
-      $this->view->set_items_per_page(999999);
-    }
-    else {
-      $this->view->set_items_per_page(0);
-      $this->view->set_use_pager(0);
-    }
+    // Copy the offset option.
+    $pager = array(
+      'type' => 'none',
+      'options' => $this->display->handler->options['pager']['options'],
+    );
+    $this->display->handler->set_option('pager', $pager);
   }
 
   function options_form(&$form, &$form_state) {

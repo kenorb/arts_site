@@ -1,4 +1,5 @@
 <?php
+//$Id: user.views.inc,v 1.56.2.13 2010/07/27 23:00:45 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for user.module
@@ -61,6 +62,15 @@ function user_views_data() {
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
+    'relationship' => array(
+      'title' => t('Nodes authored'),
+      'help' => t('Relate nodes to the user who created it. This relationship will create one record for every node created by the user.'),
+      'handler' => 'views_handler_relationship',
+      'base' => 'node',
+      'base field' => 'uid',
+      'field' => 'uid',
+      'label' => t('nodes'),
+    ),
   );
 
   // uid
@@ -90,8 +100,8 @@ function user_views_data() {
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_string',
-      'title' => t('User raw name'),
-      'help' => t('The user or author name. This filter do not check if the user exists. Only useful for string comparisons.')
+      'title' => t('Name (raw)'),
+      'help' => t('The user or author name. This filter does not check if the user exists and allows partial matching. Does not utilize autocomplete.')
     ),
   );
 
@@ -226,8 +236,9 @@ function user_views_data() {
     'help' => t("The user's signature."), // The help that appears on the UI,
      // Information for displaying a title as a field
     'field' => array(
-      'handler' => 'views_handler_field_xss',
-     ),
+      'handler' => 'views_handler_field_markup',
+      'format' => FILTER_FORMAT_DEFAULT,
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_string',
     ),
@@ -277,6 +288,7 @@ function user_views_data() {
     'help' => t('Roles that a user belongs to.'),
     'field' => array(
       'handler' => 'views_handler_field_user_roles',
+      'no group by' => TRUE,
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_user_roles',

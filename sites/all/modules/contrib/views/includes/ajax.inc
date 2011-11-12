@@ -1,4 +1,5 @@
 <?php
+// $Id: ajax.inc,v 1.19.2.4 2010/10/12 22:18:18 merlinofchaos Exp $
 
 /**
  * @file ajax.inc
@@ -20,6 +21,15 @@ function views_ajax() {
     $path = isset($_REQUEST['view_path']) ? $_REQUEST['view_path'] : NULL;
     $dom_id = isset($_REQUEST['view_dom_id']) ? intval($_REQUEST['view_dom_id']) : NULL;
     $pager_element = isset($_REQUEST['pager_element']) ? intval($_REQUEST['pager_element']) : NULL;
+
+    $ajax_arguments = array(
+      'view_name' => $name,
+      'view_display_id' => $display_id,
+      'view_args' => $_REQUEST['view_args'],
+      'view_path' => $path,
+      'view_dom_id' => $dom_id,
+      'pager_element' => $pager_element,
+    );
     views_include('ajax');
     $object = new stdClass();
 
@@ -35,6 +45,7 @@ function views_ajax() {
     }
     // Load the view.
     if ($view = views_get_view($name)) {
+      $view->ajax_path = array($_GET['q'], $ajax_arguments);
       if ($view->access($display_id)) {
 
         // Fix 'q' for paging.
@@ -52,10 +63,8 @@ function views_ajax() {
         $errors = $view->validate();
         if ($errors === TRUE) {
           $object->status = TRUE;
-          $object->display .= $view->preview($display_id, $args);
-          // Get the title after the preview call, to let it set
-          // up both the view's current display and arguments
           $object->title = $view->get_title();
+          $object->display .= $view->preview($display_id, $args);
         }
         else {
           foreach ($errors as $error) {

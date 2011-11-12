@@ -1,4 +1,5 @@
 <?php
+//$Id: profile.views.inc,v 1.9.2.5 2010/12/16 06:50:32 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for user.module
@@ -195,6 +196,7 @@ function profile_views_fetch_field($field) {
         'help' => t('Profile freeform list %field-name.', array('%field-name' => $field->title)),
         'field' => array(
           'handler' => 'views_handler_field_profile_list',
+          'no group by' => TRUE,
         ),
         'filter' => array(
           'handler' => 'views_handler_filter_string',
