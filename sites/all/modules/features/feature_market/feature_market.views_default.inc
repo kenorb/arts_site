@@ -87,6 +87,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_image_fid']['empty'] = '<img alt="no image" src="/sites/all/themes/saw/images/nophoto_50.png" />';
   $handler->display->display_options['fields']['field_image_fid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['link_to_node'] = 1;
@@ -321,6 +322,7 @@ function feature_market_views_default_views() {
     t('No items found'),
     t('flag'),
     t('nodes'),
+    t('<img alt="no image" src="/sites/all/themes/saw/images/nophoto_50.png" />'),
     t('City'),
     t('Country'),
     t('Sell price'),

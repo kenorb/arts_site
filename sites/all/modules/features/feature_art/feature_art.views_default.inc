@@ -111,6 +111,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_image_fid']['empty'] = '<img alt="no image" src="/sites/all/themes/saw/images/nophoto_200.png" />';
   $handler->display->display_options['fields']['field_image_fid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['link_to_node'] = 1;
@@ -341,6 +342,7 @@ function feature_art_views_default_views() {
     t('No arts found'),
     t('flag'),
     t('nodes'),
+    t('<img alt="no image" src="/sites/all/themes/saw/images/nophoto_200.png" />'),
     t('Teaser'),
     t('Title'),
     t('Sell price'),
