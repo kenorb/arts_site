@@ -1552,6 +1552,10 @@ div.admin-panel .body {
     color: #444;
   }
   
+  .arts-filters .image {
+  	width: 200px;
+  }
+  
   .arts-filters a.filter {
     font-size: 1.2em;
     margin: 4px 10px;
@@ -1587,12 +1591,12 @@ div.admin-panel .body {
   }
   
   .arts-row .details {
-    width: 200px;
-    position: absolute;
-    margin-top: 116px;
+    margin-top: -34px;
     height: 34px;
     background-color: rgba(255,255,255,0.7);
     font-size: 0.7em;
+    display: inline-block;
+    width: 100%;
   }
   
   .arts-row .details table {

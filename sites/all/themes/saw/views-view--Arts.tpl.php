@@ -28,6 +28,8 @@
 	<?php foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
 		<div class="arts-row">
 			<div class="image">
+				<?php echo $row ['field_image_fid']; ?>
+			</div>
 				<div class="details">
 					<table cellpadding="0" cellspacing="0" border="0">
 						<tbody>
@@ -48,9 +50,7 @@
 							</tr>
 						</tbody>
 					</table>
-			</div>
-				<?php echo $row ['field_image_fid']; ?>
-			</div>
+				</div>
 		</div>
 	<?php endforeach; ?>
 	
