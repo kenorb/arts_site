@@ -28,12 +28,37 @@
               <?php print theme('links', $primary_links, array('class' => 'links', 'id' => 'navlist')) ?>
             </td>
             <td td class="login-box" valign="middle" >
-          	  <p> 
           	  <?php if (!$logged_in): ?>
-                	<a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>   
+								<p>
+                	<a class="active" href="/user/register"><img src="/sites/all/themes/saw/kreska.png" alt=""> Sign up </a>
                 	<a class="active" href="/user"><img src="/sites/all/themes/saw/klodka.png" alt=""> Sign in </a>  </p>
+								</p>
                 <?php else: ?>
-                	<a class="active" href="/logout"><img src="/sites/all/themes/saw/kreska.png" alt=""> Logout </a>  </p>
+                	<table class="profile-menu-container" cellspacing="0" cellpadding="0">
+										<tr class="top">
+											<td class="username">
+												<a href="/user/<?php echo $user -> name; ?>">
+													<span class="role"><?php echo ucwords (end ($user -> roles)); ?></span> - <span class="name"><?php echo $user -> name; ?></span>
+												</a>
+											</td>
+											<td class="dropdown-icon">
+												<div class="dropdown-icon"></div>
+											</td>
+											
+											<td class="logout">
+												<a href="/logout">Log out</a>
+											</td>
+										</tr>
+										<tr class="bottom">
+											<td colspan="3" class="items">
+												<?php
+													$menu = module_invoke('menu', 'block', 'view', 'menu-profilemenu');
+													echo str_replace ('>-<', '><div class="separator"></div><', $menu ['content']); ?>
+											</td>
+										</tr>
+									</table>
+										
+									</div>
                 <?php endif; ?>
             </td>
           </tr>

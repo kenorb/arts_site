@@ -186,7 +186,7 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 }
 
 #home {
-  background: transparent url('images/mlogo.png') center no-repeat;
+  background: transparent url('images/mlogo.png') center 20px no-repeat;
 }
 .secondary-links, .secondary-links a:link, .secondary-links a:visited {
   color: #fefffa;
@@ -1443,6 +1443,88 @@ div.admin-panel .body {
   
 
 /* #forum: END */
+
+
+  .login-box {
+    padding-top: 21px
+  }
+
+  .profile-menu-container {
+    margin: 0; padding: 0;
+    font-size: 0.9em !important;
+    border: 0px;
+    border-radius: 4px;
+    background: url('images/profile-menu-dropdown-background.png') repeat-x #135785;
+  }
+
+  .profile-menu-container .username {
+    color: #eee;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 3px 10px;
+  }
+  
+  .profile-menu-container ul.menu {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .profile-menu-container ul.menu li {
+    list-style-type: none;
+  }
+  
+  .profile-menu-container .items .separator {
+    height: 1px;
+    border-bottom: 1px solid #246;
+    margin: 5px 0;
+  }
+  
+  .profile-menu-container a {
+    color: #fff !important;
+    text-decoration: none;
+  }
+  
+  .profile-menu-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .profile-menu-container .username {
+    background: url('images/profile-menu-username-background.png') repeat-x #135785;
+    height: 24px;
+    text-shadow: 0px 1px 0px #000;
+  }
+  
+  .profile-menu-container .username span.role {
+    letter-spacing: -1px;
+    color: #ccc;
+  }
+  
+  .profile-menu-container .items {
+    position: absolute;
+    display: none;
+    background: url('images/profile-menu-dropdown-background.png') left -24px repeat-x #135785;
+    padding: 16px 10px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    z-index: 2000;
+  }
+  
+  .profile-menu-container .dropdown-icon {
+    background: url('images/profile-menu-dropdown-icon.png') no-repeat #135785;
+    width: 22px;
+    height: 24px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .profile-menu-container.opened {
+    border-bottom-right-radius: 0px;
+  }
+
+  .profile-menu-container .logout {
+    padding: 3px 10px 3px 5px;
+    color: #eee;
+  }
 
 
 
