@@ -24,6 +24,96 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-45',
   );
+  // Exported menu link: menu-profilemenu:node/1
+  $menu_links['menu-profilemenu:node/1'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'node/1',
+    'router_path' => 'node/%',
+    'link_title' => '-',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-49',
+  );
+  // Exported menu link: menu-profilemenu:node/2
+  $menu_links['menu-profilemenu:node/2'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'node/2',
+    'router_path' => 'node/%',
+    'link_title' => '-',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-46',
+  );
+  // Exported menu link: menu-profilemenu:node/28
+  $menu_links['menu-profilemenu:node/28'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'node/28',
+    'router_path' => 'node/%',
+    'link_title' => 'Upgrade to premium?',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-50',
+  );
+  // Exported menu link: menu-profilemenu:user/me/edit
+  $menu_links['menu-profilemenu:user/me/edit'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'user/me/edit',
+    'router_path' => 'user/%/edit',
+    'link_title' => 'Account Settings',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-48',
+  );
+  // Exported menu link: menu-profilemenu:user/me/edit/profile
+  $menu_links['menu-profilemenu:user/me/edit/profile'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'user/me/edit/profile',
+    'router_path' => 'user/%/edit/profile',
+    'link_title' => 'Privacy Settings',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-47',
+  );
   // Exported menu link: menu-toolbar:calendar
   $menu_links['menu-toolbar:calendar'] = array(
     'menu_name' => 'menu-toolbar',
@@ -297,7 +387,9 @@ function feature_users_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
+  t('-');
   t('Account');
+  t('Account Settings');
   t('Add Topic');
   t('Add content');
   t('Art');
@@ -314,6 +406,8 @@ function feature_users_menu_default_menu_links() {
   t('My workspace');
   t('News');
   t('Online');
+  t('Privacy Settings');
+  t('Upgrade to premium?');
 
 
   return $menu_links;
