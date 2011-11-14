@@ -918,6 +918,10 @@ div.admin-panel .body {
     font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
     border-radius: 6px;
   }
+	
+	.view-marketplace .view-filters {
+		margin-bottom: 30px;
+	}
   
   .view-marketplace .description > p {
     padding: 3px;

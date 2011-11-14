@@ -1,5 +1,9 @@
 <div class="view-marketplace">
 
+	<div class="views-exposed-form view-filters view">
+		<?php echo $view -> exposed_widgets; ?>
+	</div>
+
 	<?php foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
 	
 		<div class="view-marketplace-row">
@@ -42,14 +46,11 @@
 					</tr>
 				</tbody>
 			</table>		
-		
-
-<!--			<?php echo $row ['field_image_fid']; ?> -->
-<!--			<?php echo $row ['sell_price']; ?> -->
-<!--			<?php echo $row ['teaser']; ?> -->
 			
 		</div>
 			
 	<?php endforeach; ?>
 
 </div>
+
+<?php echo $pager; ?>
