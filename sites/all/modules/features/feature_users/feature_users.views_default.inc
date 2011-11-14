@@ -19,6 +19,7 @@ function feature_users_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['title'] = 'Top authors';
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -93,6 +94,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['author_list'] = array(
     t('Defaults'),
+    t('Top authors'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -101,7 +103,6 @@ function feature_users_views_default_views() {
     t('Desc'),
     t('nodes'),
     t('Uid'),
-    t('Top authors'),
   );
 
   $views[$view->name] = $view;
@@ -1323,6 +1324,8 @@ function feature_users_views_default_views() {
 
   /* Display: Moderators */
   $handler = $view->new_display('block', 'Moderators', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Moderators and critics online';
   $translatables['who_is_online'] = array(
     t('Defaults'),
     t('more'),
@@ -1335,6 +1338,7 @@ function feature_users_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('Moderators'),
+    t('Moderators and critics online'),
   );
 
   $views[$view->name] = $view;

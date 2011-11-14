@@ -19,6 +19,7 @@ function feature_art_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['title'] = 'Arts';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -329,6 +330,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $translatables['Arts'] = array(
     t('Defaults'),
+    t('Arts'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -358,7 +360,6 @@ function feature_art_views_default_views() {
     t('Education'),
     t('Category'),
     t('Default'),
-    t('Arts'),
     t('Most viewed'),
     t('Most viewed arts'),
     t('Most recent'),
@@ -455,6 +456,8 @@ function feature_art_views_default_views() {
 
   /* Display: Featured items */
   $handler = $view->new_display('block', 'Featured items', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Featured items';
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -480,6 +483,8 @@ function feature_art_views_default_views() {
 
   /* Display: Featured arts */
   $handler = $view->new_display('block', 'Featured arts', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Featured arts';
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -505,6 +510,8 @@ function feature_art_views_default_views() {
 
   /* Display: Featured events */
   $handler = $view->new_display('block', 'Featured events', 'featured_events');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Featured events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'featured-events';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -770,6 +777,7 @@ function feature_art_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['title'] = 'Arts';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -859,6 +867,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
   $translatables['image_block'] = array(
     t('Defaults'),
+    t('Arts'),
     t('more'),
     t('Apply'),
     t('Reset'),
