@@ -914,6 +914,102 @@ div.admin-panel .body {
 
 
 
+  .view-marketplace {
+    font-family: Century Gothic, Palatino Linotype, Helvetica, Arial;
+    border-radius: 6px;
+  }
+  
+  .view-marketplace .description > p {
+    padding: 3px;
+  }
+  
+  .view-marketplace table {
+    width: 100%;
+	}
+	
+	.view-marketplace .image {
+    padding: 2px;
+    margin: 3px;
+    display: inline-block;
+		border: 1px solid transparent;
+  }
+  
+  .view-marketplace .image:hover {
+    border: 1px solid #888;
+    background-color: #fff;
+    padding: 3px;
+    margin: 2px;
+    border-radius: 3px;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+  }
+
+  
+  .view-marketplace-row {
+    border-radius: 5px;
+    margin-bottom: 8px;
+    padding: 4px 4px;
+    min-height: 110px;
+  }
+  
+  .view-marketplace .image {
+    min-width: 100px;
+    min-height: 100px;
+  }
+  
+  .view-marketplace .image img {
+    border-radius: 4px;
+  }
+  
+  .view-marketplace .left-column,
+  .view-marketplace .middle-column,
+  .view-marketplace .right-column {
+    vertical-align: top;
+  }
+  
+  .view-marketplace .left-column {
+    width: 107px;
+  }
+  
+  .view-marketplace .right-column {
+    width: 100px;
+		text-align: right;
+		padding-right: 20px;
+  }
+
+  .view-marketplace .location {
+    font-size: 1.0em;
+		font-weight: normal;
+  }
+  
+  .view-marketplace .title,
+  .view-marketplace .user {
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 1px solid #B3B3B3;
+    padding-bottom: 2px;
+  }
+  
+  .view-marketplace a {
+    color: #225776 !important;
+    border-bottom: none !important;
+	}
+	
+	.view-marketplace a:hover {
+    text-decoration: underline;
+	}
+	
+	.view-marketplace .datetime {
+    width: 147px;
+	}
+
+	.view-marketplace .price {
+    width: 147px;
+		font-size: 1.4em;
+		padding-top: 17px;
+		color: #225776;
+	}
+
+
 
 /* featured-events: BEGIN */
 

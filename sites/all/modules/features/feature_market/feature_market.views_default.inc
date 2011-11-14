@@ -23,6 +23,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
@@ -32,26 +33,8 @@ function feature_market_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '25, 50, 100, 200';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'title' => 'title',
-    'field_image_fid' => 'field_image_fid',
-  );
-  $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-    ),
-    'field_image_fid' => array(
-      'align' => '',
-      'separator' => '',
-    ),
-  );
-  $handler->display->display_options['style_options']['override'] = 1;
-  $handler->display->display_options['style_options']['sticky'] = 1;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
   /* Empty text: Global: Text area */
   $handler->display->display_options['empty']['area_1']['id'] = 'area_1';
   $handler->display->display_options['empty']['area_1']['table'] = 'views';
@@ -87,12 +70,12 @@ function feature_market_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_image_fid']['empty'] = '<img alt="no image" src="/sites/all/themes/saw/images/nophoto_50.png" />';
+  $handler->display->display_options['fields']['field_image_fid']['empty'] = '<img alt="no image" src="/sites/all/themes/saw/images/nophoto_100.png" />';
   $handler->display->display_options['fields']['field_image_fid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_image_fid']['link_to_node'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_image_fid']['format'] = 'imagefield__lightshow2_compact__Thumb_50__original';
+  $handler->display->display_options['fields']['field_image_fid']['format'] = 'imagefield__lightshow2__Thumb_100w__Thumb_100w';
   $handler->display->display_options['fields']['field_image_fid']['multiple']['group'] = 1;
   $handler->display->display_options['fields']['field_image_fid']['multiple']['multiple_reversed'] = 0;
   /* Field: Node: Title */
@@ -168,6 +151,44 @@ function feature_market_views_default_views() {
   $handler->display->display_options['fields']['sell_price']['set_precision'] = 0;
   $handler->display->display_options['fields']['sell_price']['precision'] = '0';
   $handler->display->display_options['fields']['sell_price']['format_plural'] = 0;
+  /* Field: Node: Teaser */
+  $handler->display->display_options['fields']['teaser']['id'] = 'teaser';
+  $handler->display->display_options['fields']['teaser']['table'] = 'node_revisions';
+  $handler->display->display_options['fields']['teaser']['field'] = 'teaser';
+  $handler->display->display_options['fields']['teaser']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['teaser']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['teaser']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['teaser']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['teaser']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['teaser']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['teaser']['empty_zero'] = 0;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
   /* Sort criterion: User: Role weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'role_weights';
@@ -322,12 +343,14 @@ function feature_market_views_default_views() {
     t('No items found'),
     t('flag'),
     t('nodes'),
-    t('<img alt="no image" src="/sites/all/themes/saw/images/nophoto_50.png" />'),
+    t('<img alt="no image" src="/sites/all/themes/saw/images/nophoto_100.png" />'),
     t('City'),
     t('Country'),
     t('Sell price'),
     t('.'),
     t(','),
+    t('Teaser'),
+    t('Name'),
     t('Random'),
     t('Most popular'),
     t('Most recent'),
