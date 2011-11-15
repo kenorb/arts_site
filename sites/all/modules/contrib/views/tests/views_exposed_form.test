@@ -32,6 +32,10 @@ class ViewsExposedFormTest extends ViewsSqlTest {
     $this->drupalGet('test_rename_reset_button');
     // Rename the label of the reset button.
     $view = views_get_view('test_rename_reset_button');
+    $this->assertTrue((bool)$view,'rename reset button found');
+    if (!$view)
+      return;
+
     $view->set_display('default');
 
     $exposed_form = $view->display_handler->get_option('exposed_form');
