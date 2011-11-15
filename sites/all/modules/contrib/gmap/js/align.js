@@ -1,4 +1,3 @@
-/* $Id: align.js,v 1.3 2009/02/11 20:08:33 bdragon Exp $ */
 
 /**
  * @file

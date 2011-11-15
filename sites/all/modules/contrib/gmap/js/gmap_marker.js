@@ -1,4 +1,3 @@
-/* $Id: gmap_marker.js,v 1.3 2009/02/11 18:40:31 bdragon Exp $ */
 
 /**
  * @file

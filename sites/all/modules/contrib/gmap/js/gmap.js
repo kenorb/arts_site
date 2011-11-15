@@ -1,4 +1,3 @@
-/* $Id: gmap.js,v 1.16.2.1 2010/04/08 13:40:19 rooby Exp $ */
 
 /**
  * @file
@@ -52,7 +51,10 @@
     globalChange: function (name, userdata) {
       for (var mapid in Drupal.settings.gmap) {
         if (Drupal.settings.gmap.hasOwnProperty(mapid)) {
-          maps[mapid].change(name, -1, userdata);
+          // Skip maps that are set up but not shown, etc.
+          if (maps[mapid]) {
+            maps[mapid].change(name, -1, userdata);
+          }
         }
       }
     },
@@ -206,6 +208,23 @@ Drupal.gmap.addHandler('gmap', function (elem) {
     obj.map.panTo(new GLatLng(obj.vars.latitude, obj.vars.longitude));
   });
 
+  // Respond to incoming recenter commands.
+  _ib.recenter = obj.bind("recenter", function (vars) {
+    if (vars) {
+      if (vars.bounds) {
+        obj.vars.latitude = vars.bounds.getCenter().lat();
+        obj.vars.longitude = vars.bounds.getCenter().lng();
+        obj.vars.zoom = obj.map.getBoundsZoomLevel(vars.bounds);
+      }
+      else {
+        obj.vars.latitude = vars.latitude;
+        obj.vars.longitude = vars.longitude;
+        obj.vars.zoom = vars.zoom;
+      }
+    }
+    obj.map.setCenter(new GLatLng(obj.vars.latitude, obj.vars.longitude), obj.vars.zoom);
+  });
+
   // Respond to incoming map type changes
   _ib.mtc = obj.bind("maptypechange", function () {
     var i;
@@ -277,6 +296,15 @@ Drupal.gmap.addHandler('gmap', function (elem) {
       opts.mapTypeNames.push('Physical');
     }
 
+    if (obj.vars.draggableCursor) {
+      opts.draggableCursor = obj.vars.draggableCursor;
+    }
+    if (obj.vars.draggingCursor) {
+      opts.draggingCursor = obj.vars.draggingCursor;
+    }
+    if (obj.vars.backgroundColor) {
+      opts.backgroundColor = obj.vars.backgroundColor;
+    }
   });
 
   obj.bind("boot", function () {
@@ -438,6 +466,27 @@ Drupal.gmap.addHandler('latlon', function (elem) {
     obj.vars.latitude = Number(t[0]);
     obj.vars.longitude = Number(t[1]);
     obj.change("move", binding);
+  });
+});
+
+////////////////////////////////////////
+//          Extent widget             //
+////////////////////////////////////////
+Drupal.gmap.addHandler('extent', function (elem) {
+  var obj = this;
+  // Respond to incoming extent changes.
+  var binding = obj.bind("move", function () {
+    var b = obj.map.getBounds();
+    elem.value = '' + b.getSouthWest().lng() + ',' + b.getSouthWest().lat() + ',' + b.getNorthEast().lng() + ',' + b.getNorthEast().lat();
+  });
+  // Send out outgoing extent changes.
+  jQuery(elem).change(function () {
+    var t = this.value.split(',');
+    var b = new GLatLngBounds(new GLatLng(Number(t[1]), Number(t[0])), new GLatLng(Number(t[3]), Number(t[2])));
+    obj.vars.latitude = b.getCenter().lat();
+    obj.vars.longitude = b.getCenter().lng();
+    obj.vars.zoom = obj.map.getBoundsZoomLevel(b);
+    obj.map.setCenter(new GLatLng(obj.vars.latitude, obj.vars.longitude), obj.vars.zoom);
   });
 });
 

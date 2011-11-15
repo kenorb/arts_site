@@ -1,4 +1,3 @@
-/* $Id: marker.js,v 1.4.2.1 2010/04/08 13:40:19 rooby Exp $ */
 
 /**
  * @file
@@ -63,24 +62,52 @@ Drupal.gmap.addHandler('gmap', function (elem) {
     if (marker.text) {
       marker.marker.openInfoWindowHtml(marker.text);
     }
+    // Info Window Query / Info Window Offset
+    if (marker.iwq || (obj.vars.iwq && typeof marker.iwo != 'undefined')) {
+      var iwq, iwo;
+      if (obj.vars.iwq) {
+        iwq = obj.vars.iwq;
+      }
+      if (marker.iwq) {
+        iwq = marker.iwq;
+      }
+      iwo = 0;
+      if (marker.iwo) {
+        iwo = marker.iwo;
+      }
+      // Create a container to store the cloned DOM elements.
+      var el = document.createElement('div');
+      // Clone the matched object, run through the clone, stripping off ids, and move the clone into the container.
+      jQuery(iwq).eq(iwo).clone(false).find('*').removeAttr('id').appendTo(jQuery(el));
+      marker.marker.openInfoWindow(el);
+    }
     // AJAX content
     if (marker.rmt) {
-      var uri = marker.rmt;
-      // If there was a callback, prefix that.
-      // (If there wasn't, marker.rmt was the FULL path.)
-      if (obj.vars.rmtcallback) {
-        uri = obj.vars.rmtcallback + '/' + marker.rmt;
+      obj.rmtcache = obj.rmtcache || {};
+      
+      // Cached RMT.
+      if (obj.rmtcache[marker.rmt]) {
+        marker.marker.openInfoWindowHtml(obj.rmtcache[marker.rmt]);
       }
-      // @Bevan: I think it makes more sense to do it in this order.
-      // @Bevan: I don't like your choice of variable btw, seems to me like
-      // @Bevan: it belongs in the map object, or at *least* somewhere in
-      // @Bevan: the gmap settings proper...
-      //if (!marker.text && Drupal.settings.loadingImage) {
-      //  marker.marker.openInfoWindowHtml(Drupal.settings.loadingImage);
-      //}
-      $.get(uri, {}, function (data) {
-        marker.marker.openInfoWindowHtml(data);
-      });
+      else {
+        var uri = marker.rmt;
+        // If there was a callback, prefix that.
+        // (If there wasn't, marker.rmt was the FULL path.)
+        if (obj.vars.rmtcallback) {
+          uri = obj.vars.rmtcallback + '/' + marker.rmt;
+        }
+        // @Bevan: I think it makes more sense to do it in this order.
+        // @Bevan: I don't like your choice of variable btw, seems to me like
+        // @Bevan: it belongs in the map object, or at *least* somewhere in
+        // @Bevan: the gmap settings proper...
+        //if (!marker.text && Drupal.settings.loadingImage) {
+        //  marker.marker.openInfoWindowHtml(Drupal.settings.loadingImage);
+        //}
+        $.get(uri, {}, function (data) {
+          obj.rmtcache[marker.rmt] = data;
+          marker.marker.openInfoWindowHtml(data);
+        });
+      }
     }
     // Tabbed content
     else if (marker.tabs) {

@@ -1,4 +1,3 @@
-/* $Id: address.js,v 1.4 2009/02/11 20:50:44 bdragon Exp $ */
 
 /**
  * @file

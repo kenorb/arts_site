@@ -1,4 +1,3 @@
-/* $Id: locpick.js,v 1.4.2.1 2010/04/01 13:26:27 rooby Exp $ */
 
 /**
  * @file
@@ -18,6 +17,7 @@ Drupal.gmap.addHandler('gmap', function (elem) {
 
   obj.bind("locpickremove", function () {
     obj.map.removeOverlay(obj.locpick_point);
+    obj.locpick_point = null;
     obj.locpick_coord = null;
     obj.change('locpickchange', -1);
   });

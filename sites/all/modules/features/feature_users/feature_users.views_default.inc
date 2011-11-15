@@ -275,6 +275,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Forum';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'forum';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['reduce'] = 0;
   $handler->display->display_options['filters']['term_node_tid_depth']['reduce_duplicates'] = 0;
@@ -527,6 +528,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
 
@@ -658,6 +660,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
   $handler->display->display_options['path'] = 'manage/events';
@@ -793,6 +796,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
   $handler->display->display_options['path'] = 'manage/items';
@@ -889,6 +893,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
   $handler->display->display_options['path'] = 'manage/arts';
@@ -1192,6 +1197,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys']['expose']['label'] = 'find';
+  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
   /* Filter: Node: Type */
@@ -1209,6 +1215,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['type']['expose']['label'] = 'in category';
+  $handler->display->display_options['filters']['type']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'category';
   $handler->display->display_options['filters']['type']['expose']['single'] = 0;
   $handler->display->display_options['filters']['type']['expose']['reduce'] = 1;

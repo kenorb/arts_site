@@ -6,6 +6,46 @@
 function feature_users_default_fe_block_settings() {
   $export = array();
 
+  // saw
+  $theme = array();
+
+  $theme['block-profile_statistics'] = array(
+    'module' => 'block',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => 'Statistics',
+    'cache' => '-1',
+    'machine_name' => 'profile_statistics',
+  );
+
+  $export['saw'] = $theme;
+
+  // studentart
+  $theme = array();
+
+  $theme['block-profile_statistics'] = array(
+    'module' => 'block',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => 'Statistics',
+    'cache' => '-1',
+    'machine_name' => 'profile_statistics',
+  );
+
+  $export['studentart'] = $theme;
+
   // bluemarine
   $theme = array();
 
@@ -46,26 +86,6 @@ function feature_users_default_fe_block_settings() {
 
   $export['chameleon'] = $theme;
 
-  // garland
-  $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'garland',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'Statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
-  $export['garland'] = $theme;
-
   // marvin
   $theme = array();
 
@@ -85,6 +105,26 @@ function feature_users_default_fe_block_settings() {
   );
 
   $export['marvin'] = $theme;
+
+  // garland
+  $theme = array();
+
+  $theme['block-profile_statistics'] = array(
+    'module' => 'block',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => 'Statistics',
+    'cache' => '-1',
+    'machine_name' => 'profile_statistics',
+  );
+
+  $export['garland'] = $theme;
 
   // minnelli
   $theme = array();
@@ -125,46 +165,6 @@ function feature_users_default_fe_block_settings() {
   );
 
   $export['pushbutton'] = $theme;
-
-  // saw
-  $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'saw',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'Statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
-  $export['saw'] = $theme;
-
-  // studentart
-  $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'studentart',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'Statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
-  $export['studentart'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();

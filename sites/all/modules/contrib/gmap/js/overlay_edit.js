@@ -1,4 +1,3 @@
-/* $Id: overlay_edit.js,v 1.3 2009/02/11 21:41:33 bdragon Exp $ */
 
 /**
  * @file

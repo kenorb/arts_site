@@ -1,4 +1,3 @@
-/* $Id: icon.js,v 1.6 2009/02/11 20:14:39 bdragon Exp $ */
 
 /**
  * @file

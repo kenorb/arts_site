@@ -1,5 +1,4 @@
 <?php
-// $Id: gmap.module,v 1.104.2.6 2010/06/08 17:40:59 bdragon Exp $
 
 /**
  * @file
@@ -76,9 +75,9 @@ function gmap_theme() {
  * We can't use module_invoke_all() because we pass $map by reference.
  */
 function gmap_module_invoke($op, &$map) {
+  $return = array();
   foreach (module_implements('gmap') as $module) {
     $function = $module . '_gmap';
-    $return = array();
     $result = $function($op, $map);
     if (isset($result) && is_array($result)) {
       $return = array_merge_recursive($return, $result);
@@ -828,6 +827,19 @@ function gmap_map_cleanup(&$map) {
     $map['latlon'] = $map['latlong'];
     unset($map['latlong']);
   }
+  // Normalize extent.
+  if (isset($map['extent']) && is_string($map['extent'])) {
+    $tmp = explode(',', $map['extent']);
+    if (count($tmp) == 4) {
+      // String form of extent has x,y, but native array form is lat,lon, so need to flip them a bit.
+      $map['extent'] = array(array($tmp[1], $tmp[0]), array($tmp[3], $tmp[2]));
+    }
+    else {
+      // Extent was unparseable, don't pass it.
+      unset($map['extent']);
+    }
+  }
+    
   if (isset($map['latlon']) && (!isset($map['latitude']) || !isset($map['longitude']))) {
     list($map['latitude'], $map['longitude']) = explode(',', $map['latlon']);
   }
@@ -1262,4 +1274,48 @@ function gmap_views_plugins() {
       ),
     ),
   );
+}
+
+/**
+ * Implementation of hook_views_pre_render().
+ */
+function gmap_views_pre_render(&$view) {
+  static $gmap_processed;
+  // Add js only for gmap style views with ajax and not already processed.
+  if (($view->plugin_name != 'gmap' && !$view->use_ajax) || $gmap_processed) {
+    return;
+  }
+  // Mark the view as already processed.
+  $gmap_processed = TRUE;
+  // Add js with new views callback.
+  drupal_add_js(drupal_get_path('module', 'gmap') . '/js/gmap_views_ajax.js', 'module');
+}
+
+/**
+ * Implementation of hook_ajax_data_alter().
+ */
+function gmap_ajax_data_alter(&$object, $views, $view) {
+  // Add js callback only with gmap style plugins and with ajax.
+  if ($view->plugin_name != 'gmap' || !$view->use_ajax) {
+    return;
+  }
+
+  // Save settings.
+  $js = drupal_add_js(NULL, NULL, 'header');
+  $object->settings = $js['setting'];
+
+  // Register custom callback.
+  $object->__callbacks = array_merge($object->__callbacks, array('Drupal.gmapAjax.ajaxFixMaps'));
+}
+
+/**
+ * Preprocess function for theme_gmap_view_gmap().
+ */
+function template_preprocess_gmap_view_gmap(&$vars) {
+  $vars['map_object'] = $vars['rows'];
+  // Rows is actually our map object.
+  unset($vars['rows']);
+
+  // Theme the map.
+  $vars['map'] = theme('gmap', array('#settings' => $vars['map_object']));
 }
