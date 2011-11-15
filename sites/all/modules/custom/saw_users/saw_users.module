@@ -31,3 +31,40 @@ function saw_users_views_query_alter (view &$view)
 				// If view is using location.name field then replace the occurences with more descriptional data such as country and city
 					$clause = str_replace ('UPPER(location.name)', "UPPER(CONCAT(CONCAT(CONCAT(CONCAT(location.name, ' '), location.country), ' '), location.city))", $clause);
 }
+
+function saw_render_block ($name)
+{
+  $block = db_fetch_object (db_query (
+		"
+			SELECT DISTINCT(b.bid), title, body, format
+			FROM boxes
+			LEFT JOIN blocks b ON boxes.bid = b.delta
+			LEFT JOIN fe_block_boxes febb ON febb.bid = b.delta
+			WHERE module = 'block' AND febb.machine_name = '" . addslashes ($name) . "' AND b.theme = 'saw'
+		"));
+  
+  $block -> content	= check_markup ($block -> body, $block -> format, FALSE);
+  $block -> module	= 'block';
+  $block -> subject	= $block -> title;
+  $block -> delta		= $block -> bid;
+  
+  return theme ('block', $block);
+}
+
+function saw_users_get_user_stats ($userId = null)
+{
+	$block = db_fetch_object (db_query (
+	"
+			SELECT
+			(SELECT COUNT(*) FROM node N WHERE N.uid = $userId AND N.type = 'art') AS num_arts,
+			(SELECT SUM(comment_count) FROM node_comment_statistics NCS
+				LEFT JOIN node N ON N.nid = NCS.nid
+				WHERE N.uid = $userId) AS num_comments,
+			(SELECT COUNT(*) FROM activity A WHERE A.uid = $userId AND A.op = 'view' AND A.type = 'user') AS num_profileviews,
+			(SELECT COUNT(*) FROM activity A
+				LEFT JOIN NODE N ON N.nid = A.nid
+				WHERE A.uid = $userId AND N.type = 'art' AND A.op = 'view' AND A.type = 'node') AS num_artviews
+	"));
+	
+	return $block;
+}

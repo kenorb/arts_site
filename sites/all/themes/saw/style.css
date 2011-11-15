@@ -1973,4 +1973,18 @@ div.admin-panel .body {
 
 /* #toolbar: END */
 
+  .profile-statistics {
+    width: 100%;
+    font-size: 1.2em;
+    font-family: Century Gothic,Palatino Linotype,Helvetica,Arial;
+  }
+    
+  .pane-content .block .title h3 {
+    padding: 0 !important;
+  }
 
+  .profile-statistics td
+  {
+    padding: 4px;
+  }
+}
