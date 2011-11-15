@@ -62,7 +62,7 @@ function saw_users_get_user_stats ($userId = null)
 				WHERE N.uid = $userId) AS num_comments,
 			(SELECT COUNT(*) FROM activity A WHERE A.uid = $userId AND A.op = 'view' AND A.type = 'user') AS num_profileviews,
 			(SELECT COUNT(*) FROM activity A
-				LEFT JOIN NODE N ON N.nid = A.nid
+				LEFT JOIN node N ON N.nid = A.nid
 				WHERE A.uid = $userId AND N.type = 'art' AND A.op = 'view' AND A.type = 'node') AS num_artviews
 	"));
 	

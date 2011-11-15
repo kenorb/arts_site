@@ -37,7 +37,7 @@
                 	<table class="profile-menu-container" cellspacing="0" cellpadding="0">
 										<tr class="top">
 											<td class="username">
-												<a href="/user/<?php echo $user -> name; ?>">
+												<a href="/users/<?php echo $user -> name; ?>">
 													<span class="role"><?php echo ucwords (end ($user -> roles)); ?></span> - <span class="name"><?php echo $user -> name; ?></span>
 												</a>
 											</td>
