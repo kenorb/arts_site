@@ -9,7 +9,7 @@
 				obj = this;
 				
 			var f = typeof fun === "string" ? obj[fun] : fun;
-
+	
 			return f.apply (obj, Array.prototype.slice.call (args || [])
 				.concat (Array.prototype.slice.call (arguments)));
 		};
@@ -34,12 +34,21 @@
 		this._frameIndex			= 0;
 		this._frameCount			= frames.length;
 		this._delay						= delay;
+		
+		var invisible;
+		
+		this._container.append (invisible = $('<div class="invisible" style="display: none"></div>'));
+		
+		for (var i = 0; i < this._frameCount; i++)
+			invisible.append (this._frames [i] [this._smallImageName]).append (this._frames [i] [this._bigImageName]);
+
 	}
 	
 	
 	CC.Slideshow.prototype.updateFrame = function ()
 	{
 		var box = $(CC.Slideshow.HtmlData);
+		
 		
 		var prepareImage = CC.Fn.bind (this, function (img, frameIndex)
 		{
