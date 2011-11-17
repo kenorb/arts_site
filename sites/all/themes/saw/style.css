@@ -1987,4 +1987,56 @@ div.admin-panel .body {
   {
     padding: 4px;
   }
-}
+
+  .user-arts-slideshow td {
+  	vertical-align: top;
+  }
+  
+  .user-arts-slideshow {
+  	display: none;
+  }
+  
+  #user-arts-slideshow-container .user-arts-slideshow {
+  	display: block !important;
+  	height: 180px;
+  }
+  
+  #user-arts-slideshow-container .small-area {
+  	
+  }
+  
+  #user-arts-slideshow-container img {
+  	cursor: pointer;
+    padding: 2px;
+    margin: 3px;
+    display: inline-block;
+	border: 1px solid transparent;
+  }
+  
+  #user-arts-slideshow-container .teaser > p {
+  	padding: 2px 5px;
+  }
+  
+  #user-arts-slideshow-container .big-area {
+  	padding: 0px 0px 0px 0px;
+  }
+  
+  #user-arts-slideshow-container .big-area img,
+  #user-arts-slideshow-container img:hover {
+    border: 1px solid #888;
+    background-color: #fff;
+    padding: 3px;
+    margin: 2px;
+    border-radius: 3px;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  
+  .user-arts-slideshow .small-area .big,
+  .user-arts-slideshow .big-area  .normal {
+    display: none;
+  }
+
+  .user-arts-slideshow-smalls td {
+  	vertical-align: top;
+  }
