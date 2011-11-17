@@ -11,6 +11,26 @@ function feature_users_ctools_plugin_api() {
 }
 
 /**
+ * Implementation of hook_node_info().
+ */
+function feature_users_node_info() {
+  $items = array(
+    'profile' => array(
+      'name' => t('Profile'),
+      'module' => 'features',
+      'description' => t('A user profile built as content.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'has_body' => '0',
+      'body_label' => '',
+      'min_word_count' => '0',
+      'help' => '',
+    ),
+  );
+  return $items;
+}
+
+/**
  * Implementation of hook_views_api().
  */
 function feature_users_views_api() {

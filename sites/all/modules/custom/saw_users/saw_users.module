@@ -42,7 +42,7 @@ function saw_render_block ($name)
 			LEFT JOIN fe_block_boxes febb ON febb.bid = b.delta
 			WHERE module = 'block' AND febb.machine_name = '" . addslashes ($name) . "' AND b.theme = 'saw'
 		"));
-  
+  db_query ();
   $block -> content	= check_markup ($block -> body, $block -> format, FALSE);
   $block -> module	= 'block';
   $block -> subject	= $block -> title;

@@ -140,6 +140,90 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_profile';
+  $strongarm->value = '0';
+  $export['comment_anonymous_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_controls_profile';
+  $strongarm->value = '3';
+  $export['comment_controls_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_profile';
+  $strongarm->value = '4';
+  $export['comment_default_mode_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_order_profile';
+  $strongarm->value = '1';
+  $export['comment_default_order_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_profile';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_profile';
+  $strongarm->value = '0';
+  $export['comment_form_location_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_profile';
+  $strongarm->value = '1';
+  $export['comment_preview_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_profile';
+  $strongarm->value = '2';
+  $export['comment_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_profile';
+  $strongarm->value = '1';
+  $export['comment_subject_field_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_extra_weights_profile';
+  $strongarm->value = array(
+    'title' => '-5',
+    'revision_information' => '-3',
+    'author' => '-2',
+    'options' => '-1',
+    'comment_settings' => '0',
+    'menu' => '-4',
+    'path' => '5',
+    'attachments' => '4',
+    'custom_breadcrumbs' => '8',
+    'print' => '9',
+    'workflow' => '7',
+    'nodewords' => '3',
+    'notifications' => '6',
+  );
+  $export['content_extra_weights_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'custom_breadcrumb_home';
   $strongarm->value = 'Home';
   $export['custom_breadcrumb_home'] = $strongarm;
@@ -524,6 +608,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'image_captcha_noise_level';
   $strongarm->value = '2';
   $export['image_captcha_noise_level'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_profile';
+  $strongarm->value = '0';
+  $export['language_content_type_profile'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1133,7 +1224,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'location_geocode_google_minimum_accuracy';
-  $strongarm->value = '3';
+  $strongarm->value = '6';
   $export['location_geocode_google_minimum_accuracy'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -3074,58 +3165,59 @@ function feature_users_strongarm() {
       'add' => '1',
     ),
     'form' => array(
-      'weight' => '4',
+      'weight' => '11',
       'collapsible' => 1,
-      'collapsed' => 0,
+      'collapsed' => 1,
       'fields' => array(
+        'city' => array(
+          'collect' => '1',
+          'default' => '',
+          'weight' => '-100',
+        ),
         'name' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '2',
+          'weight' => '-99',
         ),
         'street' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '4',
+          'weight' => '-98',
         ),
         'additional' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '6',
-        ),
-        'city' => array(
-          'collect' => '1',
-          'default' => '',
-          'weight' => '8',
+          'weight' => '-97',
         ),
         'province' => array(
-          'collect' => '0',
+          'collect' => '1',
+          'widget' => 'autocomplete',
           'default' => '',
-          'weight' => '10',
+          'weight' => '-96',
         ),
         'postal_code' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '12',
+          'weight' => '-95',
         ),
         'country' => array(
           'collect' => '1',
           'default' => 'uk',
-          'weight' => '14',
+          'weight' => '-94',
         ),
         'locpick' => array(
           'collect' => '1',
-          'weight' => '20',
+          'weight' => '-93',
         ),
         'phone' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '25',
+          'weight' => '-92',
         ),
       ),
     ),
     'display' => array(
-      'weight' => '4',
+      'weight' => '11',
       'hide' => array(
         'name' => 0,
         'street' => 0,
@@ -3477,6 +3569,15 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_profile';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'recaptcha_ajax_api';
   $strongarm->value = 0;
   $export['recaptcha_ajax_api'] = $strongarm;
@@ -3515,6 +3616,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'recaptcha_theme';
   $strongarm->value = 'red';
   $export['recaptcha_theme'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'upload_profile';
+  $strongarm->value = '1';
+  $export['upload_profile'] = $strongarm;
 
   return $export;
 }

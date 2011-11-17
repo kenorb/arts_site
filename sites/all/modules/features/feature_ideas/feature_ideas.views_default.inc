@@ -19,6 +19,7 @@ function feature_ideas_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['title'] = 'Ideas';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -169,6 +170,8 @@ function feature_ideas_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Ideas';
   $handler->display->display_options['path'] = 'ideas/list';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Ideas';
@@ -176,6 +179,7 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'navigation';
   $translatables['Ideas'] = array(
     t('Defaults'),
+    t('Ideas'),
     t('more'),
     t('Apply'),
     t('Reset'),
