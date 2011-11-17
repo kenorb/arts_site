@@ -1,4 +1,5 @@
 <?php
+// $Id: location.token.inc,v 1.2.2.1 2010/01/19 16:04:48 bdragon Exp $
 
 /**
  * @file

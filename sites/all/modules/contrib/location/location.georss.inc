@@ -1,4 +1,5 @@
 <?php
+// $Id: location.georss.inc,v 1.1.2.2 2009/02/25 19:02:22 bdragon Exp $
 
 /**
  * @file

@@ -1,4 +1,5 @@
 <?php
+// $Id: location.pl.inc,v 1.6 2008/01/24 09:00:03 bdragon Exp $
 
 // Poland
 
@@ -19,16 +20,4 @@ function location_province_list_pl() {
     'WM' => "Warminsko-Mazurskie",
     'WP' => "Wielkopolskie",
     'ZA' => "Zachodniopomorskie");
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_pl() {
-  return array(
-    'minlng' => 14.10525,
-    'minlat' => 49.0147,
-    'maxlng' => 24.13405,
-    'maxlat' => 54.922967,
-  );
 }

@@ -1,4 +1,5 @@
 <?php
+// $Id: location_from_node.inc,v 1.1 2010/05/19 18:28:09 dww Exp $
 
 /**
  * @file

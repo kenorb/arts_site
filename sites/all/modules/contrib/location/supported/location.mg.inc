@@ -1,4 +1,5 @@
 <?php
+// $Id: location.mg.inc,v 1.6 2008/01/24 09:00:03 bdragon Exp $
 
 // Madagascar
 
@@ -9,16 +10,4 @@ function location_province_list_mg() {
     'MJ' => "Mahajanga province",
     'TM' => "Toamasina province",
     'TL' => "Toliara province");
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_mg() {
-  return array(
-    'minlng' => 42.67535,
-    'minlat' => -25.580067,
-    'maxlng' => 50.4287,
-    'maxlat' => -12.0137,
-  );
 }

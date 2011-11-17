@@ -1,1 +1,3 @@
-<?php print number_format($distance, 2) . ' ' . $shortunit; ?>
+<?php
+echo number_format($distance, 2) .' '. $shortunit;
+?>

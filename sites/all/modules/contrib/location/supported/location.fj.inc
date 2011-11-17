@@ -1,4 +1,5 @@
 <?php
+// $Id: location.fj.inc,v 1.6 2008/01/24 09:00:02 bdragon Exp $
 
 // Fiji
 
@@ -8,16 +9,4 @@ function location_province_list_fj() {
     'E' => "Eastern Division",
     'W' => "Western Division",
     'R' => "Rotuma");
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_fj() {
-  return array(
-    'minlng' => -180,
-    'minlat' => -21.808767,
-    'maxlng' => 180,
-    'maxlat' => -15.7846,
-  );
 }

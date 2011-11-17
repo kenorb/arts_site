@@ -1,4 +1,5 @@
 <?php
+// $Id: location.nz.inc,v 1.6 2008/01/24 09:00:03 bdragon Exp $
 
 // New Zealand
 
@@ -19,16 +20,4 @@ function location_province_list_nz() {
     'WGN' => "Wellington",
     'WKO' => "Waikato",
     'WTC' => "West Coast");
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_nz() {
-  return array(
-    'minlng' => -178.94835,
-    'minlat' => -57.294267,
-    'maxlng' => 179.22415,
-    'maxlat' => -8.536767,
-  );
 }

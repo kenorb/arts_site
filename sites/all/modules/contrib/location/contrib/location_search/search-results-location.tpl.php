@@ -1,4 +1,5 @@
 <?php
+// $Id: search-results-location.tpl.php,v 1.2 2008/10/09 22:09:05 bdragon Exp $
 
 /**
  * @file search-results-location.tpl.php

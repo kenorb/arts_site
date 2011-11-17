@@ -1,4 +1,5 @@
 <?php
+// $Id: location.az.inc,v 1.6 2008/01/24 09:00:02 bdragon Exp $
 
 // Azerbaijan
 
@@ -79,16 +80,4 @@ function location_province_list_az() {
     'ZAQ' => "Zaqatala",
     'ZAR' => "Zardab",
     'NX' => "Naxcivan");
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_az() {
-  return array(
-    'minlng' => 44.7416,
-    'minlat' => 38.4074,
-    'maxlng' => 50.37515,
-    'maxlat' => 41.924867,
-  );
 }

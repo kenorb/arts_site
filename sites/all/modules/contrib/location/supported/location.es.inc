@@ -1,4 +1,5 @@
 <?php
+// $Id: location.es.inc,v 1.7 2008/01/24 09:00:02 bdragon Exp $
 
 // Spain
 
@@ -53,16 +54,4 @@ function location_province_list_es() {
     'VZ' => "Vizcaya",
     'ZM' => "Zamora",
     'ZR' => "Zaragoza");
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_es() {
-  return array(
-    'minlng' => -18.26745,
-    'minlat' => 27.5218,
-    'maxlng' => 4.2802,
-    'maxlat' => 43.739867,
-  );
 }

@@ -1,4 +1,5 @@
 <?php
+// $Id: location.be.inc,v 1.7 2008/08/06 15:13:25 bdragon Exp $
 
 // Belgium
 
@@ -19,17 +20,5 @@ function location_province_list_be() {
     // include it.
     // See http://drupal.org/node/228766 and http://drupal.org/node/291590.
     'BRU' => "Brussels",
-  );
-}
-
-/**
- * Returns minimum and maximum latitude and longitude needed to create a bounding box.
- */
-function location_bounds_be() {
-  return array(
-    'minlng' => 2.5104,
-    'minlat' => 49.518533,
-    'maxlng' => 6.3713,
-    'maxlat' => 51.528667,
   );
 }

@@ -1,4 +1,5 @@
 <?php
+// $Id: location_handler_field_location_street.inc,v 1.1 2008/09/16 18:23:09 bdragon Exp $
 
 /**
  * @file
