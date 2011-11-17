@@ -21,3 +21,7 @@
   };
 
   $(window).scroll (onUpdateToolbar);
+  
+  $(function () {
+	  onUpdateToolbar ();
+  });
