@@ -6,6 +6,12 @@
 function feature_users_menu_default_menu_custom() {
   $menus = array();
 
+  // Exported menu: admin_menu
+  $menus['admin_menu'] = array(
+    'menu_name' => 'admin_menu',
+    'title' => 'Administration menu',
+    'description' => '',
+  );
   // Exported menu: menu-profilemenu
   $menus['menu-profilemenu'] = array(
     'menu_name' => 'menu-profilemenu',
@@ -20,6 +26,7 @@ function feature_users_menu_default_menu_custom() {
   );
   // Translatables
   // Included for use with string extractors like potx.
+  t('Administration menu');
   t('Profile menu');
   t('Toolbar');
 

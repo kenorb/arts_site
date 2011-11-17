@@ -6,6 +6,142 @@
 function feature_users_menu_default_menu_links() {
   $menu_links = array();
 
+  // Exported menu link: admin_menu:admin/user/captcha
+  $menu_links['admin_menu:admin/user/captcha'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'admin/user/captcha',
+    'router_path' => 'admin/user/captcha',
+    'link_title' => 'CAPTCHA',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user',
+  );
+  // Exported menu link: admin_menu:admin/user/captcha/captcha
+  $menu_links['admin_menu:admin/user/captcha/captcha'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'admin/user/captcha/captcha',
+    'router_path' => 'admin/user/captcha/captcha',
+    'link_title' => 'CAPTCHA',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '0',
+    'weight' => '-20',
+    'parent_path' => 'admin/user/captcha',
+  );
+  // Exported menu link: admin_menu:admin/user/captcha/captcha/examples
+  $menu_links['admin_menu:admin/user/captcha/captcha/examples'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'admin/user/captcha/captcha/examples',
+    'router_path' => 'admin/user/captcha/captcha/examples',
+    'link_title' => 'Examples',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '5',
+    'parent_path' => 'admin/user/captcha/captcha',
+  );
+  // Exported menu link: admin_menu:admin/user/captcha/captcha/settings
+  $menu_links['admin_menu:admin/user/captcha/captcha/settings'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'admin/user/captcha/captcha/settings',
+    'router_path' => 'admin/user/captcha/captcha/settings',
+    'link_title' => 'General settings',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user/captcha/captcha',
+  );
+  // Exported menu link: admin_menu:admin/user/captcha/image_captcha
+  $menu_links['admin_menu:admin/user/captcha/image_captcha'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'admin/user/captcha/image_captcha',
+    'router_path' => 'admin/user/captcha/image_captcha',
+    'link_title' => 'Image CAPTCHA',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user/captcha',
+  );
+  // Exported menu link: admin_menu:admin/user/captcha/recaptcha
+  $menu_links['admin_menu:admin/user/captcha/recaptcha'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'admin/user/captcha/recaptcha',
+    'router_path' => 'admin/user/captcha/recaptcha',
+    'link_title' => 'reCAPTCHA',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user/captcha',
+  );
+  // Exported menu link: admin_menu:http://drupal.org/project/issues/captcha
+  $menu_links['admin_menu:http://drupal.org/project/issues/captcha'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'http://drupal.org/project/issues/captcha',
+    'router_path' => '',
+    'link_title' => 'CAPTCHA issue queue',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '1',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'http://drupal.org',
+  );
+  // Exported menu link: admin_menu:http://drupal.org/project/issues/recaptcha
+  $menu_links['admin_menu:http://drupal.org/project/issues/recaptcha'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'http://drupal.org/project/issues/recaptcha',
+    'router_path' => '',
+    'link_title' => 'reCAPTCHA issue queue',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '1',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'http://drupal.org',
+  );
   // Exported menu link: menu-profilemenu:<front>
   $menu_links['menu-profilemenu:<front>'] = array(
     'menu_name' => 'menu-profilemenu',
@@ -258,6 +394,89 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-50',
   );
+  // Exported menu link: navigation:admin/user/captcha
+  $menu_links['navigation:admin/user/captcha'] = array(
+    'menu_name' => 'navigation',
+    'link_path' => 'admin/user/captcha',
+    'router_path' => 'admin/user/captcha',
+    'link_title' => 'CAPTCHA',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Administer how and where CAPTCHAs are used.',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user',
+  );
+  // Exported menu link: navigation:admin/user/captcha/captcha
+  $menu_links['navigation:admin/user/captcha/captcha'] = array(
+    'menu_name' => 'navigation',
+    'link_path' => 'admin/user/captcha/captcha',
+    'router_path' => 'admin/user/captcha/captcha',
+    'link_title' => 'CAPTCHA',
+    'options' => array(),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '0',
+    'weight' => '-20',
+    'parent_path' => 'admin/user/captcha',
+  );
+  // Exported menu link: navigation:admin/user/captcha/captcha/examples
+  $menu_links['navigation:admin/user/captcha/captcha/examples'] = array(
+    'menu_name' => 'navigation',
+    'link_path' => 'admin/user/captcha/captcha/examples',
+    'router_path' => 'admin/user/captcha/captcha/examples',
+    'link_title' => 'Examples',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'An overview of the available challenge types with examples.',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '5',
+    'parent_path' => 'admin/user/captcha/captcha',
+  );
+  // Exported menu link: navigation:admin/user/captcha/captcha/settings
+  $menu_links['navigation:admin/user/captcha/captcha/settings'] = array(
+    'menu_name' => 'navigation',
+    'link_path' => 'admin/user/captcha/captcha/settings',
+    'router_path' => 'admin/user/captcha/captcha/settings',
+    'link_title' => 'General settings',
+    'options' => array(),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user/captcha/captcha',
+  );
+  // Exported menu link: navigation:admin/user/captcha/image_captcha
+  $menu_links['navigation:admin/user/captcha/image_captcha'] = array(
+    'menu_name' => 'navigation',
+    'link_path' => 'admin/user/captcha/image_captcha',
+    'router_path' => 'admin/user/captcha/image_captcha',
+    'link_title' => 'Image CAPTCHA',
+    'options' => array(),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'admin/user/captcha',
+  );
   // Exported menu link: navigation:manage/arts
   $menu_links['navigation:manage/arts'] = array(
     'menu_name' => 'navigation',
@@ -394,10 +613,15 @@ function feature_users_menu_default_menu_links() {
   t('Add content');
   t('Art');
   t('Arts');
+  t('CAPTCHA');
+  t('CAPTCHA issue queue');
   t('Calendar');
   t('Chat');
   t('Event');
+  t('Examples');
+  t('General settings');
   t('Help');
+  t('Image CAPTCHA');
   t('Item');
   t('Items');
   t('Manage Events');
@@ -408,6 +632,8 @@ function feature_users_menu_default_menu_links() {
   t('Online');
   t('Privacy Settings');
   t('Upgrade to premium?');
+  t('reCAPTCHA');
+  t('reCAPTCHA issue queue');
 
 
   return $menu_links;
