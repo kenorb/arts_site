@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -38,15 +37,15 @@ function template_preprocess_facebook_status_item(&$vars) {
   else {
     $vars['created'] = theme('facebook_status_time', $status->created);
     if ($status->type == 'user') {
-      if ($status->sender != $status->recipient || strpos($status->message, '@') === 0 || strpos($status->message, '[@') === 0) {
-        $vars['meta'] = t('To @recipient', array('@recipient' => $vars['recipient_name']));
+      if ($status->sender != $status->recipient) {
+        $vars['meta'] = t('to !recipient', array('!recipient' => $vars['recipient_link']));
       }
     }
     elseif (!empty($vars['recipient_name'])) {
-      $vars['meta'] = t('Posted on %entity', array('%entity' => $vars['recipient_name']));
+      $vars['meta'] = t('on !entity', array('!entity' => $vars['recipient_link']));
     }
     if ($options['links']) {
-      $vars['links'] = !empty($status->links) ? theme('links', $node->links, array('class' => 'links inline')) : '';
+      $vars['links'] = !empty($status->links) ? theme('links', $status->links, array('class' => 'links inline')) : '';
     }
   }
 }
@@ -63,10 +62,12 @@ function _facebook_status_show($status, $options) {
     'links' => TRUE,
     'page' => FALSE,
     'cacheable' => FALSE,
+    'extras' => TRUE,
   );
-  if ($links) {
+  if ($options['links']) {
     $status->links = module_invoke_all('link', 'facebook_status', $status);
     drupal_alter('facebook_status_link', $status->links, $status);
+    uasort($status->links, '_facebook_status_links_sort');
   }
   $message = trim($status->message);
   if ($options['page']) {
@@ -80,10 +81,12 @@ function _facebook_status_show($status, $options) {
       $title = t('@sender: @message', array('@sender' => $sender->name, '@message' => $message));
     }
     else {
-      $recipient = _facebook_status_user_load($status->recipient);
+      $context = facebook_status_determine_context($status->type);
+      $recipient = $context['handler']->load_recipient($status->recipient);
+      $recipient_name = $context['handler']->recipient_name($recipient);
       //"\xC2\xBB" is the unicode escape sequence for the HTML entity &raquo; (a double right angle bracket)
       $title = t("@sender \xC2\xBB @recipient: @message",
-        array('@sender' => $sender->name, '@recipient' => $recipient->name, '@message' => $message)
+        array('@sender' => $sender->name, '@recipient' => $recipient_name, '@message' => $message)
       );
     }
     if (drupal_strlen($title) > 80) {
@@ -94,4 +97,17 @@ function _facebook_status_show($status, $options) {
   }
   drupal_add_css(drupal_get_path('module', 'facebook_status') .'/resources/facebook_status.css');
   return theme('facebook_status_item', $status, $options);
+}
+
+/**
+ * Helps sort links by weight.
+ */
+function _facebook_status_links_sort($a, $b) {
+  if (!isset($a['weight'])) {
+    $a['weight'] = 0;
+  }
+  if (!isset($b['weight'])) {
+    $b['weight'] = 0;
+  }
+  return $a['weight'] > $b['weight'] ? 1 : ($a['weight'] < $b['weight'] ? -1 : 0);
 }

@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  @file
@@ -12,7 +11,7 @@
  * doesn't provide the kind of fancy autoloading that Views does.
  */
 if (!class_exists('flag_flag')) {
-  module_load_include(drupal_get_path('module', 'flag') .'/flag.inc');
+  module_load_include('inc', 'flag');
 }
 
 /**

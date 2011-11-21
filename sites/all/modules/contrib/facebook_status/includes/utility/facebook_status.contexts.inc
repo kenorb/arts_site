@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -134,26 +133,44 @@ class facebook_status_user_context extends facebook_status_context {
     return 'user';
   }
   function is_applicable() {
-    //The user context is the "base" context; if everything else fails, we fall back to updating the user's own status.
+    // The user context is the "base" context; if everything else fails, we fall back to updating the user's own status.
     return TRUE;
   }
   function find_recipient() {
-    return arg(0) == 'user' && is_numeric(arg(1)) ? /*menu_get_object('user')*/ _facebook_status_user_load(arg(1)) : $GLOBALS['user'];
+    global $user;
+    // On the conversation page, the active user is actually the *other* user.
+    if (arg(0) == 'statuses' && arg(1) == 'conversation') {
+      $args = explode(',', arg(2));
+      $count = count($args);
+      if ($count === 1) {
+        return is_numeric($args[0]) ? _facebook_status_user_load($args[0]) : $user;
+      }
+      elseif ($count == 2) {
+        if ($args[0] == $user->uid) {
+          return is_numeric($args[1]) ? _facebook_status_user_load($args[1]) : $user;
+        }
+        elseif ($args[1] == $user->uid) {
+          return is_numeric($args[0]) ? _facebook_status_user_load($args[0]) : $user;
+        }
+      }
+      return $user;
+    }
+    return arg(0) == 'user' && is_numeric(arg(1)) ? /* menu_get_object('user') */ _facebook_status_user_load(arg(1)) : $GLOBALS['user'];
   }
   function load_recipient($id) {
-    //FBSS has its own user_load() with extra caching for efficiency.
+    // FBSS has its own user_load() with extra caching for efficiency.
     return _facebook_status_user_load($id);
   }
   function load_random_recipient() {
     $uids = devel_get_users();
     if (!empty($uids)) {
       $uid = $uids[array_rand($uids)];
-      return $this->load_recipient($id);
+      return $this->load_recipient($uid);
     }
     return user_load(0);
   }
   function recipient_link($recipient) {
-    theme('username', $recipient);
+    return theme('username', $recipient);
   }
   function access_add($recipient, $sender) {
     return ($sender->uid == $recipient->uid && user_access('update and view own stream', $sender)) ||
@@ -223,7 +240,8 @@ class facebook_status_og_context extends facebook_status_node_context {
     return 'node/'. $recipient->nid;
   }
   function access_add($recipient, $sender) {
-    return parent::access_add($recipient, $sender) ||
+    // Only group members can add content of any kind.
+    return parent::access_add($recipient, $sender) &&
       og_is_group_member($recipient->nid, TRUE, $sender->uid);
   }
   function access_delete($status, $account) {
@@ -231,11 +249,50 @@ class facebook_status_og_context extends facebook_status_node_context {
       og_is_group_admin($this->load_recipient($status->recipient), $account);
   }
   function access_view($status, $account) {
-    return parent::access_view($status, $account) ||
-      og_is_group_member($status->recipient, TRUE, $account->uid);
+    // Only group members can view group statuses if the group is private.
+    return parent::access_view($status, $account) &&
+      (og_is_group_member($status->recipient, TRUE, $account->uid) || empty($this->load_recipient($status->recipient)->og_private));
   }
   function access_stream($recipient, $account) {
-    return parent::access_stream($recipient, $account) ||
-      og_is_group_member($recipient->nid, TRUE, $account->uid);
+    // Only group members can view group statuses if the group is private.
+    return parent::access_stream($recipient, $account) &&
+      (og_is_group_member($recipient->nid, TRUE, $account->uid) || empty($recipient->og_private));
+  }
+}
+
+/**
+ * The taxonomy term context.
+ */
+class facebook_status_term_context extends facebook_status_context {
+  function type() {
+    return 'term';
+  }
+  function is_applicable() {
+    return arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2));
+  }
+  function find_recipient() {
+    return $this->is_applicable() ? taxonomy_get_term(arg(2)) : new stdClass();
+  }
+  function load_recipient($id) {
+    return taxonomy_get_term($id);
+  }
+  function load_random_recipient() {
+    $tid = db_result(db_query_range("SELECT tid FROM {term_data} ORDER BY RAND() ASC", 0, 1));
+    return taxonomy_get_term($tid);
+  }
+  function recipient_id($recipient) {
+    return isset($recipient->tid) ? $recipient->tid : 0;
+  }
+  function recipient_url($recipient) {
+    return 'taxonomy/term/'. $this->recipient_id($recipient);
+  }
+  function recipient_name($recipient) {
+    return isset($recipient->name) ? $recipient->name : '';
+  }
+  function access_view($status, $account) {
+    return parent::access_view($status, $account) || user_access('administer taxonomy', $account);
+  }
+  function access_stream($recipient, $account) {
+    return parent::access_stream($recipient, $account) || user_access('administer taxonomy', $account);
   }
 }

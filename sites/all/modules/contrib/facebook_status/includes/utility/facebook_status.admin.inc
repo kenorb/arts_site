@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -37,8 +36,8 @@ function facebook_status_admin($form_state) {
     '#type' => 'textfield',
     '#title' => t('Re-post format'),
     '#description' => t('The format of the default message when users click a link to re-post a status.') .' '.
-      t("@name will be replaced with the poster's name and @status will be replaced with the status text."),
-    '#default_value' => variable_get('facebook_status_repost', 'Re: @name @status '),
+      t("@name will be replaced with the poster's name and @message will be replaced with the status text."),
+    '#default_value' => variable_get('facebook_status_repost', 'Re: @name @message '),
     '#weight' => -20,
   );
   $views = views_get_all_views();
@@ -193,10 +192,12 @@ function facebook_status_admin_contexts(&$form_state) {
       '#default_value' => isset($values['view']) ? $values['view'] : '',
       '#options' => $options,
     );
-    $form['components'][$type]['selectors'] = array(
-      '#type' => 'textarea',
-      '#rows' => 2,
-      '#default_value' => isset($values['selectors']) ? $values['selectors'] : '',
+    $form['components'][$type]['link'] = array(
+      '#value' => l(
+        t('Configure'),
+        'admin/settings/facebook_status/contexts/'. $type,
+        array('query' => array('destination' => 'admin/settings/facebook_status/contexts'))
+      ),
     );
     $form['components'][$type]['weight'] = array(
       '#type' => 'weight',
@@ -212,6 +213,21 @@ function facebook_status_admin_contexts(&$form_state) {
       '#value' => isset($values['in_db']) ? $values['in_db'] : FALSE,
     );
   }
+  // The user context has 2 views.
+  $self = $options[isset($data['user']['view']) ? $data['user']['view'] : ''];
+  $other = variable_get('facebook_status_user_other_view', 'facebook_status_stream');
+  if ($self != $other) {
+    $form['components']['user']['view'] = array(
+      '#value' => t('%self and %other - view configuration to change', array(
+        '%self' => $self,
+        '%other' => $other,
+      )),
+    );
+  }
+  $form['components']['user']['view_value'] = array(
+    '#type' => 'hidden',
+    '#value' => $self,
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -223,12 +239,22 @@ function facebook_status_admin_contexts(&$form_state) {
  * The submit callback for the stream context configuration form.
  */
 function facebook_status_admin_contexts_submit($form, &$form_state) {
-  foreach ($form_state['values']['components'] as $item) {
+  $self = $form_state['values']['components']['user']['view_value'];
+  $other = variable_get('facebook_status_user_other_view', 'facebook_status_stream');
+  // If we are using the same view for the user "self" and "other" cases, save any changes to both places.
+  if ($self == $other) {
+    variable_set('facebook_status_user_other_view', $form_state['values']['components']['user']['view']);
+  }
+  // If not, we didn't expose the view option in the form, so make sure nothing changes.
+  else {
+    $form_state['values']['components']['user']['view'] = $self;
+  }
+  // Save the usual data.
+  foreach ($form_state['values']['components'] as $type => $item) {
     $record = array(
       'type' => $item['type'],
       'weight' => intval($item['weight']),
       'view' => $item['view'],
-      'selectors' => $item['selectors'],
     );
     if ($item['already_saved']) {
       drupal_write_record('facebook_status_contexts', $record, 'type');
@@ -244,34 +270,190 @@ function facebook_status_admin_contexts_submit($form, &$form_state) {
  */
 function theme_facebook_status_admin_contexts($form) {
   drupal_add_tabledrag('facebook-status-admin-contexts-table', 'order', 'sibling', 'weight-group');
-  $header = array(t('Title'), t('View'), t('Refreshable DOM selectors'), t('Weight'), '', '');
+  $header = array(t('Title'), t('View'), t('Actions'), t('Weight'), '', '');
   $rows = array();
   foreach (element_children($form['components']) as $key) {
     $element = &$form['components'][$key];
     $element['title']['#attributes']['class']         = 'title-group';
     $element['view']['#attributes']['class']          = 'view-group';
-    $element['selectors']['#attributes']['class']     = 'selectors-group';
+    $element['link']['#attributes']['class']          = 'link-group';
     $element['weight']['#attributes']['class']        = 'weight-group';
     $element['type']['#attributes']['class']          = 'type';
     $element['already_saved']['#attributes']['class'] = 'already-saved';
     $row = array();
     $row[] = drupal_render($element['title']);
     $row[] = drupal_render($element['view']);
-    $row[] = drupal_render($element['selectors']);
+    $row[] = drupal_render($element['link']);
     $row[] = drupal_render($element['weight']);
     $row[] = drupal_render($element['type']);
     $row[] = drupal_render($element['already_saved']);
     $rows[] = array('data' => $row, 'class' => 'draggable');
   }
-  $output = '<p>'.
-    t('In the "Refreshable DOM selectors" column, enter CSS selectors that specify sections of the page that should be automatically refreshed via AJAX when a status of that type is submitted.') .' '.
-    t('For example, to automatically update all &lt;div&gt; elements with class "myclass", enter "div.myclass" in the box (without the quotes).') .' '.
-    t('Do not include selectors that include the status update form.') .' '.
-    t('Enter each selector on a separate line.') .
-    '</p><p>'.
-    t('Also note that the view assigned to the "User profiles" context does not affect the view shown on conversation pages.') .
-    '</p>';
+  $output = '<p>'. t('The view assigned to the "User profiles" context does not affect the view shown on conversation pages.') .'</p>';
   $output .= theme('table', $header, $rows, array('id' => 'facebook-status-admin-contexts-table'));
   $output .= drupal_render($form);
   return $output;
+}
+
+/**
+ * The individual context settings form.
+ */
+function facebook_status_admin_context_settings($form_state, $context) {
+  drupal_set_title(t('Context settings: !type', array('!type' => $context['title'])));
+  $type = $context['handler']->type();
+  $form = array();
+
+  if ($type == 'user') {
+    $form['notice'] = array(
+      '#value' => '<p>'. t('The view assigned to the "User profiles" context does not affect the view shown on conversation pages.') .'</p>',
+    );
+  }
+
+  $views = views_get_all_views();
+  $options = array('' => t('None'));
+  foreach ($views as $name => $view) {
+    if (empty($view->disabled)) {
+      $options[$name] = $name;
+    }
+  }
+  $form['view'] = array(
+    '#type' => 'select',
+    '#title' => t('View'),
+    '#description' => t('Show this view for !type streams.', array('@type' => $context['title'])) .' '. t('The "default" display will be used.'),
+    '#default_value' => isset($context['view']) ? $context['view'] : '',
+    '#options' => $options,
+  );
+  if ($type == 'user') {
+    $form['view']['#title'] = t('View for "my stream"');
+    $form['view']['#description'] = t('Show this view for user streams when a user is looking at their own stream.') .' '. t('The "default" display will be used.');
+    $form['other_view'] = array(
+      '#type' => 'select',
+      '#title' => t("View for others users' streams"),
+      '#description' => t("Show this view for user streams when a user is looking at another user's stream.") .' '. t('The "default" display will be used.'),
+      '#default_value' => variable_get('facebook_status_user_other_view', 'facebook_status_stream'),
+      '#options' => $options,
+    );
+  }
+
+  $form['selectors'] = array(
+    '#type' => 'textarea',
+    '#rows' => 2,
+    '#default_value' => isset($context['selectors']) ? $context['selectors'] : '',
+    '#title' => t('Refreshable DOM selectors'),
+    '#description' => '<p>'.
+      t('Enter CSS selectors that specify sections of the page that should be automatically refreshed via AJAX when a status of that type is submitted.') .' '.
+      t('For example, to automatically update all &lt;div&gt; elements with class "myclass", enter "div.myclass" in the box (without the quotes).') .' '.
+      t('Do not include selectors that include the status update form.') .' '.
+      t('Enter each selector on a separate line.') .
+      '</p>',
+  );
+
+  // adapted from block_admin_configure()
+  $form['page_vis_settings'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Advanced: change where this context applies'), 
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $access = user_access('use PHP for context visibility');
+  if ($edit['visibility'] == 2 && !$access) {
+    $form['page_vis_settings'] = array();
+    $form['page_vis_settings']['visibility'] = array(
+      '#type' => 'value',
+      '#value' => 2,
+    );
+    $form['page_vis_settings']['pages'] = array(
+      '#type' => 'value',
+      '#value' => $edit['pages'],
+    );
+  }
+  else {
+    $form['page_vis_settings']['warning'] = array(
+      '#value' => '<p><strong>'. t('Changing these values could break your site. Only change these settings if you know what you are doing.') .'</strong></p>
+        <p>'. t('Specifically, most contexts make assumptions about what pages they are enabled on in order to identify the correct recipient of status messages.') .' '.
+          t('Enabling a context on an unsupported page will cause that context to fail.') .' '.
+          t('Additionally, the User context should apply on all pages as a fallback. If no context applies on a given page, errors will occur.') .'</p>',
+    );
+    $options = array(-1 => t('Use module default settings.'), 0 => t('Show on every page except the listed pages.'), 1 => t('Show on only the listed pages.'));
+    $description = t("Enter one page per line as Drupal paths. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>'));
+    if ($access) {
+      $options[2] = t('Show if the following PHP code returns <code>TRUE</code> (PHP-mode, experts only).');
+      $description .= ' '. t('If the PHP-mode is chosen, enter PHP code between %php. Note that executing incorrect PHP-code can break your Drupal site.', array('%php' => '<?php ?>'));
+    }
+    if (module_exists('context')) {
+      $options[3] = t('Use the conditions from a Context from the Context module');
+      drupal_add_js(drupal_get_path('module', 'facebook_status') .'/resources/facebook_status_admin.js');
+    }
+    $form['page_vis_settings']['visibility'] = array(
+      '#type' => 'radios',
+      '#title' => t('Apply context on specific pages'), 
+      '#options' => $options, 
+      '#default_value' => isset($context['visibility']) ? ($context['visibility'] == 3 && !module_exists('context') ? -1 : $context['visibility']) : -1,
+    );
+    if (module_exists('context')) {
+      $form['page_vis_settings']['context'] = array(
+        '#type' => 'select',
+        '#title' => t('Context'),
+        '#description' => t('Choose a context provided by the Context module whose conditions should be evaluated to determine whether the stream context applies.'),
+        '#default_value' => isset($context['context']) ? $context['context'] : '',
+        '#options' => drupal_map_assoc(array_keys(context_enabled_contexts())),
+      );
+    }
+    else {
+      $form['page_vis_settings']['context'] = array(
+        '#type' => 'value',
+        '#value' => isset($context['context']) ? $context['context'] : '',
+      );
+    }
+    $form['page_vis_settings']['pages'] = array(
+      '#type' => 'textarea', 
+      '#title' => t('Pages'), 
+      '#default_value' => isset($context['pages']) ? $context['pages'] : '', 
+      '#description' => $description,
+    );
+  }
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+  $form['type'] = array(
+    '#type' => 'hidden',
+    '#value' => $type,
+  );
+  $form['already_saved'] = array(
+    '#type' => 'hidden',
+    '#value' => isset($context['in_db']) ? $context['in_db'] : FALSE,
+  );
+  $form['weight'] = array(
+    '#type' => 'hidden',
+    '#default_value' => isset($context['weight']) ? $context['weight'] : 0,
+  );
+  return $form;
+}
+
+/**
+ * The submit callback for the individual stream context configuration form.
+ */
+function facebook_status_admin_context_settings_submit($form, &$form_state) {
+  $v = $form_state['values'];
+  $record = array(
+    'type' => $v['type'],
+    'weight' => intval($v['weight']),
+    'view' => $v['view'],
+    'selectors' => $v['selectors'],
+    'visibility' => intval($v['visibility']),
+    'pages' => $v['pages'],
+    'context' => $v['context'],
+  );
+  if ($v['already_saved']) {
+    drupal_write_record('facebook_status_contexts', $record, 'type');
+  }
+  else {
+    drupal_write_record('facebook_status_contexts', $record);
+  }
+  if (isset($v['other_view'])) {
+    variable_set('facebook_status_user_other_view', $v['other_view']);
+  }
+  drupal_set_message(t('The configuration options have been saved.'));
 }

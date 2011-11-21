@@ -1,15 +1,21 @@
-/* $Id$ */
-
 .facebook-status-negative {
   color: #800000;
 }
 
 .facebook-status-chars {
-  margin-right: 0.5em;
+  float: right;
+}
+
+#facebook-status-edit .facebook-status-chars {
+  float: none;
 }
 
 .facebook-status-profile-category .profile {
   clear: none;
+}
+
+.facebook-status-update {
+  margin-bottom: 1em;
 }
 
 .facebook-status-update form#facebook-status-box {
@@ -19,7 +25,9 @@
 .facebook-status-edit,
 .facebook-status-delete,
 .facebook-status-respond,
-.facebook-status-repost {
+.facebook-status-repost,
+.facebook-status-share,
+.facebook-status-details .flag-wrapper {
   font-size: 90%;
   margin-left: 0.5em;
 }
@@ -33,7 +41,9 @@
 }
 
 input.facebook-status-submit {
+  float: right;
   margin-top: 0;
+  margin-left: 1em;
 }
 
 /* Fix weird picture formatting from Garland and other themes. */

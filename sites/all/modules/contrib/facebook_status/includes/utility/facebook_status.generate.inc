@@ -1,20 +1,9 @@
 <?php
-// $Id$
 
 /**
  * @file
  *   Provides Devel Generate integration.
  */
-
-/**
- * Access callback for the Generate statuses page.
- */
-function _facebook_status_generate_access() {
-  return user_access('delete all statuses') &&
-    user_access('post status messages to other streams') &&
-    user_access('send messages to all users at once') &&
-    user_access('administer Facebook-style Statuses settings');
-}
 
 /**
  * The Generate statuses form.
@@ -94,7 +83,7 @@ function facebook_status_generate_form_submit($form, &$form_state) {
       'title' => t('Generating statuses'),
       'operations' => $operations,
       'finished' => 'facebook_status_generate_finished',
-      'file' => drupal_get_path('module', 'facebook_status') .'/facebook_status.generate.inc',
+      'file' => drupal_get_path('module', 'facebook_status') .'/includes/utility/facebook_status.generate.inc',
     ));
   }
   else {
@@ -102,7 +91,7 @@ function facebook_status_generate_form_submit($form, &$form_state) {
     for ($i = 0; $i < $v['num']; $i++) {
       facebook_status_generate_status($v['time'], $v['types'], $v['tags'], $context);
     }
-    facebook_status_generate_finished(TRUE, $context, array());
+    facebook_status_generate_finished(TRUE, $context['results'], array());
   }
 }
 
@@ -227,7 +216,7 @@ function facebook_status_generate_finished($success, $results, $operations) {
     ));
   }
   if ($success && $results['num']) {
-    $message = t('Finished creating @num statuses sucessfully.', array('@num' => $results['num']));
+    $message = t('Finished creating @num statuses successfully.', array('@num' => $results['num']));
   }
   elseif ($success) {
     $message = t('Finished processing 0 statuses.');

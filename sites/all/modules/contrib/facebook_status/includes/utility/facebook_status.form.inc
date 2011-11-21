@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -21,6 +20,11 @@
  * @param $view
  *   The machine name of the view to display with the form. Overrides the one
  *   requested by the context.
+ * @param $display
+ *   The machine name of the view display. This is not used internally but
+ *   provided in case any external applications need it. There is no error
+ *   checking on this parameter; it is the caller's responsibility to ensure
+ *   that the specified display is valid and belongs to the relevant view.
  * @return
  *   HTML to display the status update form, or FALSE if:
  *   - The current user has no access to both the form and the associated
@@ -28,7 +32,7 @@
  *   - There are no relevant status messages and the current user does not
  *     have access to use the form
  */
-function theme_facebook_status_form_display($context = NULL, $type = NULL, $view = NULL) {
+function theme_facebook_status_form_display($context = NULL, $type = NULL, $view = NULL, $display = 'default') {
   global $user;
   // $context is NULL, so find everything.
   if (empty($context)) {
@@ -48,6 +52,10 @@ function theme_facebook_status_form_display($context = NULL, $type = NULL, $view
   }
   if (empty($view) && isset($context['view'])) {
     $view = $context['view'];
+    // Special case, user context has 2 default views
+    if ($type == 'user' && $user->uid != $context['handler']->recipient_id($recipient)) {
+      $view = variable_get('facebook_status_user_other_view', 'facebook_status_stream');
+    }
   }
   $selectors = module_invoke_all('facebook_status_refresh_selectors', $recipient, $type) + explode("\n", $context['selectors']);
   $conversation = (arg(0) == 'statuses' && arg(1) == 'conversation' && $type == 'user');
@@ -65,19 +73,18 @@ function theme_facebook_status_form_display($context = NULL, $type = NULL, $view
       drupal_get_form('facebook_status_box', $recipient, $type) .'</div>';
   }
   if ($conversation) {
-    $args = explode(',', $arg);
+    $args = explode(',', arg(2));
     $count = count($args);
     if (($count === 1 && $args[0] != $user->uid) || ($count === 2 && is_numeric($args[1])) && is_numeric($args[0])) {
       if (count($args) === 1) {
         $args[1] = $user->uid;
       }
-      $arg = implode(',', $args);
-      $output .= views_embed_view('facebook_status_conversation', 'default', $arg, $arg);
+      $output .= views_embed_view('facebook_status_conversation', $display, $args[0], $args[1]);
       $selectors[] = '.view-id-facebook_status_conversation';
     }
   }
-  elseif (!empty($view)) {
-    $output .= views_embed_view($view, 'default', $context['handler']->recipient_id($recipient), $type);
+  elseif (!empty($view) && facebook_status_user_access('view_stream', $recipient, $type, $user)) {
+    $output .= views_embed_view($view, $display, $context['handler']->recipient_id($recipient), $type);
     $selectors[] = '.view-id-'. $view;
   }
   if (!empty($selectors)) {
@@ -99,7 +106,7 @@ function theme_facebook_status_form_display($context = NULL, $type = NULL, $view
  * @return
  *   A $form array.
  */
-function facebook_status_box($form_state, $recipient, $type = 'user') {
+function facebook_status_box(&$form_state, $recipient, $type = 'user') {
   global $user;
   _facebook_status_use_autogrow();
   if (isset($form_state['facebook_status'])) {
@@ -110,35 +117,33 @@ function facebook_status_box($form_state, $recipient, $type = 'user') {
   }
   else {
     $context = facebook_status_determine_context($type);
-    $type = $context['handler']->type();
-    $recipient = $context['handler']->find_recipient();
     $rid = $context['handler']->recipient_id($recipient);
   }
 
   $default = variable_get('facebook_status_default_text', '');
   $intro = '';
-  if (arg(0) == 'statuses' && arg(1) == 'share') {
-    //This page is autofocused. We don't want default text there since the user would have to manually remove it.
+  if (arg(0) == 'statuses' && (arg(1) == 'share' || arg(1) == 'conversation')) {
+    // This page is autofocused. We don't want default text there since the user would have to manually remove it.
     $default = '';
   }
   if (isset($_GET['s']) && arg(0) == 'statuses' && arg(1) == 'share') {
-    //Other modules might use "s," so only accept it on the share-status page.
+    // Other modules might use "s," so only accept it on the share-status page.
     $default = $_GET['s'];
   }
   elseif (isset($_GET['share-status'])) {
     $default = $_GET['share-status'];
   }
-  //@todo: Replace with a "true" re-posting system.
+  // @todo: Replace with a "true" re-posting system.
   if (isset($_GET['sid']) && is_numeric($_GET['sid'])) {
     $rs = facebook_status_load($_GET['sid']);
-    $sender = user_load(array('uid' => $rs->sender));
-    if ($sender->uid != $user->uid && $rs->status) {
+    $sender = _facebook_status_user_load($rs->sender);
+    if ($sender->uid != $user->uid && $rs->message) {
       $name = '@'. $sender->name;
-      //Properly reference tags with word-break characters in them.
+      // Properly reference tags with word-break characters in them.
       if (preg_match('/.+\b.+/', $sender->name)) {
         $name = '['. $name .']';
       }
-      $default = str_replace(array('@name', '@status'), array($name, $rs->status), variable_get('facebook_status_repost', 'Re: @name @status '));
+      $default = str_replace(array('@name', '@message'), array($name, $rs->message), variable_get('facebook_status_repost', 'Re: @name @message '));
       $intro = '';
     }
   }
@@ -148,13 +153,13 @@ function facebook_status_box($form_state, $recipient, $type = 'user') {
       $sender = user_load(array('uid' => $status->sender));
       if ($sender->uid != $user->uid) {
         $name = '@'. $sender->name;
-        //Properly reference tags with word-break characters in them.
+        // Properly reference tags with word-break characters in them.
         if (preg_match('/.+\b.+/', $sender->name)) {
           $name = '['. $name .']';
         }
-        $default = $name;
+        $default = $name .' ';
       }
-      $intro = t('In response to !status', array('!status' => theme('facebook_status_item', $status, array('links' => FALSE))));
+      $intro = t('In response to: !status', array('!status' => facebook_status_show($status, array('links' => FALSE, 'extras' => FALSE))));
     }
   }
 
@@ -163,7 +168,7 @@ function facebook_status_box($form_state, $recipient, $type = 'user') {
   drupal_add_js($path .'/facebook_status_ahah.js', 'module', 'footer');
   drupal_add_css($path .'/facebook_status.css');
   $form = array('#cache' => TRUE);
-  //Form elements between ['opendiv'] and ['closediv'] will be refreshed via AHAH on form submission.
+  // Form elements between ['opendiv'] and ['closediv'] will be refreshed via AHAH on form submission.
   $form['opendiv'] = array(
     '#value' => '<div id="facebook-status-replace">',
     '#weight' => -50,
@@ -174,6 +179,12 @@ function facebook_status_box($form_state, $recipient, $type = 'user') {
       '#weight' => -45,
     );
   }
+  if (variable_get('facebook_status_length', 140) > 0) {
+    $form['chars'] = array(
+      '#value' => '<span class="facebook-status-chars">'. t('%chars characters allowed', array('%chars' => variable_get('facebook_status_length', 140))) .'</span>',
+      '#weight' => module_exists('fbss_privacy') ? -41 : -24,
+    );
+  }
   $form['fbss-status'] = array(
     '#type' => 'textarea',
     '#rows' => variable_get('facebook_status_box_rows', 2),
@@ -181,13 +192,9 @@ function facebook_status_box($form_state, $recipient, $type = 'user') {
     '#attributes' => array('class' => 'facebook-status-text facebook-status-text-main'),
     '#resizable' => FALSE,
     '#weight' => -40,
+    '#prefix' => '<div style="clear: both;">',
+    '#suffix' => '</div>',
   );
-  if (variable_get('facebook_status_length', 140) > 0) {
-    $form['chars'] = array(
-      '#value' => '<span class="facebook-status-chars">'. t('%chars characters allowed', array('%chars' => variable_get('facebook_status_length', 140))) .'</span>',
-      '#weight' => -35,
-    );
-  }
   $form['fbss-submit'] = array(
     '#type' => 'submit',
     '#value' => t('Share'),
@@ -208,7 +215,7 @@ function facebook_status_box($form_state, $recipient, $type = 'user') {
     '#value' => $default,
     '#weight' => -10,
   );
-  //Form elements between ['opendiv'] and ['closediv'] will be refreshed via AHAH on form submission.
+  // Form elements between ['opendiv'] and ['closediv'] will be refreshed via AHAH on form submission.
   $form['closediv'] = array(
     '#value' => '</div>',
     '#weight' => -1,
@@ -255,14 +262,16 @@ function facebook_status_box_submit($form, &$form_state) {
   $recipient = $context['handler']->load_recipient($rid);
   $new_status = trim($form_state['values']['fbss-status']);
   $default = $form_state['values']['sdefault'];
-  //Don't save the status if it wasn't changed from the default.
+  $form_state['facebook_status'] = array();
+  // Don't save the status if it wasn't changed from the default.
   if ($new_status != $default) {
-    $message = facebook_status_save_status($recipient, $type, $new_status);
+    $new_status_obj = facebook_status_save_status($recipient, $type, $new_status);
+    if (isset($new_status_obj->sid)) {
+      $form_state['facebook_status']['sid'] = $new_status_obj->sid;
+    }
   }
-  $form_state['facebook_status'] = array(
-    'type' => $type,
-    'recipient' => $rid,
-  );
+  $form_state['facebook_status']['type'] = $type;
+  $form_state['facebook_status']['recipient'] = $rid;
   $form_state['rebuild'] = TRUE;
   if (!variable_get('facebook_status_ahah', 1)) {
     $form_state['redirect'] = array($_GET['q']);

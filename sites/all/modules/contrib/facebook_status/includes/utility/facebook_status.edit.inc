@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -15,14 +14,17 @@ function facebook_status_edit(&$form_state, $status) {
   $path = drupal_get_path('module', 'facebook_status') .'/resources';
   drupal_add_js($path .'/facebook_status.js');
   drupal_add_css($path .'/facebook_status.css');
+  if (module_exists('modalframe')) {
+    modalframe_child_js();
+  }
   $intro = _facebook_status_get_edit_intro($status, $context);
   $self = '';
-  if ($type == 'user' && $status->sender == $status->recipient) {
+  if ($status->type == 'user' && $status->sender == $status->recipient) {
     $self = ' facebook-status-form-self-update';
   }
   $form = array('#cache' => TRUE);
   $form['intro'] = array(
-    '#value' => '<div class="clear-block facebook-status-update facebook-status-form-type-"'. $status->type . $self .'>'.
+    '#value' => '<div class="clear-block facebook-status-update facebook-status-form-type-'. $status->type . $self .'">'.
       '<span class="facebook-status-intro">'. $intro .'</span>',
     '#weight' => -45,
   );
@@ -34,10 +36,12 @@ function facebook_status_edit(&$form_state, $status) {
     '#resizable' => FALSE,
     '#weight' => -40,
   );
-  $form['chars'] = array(
-    '#value' => '<span id="facebook-status-chars">'. t('%chars characters allowed', array('%chars' => $maxlength)) .'</span>',
-    '#weight' => -38,
-  );
+  if ($maxlength > 0) {
+    $form['chars'] = array(
+      '#value' => '<span class="facebook-status-chars">'. t('%chars characters allowed', array('%chars' => $maxlength)) .'</span>',
+      '#weight' => -38,
+    );
+  }
   $form['sid'] = array(
     '#type' => 'value',
     '#value' => $status->sid,
@@ -50,7 +54,7 @@ function facebook_status_edit(&$form_state, $status) {
     '#suffix' => '</div>',
     '#weight' => -25,
   );
-  //@todo: This is bad. It should be in the CSS but that doesn't seem to be working.
+  // @todo: This is bad. It should be in the CSS but that doesn't seem to be working.
   $form['#attributes'] = array('style' => 'margin-bottom: 0;');
   return $form;
 }
@@ -60,7 +64,7 @@ function facebook_status_edit(&$form_state, $status) {
  */
 function facebook_status_edit_validate($form, &$form_state) {
   $maxlen = variable_get('facebook_status_length', 140);
-  if (drupal_strlen($form_state['values']['fbss-status']) > $maxlen) {
+  if (drupal_strlen($form_state['values']['fbss-status']) > $maxlen && $maxlen != 0) {
     form_set_error('status', t('The status must be no longer than %chars characters.', array('%chars' => $maxlen)));
   }
 }
@@ -69,29 +73,12 @@ function facebook_status_edit_validate($form, &$form_state) {
  * Submit function for the status update form.
  */
 function facebook_status_edit_submit($form, &$form_state) {
-  $status_old = facebook_status_load($form_state['values']['sid']);
-  $context = facebook_status_determine_context($status_old->type);
-  $new_status = trim($form_state['values']['fbss-status']);
-  $time = time();
-  global $user;
-  //Pretend to have set a new status if the submitted status is exactly the same as the old one.
-  if ($new_status != $status_old->message) {
-    $sql = "UPDATE {facebook_status} SET message = '%s', created = %d WHERE sid = %d";
-    db_query($sql, $new_status, $time, $status_old->sid);
-    //Invokes hook_facebook_status_save($status, $edit).
-    $status_old->message = $new_status;
-    $status_old->created = $time;
-    module_invoke_all('facebook_status_save', $status_old, $context, TRUE);
-  }
+  facebook_status_edit_status(facebook_status_load($form_state['values']['sid']), $form_state['values']['fbss-status']);
   $form_state['redirect'] = empty($_GET['destination']) ? array('statuses/share') : array($_GET['destination']);
   drupal_set_message(t('Status has been successfully edited.'));
-  //Trigger integration. Don't call if the status is blank because usually nothing interesting is happening.
-  if (module_exists('trigger') && !empty($new_status)) {
-    $op = 'fbss_edited_'. $status_old->type;
-    if ($status_old->type == 'user') {
-      $op .= ($status_old->recipient == $status_old->sender ? '_self' : '_other');
-    }
-    module_invoke_all('facebook_status', $op, $status_old, $context);
+  // Modal Frame integration.
+  if (module_exists('modalframe')) {
+    modalframe_close_dialog();
   }
 }
 
@@ -99,6 +86,9 @@ function facebook_status_edit_submit($form, &$form_state) {
  * The delete status confirmation form.
  */
 function _facebook_status_delete(&$form_state, $status) {
+  if (module_exists('modalframe')) {
+    modalframe_child_js();
+  }
   $form['infotext'] = array('#value' => '<p>'. t('Are you sure you want to permanently delete the status %status?', array('%status' => $status->message)) .'</p>');
   $form['confirm'] = array(
     '#type' => 'submit',
@@ -122,13 +112,16 @@ function _facebook_status_delete(&$form_state, $status) {
  */
 function _facebook_status_delete_confirm($form, &$form_state) {
   $status = facebook_status_load($form_state['values']['status-sid']);
-  facebook_status_delete_status($status->sid);
+  facebook_status_delete_status($status);
   drupal_set_message(t('Status deleted.'));
   if ($_GET['destination']) {
     $form_state['redirect'] = $_GET['destination'];
   }
   else {
     $form_state['redirect'] = ($status->type == 'user' ? 'user' : '<front>');
+  }
+  if (module_exists('modalframe')) {
+    modalframe_close_dialog();
   }
 }
 
@@ -142,6 +135,9 @@ function _facebook_status_delete_cancel($form, &$form_state) {
   }
   else {
     $form_state['redirect'] = ($status->type == 'user' ? 'user' : '<front>');
+  }
+  if (module_exists('modalframe')) {
+    modalframe_close_dialog();
   }
 }
 
