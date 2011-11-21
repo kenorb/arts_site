@@ -1275,9 +1275,7 @@ div.admin-panel .body {
   
   .community-view .button {
     margin: 0 auto;
-    background-image: url('images/community-button-background-normal.png');
     background-repeat: repeat-x;
-    background-color: #d6d6d6;
     padding: 10px 25px;
     margin: 0px 30px;
     border-radius: 14px;
@@ -1843,7 +1841,6 @@ div.admin-panel .body {
     left: 450px;
     overflow: hidden;
     background: url('images/toolbar-background.png') repeat-x top left #215c80 !important; 
-    
   }
   
   #quickbar.stick {
