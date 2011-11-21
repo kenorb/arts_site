@@ -1864,8 +1864,7 @@ div.admin-panel .body {
     display: inline-block !important;
   }
   
-  /* @TODO: Temporary link just show other icons in the toolbar */
-  #quickbar .path-manage-events span.icon {
+  #quickbar .path-online span.icon {
     background-image: url('images/toolbar-icons/online.png') !important;
   }
 
@@ -1878,7 +1877,6 @@ div.admin-panel .body {
   #quickbar .path-manage-arts span.icon {
     background-image: url('images/toolbar-icons/chat.png') !important;
   }
-
 
   #quickbar .path-user span.icon {
     background-image: url('images/toolbar-icons/account.png') !important;

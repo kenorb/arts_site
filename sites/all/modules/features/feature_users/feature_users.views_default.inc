@@ -1257,8 +1257,29 @@ function feature_users_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = 'name';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'name' => 'name',
+    'picture' => 'picture',
+  );
+  $handler->display->display_options['style_options']['default'] = 'name';
+  $handler->display->display_options['style_options']['info'] = array(
+    'name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => 'views-align-left',
+      'separator' => '',
+    ),
+    'picture' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => 'views-align-center',
+      'separator' => '',
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 0;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -1299,6 +1320,43 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['picture']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['picture']['hide_empty'] = 0;
   $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
+  /* Field: User: Created date */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'users';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = 'Registration date';
+  $handler->display->display_options['fields']['created']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['created']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['created']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['created']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['created']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['created']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['created']['empty_zero'] = 0;
+  /* Field: User: Roles */
+  $handler->display->display_options['fields']['rid']['id'] = 'rid';
+  $handler->display->display_options['fields']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['fields']['rid']['field'] = 'rid';
+  $handler->display->display_options['fields']['rid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['rid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['rid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['rid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['rid']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['rid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['rid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['rid']['empty_zero'] = 0;
   /* Filter: User: Last access */
   $handler->display->display_options['filters']['access']['id'] = 'access';
   $handler->display->display_options['filters']['access']['table'] = 'users';
@@ -1326,6 +1384,53 @@ function feature_users_views_default_views() {
   $handler = $view->new_display('block', 'Moderators', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Moderators and critics online';
+
+  /* Display: Who is online */
+  $handler = $view->new_display('page', 'Who is online', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Who is online';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'name' => 'name',
+    'picture' => 'picture',
+    'created' => 'created',
+    'rid' => 'rid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'name';
+  $handler->display->display_options['style_options']['info'] = array(
+    'name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => 'views-align-left',
+      'separator' => '',
+    ),
+    'picture' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => 'views-align-left',
+      'separator' => '',
+    ),
+    'created' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => 'views-align-left',
+      'separator' => '',
+    ),
+    'rid' => array(
+      'align' => 'views-align-left',
+      'separator' => '',
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 0;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['path'] = 'online';
+  $handler->display->display_options['menu']['title'] = 'Who is online?';
+  $handler->display->display_options['menu']['description'] = 'Who is online';
+  $handler->display->display_options['menu']['weight'] = '0';
   $translatables['who_is_online'] = array(
     t('Defaults'),
     t('more'),
@@ -1337,8 +1442,11 @@ function feature_users_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
+    t('Registration date'),
+    t('Roles'),
     t('Moderators'),
     t('Moderators and critics online'),
+    t('Who is online'),
   );
 
   $views[$view->name] = $view;
