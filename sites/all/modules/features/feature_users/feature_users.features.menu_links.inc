@@ -576,24 +576,6 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-43',
   );
-  // Exported menu link: menu-toolbar:marketplace
-  $menu_links['menu-toolbar:marketplace'] = array(
-    'menu_name' => 'menu-toolbar',
-    'link_path' => 'marketplace',
-    'router_path' => 'marketplace',
-    'link_title' => 'Market',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-44',
-  );
   // Exported menu link: menu-toolbar:messages
   $menu_links['menu-toolbar:messages'] = array(
     'menu_name' => 'menu-toolbar',
@@ -940,7 +922,6 @@ function feature_users_menu_default_menu_links() {
   t('Item');
   t('Items');
   t('Manage Events');
-  t('Market');
   t('Membership');
   t('Message');
   t('My workspace');

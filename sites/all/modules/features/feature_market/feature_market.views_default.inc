@@ -256,78 +256,11 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['country']['field'] = 'country';
   $handler->display->display_options['filters']['country']['value'] = array();
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page_1');
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: User: Role weight */
-  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['table'] = 'role_weights';
-  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  /* Sort criterion: Global: Random */
-  $handler->display->display_options['sorts']['random']['id'] = 'random';
-  $handler->display->display_options['sorts']['random']['table'] = 'views';
-  $handler->display->display_options['sorts']['random']['field'] = 'random';
-  $handler->display->display_options['sorts']['random']['expose']['label'] = 'Random';
-  /* Sort criterion: Node statistics: Total views */
-  $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
-  $handler->display->display_options['sorts']['totalcount']['table'] = 'node_counter';
-  $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
-  $handler->display->display_options['sorts']['totalcount']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['totalcount']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['totalcount']['expose']['label'] = 'Most popular';
-  /* Sort criterion: Node: Updated date */
-  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
-  $handler->display->display_options['sorts']['changed']['table'] = 'node';
-  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
-  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['changed']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['changed']['expose']['label'] = 'Most recent';
-  /* Sort criterion: Product: Sell price */
-  $handler->display->display_options['sorts']['sell_price']['id'] = 'sell_price';
-  $handler->display->display_options['sorts']['sell_price']['table'] = 'uc_products';
-  $handler->display->display_options['sorts']['sell_price']['field'] = 'sell_price';
-  $handler->display->display_options['sorts']['sell_price']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['sell_price']['expose']['label'] = 'Sell price';
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter: Node: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  /* Filter: Node: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'item' => 'item',
-  );
-  /* Filter: Search: Search Terms */
-  $handler->display->display_options['filters']['keys']['id'] = 'keys';
-  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
-  $handler->display->display_options['filters']['keys']['field'] = 'keys';
-  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = 0;
-  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
-  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = 1;
-  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
-  /* Filter: Location: Name */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'location';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['operator'] = 'contains';
-  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
-  $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
-  $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
-  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
-  $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
-  $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
-  $handler->display->display_options['filters']['name']['case'] = 0;
+  /* Display: Marketplace Page */
+  $handler = $view->new_display('page', 'Marketplace Page', 'marketplace_page');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Marketplace';
   $handler->display->display_options['path'] = 'marketplace';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Marketplace';
-  $handler->display->display_options['menu']['weight'] = '0';
   $translatables['Marketplace'] = array(
     t('Defaults'),
     t('more'),
@@ -357,7 +290,8 @@ function feature_market_views_default_views() {
     t('Product: Sell price'),
     t('Search'),
     t('In'),
-    t('Page'),
+    t('Marketplace Page'),
+    t('Marketplace'),
   );
 
   $views[$view->name] = $view;
