@@ -77,6 +77,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid']['label_type'] = 'none';
   $handler->display->display_options['fields']['field_image_fid']['format'] = 'imagefield__lightshow2__Thumb_100w__Thumb_100w';
   $handler->display->display_options['fields']['field_image_fid']['multiple']['group'] = 1;
+  $handler->display->display_options['fields']['field_image_fid']['multiple']['multiple_number'] = '1';
   $handler->display->display_options['fields']['field_image_fid']['multiple']['multiple_reversed'] = 0;
   /* Field: Node: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -248,6 +249,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['keys_1']['expose']['operator'] = 'keys_1_op';
   $handler->display->display_options['filters']['keys_1']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys_1']['expose']['label'] = 'In';
+  $handler->display->display_options['filters']['keys_1']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys_1']['expose']['identifier'] = 'in';
   $handler->display->display_options['filters']['keys_1']['expose']['single'] = TRUE;
   /* Filter: Location: Country */
@@ -261,6 +263,11 @@ function feature_market_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Marketplace';
   $handler->display->display_options['path'] = 'marketplace';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Market';
+  $handler->display->display_options['menu']['description'] = 'Marketplace';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-toolbar';
   $translatables['Marketplace'] = array(
     t('Defaults'),
     t('more'),
