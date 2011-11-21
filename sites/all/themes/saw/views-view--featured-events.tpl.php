@@ -1,12 +1,3 @@
-<?php
-	function vd ($w)
-	{
-		echo '<pre style="font-size: 11px; font-family: Consolas; backround-color: #fff; clear: both; padding: 10px">';
-		print_r ($w);
-		echo '</pre>';
-	}
-?>
-
 <div class="featured-events">
 	<script>
     window._featuredEventId = 1;
