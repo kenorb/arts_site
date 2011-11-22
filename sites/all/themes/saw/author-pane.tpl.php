@@ -74,8 +74,6 @@
   }
 ?>
 
-<?php echo saw_render_block ('profile_statistics'); ?>
-
 <div class="author-pane">
  <div class="author-pane-inner">
     <?php /* General section */ ?>
