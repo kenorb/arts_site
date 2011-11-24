@@ -1,0 +1,12 @@
+Index: menu.inc
+===================================================================
+--- menu.inc	(revision 252)
++++ menu.inc	(working copy)
+@@ -578,6 +578,7 @@
+   }
+   $router_item['href'] = implode('/', $link_map);
+   $router_item['options'] = array();
++  $router_item['localized_options'] = array();
+   _menu_check_access($router_item, $map);
+   
+   // For performance, don't localize an item the user can't access.
