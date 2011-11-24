@@ -148,7 +148,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_controls_profile';
-  $strongarm->value = '3';
+  $strongarm->value = '0';
   $export['comment_controls_profile'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -183,7 +183,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_profile';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['comment_preview_profile'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -211,13 +211,13 @@ function feature_users_strongarm() {
     'options' => '-1',
     'comment_settings' => '0',
     'menu' => '-4',
-    'path' => '5',
-    'attachments' => '4',
-    'custom_breadcrumbs' => '8',
-    'print' => '9',
-    'workflow' => '7',
-    'nodewords' => '3',
-    'notifications' => '6',
+    'path' => '6',
+    'attachments' => '5',
+    'custom_breadcrumbs' => '9',
+    'print' => '10',
+    'workflow' => '8',
+    'nodewords' => '4',
+    'notifications' => '7',
   );
   $export['content_extra_weights_profile'] = $strongarm;
 

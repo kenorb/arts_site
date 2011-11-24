@@ -6,6 +6,80 @@
 function feature_users_content_default_fields() {
   $fields = array();
 
+  // Exported field: field_about_me
+  $fields['profile-field_about_me'] = array(
+    'field_name' => 'field_about_me',
+    'type_name' => 'profile',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => '5',
+      'size' => 60,
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_about_me][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'About Me',
+      'weight' => '2',
+      'description' => 'Few words about me.',
+      'type' => 'text_textarea',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_birthday
   $fields['profile-field_birthday'] = array(
     'field_name' => 'field_birthday',
@@ -191,7 +265,7 @@ function feature_users_content_default_fields() {
     'data_sortable' => '',
     'widget' => array(
       'label' => 'Full Name',
-      'weight' => '10',
+      'weight' => '11',
       'description' => '',
       'type' => 'computed',
       'module' => 'computed_field',
@@ -1319,7 +1393,7 @@ Male',
       ),
       'default_value_php' => NULL,
       'label' => 'Location',
-      'weight' => '2',
+      'weight' => '3',
       'description' => '',
       'type' => 'location',
       'module' => 'location_cck',
@@ -1328,6 +1402,7 @@ Male',
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('About Me');
   t('Birthday');
   t('First Name');
   t('Full Name');
