@@ -44,5 +44,19 @@ EOT;
 			_db_query ($row);
 			
 	}
+	
+	function saw_users_update_2 ()
+	{
+		$query =
+<<<EOT
+			DELETE FROM menu_links WHERE mlid = 3721 AND plid = 0 LIMIT 1;
+			DELETE FROM menu_links WHERE mlid = 3722 AND plid = 0 LIMIT 1;
+			DELETE FROM menu_links WHERE mlid = 4164 AND plid = 0 LIMIT 1;
+EOT;
+	
+		foreach (explode ("\n", $query) as $row)
+			_db_query ($row);
+		
+	}
 
 ?>
