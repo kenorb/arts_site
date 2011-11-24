@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the imagefield zip module.
+ */
+
+/**
+ * Implementation of hook_enable().
+ */
+function imagefield_zip_enable() {
+}
+
+/**
+ * Implementation of hook_disable().
+ */
+function imagefield_zip_disable() {
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function imagefield_zip_install() {
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function imagefield_zip_uninstall() {
+  // Remove imagefield_zip_*_% variables.
+  db_query("DELETE FROM {variable} WHERE name LIKE 'imagefield_zip_cck_widget_%'");
+  db_query("DELETE FROM {variable} WHERE name LIKE 'imagefield_zip_upload_mode_%'");
+  db_query("DELETE FROM {variable} WHERE name LIKE 'imagefield_zip_fallback_%'");
+}
+
+/**
+ * Implementation of hook_requirements().
+ */
+function imagefield_zip_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+
+  if ($phase == 'runtime' || $phase == 'install') {
+    if (!function_exists('zip_open')) {
+      $requirements['imagefield_zip_function'] = array(
+        'title' => $t('Zip support'),
+        'value' => $phase == 'install' ? FALSE : $t('Not available'),
+        'severity' => REQUIREMENT_WARNING,
+        'description' => $t('Zip support is required for the zip portion of imagefield_zip to work. HTML5 uploading is still available on certian browsers (not IE). Visit the <a href="http://php.net/zip.installation">PHP Zip Installation</a> page to learn how to get zip support working on this server.'),
+      );
+    }
+  }
+  if (empty($requirements)) {
+    $requirements['imagefield_zip'] = array(
+      'title' => $t('Zip support'),
+      'value' => $t('Installed'),
+    );
+  }
+
+  return $requirements;
+}

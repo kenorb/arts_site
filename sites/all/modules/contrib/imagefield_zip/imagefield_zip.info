@@ -1,0 +1,13 @@
+
+name = ImageField Zip/HTML5 Bulk Upload
+description = "Upload via HTML5 or a zip file containing images that will automatically be populated to a multi-value imagefield."
+package = CCK
+dependencies[] = imagefield
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-10-27
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "imagefield_zip"
+datestamp = "1319674733"
+
