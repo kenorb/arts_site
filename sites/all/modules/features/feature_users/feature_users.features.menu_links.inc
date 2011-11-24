@@ -742,8 +742,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
+    'expanded' => '1',
+    'weight' => '-50',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/events
@@ -751,14 +751,18 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'manage/events',
     'router_path' => 'manage/events',
-    'link_title' => 'Manage Events',
-    'options' => array(),
+    'link_title' => 'Events',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
+    'expanded' => '1',
+    'weight' => '-49',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/items
@@ -772,147 +776,11 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
+    'expanded' => '1',
+    'weight' => '-48',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:node/add/art
-  $menu_links['navigation:node/add/art'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/art',
-    'router_path' => 'node/add/art',
-    'link_title' => 'Art',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/arts',
-  );
-  // Exported menu link: navigation:node/add/event
-  $menu_links['navigation:node/add/event'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/event',
-    'router_path' => 'node/add/event',
-    'link_title' => 'Event',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/events',
-  );
-  // Exported menu link: navigation:node/add/forum
-  $menu_links['navigation:node/add/forum'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/forum',
-    'router_path' => 'node/add/forum',
-    'link_title' => 'Add Topic',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Add new forum topic',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:node/add/item
-  $menu_links['navigation:node/add/item'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/item',
-    'router_path' => 'node/add/item',
-    'link_title' => 'Item',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Buy & Exchange',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/items',
-  );
-  // Exported menu link: navigation:workspace/%
-  $menu_links['navigation:workspace/%'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'workspace/%',
-    'router_path' => 'workspace/%',
-    'link_title' => 'My workspace',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-10',
-  );
-  // Exported menu link: secondary-links:<front>
-  $menu_links['secondary-links:<front>'] = array(
-    'menu_name' => 'secondary-links',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Sell My Art',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '1',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-50',
-  );
-  // Exported menu link: secondary-links:arts
-  $menu_links['secondary-links:arts'] = array(
-    'menu_name' => 'secondary-links',
-    'link_path' => 'arts',
-    'router_path' => 'arts',
-    'link_title' => 'Buy Student Art',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-49',
-  );
-	  // Exported menu link: navigation:workspace/%
-  $menu_links['navigation:workspace/%'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'workspace/%',
-    'router_path' => 'workspace/%',
-    'link_title' => 'Manage',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-50',
-  ); 
-	  // Exported menu link: navigation:node/add/art
   $menu_links['navigation:node/add/art'] = array(
     'menu_name' => 'navigation',
     'link_path' => 'node/add/art',
@@ -988,27 +856,12 @@ function feature_users_menu_default_menu_links() {
     'weight' => '-50',
     'parent_path' => 'manage/items',
   );
-  // Exported menu link: navigation:manage/arts
-  $menu_links['navigation:manage/arts'] = array(
+  // Exported menu link: navigation:workspace/%
+  $menu_links['navigation:workspace/%'] = array(
     'menu_name' => 'navigation',
-    'link_path' => 'manage/arts',
-    'router_path' => 'manage/arts',
-    'link_title' => 'Arts',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-50',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/events
-  $menu_links['navigation:manage/events'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/events',
-    'router_path' => 'manage/events',
-    'link_title' => 'Events',
+    'link_path' => 'workspace/%',
+    'router_path' => 'workspace/%',
+    'link_title' => 'Manage',
     'options' => array(
       'attributes' => array(
         'title' => '',
@@ -1018,32 +871,55 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-49',
-    'parent_path' => 'workspace/%',
+    'expanded' => '0',
+    'weight' => '-50',
   );
-  // Exported menu link: navigation:manage/items
-  $menu_links['navigation:manage/items'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/items',
-    'router_path' => 'manage/items',
-    'link_title' => 'Items',
-    'options' => array(),
-    'module' => 'system',
+  // Exported menu link: secondary-links:<front>
+  $menu_links['secondary-links:<front>'] = array(
+    'menu_name' => 'secondary-links',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Sell My Art',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '1',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-50',
+  );
+  // Exported menu link: secondary-links:arts
+  $menu_links['secondary-links:arts'] = array(
+    'menu_name' => 'secondary-links',
+    'link_path' => 'arts',
+    'router_path' => 'arts',
+    'link_title' => 'Buy Student Art',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-48',
-    'parent_path' => 'workspace/%',
-  ); 	
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-49',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('-');
   t('Account');
   t('Account Settings');
-  t('Add Topic');
+  t('Add Art');
+  t('Add Event');
+  t('Add Item');
   t('Add content');
+  t('Add forum topic');
   t('Art');
   t('Arts');
   t('Blog entry');
@@ -1055,6 +931,7 @@ function feature_users_menu_default_menu_links() {
   t('Create content');
   t('Education');
   t('Event');
+  t('Events');
   t('Examples');
   t('Forum topic');
   t('General settings');
@@ -1064,10 +941,9 @@ function feature_users_menu_default_menu_links() {
   t('Image CAPTCHA');
   t('Item');
   t('Items');
-  t('Manage Events');
+  t('Manage');
   t('Membership');
   t('Message');
-  t('My workspace');
   t('News');
   t('Newsletter issue');
   t('Online');
