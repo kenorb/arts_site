@@ -108,7 +108,7 @@ sell|For Sell',
     'multiple' => '5',
     'module' => 'filefield',
     'active' => '1',
-    'list_field' => '0',
+    'list_field' => '1',
     'list_default' => 1,
     'description_field' => '0',
     'widget' => array(

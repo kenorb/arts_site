@@ -88,6 +88,13 @@
         <?php print $picture; ?>
       <?php endif; ?>
 
+      <?php /* Joined */ ?>
+      <?php if (!empty($joined)): ?>
+        <div class="author-pane-line author-joined">
+          <span class="author-pane-label"><?php print t('Joined'); ?>:</span> <?php print $joined; ?>
+        </div>
+			<?php endif; ?>
+            
       <?php /* Online status */ ?>
       <?php if (!empty($online_status)): ?>
         <div class="author-pane-line <?php print $online_status_class ?>">
@@ -97,7 +104,7 @@
 
       <?php /* Last active */ ?>
       <?php if (!empty($last_active)): ?>
-        <div class="author-pane-line">
+        <div class="author-pane-line last-seen">
            <span class="author-pane-label"><?php print t('Last seen'); ?>:</span> <?php print t('!time ago', array('!time' => $last_active)); ?>
         </div>
       <?php endif; ?>
@@ -123,12 +130,6 @@
         </div>
       <?php endif; ?>
 
-      <?php /* Joined */ ?>
-      <?php if (!empty($joined)): ?>
-        <div class="author-pane-line author-joined">
-          <span class="author-pane-label"><?php print t('Joined'); ?>:</span> <?php print $joined; ?>
-        </div>
-      <?php endif; ?>
 
       <?php /* Posts */ ?>
       <?php if (isset($user_stats_posts)): ?>

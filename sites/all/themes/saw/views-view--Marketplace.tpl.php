@@ -1,8 +1,14 @@
 <div class="view-marketplace">
 
+<?php global $no_widgets; ?>
+
+<?php if (!$no_widgets): ?>
+
 	<div class="views-exposed-form view-filters view">
 		<?php echo $view -> exposed_widgets; ?>
 	</div>
+	
+<?php endif; ?>
 
 	<?php foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
 	
@@ -53,4 +59,8 @@
 
 </div>
 
-<?php echo $pager; ?>
+<?php if (!$no_widgets): ?>
+
+	<?php echo $pager; ?>
+  
+<?php endif; ?>

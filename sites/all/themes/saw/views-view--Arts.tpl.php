@@ -5,7 +5,7 @@
 	$viewName	= strtolower ($view -> query -> pager -> display -> display_title);
 	
 ?>
-
+<?php if ($viewName != 'user profile arts'): ?>
 <div class="arts-filters">
 	<span class="preface">You can filter by:</span>
 	<a href="/arts/most-viewed" class="filter <?php if ($viewName == 'most viewed'): ?>active<?php endif; ?>">Most viewed</a>
@@ -14,6 +14,7 @@
 	<a href="/arts/featured-artists" class="filter <?php if ($viewName == 'featured artists'): ?>active<?php endif; ?>">Featured artists</a>
 	<a href="/arts/highest-rated" class="filter <?php if ($viewName == 'highest rated'): ?>active<?php endif; ?>">Highest rated</a>
 </div>
+<?php endif; ?>
 
 <div class="arts-rows">
 

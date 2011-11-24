@@ -267,14 +267,14 @@ on|For sell',
       'weight' => '2',
       'parent' => '',
       'label' => array(
-        'format' => 'above',
+        'format' => 'hidden',
       ),
       'teaser' => array(
         'format' => 'imagefield__lightframe2__Thumb_200__node',
         'exclude' => 1,
       ),
       'full' => array(
-        'format' => 'imagefield__lightshow2_compact__Thumb_200__original',
+        'format' => 'imagefield__lightshow2__Thumb_200__original',
         'exclude' => 0,
       ),
       '4' => array(
@@ -300,7 +300,7 @@ on|For sell',
     'multiple' => '5',
     'module' => 'filefield',
     'active' => '1',
-    'list_field' => '0',
+    'list_field' => '1',
     'list_default' => 1,
     'description_field' => '0',
     'widget' => array(
@@ -339,8 +339,8 @@ on|For sell',
       'label' => 'Image',
       'weight' => '2',
       'description' => '',
-      'type' => 'image_fupload_imagefield_widget',
-      'module' => 'image_fupload_imagefield',
+      'type' => 'imagefield_widget',
+      'module' => 'imagefield',
     ),
   );
 
