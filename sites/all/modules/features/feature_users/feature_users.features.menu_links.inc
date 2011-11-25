@@ -159,261 +159,6 @@ function feature_users_menu_default_menu_links() {
     'weight' => '0',
     'parent_path' => 'admin/content',
   );
-  // Exported menu link: admin_menu:node/add/art
-  $menu_links['admin_menu:node/add/art'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/art',
-    'router_path' => 'node/add/art',
-    'link_title' => 'Art',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/blog
-  $menu_links['admin_menu:node/add/blog'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/blog',
-    'router_path' => 'node/add/blog',
-    'link_title' => 'Blog entry',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/education
-  $menu_links['admin_menu:node/add/education'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/education',
-    'router_path' => 'node/add/education',
-    'link_title' => 'Education',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/event
-  $menu_links['admin_menu:node/add/event'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/event',
-    'router_path' => 'node/add/event',
-    'link_title' => 'Event',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/forum
-  $menu_links['admin_menu:node/add/forum'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/forum',
-    'router_path' => 'node/add/forum',
-    'link_title' => 'Forum topic',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/group
-  $menu_links['admin_menu:node/add/group'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/group',
-    'router_path' => 'node/add/group',
-    'link_title' => 'Group',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/idea
-  $menu_links['admin_menu:node/add/idea'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/idea',
-    'router_path' => 'node/add/idea',
-    'link_title' => 'Idea',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/item
-  $menu_links['admin_menu:node/add/item'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/item',
-    'router_path' => 'node/add/item',
-    'link_title' => 'Item',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/membership
-  $menu_links['admin_menu:node/add/membership'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/membership',
-    'router_path' => 'node/add/membership',
-    'link_title' => 'Membership',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/page
-  $menu_links['admin_menu:node/add/page'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/page',
-    'router_path' => 'node/add/page',
-    'link_title' => 'Page',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/panel
-  $menu_links['admin_menu:node/add/panel'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/panel',
-    'router_path' => 'node/add/panel',
-    'link_title' => 'Panel',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/product
-  $menu_links['admin_menu:node/add/product'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/product',
-    'router_path' => 'node/add/product',
-    'link_title' => 'Product',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/profile
-  $menu_links['admin_menu:node/add/profile'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/profile',
-    'router_path' => 'node/add/profile',
-    'link_title' => 'Profile',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/simplenews
-  $menu_links['admin_menu:node/add/simplenews'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/simplenews',
-    'router_path' => 'node/add/simplenews',
-    'link_title' => 'Newsletter issue',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/story
-  $menu_links['admin_menu:node/add/story'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/story',
-    'router_path' => 'node/add/story',
-    'link_title' => 'Story',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
   // Exported menu link: menu-profilemenu:<front>
   $menu_links['menu-profilemenu:<front>'] = array(
     'menu_name' => 'menu-profilemenu',
@@ -1037,6 +782,262 @@ function feature_users_menu_default_menu_links() {
     'weight' => '-48',
     'parent_path' => 'workspace/%',
   ); 	
+  // Exported menu link: admin_menu:node/add/art
+  $menu_links['admin_menu:node/add/art'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/art',
+    'router_path' => 'node/add/art',
+    'link_title' => 'Art',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/blog
+  $menu_links['admin_menu:node/add/blog'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/blog',
+    'router_path' => 'node/add/blog',
+    'link_title' => 'Blog entry',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/education
+  $menu_links['admin_menu:node/add/education'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/education',
+    'router_path' => 'node/add/education',
+    'link_title' => 'Education',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/event
+  $menu_links['admin_menu:node/add/event'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/event',
+    'router_path' => 'node/add/event',
+    'link_title' => 'Event',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/forum
+  $menu_links['admin_menu:node/add/forum'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/forum',
+    'router_path' => 'node/add/forum',
+    'link_title' => 'Forum topic',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/group
+  $menu_links['admin_menu:node/add/group'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/group',
+    'router_path' => 'node/add/group',
+    'link_title' => 'Group',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/idea
+  $menu_links['admin_menu:node/add/idea'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/idea',
+    'router_path' => 'node/add/idea',
+    'link_title' => 'Idea',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/item
+  $menu_links['admin_menu:node/add/item'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/item',
+    'router_path' => 'node/add/item',
+    'link_title' => 'Item',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/membership
+  $menu_links['admin_menu:node/add/membership'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/membership',
+    'router_path' => 'node/add/membership',
+    'link_title' => 'Membership',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/page
+  $menu_links['admin_menu:node/add/page'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/page',
+    'router_path' => 'node/add/page',
+    'link_title' => 'Page',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/panel
+  $menu_links['admin_menu:node/add/panel'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/panel',
+    'router_path' => 'node/add/panel',
+    'link_title' => 'Panel',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/product
+  $menu_links['admin_menu:node/add/product'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/product',
+    'router_path' => 'node/add/product',
+    'link_title' => 'Product',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/profile
+  $menu_links['admin_menu:node/add/profile'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/profile',
+    'router_path' => 'node/add/profile',
+    'link_title' => 'Profile',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/simplenews
+  $menu_links['admin_menu:node/add/simplenews'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/simplenews',
+    'router_path' => 'node/add/simplenews',
+    'link_title' => 'Newsletter issue',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+  // Exported menu link: admin_menu:node/add/story
+  $menu_links['admin_menu:node/add/story'] = array(
+    'menu_name' => 'admin_menu',
+    'link_path' => 'node/add/story',
+    'router_path' => 'node/add/story',
+    'link_title' => 'Story',
+    'options' => array(
+      'alter' => TRUE,
+    ),
+    'module' => 'admin_menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+    'parent_path' => 'node/add',
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('-');
