@@ -27,15 +27,31 @@ function feature_art_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'sort' => array(
-      'bef_format' => 'default',
+      'bef_format' => 'bef',
       'combine' => 0,
-      'reset' => 0,
-      'reset_label' => '',
+      'reset' => 1,
+      'reset_label' => 'All Art',
     ),
     'pager' => array(
       'bef_format' => 'default',
     ),
     'keys' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => '',
+        'bef_collapsible' => 0,
+        'bef_filter_description' => '',
+      ),
+    ),
+    'tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => '',
+        'bef_collapsible' => 0,
+        'bef_filter_description' => '',
+      ),
+    ),
+    'tid_1' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => '',
@@ -206,21 +222,22 @@ function feature_art_views_default_views() {
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $handler->display->display_options['sorts']['created']['expose']['label'] = 'Post date';
+  /* Sort criterion: Content: For Sell (field_for_sell) */
+  $handler->display->display_options['sorts']['field_for_sell_value']['id'] = 'field_for_sell_value';
+  $handler->display->display_options['sorts']['field_for_sell_value']['table'] = 'node_data_field_for_sell';
+  $handler->display->display_options['sorts']['field_for_sell_value']['field'] = 'field_for_sell_value';
+  $handler->display->display_options['sorts']['field_for_sell_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_for_sell_value']['expose']['label'] = 'For Sell';
+  /* Sort criterion: Content: Copy/original (field_copy_original) */
+  $handler->display->display_options['sorts']['field_copy_original_value']['id'] = 'field_copy_original_value';
+  $handler->display->display_options['sorts']['field_copy_original_value']['table'] = 'node_data_field_copy_original';
+  $handler->display->display_options['sorts']['field_copy_original_value']['field'] = 'field_copy_original_value';
+  $handler->display->display_options['sorts']['field_copy_original_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_copy_original_value']['expose']['label'] = 'Original Art';
   /* Sort criterion: Node statistics: Total views */
   $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
   $handler->display->display_options['sorts']['totalcount']['table'] = 'node_counter';
   $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
-  $handler->display->display_options['sorts']['totalcount']['expose']['label'] = 'Total views';
-  /* Sort criterion: Node statistics: Views today */
-  $handler->display->display_options['sorts']['daycount']['id'] = 'daycount';
-  $handler->display->display_options['sorts']['daycount']['table'] = 'node_counter';
-  $handler->display->display_options['sorts']['daycount']['field'] = 'daycount';
-  $handler->display->display_options['sorts']['daycount']['expose']['label'] = 'Views today';
-  /* Sort criterion: Global: Random */
-  $handler->display->display_options['sorts']['random']['id'] = 'random';
-  $handler->display->display_options['sorts']['random']['table'] = 'views';
-  $handler->display->display_options['sorts']['random']['field'] = 'random';
-  $handler->display->display_options['sorts']['random']['expose']['label'] = 'Random';
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -274,6 +291,10 @@ function feature_art_views_default_views() {
   $handler->display->display_options['filters']['tid_1']['type'] = 'hierarchical_select';
   $handler->display->display_options['filters']['tid_1']['vid'] = '3';
   $handler->display->display_options['filters']['tid_1']['error_message'] = 0;
+  /* Filter: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
 
   /* Display: Default */
   $handler = $view->new_display('page', 'Default', 'arts_most_viewed');
@@ -288,6 +309,30 @@ function feature_art_views_default_views() {
   $handler = $view->new_display('page', 'Most viewed', 'arts_most_viewed2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most viewed arts';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Node statistics: Total views */
+  $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
+  $handler->display->display_options['sorts']['totalcount']['table'] = 'node_counter';
+  $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
+  $handler->display->display_options['sorts']['totalcount']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['totalcount']['expose']['label'] = 'Total views';
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
+  $handler->display->display_options['sorts']['random']['expose']['label'] = 'Random';
+  /* Sort criterion: Content: For Sell (field_for_sell) */
+  $handler->display->display_options['sorts']['field_for_sell_value']['id'] = 'field_for_sell_value';
+  $handler->display->display_options['sorts']['field_for_sell_value']['table'] = 'node_data_field_for_sell';
+  $handler->display->display_options['sorts']['field_for_sell_value']['field'] = 'field_for_sell_value';
+  $handler->display->display_options['sorts']['field_for_sell_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_for_sell_value']['expose']['label'] = 'For Sell';
+  /* Sort criterion: Content: Copy/original (field_copy_original) */
+  $handler->display->display_options['sorts']['field_copy_original_value']['id'] = 'field_copy_original_value';
+  $handler->display->display_options['sorts']['field_copy_original_value']['table'] = 'node_data_field_copy_original';
+  $handler->display->display_options['sorts']['field_copy_original_value']['field'] = 'field_copy_original_value';
+  $handler->display->display_options['sorts']['field_copy_original_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_copy_original_value']['expose']['label'] = 'Original Art';
   $handler->display->display_options['path'] = 'arts/most-viewed';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Recent arts';
@@ -315,6 +360,68 @@ function feature_art_views_default_views() {
   $handler = $view->new_display('page', 'Featured artists', 'page_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Featured artists';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: Node: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['use_operator'] = FALSE;
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['optional'] = FALSE;
+  $handler->display->display_options['filters']['status']['expose']['remember'] = FALSE;
+  $handler->display->display_options['filters']['status']['expose']['single'] = TRUE;
+  /* Filter: Node: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'art' => 'art',
+  );
+  /* Filter: Search: Search Terms */
+  $handler->display->display_options['filters']['keys']['id'] = 'keys';
+  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
+  $handler->display->display_options['filters']['keys']['field'] = 'keys';
+  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
+  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  /* Filter: Taxonomy: Term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'term_node';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['tid']['expose']['label'] = 'Education';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+  $handler->display->display_options['filters']['tid']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['tid']['type'] = 'hierarchical_select';
+  $handler->display->display_options['filters']['tid']['vid'] = '4';
+  $handler->display->display_options['filters']['tid']['error_message'] = 0;
+  /* Filter: Taxonomy: Term */
+  $handler->display->display_options['filters']['tid_1']['id'] = 'tid_1';
+  $handler->display->display_options['filters']['tid_1']['table'] = 'term_node';
+  $handler->display->display_options['filters']['tid_1']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
+  $handler->display->display_options['filters']['tid_1']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['tid_1']['expose']['label'] = 'Category';
+  $handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'tid_1';
+  $handler->display->display_options['filters']['tid_1']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['tid_1']['type'] = 'hierarchical_select';
+  $handler->display->display_options['filters']['tid_1']['vid'] = '3';
+  $handler->display->display_options['filters']['tid_1']['error_message'] = 0;
+  /* Filter: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['value'] = array(
+    10 => '10',
+  );
+  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
   $handler->display->display_options['path'] = 'arts/featured-artists';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Featured artists';
@@ -324,6 +431,24 @@ function feature_art_views_default_views() {
   $handler = $view->new_display('page', 'Highest rated', 'page_4');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Highest rated arts';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Node statistics: Total views */
+  $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
+  $handler->display->display_options['sorts']['totalcount']['table'] = 'node_counter';
+  $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
+  $handler->display->display_options['sorts']['totalcount']['order'] = 'DESC';
+  /* Sort criterion: Content: For Sell (field_for_sell) */
+  $handler->display->display_options['sorts']['field_for_sell_value']['id'] = 'field_for_sell_value';
+  $handler->display->display_options['sorts']['field_for_sell_value']['table'] = 'node_data_field_for_sell';
+  $handler->display->display_options['sorts']['field_for_sell_value']['field'] = 'field_for_sell_value';
+  $handler->display->display_options['sorts']['field_for_sell_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_for_sell_value']['expose']['label'] = 'For Sell';
+  /* Sort criterion: Content: Copy/original (field_copy_original) */
+  $handler->display->display_options['sorts']['field_copy_original_value']['id'] = 'field_copy_original_value';
+  $handler->display->display_options['sorts']['field_copy_original_value']['table'] = 'node_data_field_copy_original';
+  $handler->display->display_options['sorts']['field_copy_original_value']['field'] = 'field_copy_original_value';
+  $handler->display->display_options['sorts']['field_copy_original_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_copy_original_value']['expose']['label'] = 'Original Art';
   $handler->display->display_options['path'] = 'arts/highest-rated';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Highest rated arts';
@@ -365,9 +490,8 @@ function feature_art_views_default_views() {
     t(','),
     t('Name'),
     t('Post date'),
-    t('Total views'),
-    t('Views today'),
-    t('Random'),
+    t('For Sell'),
+    t('Original Art'),
     t('Published'),
     t('Search'),
     t('Education'),
@@ -375,6 +499,8 @@ function feature_art_views_default_views() {
     t('Default'),
     t('Most viewed'),
     t('Most viewed arts'),
+    t('Total views'),
+    t('Random'),
     t('Most recent'),
     t('Most recent arts'),
     t('Best selling artists'),
