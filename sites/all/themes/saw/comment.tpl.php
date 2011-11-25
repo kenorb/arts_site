@@ -6,12 +6,13 @@
 	<table>
 		<tr>
 			<td class="image-area">
-			  <?php if ($picture) : ?>
-					<?php print $picture ?>
-				<?php endif; ?>
-				
-				
-				
+				<div class="image">
+					<?php if ($picture) : ?>
+						<?php print $picture ?>
+					<?php else: ?>
+						<img src="/sites/all/themes/saw/images/anonymous-50.png" alt="anonymous" />
+					<?php endif; ?>
+				</div>
 			</td>
 			<td class="user-info-area">
 				<div>
@@ -23,27 +24,17 @@
 				<div class="reply">
 					<a href="/comment/reply/<?php echo $comment -> nid; ?>/<?php echo $comment -> cid; ?>">Reply</a>
 				</div>
-				<a href="/comment/edit/<?php echo $comment -> cid; ?>">Edit</a> | <a href="/comment/delete/<?php echo $comment -> cid; ?>">Delete</a> | <a href="/spam/comment/<?php echo $comment -> cid; ?>/spam">Mark as spam</a>
 			</td>
 			<td class="text-area">
 				<?php echo $comment -> comment; ?>
+				<div class="clinks">
+					<a href="/comment/edit/<?php echo $comment -> cid; ?>" title="Edit comment"><img src="/sites/all/themes/saw/images/comment_edit.png" alt="Edit" /></a>
+					<a href="/comment/delete/<?php echo $comment -> cid; ?>" title="Delete comment"><img src="/sites/all/themes/saw/images/trash-can-delete.png" alt="Delete" /></a>
+					<a href="/spam/comment/<?php echo $comment -> cid; ?>/spam" title="Mark as spam"><img src="/sites/all/themes/saw/images/flag_red.png" alt="Mark as spam" /></a>
+				</div>
 			</td>
 		</tr>
 	</table>
 
 
-  <h3 class="title"><?php print $title ?></h3>
-  <div class="submitted"><?php print $submitted ?><?php if ($comment->new) : ?><span class="new"> *<?php print $new ?></span><?php endif; ?></div>
-  <div class="content">
-    <?php print $content ?>
-    <?php if ($signature): ?>
-      <div class="clear-block">
-        <div>—</div>
-        <?php print $signature ?>
-      </div>
-    <?php endif; ?>
-  </div>
-  <!-- BEGIN: links -->
-  <div class="links">&raquo; <?php print $links ?></div>
-  <!-- END: links -->
 </div>

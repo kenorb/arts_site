@@ -441,12 +441,53 @@ ul.links li {
   line-height: 1.3;
 }
 
+.comment {
+	font-size: 12px;
+	margin-top: 2px;
+}
+
 .comment .user-info-area {
-	text-align: center;
+	text-align: left;
 }
 
 .comment .reply {
 	padding: 10px 0px;
+}
+
+.comment .image {
+	min-width: 50px;
+	min-height: 50px;
+	margin: 4px 10px;
+	border-radius: 5px;
+}
+
+.comment table {
+	width: 100%;
+}
+
+.comment td.image-area {
+	width: 70px;
+}
+
+.comment td.user-info-area {
+	width: 170px;
+	padding-left: 10px;
+}
+
+.comment td.text-area {
+	border-left: 1px dotted #aaa;
+	padding-left: 10px;
+}
+
+.comment .clinks {
+	padding: 4px 0px;
+	border-radius: 5px;
+	color: #d63;
+	text-align: right;
+}
+
+.comment .clinks a {
+	margin-left: 5px;
 }
 
 .comment .reply a	 {
@@ -2333,3 +2374,12 @@ div.admin-panel .body {
     background-color: #e5eeff;
   }
 	
+
+#views-exposed-form-Arts-default .bef-sortorder {
+  display: none;
+}
+
+#views-exposed-form-Arts-default .form-radios  {
+  text-align: left;
+  margin-left: 30px;
+}
