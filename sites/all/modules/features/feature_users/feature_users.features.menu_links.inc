@@ -630,6 +630,24 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-50',
   );
+  // Exported menu link: menu-toolbar:workspace/me
+  $menu_links['menu-toolbar:workspace/me'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'workspace/me',
+    'router_path' => 'workspace/%',
+    'link_title' => 'Manage',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Manage Arts, Events, Items, etc.',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-46',
+  );
   // Exported menu link: navigation:admin/user/captcha
   $menu_links['navigation:admin/user/captcha'] = array(
     'menu_name' => 'navigation',
@@ -724,8 +742,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
+    'expanded' => '1',
+    'weight' => '-50',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/events
@@ -733,14 +751,18 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'manage/events',
     'router_path' => 'manage/events',
-    'link_title' => 'Manage Events',
-    'options' => array(),
+    'link_title' => 'Events',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
+    'expanded' => '1',
+    'weight' => '-49',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/items
@@ -754,8 +776,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
+    'expanded' => '1',
+    'weight' => '-48',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:node/add/art
@@ -763,8 +785,12 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/art',
     'router_path' => 'node/add/art',
-    'link_title' => 'Art',
-    'options' => array(),
+    'link_title' => 'Add Art',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
@@ -778,14 +804,18 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/event',
     'router_path' => 'node/add/event',
-    'link_title' => 'Event',
-    'options' => array(),
+    'link_title' => 'Add Event',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Here you can add a new event.',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
+    'weight' => '-50',
     'parent_path' => 'manage/events',
   );
   // Exported menu link: navigation:node/add/forum
@@ -812,10 +842,10 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/item',
     'router_path' => 'node/add/item',
-    'link_title' => 'Item',
+    'link_title' => 'Add Item',
     'options' => array(
       'attributes' => array(
-        'title' => 'Buy & Exchange',
+        'title' => '',
       ),
     ),
     'module' => 'system',
@@ -823,7 +853,7 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
+    'weight' => '-50',
     'parent_path' => 'manage/items',
   );
   // Exported menu link: navigation:workspace/%
@@ -831,14 +861,18 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'workspace/%',
     'router_path' => 'workspace/%',
-    'link_title' => 'My workspace',
-    'options' => array(),
+    'link_title' => 'Manage',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
     'expanded' => '0',
-    'weight' => '-10',
+    'weight' => '-50',
   );
   // Exported menu link: secondary-links:<front>
   $menu_links['secondary-links:<front>'] = array(
@@ -881,6 +915,9 @@ function feature_users_menu_default_menu_links() {
   t('-');
   t('Account');
   t('Account Settings');
+  t('Add Art');
+  t('Add Event');
+  t('Add Item');
   t('Add forum topic');
   t('Art');
   t('Arts');
@@ -893,6 +930,7 @@ function feature_users_menu_default_menu_links() {
   t('Create content');
   t('Education');
   t('Event');
+  t('Events');
   t('Examples');
   t('Forum topic');
   t('General settings');
@@ -902,10 +940,9 @@ function feature_users_menu_default_menu_links() {
   t('Image CAPTCHA');
   t('Item');
   t('Items');
-  t('Manage Events');
+  t('Manage');
   t('Membership');
   t('Message');
-  t('My workspace');
   t('News');
   t('Newsletter issue');
   t('Online');
