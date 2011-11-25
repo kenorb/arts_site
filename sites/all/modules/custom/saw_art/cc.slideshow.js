@@ -25,6 +25,7 @@
 	
 	CC.Slideshow = function (container, frames, smallImageName, bigImageName, titleName, teaserName, delay)
 	{
+	  
 		this._container				= $(container);
 		this._frames					= frames;
 		this._smallImageName	= smallImageName;
@@ -32,8 +33,13 @@
 		this._titleName				= titleName;
 		this._teaserName			= teaserName;
 		this._frameIndex			= 0;
-		this._frameCount			= frames.length;
 		this._delay						= delay;
+		
+    for (var i = 0; i < frames.length; i++)
+      if (frames [i] [this._smallImageName] == "")
+        frames.splice (i--, 1);
+
+    this._frameCount      = frames.length;
 		
 		var invisible;
 		
@@ -42,8 +48,7 @@
 		for (var i = 0; i < this._frameCount; i++)
 			invisible.append (this._frames [i] [this._smallImageName]).append (this._frames [i] [this._bigImageName]);
 
-	}
-	
+	};	
 	
 	CC.Slideshow.prototype.updateFrame = function ()
 	{
@@ -60,8 +65,12 @@
 			img.click (CC.Fn.bind (this, function (e) {
 				
 				this._frameIndex = frameIndex;
-				this.start ();
-				
+
+		    if (this._interval)
+		      clearInterval (this._interval);
+		    
+		    this.updateFrame ();
+
 			}));
 			
 			return img;
@@ -70,11 +79,12 @@
 
 		box.find ('.big-area').append (prepareImage ($('<span/>').html (this._frames [this._frameIndex] [this._bigImageName]), null));
 		
+		var num = 0;
 		
-		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 4, this._frameCount); i++)
+		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 10, this._frameCount) && num < 6; i++, num++)
 			box.find ('.small-area').append (prepareImage ($('<span/>').html (this._frames [i] [this._smallImageName]), i));
 			
-		for (var v = 0; v < this._frameIndex; v++)
+		for (var v = 0; v < this._frameIndex && num < 6; v++, num++)
 			box.find ('.small-area').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
 		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
@@ -85,7 +95,7 @@
 		
 		if (++this._frameIndex >= this._frameCount)
 			this._frameIndex = 0;
-	}
+	};
 	
 	CC.Slideshow.prototype.start = function (interval)
 	{
@@ -94,8 +104,12 @@
 	
 		this._interval = setInterval (CC.Fn.bind (this, "updateFrame"), this._delay);
 		
+		console.log (this._frames [0]);
+		
+		$('#block-views-user_arts-user_arts_block .title h3').html (this._frames [0].name.replace(/<[^>]+>/ig,""));
+		
 		this.updateFrame ();
-	}
+	};
 	
 	CC.Slideshow.HtmlData =
 		'<table class="user-arts-slideshow" cellpadding="0" cellspacing="0">' +

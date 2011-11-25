@@ -715,7 +715,7 @@ div.links {
   font-family: "Myriad Pro", "Myriad Web Pro Regular", "Lucida Grande", Geneva, "Trebuchet MS", sans-serif;
   font-size: 15px;
   font-weight: normal;
-  padding: 10px 5px 10px 30px; /* LTR */
+  padding: 10px 5px 0px 0px; /* LTR */
   margin-bottom: .25em;
   text-transform: uppercase;
 }

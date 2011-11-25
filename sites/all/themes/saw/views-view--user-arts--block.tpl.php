@@ -11,7 +11,7 @@
 				'field_image_fid_1',
 				'title',
 				'teaser',
-				10000
+				4000
 				);
 				
 			slideshow.start ();
