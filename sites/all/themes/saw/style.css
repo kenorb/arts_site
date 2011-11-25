@@ -2017,8 +2017,8 @@ div.admin-panel .body {
     background-image: url('images/toolbar-icons/message.png') !important;
   }
 
-  #quickbar .path-node-add span.icon {
-    background-image: url('images/toolbar-icons/add_content.png') !important;
+  #quickbar .path-workspace-me span.icon {
+    background-image: url('images/toolbar-icons/manage.png') !important;
   }
 
   #quickbar .path-calendar span.icon {
