@@ -1439,7 +1439,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid_1']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_image_fid_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_image_fid_1']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_image_fid_1']['format'] = 'imagefield__lightbox2__Thumb_200__Thumb_200';
+  $handler->display->display_options['fields']['field_image_fid_1']['format'] = 'Thumb_200_linked';
   $handler->display->display_options['fields']['field_image_fid_1']['multiple']['group'] = 1;
   $handler->display->display_options['fields']['field_image_fid_1']['multiple']['multiple_number'] = '1';
   $handler->display->display_options['fields']['field_image_fid_1']['multiple']['multiple_reversed'] = 0;

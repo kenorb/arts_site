@@ -58,11 +58,11 @@
 		
 		var prepareImage = CC.Fn.bind (this, function (img, frameIndex)
 		{
-			CC.Fn.StripImage (img);
-			
 			if (frameIndex == null)
 				return img;
 				
+			CC.Fn.StripImage (img);
+			
 			img.click (CC.Fn.bind (this, function (e) {
 				
 				this._frameIndex = frameIndex;
@@ -89,6 +89,7 @@
 			box.find ('.small-area').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
 		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
+		
 		box.find ('.day-count .count').append (this._frames [v] [this._dayCountName]);
 		
 		$('#user-arts-slideshow-container .user-arts-slideshow').css ('position', 'absolute');
