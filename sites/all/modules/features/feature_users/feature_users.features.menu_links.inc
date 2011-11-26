@@ -877,7 +877,7 @@ function feature_users_menu_default_menu_links() {
   // Exported menu link: secondary-links:<front>
   $menu_links['secondary-links:<front>'] = array(
     'menu_name' => 'secondary-links',
-    'link_path' => '<front>',
+    'link_path' => 'node/add/art',
     'router_path' => '',
     'link_title' => 'Sell My Art',
     'options' => array(
