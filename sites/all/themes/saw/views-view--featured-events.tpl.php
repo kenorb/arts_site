@@ -110,6 +110,7 @@
                           	 
                     	<?php endif; ?>
                     </td>
+										<!--
                     <td class="reservations">
                       <div>
                         <span class="available">0</span> Available
@@ -121,6 +122,7 @@
                     <td class="price">
                       <span class="currency">£</span><span class="amount">0.00</span> 
                     </td>
+										-->
                   </tr>
                 </tbody>
               </table>

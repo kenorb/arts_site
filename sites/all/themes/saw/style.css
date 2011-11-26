@@ -1155,9 +1155,8 @@ div.admin-panel .body {
   
   .featured-events .image {
     width: 100px;
-    height: 100px;
+    max-height: 100px;
     padding: 2px;
-    background-color: #eee;
     margin-right: 5px;
     border-radius: 4px;
   }
@@ -1177,7 +1176,8 @@ div.admin-panel .body {
   }
   
   .featured-events .right-column {
-    width: 340px;
+    /*width: 340px;*/
+		width: 155px;
   }
 
   .featured-events .location {
