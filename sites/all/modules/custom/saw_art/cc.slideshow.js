@@ -107,8 +107,6 @@
 	
 		this._interval = setInterval (CC.Fn.bind (this, "updateFrame"), this._delay);
 		
-		console.log (this._frames [0]);
-		
 		$('#block-views-user_arts-user_arts_block .title h3').html (this._frames [0].name.replace(/<[^>]+>/ig,""));
 		
 		this.updateFrame ();
