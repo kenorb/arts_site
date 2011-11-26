@@ -27,9 +27,14 @@ function saw_users_views_query_alter (view &$view)
 	foreach ($view -> query -> where as &$where)
 		if (array_key_exists ('clauses', $where))
 			foreach ($where ['clauses'] as $name => &$clause)
+			{
 				if (($position = strpos ($clause, 'UPPER(location.name)')) !== false)
 				// If view is using location.name field then replace the occurences with more descriptional data such as country and city
 					$clause = str_replace ('UPPER(location.name)', "UPPER(CONCAT(CONCAT(CONCAT(CONCAT(location.name, ' '), location.country), ' '), location.city))", $clause);
+				
+				if (($position = strpos ($clause, 'field_image_list <> 0')) !== false)
+					$clause = str_replace ('field_image_list <> 0', 'field_image_list IS NOT NULL', $clause);
+			}
 }
 
 function saw_render_block ($name)
