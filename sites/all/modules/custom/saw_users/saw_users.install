@@ -49,8 +49,7 @@ EOT;
 	{
 		$query =
 <<<EOT
-			DELETE FROM menu_links WHERE link_title = 'Sell My Art' AND menu_name = 'secondary-links' LIMIT 1;
-			DELETE FROM menu_links WHERE link_title = 'Buy Student Art' AND menu_name = 'secondary-links' LIMIT 1;
+			DELETE FROM menu_links WHERE menu_name = 'secondary-links' LIMIT 5;
 			DELETE FROM menu_links WHERE menu_name = 'menu-toolbar';
 EOT;
 	
