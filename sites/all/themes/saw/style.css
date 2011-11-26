@@ -1205,11 +1205,23 @@ div.admin-panel .body {
     width: 147px;
 	}
 	
-	.background-0 a { color: #027 !important; }
-	.background-1 a { color: #027 !important; }
-	.background-2 a { color: #027 !important; }
-	.background-3 a { color: #027 !important; }
-	.background-4 a { color: #027 !important; } 
+	.background-x,
+	td.multi-day .inner .view-field a	{
+		color: #fff !important;
+		text-shadow: 1px 1px 2px #000;
+	}
+	
+	.background-x a {
+		color: #fff !important;
+	}
+	
+	 
+	
+	.background-0 a {  }
+	.background-1 a {  }
+	.background-2 a {  }
+	.background-3 a {  }
+	.background-4 a {  } 
 	
 	.calendar-calendar .cutoff {
 	}
