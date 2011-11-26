@@ -2126,8 +2126,7 @@ div.admin-panel .body {
   }
   
   #user-arts-slideshow-container .user-arts-slideshow {
-  	display: block !important;
-  	height: 180px;
+  	display: table !important;
   }
   
   #user-arts-slideshow-container .small-area {
@@ -2171,13 +2170,51 @@ div.admin-panel .body {
     background-color: #fff;
   }
   
+
   
   
+	.user-arts-slideshow {
+		width: 100%;
+	}
+	
+	.user-arts-slideshow .big-area-container {
+		width: 210px;
+	}
+	
+	.user-arts-slideshow .small-area {
+		height: 87px;
+	}
+	
+	.user-arts-slideshow .small-area img {
+		height: 75px;
+	}
+	
+	.user-arts-slideshow .teaser-area {
+		height: 101px;
+	}
+	
+	.user-arts-slideshow .big-area img {
+		height: 200px;
+	}
+	
+	.user-arts-slideshow .day-count {
+		text-align: right;
+	}
+	
+	.user-arts-slideshow .count {
+		font-weight: bold;
+	}
+	
   .user-arts-slideshow .small-area .big,
   .user-arts-slideshow .big-area  .normal {
     display: none;
   }
 
+	.user-arts-slideshow-smalls {
+		height: 209px;
+		width: 100%;
+	}
+	
   .user-arts-slideshow-smalls td {
   	vertical-align: top;
   }

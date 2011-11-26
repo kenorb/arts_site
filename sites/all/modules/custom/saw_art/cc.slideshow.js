@@ -23,13 +23,14 @@
 	};
 	
 	
-	CC.Slideshow = function (container, frames, smallImageName, bigImageName, titleName, teaserName, delay)
+	CC.Slideshow = function (container, frames, smallImageName, bigImageName, dayCountName, titleName, teaserName, delay)
 	{
 	  
 		this._container				= $(container);
 		this._frames					= frames;
 		this._smallImageName	= smallImageName;
 		this._bigImageName		= bigImageName;
+		this._dayCountName		= dayCountName;
 		this._titleName				= titleName;
 		this._teaserName			= teaserName;
 		this._frameIndex			= 0;
@@ -88,6 +89,7 @@
 			box.find ('.small-area').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
 		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
+		box.find ('.day-count .count').append (this._frames [v] [this._dayCountName]);
 		
 		$('#user-arts-slideshow-container .user-arts-slideshow').css ('position', 'absolute');
 		$('#user-arts-slideshow-container .user-arts-slideshow').fadeOut (400, function () { $(this).remove (); });
@@ -114,7 +116,7 @@
 	CC.Slideshow.HtmlData =
 		'<table class="user-arts-slideshow" cellpadding="0" cellspacing="0">' +
 			'<tr>' +
-				'<td>' +
+				'<td class="big-area-container">' +
 					'<div class="big-area">' +
 						'<div class="normal">' +
 						'</div>' +
@@ -124,15 +126,22 @@
 				'</td>' +
 				'<td>' +
 					'<table class="user-arts-slideshow-smalls" cellpadding="0" cellspacing="0">' +
-						'<tr>' +
+						'<tr class="small-area">' +
 								'<td>' +
-									'<div class="small-area">' +
+									'<div>' +
 									'</div>' +
 								'</td>' +
 						'</tr>' +
-						'<tr>' +
+						'<tr class="teaser-area">' +
 							'<td colspan="10">' +
 								'<div class="teaser">' +
+								'</div>' +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td colspan="10">' +
+								'<div class="day-count">' +
+									'<span class="count"></span> views today' +
 								'</div>' +
 							'</td>' +
 						'</tr>' +

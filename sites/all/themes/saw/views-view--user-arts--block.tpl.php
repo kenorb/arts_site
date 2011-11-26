@@ -9,9 +9,10 @@
 				<?php echo json_encode ($view -> style_plugin -> rendered_fields); ?>,
 				'field_image_fid',
 				'field_image_fid_1',
+				'daycount',
 				'title',
 				'teaser',
-				4000
+				400000
 				);
 				
 			slideshow.start ();
