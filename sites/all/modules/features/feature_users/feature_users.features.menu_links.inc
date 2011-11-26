@@ -875,7 +875,7 @@ function feature_users_menu_default_menu_links() {
     'weight' => '-50',
   );
   // Exported menu link: secondary-links:<front>
-  $menu_links['secondary-links:<front>'] = array(
+  $menu_links['secondary-links:node/add/art'] = array(
     'menu_name' => 'secondary-links',
     'link_path' => 'node/add/art',
     'router_path' => '',
