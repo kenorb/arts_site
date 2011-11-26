@@ -2300,7 +2300,7 @@ function feature_users_strongarm() {
       'collapsed' => 0,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2310,12 +2310,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '2',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2325,13 +2325,13 @@ function feature_users_strongarm() {
           'weight' => '10',
         ),
         'postal_code' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '12',
         ),
         'country' => array(
-          'collect' => '4',
-          'default' => 'uk',
+          'collect' => '1',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2387,7 +2387,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2397,12 +2397,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2418,7 +2418,7 @@ function feature_users_strongarm() {
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2426,10 +2426,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2474,7 +2475,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2484,12 +2485,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2513,10 +2514,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2561,7 +2563,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2571,12 +2573,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '2',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2586,13 +2588,13 @@ function feature_users_strongarm() {
           'weight' => '10',
         ),
         'postal_code' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '12',
         ),
         'country' => array(
-          'collect' => '4',
-          'default' => 'uk',
+          'collect' => '1',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2604,6 +2606,7 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2648,7 +2651,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2658,12 +2661,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2679,7 +2682,7 @@ function feature_users_strongarm() {
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2687,10 +2690,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2735,7 +2739,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2745,12 +2749,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2766,7 +2770,7 @@ function feature_users_strongarm() {
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2774,10 +2778,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2822,7 +2827,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2832,12 +2837,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -2853,7 +2858,7 @@ function feature_users_strongarm() {
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2861,10 +2866,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2909,7 +2915,7 @@ function feature_users_strongarm() {
       'collapsed' => 0,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -2919,7 +2925,7 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
@@ -2934,13 +2940,13 @@ function feature_users_strongarm() {
           'weight' => '10',
         ),
         'postal_code' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '12',
         ),
         'country' => array(
-          'collect' => '4',
-          'default' => 'uk',
+          'collect' => '1',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -2952,6 +2958,7 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -2996,7 +3003,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -3006,12 +3013,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -3027,7 +3034,7 @@ function feature_users_strongarm() {
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -3035,10 +3042,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -3083,7 +3091,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -3093,12 +3101,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -3122,10 +3130,11 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
+
       ),
     ),
     'display' => array(
@@ -3169,57 +3178,56 @@ function feature_users_strongarm() {
       'collapsible' => 1,
       'collapsed' => 1,
       'fields' => array(
-        'city' => array(
-          'collect' => '1',
-          'default' => '',
-          'weight' => '-100',
-        ),
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
-          'weight' => '-99',
+          'weight' => '2',
         ),
         'street' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '-98',
+          'weight' => '4',
         ),
         'additional' => array(
+          'collect' => '0',
+          'default' => '',
+          'weight' => '6',
+        ),
+        'city' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '-97',
+          'weight' => '8',
         ),
         'province' => array(
-          'collect' => '1',
-          'widget' => 'autocomplete',
+          'collect' => '0',
           'default' => '',
-          'weight' => '-96',
+          'weight' => '10',
         ),
         'postal_code' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
-          'weight' => '-95',
+          'weight' => '12',
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
-          'weight' => '-94',
+          'default' => 'us',
+          'weight' => '14',
         ),
         'locpick' => array(
           'collect' => '1',
-          'weight' => '-93',
+          'weight' => '20',
         ),
         'phone' => array(
           'collect' => '1',
           'default' => '',
-          'weight' => '-92',
+          'weight' => '25',
         ),
       ),
     ),
     'display' => array(
       'weight' => '11',
       'hide' => array(
-        'name' => 0,
+        'name' => 1,
         'street' => 0,
         'additional' => 0,
         'city' => 0,
@@ -3258,7 +3266,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -3268,12 +3276,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -3289,7 +3297,7 @@ function feature_users_strongarm() {
         ),
         'country' => array(
           'collect' => '1',
-          'default' => 'uk',
+          'default' => 'us',
           'weight' => '14',
         ),
         'locpick' => array(
@@ -3297,7 +3305,7 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
@@ -3345,7 +3353,7 @@ function feature_users_strongarm() {
       'collapsed' => 1,
       'fields' => array(
         'name' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '2',
         ),
@@ -3355,12 +3363,12 @@ function feature_users_strongarm() {
           'weight' => '4',
         ),
         'additional' => array(
-          'collect' => '1',
+          'collect' => '0',
           'default' => '',
           'weight' => '6',
         ),
         'city' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '8',
         ),
@@ -3384,7 +3392,7 @@ function feature_users_strongarm() {
           'weight' => '20',
         ),
         'phone' => array(
-          'collect' => '0',
+          'collect' => '1',
           'default' => '',
           'weight' => '25',
         ),
@@ -3394,7 +3402,7 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => '0',
       'hide' => array(
-        'name' => 0,
+        'name' => 1,
         'street' => 0,
         'additional' => 0,
         'city' => 0,
