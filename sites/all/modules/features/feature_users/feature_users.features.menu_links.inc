@@ -751,18 +751,33 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'manage/events',
     'router_path' => 'manage/events',
-    'link_title' => 'Events',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'Manage Events',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
     'expanded' => '1',
     'weight' => '-49',
+    'parent_path' => 'workspace/%',
+  );
+  // Exported menu link: navigation:manage/forums
+  $menu_links['navigation:manage/forums'] = array(
+    'menu_name' => 'navigation',
+    'link_path' => 'manage/forums',
+    'router_path' => 'manage/forums',
+    'link_title' => 'Forums',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Manage Forum Topics',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '1',
+    'weight' => '-47',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/items
@@ -807,7 +822,7 @@ function feature_users_menu_default_menu_links() {
     'link_title' => 'Add Event',
     'options' => array(
       'attributes' => array(
-        'title' => 'Here you can add a new event.',
+        'title' => '',
       ),
     ),
     'module' => 'system',
@@ -834,8 +849,8 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'workspace/%',
+    'weight' => '-50',
+    'parent_path' => 'manage/forums',
   );
   // Exported menu link: navigation:node/add/item
   $menu_links['navigation:node/add/item'] = array(
@@ -845,7 +860,7 @@ function feature_users_menu_default_menu_links() {
     'link_title' => 'Add Item',
     'options' => array(
       'attributes' => array(
-        'title' => '',
+        'title' => 'Buy & Exchange',
       ),
     ),
     'module' => 'system',
@@ -871,24 +886,6 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-50',
-  );
-  // Exported menu link: secondary-links:<front>
-  $menu_links['secondary-links:node/add/art'] = array(
-    'menu_name' => 'secondary-links',
-    'link_path' => 'node/add/art',
-    'router_path' => '',
-    'link_title' => 'Sell My Art',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '1',
-    'has_children' => '0',
     'expanded' => '0',
     'weight' => '-50',
   );
@@ -930,9 +927,9 @@ function feature_users_menu_default_menu_links() {
   t('Create content');
   t('Education');
   t('Event');
-  t('Events');
   t('Examples');
   t('Forum topic');
+  t('Forums');
   t('General settings');
   t('Group');
   t('Help');
@@ -941,6 +938,7 @@ function feature_users_menu_default_menu_links() {
   t('Item');
   t('Items');
   t('Manage');
+  t('Manage Events');
   t('Membership');
   t('Message');
   t('News');
@@ -951,7 +949,6 @@ function feature_users_menu_default_menu_links() {
   t('Privacy Settings');
   t('Product');
   t('Profile');
-  t('Sell My Art');
   t('Story');
   t('Upgrade to premium?');
   t('reCAPTCHA');
