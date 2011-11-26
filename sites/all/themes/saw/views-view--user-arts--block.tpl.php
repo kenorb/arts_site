@@ -12,7 +12,7 @@
 				'daycount',
 				'title',
 				'teaser',
-				400000
+				4000
 				);
 				
 			slideshow.start ();
