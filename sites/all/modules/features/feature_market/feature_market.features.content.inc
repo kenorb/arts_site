@@ -143,8 +143,8 @@ sell|For Sell',
       'label' => 'Image',
       'weight' => '4',
       'description' => '',
-      'type' => 'image_fupload_imagefield_widget',
-      'module' => 'image_fupload_imagefield',
+      'type' => 'imagefield_widget',
+      'module' => 'imagefield',
     ),
   );
 
