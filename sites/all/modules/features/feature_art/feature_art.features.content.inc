@@ -412,7 +412,7 @@ on|For sell',
     'referrer_pager_element' => '0',
     'referrer_order' => 'TITLE_ASC',
     'widget' => array(
-      'label' => 'Linked with',
+      'label' => 'Featured by',
       'weight' => '31',
       'description' => '',
       'type' => 'nodereferrer_list',
@@ -427,7 +427,7 @@ on|For sell',
   t('Featured in');
   t('For Sell');
   t('Image');
-  t('Linked with');
+  t('Featured by');
 
   return $fields;
 }
