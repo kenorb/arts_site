@@ -282,6 +282,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['name']['field'] = 'name';
   $handler->display->display_options['filters']['name']['operator'] = 'contains';
   $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+	$handler->display->display_options['filters']['name']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
   $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
