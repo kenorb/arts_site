@@ -96,8 +96,17 @@
 		$('#user-arts-slideshow-container .user-arts-slideshow').fadeOut (400, function () { $(this).remove (); });
 		$('#user-arts-slideshow-container').append (box).fadeIn (400);
 		
+		if (this._frameCount <= 1)
+			this.stop ();
+		else
 		if (++this._frameIndex >= this._frameCount)
 			this._frameIndex = 0;
+	};
+
+	CC.Slideshow.prototype.stop = function (interval)
+	{
+		if (this._interval)
+			clearInterval (this._interval);
 	};
 	
 	CC.Slideshow.prototype.start = function (interval)

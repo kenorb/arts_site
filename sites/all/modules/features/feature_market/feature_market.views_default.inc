@@ -289,7 +289,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
   $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
   $handler->display->display_options['filters']['name']['case'] = 0;
-  $handler->display->display_options['path'] = 'marketplace';
+  $handler->display->display_options['path'] = 'market';
 
   /* Display: User Profile Items */
   $handler = $view->new_display('page', 'User Profile Items', 'user_profile_items');

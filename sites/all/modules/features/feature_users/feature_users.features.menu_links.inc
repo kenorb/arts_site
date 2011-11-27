@@ -576,6 +576,24 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-43',
   );
+  // Exported menu link: menu-toolbar:market
+  $menu_links['menu-toolbar:market'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'market',
+    'router_path' => 'market',
+    'link_title' => 'Market',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
   // Exported menu link: menu-toolbar:messages
   $menu_links['menu-toolbar:messages'] = array(
     'menu_name' => 'menu-toolbar',
@@ -751,14 +769,18 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'manage/events',
     'router_path' => 'manage/events',
-    'link_title' => 'Manage Events',
-    'options' => array(),
+    'link_title' => 'Events',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
     'expanded' => '1',
-    'weight' => '-49',
+    'weight' => '-48',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/forums
@@ -792,7 +814,7 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '1',
     'expanded' => '1',
-    'weight' => '-48',
+    'weight' => '-49',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:node/add/art
@@ -830,7 +852,7 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-50',
+    'weight' => '0',
     'parent_path' => 'manage/events',
   );
   // Exported menu link: navigation:node/add/forum
@@ -868,7 +890,7 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-50',
+    'weight' => '0',
     'parent_path' => 'manage/items',
   );
   // Exported menu link: navigation:workspace/%
@@ -907,6 +929,24 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-49',
   );
+  // Exported menu link: secondary-links:node/add/art
+  $menu_links['secondary-links:node/add/art'] = array(
+    'menu_name' => 'secondary-links',
+    'link_path' => 'node/add/art',
+    'router_path' => 'node/add/art',
+    'link_title' => 'Sell My Art',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-50',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('-');
@@ -927,6 +967,7 @@ function feature_users_menu_default_menu_links() {
   t('Create content');
   t('Education');
   t('Event');
+  t('Events');
   t('Examples');
   t('Forum topic');
   t('Forums');
@@ -938,7 +979,7 @@ function feature_users_menu_default_menu_links() {
   t('Item');
   t('Items');
   t('Manage');
-  t('Manage Events');
+  t('Market');
   t('Membership');
   t('Message');
   t('News');
@@ -949,6 +990,7 @@ function feature_users_menu_default_menu_links() {
   t('Privacy Settings');
   t('Product');
   t('Profile');
+  t('Sell My Art');
   t('Story');
   t('Upgrade to premium?');
   t('reCAPTCHA');

@@ -2430,7 +2430,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -2518,7 +2517,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -2606,7 +2604,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -2694,7 +2691,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -2782,7 +2778,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -2870,7 +2865,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -2958,7 +2952,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -3046,7 +3039,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -3134,7 +3126,6 @@ function feature_users_strongarm() {
           'default' => '',
           'weight' => '25',
         ),
-
       ),
     ),
     'display' => array(
@@ -3414,7 +3405,7 @@ function feature_users_strongarm() {
         'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
-        'coords' => 0,
+        'coords' => 1,
       ),
     ),
   );

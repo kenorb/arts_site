@@ -54,6 +54,9 @@ function feature_community_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['path'] = 'community';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Community';
+  $handler->display->display_options['menu']['weight'] = '0';
   $translatables['Community'] = array(
     t('Defaults'),
     t('more'),
