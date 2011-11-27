@@ -18,9 +18,9 @@ function feature_art_default_fe_block_settings() {
     'region' => 'content',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -38,9 +38,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -58,9 +58,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -78,9 +78,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -98,9 +98,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -118,9 +118,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -138,9 +138,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -158,9 +158,9 @@ function feature_art_default_fe_block_settings() {
     'region' => '',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 
