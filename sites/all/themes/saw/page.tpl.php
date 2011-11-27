@@ -64,6 +64,7 @@
           </tr>
           <tr>
             <td class="secondary-links" width="50%" valign="middle">
+							<?php if (!$logged_in) $secondary_links ['menu-9668'] = array ('attributes' => array ('title' => ''), 'href' => 'user/register', 'title' => 'Sell My Art'); krsort ($secondary_links); ?>
               <?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
             </td>
             <td class="search-box" valign="middle" width="20%">
