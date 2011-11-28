@@ -1523,26 +1523,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['daycount']['empty_zero'] = 0;
   $handler->display->display_options['fields']['daycount']['format_plural'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Argument: User: Uid */
-  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['table'] = 'users';
-  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
-  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'php';
-  $handler->display->display_options['arguments']['uid']['default_argument_options']['code'] = 'return db_result(db_query("
-SELECT node.uid
-FROM node node 
-LEFT JOIN content_field_image node_data_field_image ON node.vid = node_data_field_image.vid
-INNER JOIN users users ON node.uid = users.uid
-LEFT JOIN node_revisions node_revisions ON node.vid = node_revisions.vid
-WHERE (node.type in (\'art\')) AND (node_data_field_image.delta > 0)
-GROUP BY node.uid
-ORDER BY RAND()
-LIMIT 1
-"));';
-  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['uid']['not'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter: Node: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -1551,10 +1531,6 @@ LIMIT 1
   $handler->display->display_options['filters']['type']['value'] = array(
     'art' => 'art',
   );
-  /* Filter: User: Name */
-  $handler->display->display_options['filters']['uid']['id'] = 'uid';
-  $handler->display->display_options['filters']['uid']['table'] = 'users';
-  $handler->display->display_options['filters']['uid']['field'] = 'uid';
   /* Filter: User: Name */
   $handler->display->display_options['filters']['uid_1']['id'] = 'uid_1';
   $handler->display->display_options['filters']['uid_1']['table'] = 'users';

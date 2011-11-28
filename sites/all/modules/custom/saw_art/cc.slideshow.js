@@ -83,10 +83,10 @@
 		var num = 0;
 		
 		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 10, this._frameCount) && num < 6; i++, num++)
-			box.find ('.small-area').append (prepareImage ($('<span/>').html (this._frames [i] [this._smallImageName]), i));
+			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [i] [this._smallImageName]), i));
 			
 		for (var v = 0; v < this._frameIndex && num < 6; v++, num++)
-			box.find ('.small-area').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
+			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
 		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
 		
@@ -95,6 +95,8 @@
 		$('#user-arts-slideshow-container .user-arts-slideshow').css ('position', 'absolute');
 		$('#user-arts-slideshow-container .user-arts-slideshow').fadeOut (400, function () { $(this).remove (); });
 		$('#user-arts-slideshow-container').append (box).fadeIn (400);
+		
+    $('#block-views-user_arts-user_arts_block .title h3').html (this._frames [this._frameIndex].name.replace(/<[^>]+>/ig,""));
 		
 		if (this._frameCount <= 1)
 			this.stop ();
@@ -115,8 +117,6 @@
 			clearInterval (this._interval);
 	
 		this._interval = setInterval (CC.Fn.bind (this, "updateFrame"), this._delay);
-		
-		$('#block-views-user_arts-user_arts_block .title h3').html (this._frames [0].name.replace(/<[^>]+>/ig,""));
 		
 		this.updateFrame ();
 	};
@@ -140,22 +140,22 @@
 									'</div>' +
 								'</td>' +
 						'</tr>' +
-						'<tr class="teaser-area">' +
-							'<td colspan="10">' +
-								'<div class="teaser">' +
-								'</div>' +
-							'</td>' +
-						'</tr>' +
-						'<tr>' +
-							'<td colspan="10">' +
-								'<div class="day-count">' +
-									'<span class="count"></span> views today' +
-								'</div>' +
-							'</td>' +
-						'</tr>' +
 					'</table>' +
 				'</td>' +
 			'</tr>' +
+      '<tr class="teaser-area">' +
+        '<td colspan="10">' +
+          '<div class="teaser">' +
+          '</div>' +
+        '</td>' +
+      '</tr>' +
+      '<tr>' +
+        '<td colspan="10">' +
+          '<div class="day-count">' +
+            '<span class="count"></span> views today' +
+          '</div>' +
+        '</td>' +
+      '</tr>' +
 		'</table>';
 
 	

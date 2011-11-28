@@ -2148,10 +2148,14 @@ div.admin-panel .body {
   #user-arts-slideshow-container img,
   div.field.field-type-filefield.field-field-image div.field-item img {
   	cursor: pointer;
-    padding: 2px;
-    margin: 3px;
+    padding: 0px;
+    margin: 8px;
     display: inline-block;
-  	border: 1px solid transparent;
+  	border: 0px;
+  }
+  
+  #user-arts-slideshow-container .teaser {
+    padding-top: 10px;
   }
   
   #user-arts-slideshow-container .teaser > p {
@@ -2159,7 +2163,8 @@ div.admin-panel .body {
   }
   
   #user-arts-slideshow-container .big-area {
-  	padding: 0px 0px 0px 0px;
+  	padding: 0px 11px 0px 0px;
+  	border-right: 1px dotted #888;
   }
   
   #user-arts-slideshow-container .big-area img,
@@ -2168,10 +2173,10 @@ div.admin-panel .body {
   #field_image_values img {
     border: 1px solid #888;
     background-color: #fff;
-    padding: 3px;
+    padding: 5px;
     margin: 2px;
     border-radius: 3px;
-    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.8);
   }
   
   div.field.field-type-filefield.field-field-image div.field-item img {
@@ -2182,9 +2187,6 @@ div.admin-panel .body {
     background-color: #fff;
   }
   
-
-  
-  
 	.user-arts-slideshow {
 		width: 100%;
 	}
@@ -2193,16 +2195,20 @@ div.admin-panel .body {
 		width: 210px;
 	}
 	
+	.user-arts-slideshow .small-area td {
+    padding-left: 5px;
+  }
+	
 	.user-arts-slideshow .small-area {
 		height: 87px;
 	}
 	
 	.user-arts-slideshow .small-area img {
-		height: 75px;
+		height: 200px;
 	}
 	
 	.user-arts-slideshow .teaser-area {
-		height: 101px;
+		height: 80px;
 	}
 	
 	.user-arts-slideshow .big-area img {
