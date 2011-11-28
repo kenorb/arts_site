@@ -424,10 +424,10 @@ on|For sell',
   // Included for use with string extractors like potx.
   t('Copy/original');
   t('Exibit artwork');
+  t('Featured by');
   t('Featured in');
   t('For Sell');
   t('Image');
-  t('Featured by');
 
   return $fields;
 }
