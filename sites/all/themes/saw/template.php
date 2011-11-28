@@ -3,6 +3,12 @@ function student_art_preprocess_page(&$vars) {
   $vars['tertiary_links'] = menu_tertiary_links();
 }
 
+function saw_preprocess_page (&$vars) {
+	removetab ('Personal Heartbeat', $vars);
+	removetab ('OpenID Identities', $vars);
+	removetab ('Track Page Visits', $vars);
+}
+
 function menu_tertiary_links() {
   return menu_navigation_links(variable_get('menu_primary_links_source', 'primary-links'), 2);
 }
@@ -37,6 +43,18 @@ function saw_preprocess_forum_list (&$variables) {
 						if ($parent == $keys [$i])
 						// If this forum has visible parent container then it is destroyed
 							unset ($variables ['forums'] [$keys [$j]]);
+}
+
+function removetab ($label, &$vars)
+{
+  $tabs = explode("\n", $vars['tabs']);
+  $vars['tabs'] = '';
+
+  foreach ($tabs as $tab) {
+    if (strpos($tab, '>' . $label . '<') === FALSE) {
+      $vars['tabs'] .= $tab . "\n";
+    }
+  }
 }
 
 ?>

@@ -73,3 +73,24 @@ function saw_users_get_user_stats ($userId = null)
 	
 	return $block;
 }
+
+function _phptemplate_variables ($hook, $vars = array()) 
+{
+  if ($hook == 'page') {
+	exit;
+    saw_removetab ('personal heartbeat', $vars);
+  }
+
+  return $vars;
+}
+
+function saw_removetab ($label, &$vars) {
+  $tabs = explode("\n", $vars['tabs']);
+  $vars['tabs'] = '';
+
+  foreach ($tabs as $tab) {
+    if (strpos($tab, '>' . $label . '<') === FALSE) {
+      $vars['tabs'] .= $tab . "\n";
+    }
+  }
+}

@@ -235,91 +235,83 @@ ul.links li {
 }
 .tabs ul.primary {
   border-collapse: collapse;
-  padding: 5px 10px 4px 10px; /* LTR */
   white-space: normal;
   list-style: none;
   margin: 0;
-  height: auto;
-  line-height: 2.2em;
-  border: 1px solid;
-  border-color: #fff #69c #69c #fff;
-  background-image: linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-  background-image: -o-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-  background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-  background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-  background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 0%, rgb(237,237,237) 100%);
-  border-radius: 5px;
+  padding: 5px 10px 0px 13px;
+  font-size: 12px;
+  border: 0 !important;
+  text-shadow: 1px 1px 2px #235;
+  background: #2982ce url('images/tabs-primary-bg.png') left top repeat-x;
+  box-shadow: 1px 1px 1px #25a inset;
 }
 .tabs ul.primary li {
-  display: inline;
+  padding: 0px 0px 0px 6px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  vertical-align: bottom;
+  margin: 0px -4px;
+  display: inline-block;
+  *display: inline;
 }
+
 .tabs ul.primary li a {
-  background-color: #fff;
-  padding: 5px 10px;
-  border-color: #69C;
-  border-width: 1px;
-  border-style: none solid solid none; /* LTR */
-  border-radius: 3px;
-  height: auto;
-  margin-left: 0px;
-  margin-right: 0px !important;  /* LTR */
+  vertical-align: bottom;
+  background: #2a82ce url('images/tabs-primary-unselected.png') left bottom repeat-x; /* LTR */
   text-decoration: none;
   text-transform: lowercase;
   font-size: 0.9em;
   text-transform: capitalize;
+  border: 0 !important;
+  margin: 0px 0px !important;
+  padding: 12px 20px !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: #fff;
+  display: inline-block;
+}
+
+.tabs ul.primary li:hover a {
+  background: #2a82ce url('images/tabs-primary-hover.png') left bottom repeat-x; /* LTR */
 }
 
 
 .tabs ul.primary li.active a {
-  background: #369 url(tabs-on.png) left top no-repeat; /* LTR */
-  color: #fff;
+  background: #fff url('images/tabs-primary-selected.png') left bottom repeat-x; /* LTR */
+  color: #000;
+  text-shadow: 1px 1px 0px #fff;
+  font-weight: bold;
 }
 
 .tabs ul.primary li.active:hover a,
 .tabs ul.secondary li.active:hover a {
-  box-shadow: none;
 }
 
 .tabs ul.primary li.active a,
 .tabs ul.secondary li.active a {
-  box-shadow: 1px 0px 1px #222 inset, -1px -0px 1px #aaa inset
 }
 
 .tabs ul.primary li a:hover {
-  background-color: #fffaf0;
-  color: #ff4500;
 }
 .tabs ul.secondary {
-  border-collapse: collapse;
-  padding: 10px 0;
-  margin: 0;
-  white-space: nowrap;
-  width: 100%;
-  list-style: none;
-  height: auto;
-  line-height: 2.2em;
-  border: 1px solid;
-  border-color: #fff #69c #69c #fff;
-  background-image: linear-gradient(bottom, rgb(156,200,224) 0%, rgb(204,235,255) 100%);
-  background-image: -o-linear-gradient(bottom, rgb(156,200,224) 0%, rgb(204,235,255) 100%);
-  background-image: -moz-linear-gradient(bottom, rgb(156,200,224) 0%, rgb(204,235,255) 100%);
-  background-image: -webkit-linear-gradient(bottom, rgb(156,200,224) 0%, rgb(204,235,255) 100%);
-  background-image: -ms-linear-gradient(bottom, rgb(156,200,224) 0%, rgb(204,235,255) 100%);
-  border-radius: 5px;
+  border: 0;
+  padding-bottom: 15px;
+  border-bottom: 1px dotted #89d;
+  
 }
+
 .tabs ul.secondary li {
   display: inline;
   height: auto;
   padding: 0 0 0 10px; /* LTR */
   text-decoration: none;
-  border-right: none; /* LTR */
+  border: 0 !important;
+  font-size: 12px;
 }
 .tabs ul.secondary li a {
   background-color: #fff;
-  padding: 5px 10px;
-  border-color: #69C;
-  border-width: 1px;
-  border-style: none solid solid none; /* LTR */
+  padding: 10px 20px;
+  border: 0;
   border-radius: 3px;
   height: auto;
   margin-left: 0px;
@@ -330,12 +322,11 @@ ul.links li {
   text-transform: capitalize;
 }
 .tabs ul.secondary li a.active {
-  color: #fff;
-  background: url("tabs-on.png") no-repeat scroll left top #336699
+  color: #fff !important;
+  background: #4b79b7 url('images/tabs-secondary-selected.png') left top repeat-x; /* LTR */
 }
 .tabs ul.secondary li a:hover {
-  color: #FF4500;
-  background: #fff;
+  color: #d45;
 }
 #content {
   background-color: #f0f5f9;
@@ -507,7 +498,10 @@ ul.links li {
   width: 60px;
 }
 
+input[type=button],
+input[type=submit],
 .comment .reply a	 {
+    cursor: pointer;
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
     -moz-border-left-colors: none;
@@ -526,6 +520,10 @@ ul.links li {
     text-align: center;
     text-decoration: none;
     text-shadow: 0 -1px 1px #000F4D;
+    margin: 4px;
+}
+
+.comment .reply a {
     width: 150px;
 }
 
@@ -1559,32 +1557,7 @@ div.admin-panel .body {
   	height: 4em;
   	
   }
-  
-  #content .panel-pane input[type=submit],
-  #content .panel-pane input[type=button] {
-    border: 1px outset #DDDDDD;
-    border-radius: 5px 5px 5px 5px;
-    font-size: 13px;
-    padding: 4px 20px;
-  }
-  
-  #content input[type=submit]:hover,
-  #content input[type=button]:hover {
-    background-color: #fff;
-    cursor: pointer;
-  }
-
-  #forum .links .search input[type=text],
-  #forum .links .search input[type=submit],
-  .views-exposed-widget input,
-  .views-exposed-widget select {
-    background: transparent;
-    border: 2px solid #336699;
-    border-radius: 7px 7px 7px 7px;
-    font-size: 0.95em;
-    padding: 5px 7px;
-    color: #239;
-  }
+ 
   
   #forum .links .search input[type=submit]:hover,
   #forum .links .search input[type=submit]:focus,
