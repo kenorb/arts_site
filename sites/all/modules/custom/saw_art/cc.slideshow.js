@@ -82,10 +82,10 @@
 		
 		var num = 0;
 		
-		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 10, this._frameCount) && num < 6; i++, num++)
+		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 10, this._frameCount) && num < 3; i++, num++)
 			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [i] [this._smallImageName]), i));
 			
-		for (var v = 0; v < this._frameIndex && num < 6; v++, num++)
+		for (var v = 0; v < this._frameIndex && num < 3; v++, num++)
 			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
 		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
