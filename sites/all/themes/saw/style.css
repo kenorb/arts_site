@@ -452,12 +452,13 @@ ul.links li {
 
 .comment .reply {
 	padding: 10px 0px;
+	margin-right: 5px;
 }
 
 .comment .image {
 	min-width: 50px;
 	min-height: 50px;
-	margin: 4px 10px;
+	margin: 0px 3px;
 	border-radius: 5px;
 }
 
@@ -466,7 +467,7 @@ ul.links li {
 }
 
 .comment td.image-area {
-	width: 70px;
+	width: 58px;
 }
 
 .comment td.user-info-area {
@@ -474,9 +475,19 @@ ul.links li {
 	padding-left: 10px;
 }
 
+.comment td.links-area {
+  vertical-align: middle;
+  width: 80px;
+}
+
+#comment-controls {
+  display: none;
+}
+
 .comment td.text-area {
 	border-left: 1px dotted #aaa;
 	padding-left: 10px;
+	vertical-align: middle;
 }
 
 .comment .clinks {
@@ -484,10 +495,16 @@ ul.links li {
 	border-radius: 5px;
 	color: #d63;
 	text-align: right;
+	float: right;
 }
+
 
 .comment .clinks a {
 	margin-left: 5px;
+}
+
+.comment .reply {
+  width: 60px;
 }
 
 .comment .reply a	 {
@@ -505,7 +522,7 @@ ul.links li {
     box-shadow: 0 1px 0 0 #B1B9CB inset;
     color: #FFFFFF;
     font: 15px;
-    padding: 5px 20px;
+    padding: 4px 10px;
     text-align: center;
     text-decoration: none;
     text-shadow: 0 -1px 1px #000F4D;
@@ -2389,7 +2406,7 @@ div.admin-panel .body {
   
   .comment {
     border: 0px;
-    padding: 5px;
+    padding: 1px;
     background-color: #e3e3e3;
     border-radius: 6px;
   }
@@ -2409,12 +2426,14 @@ div.admin-panel .body {
   
   .comment p {
     text-indent: 0;
-    padding: 4px 8px 0px 8px;
+    padding: 0;
+    display: inline;
+    clear: both;
   }
   
   .comment .links ul {
     border-top: 1px dotted #aaa;
-  display: inline;
+    display: inline;
   }
   
   .submitted {
