@@ -2142,7 +2142,6 @@ div.admin-panel .body {
   }
   
   #user-arts-slideshow-container .small-area {
-  	
   }
   
   #user-arts-slideshow-container img,
@@ -2197,18 +2196,20 @@ div.admin-panel .body {
 	
 	.user-arts-slideshow .small-area td {
     padding-left: 5px;
+    overflow: auto;
   }
 	
 	.user-arts-slideshow .small-area {
 		height: 87px;
-	}
+    white-space: nowrap;
+}
 	
 	.user-arts-slideshow .small-area img {
 		height: 200px;
 	}
 	
-	.user-arts-slideshow .teaser-area {
-		height: 80px;
+	.user-arts-slideshow .teaser-area td {
+		height: 90px;
 	}
 	
 	.user-arts-slideshow .big-area img {
