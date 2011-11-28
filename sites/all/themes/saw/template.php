@@ -7,6 +7,10 @@ function saw_preprocess_page (&$vars) {
 	removetab ('Personal Heartbeat', $vars);
 	removetab ('OpenID Identities', $vars);
 	removetab ('Track Page Visits', $vars);
+	removetab ('friends_gallery', $vars);
+	removetab ('edit panel', $vars);
+	removetab ('signups', $vars);
+	
 }
 
 function menu_tertiary_links() {
@@ -51,7 +55,7 @@ function removetab ($label, &$vars)
   $vars['tabs'] = '';
 
   foreach ($tabs as $tab) {
-    if (strpos($tab, '>' . $label . '<') === FALSE) {
+    if (stripos($tab, $label) === FALSE) {
       $vars['tabs'] .= $tab . "\n";
     }
   }

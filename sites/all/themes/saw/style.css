@@ -297,7 +297,6 @@ ul.links li {
   border: 0;
   padding-bottom: 15px;
   border-bottom: 1px dotted #89d;
-  
 }
 
 .tabs ul.secondary li {
@@ -324,6 +323,8 @@ ul.links li {
 .tabs ul.secondary li a.active {
   color: #fff !important;
   background: #4b79b7 url('images/tabs-secondary-selected.png') left top repeat-x; /* LTR */
+	text-shadow: 1px 1px 2px #235;
+	border-radius: 3px;
 }
 .tabs ul.secondary li a:hover {
   color: #d45;
