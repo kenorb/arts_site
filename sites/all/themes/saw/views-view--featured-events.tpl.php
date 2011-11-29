@@ -3,7 +3,7 @@
     window._featuredEventId = 1;
   </script>
   
-	<?php foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
+	<?php if ($view -> style_plugin -> rendered_fields) foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
   <?php
   
   	if (!function_exists ('featured_events_get_time'))
