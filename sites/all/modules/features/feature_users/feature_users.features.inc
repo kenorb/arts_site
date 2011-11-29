@@ -19,7 +19,7 @@ function feature_users_flag_default_flags() {
   $flags['abuse_comment'] = array(
     'content_type' => 'comment',
     'title' => 'Comment Abuse',
-    'global' => FALSE,
+    'global' => '0',
     'types' => array(
       '0' => 'story',
       '1' => 'profile',
@@ -72,7 +72,7 @@ function feature_users_flag_default_flags() {
   $flags['abuse_user'] = array(
     'content_type' => 'user',
     'title' => 'User Abuse',
-    'global' => FALSE,
+    'global' => '0',
     'types' => array(),
     'flag_short' => 'Report User',
     'flag_long' => 'Report this user as offensive.',
@@ -156,11 +156,11 @@ function feature_users_flag_default_flags() {
     'show_on_form' => 0,
     'access_author' => '',
     'i18n' => 0,
-    'api_version' => 2,
     'module' => 'feature_users',
     'locked' => array(
       '0' => 'name',
     ),
+    'api_version' => 2,
   );
   // Exported flag: "Bookmarks".
   $flags['bookmarks'] = array(
@@ -193,17 +193,17 @@ function feature_users_flag_default_flags() {
     'show_on_form' => 0,
     'access_author' => '',
     'i18n' => 0,
-    'api_version' => 2,
     'module' => 'feature_users',
     'locked' => array(
       '0' => 'name',
     ),
+    'api_version' => 2,
   );
   // Exported flag: "Friend".
   $flags['friend'] = array(
     'content_type' => 'user',
     'title' => 'Friend',
-    'global' => FALSE,
+    'global' => '0',
     'types' => array(),
     'flag_short' => 'Add friend',
     'flag_long' => 'Add this user to your list of friends.',
@@ -215,21 +215,32 @@ function feature_users_flag_default_flags() {
     'link_type' => 'confirm',
     'roles' => array(
       'flag' => array(
-        '0' => '2',
+        '0' => 2,
+        '1' => 5,
+        '2' => 7,
+        '3' => 6,
+        '4' => 15,
+        '5' => 10,
+        '6' => 14,
       ),
       'unflag' => array(
-        '0' => '2',
+        '0' => 2,
+        '1' => 5,
+        '2' => 7,
+        '3' => 6,
+        '4' => 15,
+        '5' => 10,
+        '6' => 14,
       ),
     ),
-    'show_on_profile' => TRUE,
+    'show_on_profile' => 0,
     'access_uid' => '',
     'flag_confirmation' => 'Are you sure you want to add [user] to your list of friends?',
     'unflag_confirmation' => 'Are you sure you want to remove [user] from your list of friends?',
-    'status' => FALSE,
+    'module' => 'feature_users',
     'locked' => array(
       '0' => 'name',
     ),
-    'module' => 'feature_users',
     'api_version' => 2,
   );
   return $flags;

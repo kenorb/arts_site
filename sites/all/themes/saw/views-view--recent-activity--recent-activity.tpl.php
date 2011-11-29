@@ -1,4 +1,5 @@
-<div class="recent-activity-rows">
+	<div class="recent-activity-rows">
+
 
 	<?php foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
 	
@@ -9,6 +10,7 @@
 			</div>
 
 			<div class="message">
+				<?php if (!empty ($row ['name'])) echo $row ['name']; ?>
 				<?php echo $row ['message']; ?>
 			</div>
 				

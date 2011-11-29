@@ -558,11 +558,11 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-48',
   );
-  // Exported menu link: menu-toolbar:manage/items
-  $menu_links['menu-toolbar:manage/items'] = array(
+  // Exported menu link: menu-toolbar:news
+  $menu_links['menu-toolbar:news'] = array(
     'menu_name' => 'menu-toolbar',
-    'link_path' => 'manage/items',
-    'router_path' => 'manage/items',
+    'link_path' => 'news',
+    'router_path' => 'news',
     'link_title' => 'News',
     'options' => array(
       'attributes' => array(
@@ -575,7 +575,7 @@ function feature_users_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-43',
-  );
+  ); 
   // Exported menu link: menu-toolbar:market
   $menu_links['menu-toolbar:market'] = array(
     'menu_name' => 'menu-toolbar',

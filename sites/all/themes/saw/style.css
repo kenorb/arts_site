@@ -2004,8 +2004,7 @@ div.admin-panel .body {
     background-image: url('images/toolbar-icons/online.png') !important;
   }
 
-  /* @TODO: Temporary link just show other icons in the toolbar */
-  #quickbar .path-manage-items span.icon {
+  #quickbar .path-news span.icon {
     background-image: url('images/toolbar-icons/news.png') !important;
   }
   
