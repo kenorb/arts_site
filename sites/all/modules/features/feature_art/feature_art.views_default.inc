@@ -1084,6 +1084,8 @@ function feature_art_views_default_views() {
 
   /* Display: Normal events */
   $handler = $view->new_display('block', 'Normal events', 'normal_events');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'featured-events';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -1376,6 +1378,7 @@ function feature_art_views_default_views() {
     t('Type'),
     t('Author'),
     t('Normal events'),
+    t('Events'),
   );
 
   $views[$view->name] = $view;
