@@ -34,7 +34,7 @@ calendar/*',
     'region' => 'content',
     'custom' => '0',
     'throttle' => '0',
-    'visibility' => '0',
+    'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
     'title' => '',
