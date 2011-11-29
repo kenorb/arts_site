@@ -14,7 +14,7 @@ function feature_art_default_fe_block_settings() {
     'delta' => 'user_arts-user_arts_block',
     'theme' => 'saw',
     'status' => '1',
-    'weight' => '-57',
+    'weight' => '-56',
     'region' => 'content',
     'custom' => '0',
     'throttle' => '0',
