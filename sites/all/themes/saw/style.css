@@ -1179,6 +1179,8 @@ div.admin-panel .body {
   
   .featured-events .image img {
     border-radius: 4px;
+		max-height: 100px;
+		max-width: 100px;
   }
   
   .featured-events .left-column,
