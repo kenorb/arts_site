@@ -25,24 +25,37 @@
 				<tr>
 					<td class="left-column">
 					
+						<?php $numItemsAvailable = db_result (db_query ('SELECT stock FROM {uc_product_stock} WHERE nid = %d', $nid)); ?>
+					
 						<?php if ($node -> field_for_sell [0] ['value'] == 'on'): ?>
-							<div class="is-for-sale">
-								For Sale
-							</div>
 						
-							<div class="original">
-								<?php if ($node -> field_copy_original [0] ['value'] == 'original'): ?>
-									<h3>Original Artwork</h3>
-								<?php else: ?>
-									<h3>Prints</h3>
-								<?php endif; ?>
-								<div class="available">
-									<span class="num"><?php echo db_result (db_query ('SELECT stock FROM {uc_product_stock} WHERE nid = %d', $nid)); ?></span> Available <div class="right"><span class="price">£<?php echo number_format ($node -> sell_price, 2); ?></span></div>
+							<?php if ($numItemsAvailable > 0): ?>
+							
+								<div class="is-for-sale">
+									For Sale
 								</div>
-								<div class="centered">
-									<?php echo $node -> content ['add_to_cart']['#value']; ?>
+							
+								<div class="original">
+									<?php if ($node -> field_copy_original [0] ['value'] == 'original'): ?>
+										<h3>Original Artwork</h3>
+									<?php else: ?>
+										<h3>Prints</h3>
+									<?php endif; ?>
+									<div class="available">
+										<span class="num"><?php echo $numItemsAvailable ?></span> Available <div class="right"><span class="price">£<?php echo number_format ($node -> sell_price, 2); ?></span></div>
+									</div>
+									<div class="centered">
+										<?php echo $node -> content ['add_to_cart']['#value']; ?>
+									</div>
 								</div>
-							</div>
+								
+							<?php else: ?>
+							
+								<div class="out-of-stock">
+									Currently Out Of Stock
+								</div>
+							
+							<?php endif; ?>
 						
 						<?php else: ?>
 							<div class="is-not-for-sale">

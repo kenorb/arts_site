@@ -2673,6 +2673,13 @@ div.admin-panel .body {
 	color: #888;
 }
 
+.node-art .out-of-stock {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #d63;
+}
+
 .node-art .is-original-artwork,
 .node-art .is-prints {
 	margin-top: 3px;
