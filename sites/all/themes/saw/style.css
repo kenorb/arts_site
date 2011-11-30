@@ -2591,6 +2591,7 @@ div.admin-panel .body {
 }
 
 .node-art .left-column {
+	padding-top: 20px;
 	width: 220px;
 }
 
@@ -2607,6 +2608,7 @@ div.admin-panel .body {
 .node-art .available {
 	margin-top: 0px;
 	font-size: 15px;
+	margin-bottom: 5px;
 }
 
 
@@ -2662,6 +2664,13 @@ div.admin-panel .body {
 	font-size: 22px;
 	font-weight: bold;
 	margin-bottom: 10px;
+}
+
+.node-art .is-not-for-sale {
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #888;
 }
 
 .node-art .is-original-artwork,
@@ -2746,9 +2755,19 @@ div.admin-panel .body {
 	color: #000;
 }
 
+.node-art .featured ul {
+	padding-left: 20px;
+	margin-left: 0;
+}
+
+.node-art .featured ul li {
+	margin-bottom: 4px;
+	font-size: 12px;
+}
+
 .node-art .general-info .by {
-	font-size: 20px;
-	padding-left: 30px;
+	font-size: 16px;
+	padding-left: 5px;
 }
 
 .node-art .general-info .by a {
@@ -2758,16 +2777,8 @@ div.admin-panel .body {
 .node-art .general-info .type {
 	font-size: 16px;
 	color: #666;
-	padding-left: 30px;
+	padding-left: 0px;
 }
-
-
-
-
-
-
-
-
 
 
 

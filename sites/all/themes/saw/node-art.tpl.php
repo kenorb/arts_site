@@ -21,33 +21,35 @@
   <div class="content">
 		<div class="node-art">
 		
-			<table>
+			<table style="width: 100%">
 				<tr>
 					<td class="left-column">
-						<div class="is-for-sale">
-							For Sale
-						</div>
 					
-						<div class="original">
-							<h3>Original Artwork</h3>
-							<div class="available">
-								<span class="num">4</span> Available <div class="right"><span class="price">30</span></div>
+						<?php if ($node -> field_for_sell [0] ['value'] == 'on'): ?>
+							<div class="is-for-sale">
+								For Sale
 							</div>
-							<div class="centered">
-								<input type="button" value="Add to cart" />
-							</div>
-						</div>
 						
-						<div class="prints">
-							<h3>Prints</h3>
-							
-							<div class="available">
-								<span class="num">4</span> Available <div class="right"><span class="price">30</span></div>
+							<div class="original">
+								<?php if ($node -> field_copy_original [0] ['value'] == 'original'): ?>
+									<h3>Original Artwork</h3>
+								<?php else: ?>
+									<h3>Prints</h3>
+								<?php endif; ?>
+								<div class="available">
+									<span class="num"><?php echo db_result (db_query ('SELECT stock FROM {uc_product_stock} WHERE nid = %d', $nid)); ?></span> Available <div class="right"><span class="price">£<?php echo number_format ($node -> sell_price, 2); ?></span></div>
+								</div>
+								<div class="centered">
+									<?php echo $node -> content ['add_to_cart']['#value']; ?>
+								</div>
 							</div>
-							<div class="centered">
-								<input type="button" value="Add to cart" />
+						
+						<?php else: ?>
+							<div class="is-not-for-sale">
+								Not For Sale
 							</div>
-						</div>
+						<?php endif; ?>
+	
 						
 						<div class="separator"></div>
 						
@@ -64,20 +66,47 @@
 						</div>
 						
 						<div class="centered">
-							<input type="button" value="Add to favourites" />
-							<input type="button" value="Bookmark" />
+							<div>
+								<?php echo flag_create_link ('add_to_favourites', $node -> nid); ?>
+							</div>
+							
+							<div>
+								<?php echo flag_create_link ('bookmarks', $node -> nid); ?>
+							</div>
 						</div>
 						
-						<div class="separator"></div>
+						<div class="featured">
 						
-						<div>
-							<h3>Featured with</h3>
-						</div>
-						
-						<div class="separator"></div>
-						
-						<div>
-							<h3>Featured by</h3>
+							<?php if ($node -> field_featured_in && $node -> field_featured_in [0] ['nid']): ?>
+							
+								<div class="separator"></div>
+								
+								<div>
+									<h3>Featured with</h3>
+									<ul>
+										<?php foreach ($node -> field_featured_in as $ref): if (!$ref ['nid']) continue; ?>
+											<li><?php echo $ref['view']; ?></li>
+										<?php endforeach; ?>
+									</ul>
+								</div>
+								
+							<?php endif; ?>
+
+							<?php if ($node -> field_referrers_art && @$node -> field_referrers_art [0] ['items']): ?>
+							
+								<div class="separator"></div>
+									
+								<div>
+									<h3>Featured by</h3>
+									<ul>
+										<?php foreach ($node -> field_referrers_art [0] ['items'] as $ref): if (!$ref ['nid']) continue; ?>
+											<li><a href="/node/<?php echo $ref ['nid']; ?>"><?php echo $ref['title']; ?></a></li>
+										<?php endforeach; ?>
+									</ul>
+								</div>
+								
+							<?php endif; ?>
+							
 						</div>
 						
 					</td>
@@ -131,11 +160,11 @@
 									
 									if (typeof csses [0].width == 'undefined')
 										csses [0] = {
-											'width':						$('.galleria-thumbnails').css ('width'),
+											'width':						'5000px',
 											'height':						$('.galleria-thumbnails').css ('height'),
 											'overflow':					$('.galleria-thumbnails').css ('overflow'),
 											'top':							$('.galleria-thumbnails').css ('top'),
-											'left':							$('.galleria-thumbnails').css ('left'),
+											'left':							$('.galleria-thumbnails').css ('left') + 'px',
 											'z-index':					$('.galleria-thumbnails').css ('z-index'),
 											'background-color':	$('.galleria-thumbnails').css ('background-color'),
 											'opacity':					$('.galleria-thumbnails').css ('opacity')
@@ -151,20 +180,20 @@
 										$('.galleria-thumbnails img').unbind ('click', GalleryToggleThumbnails);
 									
 									
-									$('.galleria-thumbnails-container .galleria-image img').css (GalleryShowThumbnail ? {width: 100, height: 100} : {width: 53, height: 40});
-									$('.galleria-thumbnails-container .galleria-image').css (GalleryShowThumbnail ? {width: 100, height: 100} : {width: 53, height: 40});
+									$('.galleria-thumbnails-container .galleria-image img').css (GalleryShowThumbnail ? {width: 100, height: 100} : {width: 40, height: 40});
+									$('.galleria-thumbnails-container .galleria-image').css (GalleryShowThumbnail ? {width: 100, height: 100} : {width: 40, height: 40});
 								};
 								
 								$('td.thumbs input').click (GalleryToggleThumbnails);
 							})
 						</script>
 						
-						<table>
+						<table style="width: 100%">
 							<tr>
 								<td class="general-info">
-									<div class="name">Artwork name</div>
-									<div class="by">By <a href="#">User</a></div>
-									<div class="type">Painting</div>
+									<div class="name"><?php echo ucfirst ($node -> title); ?></div>
+									<span class="type">Painting</span> <span class="by">by <a href="/users/<?php echo $node -> name ?>"><?php echo $node -> name; ?></a></span>
+									
 								</td>
 								<td class="art-screen-button prev">
 									<input type="button" value="" />
@@ -181,9 +210,7 @@
 						<div class="separator"></div>
 						
 						<div class="description">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum auctor purus, ac aliquam purus blandit in. Donec vestibulum posuere arcu ut varius. Donec fermentum sodales nisi in feugiat. Sed pellentesque dapibus nibh in sodales. Aenean in magna ut leo elementum auctor. Donec porttitor lorem sit amet neque egestas eu pellentesque nunc dignissim. Nam nec leo eu nulla dignissim fermentum a at massa. Phasellus dictum eros sed sapien lacinia blandit.<br /><br />
-							Aenean sapien metus, ullamcorper sit amet facilisis a, scelerisque at ante. Suspendisse potenti. Suspendisse vulputate lectus at felis auctor vestibulum. Maecenas eget congue sem. Praesent consequat ipsum in nunc gravida tincidunt. Donec cursus pharetra arcu, ac volutpat mauris euismod ut. Mauris auctor dapibus aliquet.<br /><br />
-							Pellentesque ligula nulla, commodo elementum viverra quis, tempor et ante. In hac habitasse platea dictumst. Maecenas adipiscing auctor sollicitudin. Donec purus orci, iaculis quis sollicitudin ut, ultrices sed mi. Vestibulum facilisis sem non purus dictum interdum. Sed ultricies laoreet tortor, nec tempor nisl ultricies in. Mauris et metus eu ligula molestie lobortis eu sed massa. Vestibulum vehicula semper orci, eget molestie metus ultricies vitae. Phasellus venenatis tempus facilisis. Morbi velit turpis, interdum at consectetur id, faucibus rutrum arcu. Quisque porta fringilla justo, eu venenatis ipsum dapibus in. Quisque arcu dolor, scelerisque suscipit vestibulum id, pulvinar quis massa. Sed in lacus tortor, quis fermentum mi. Aliquam ut sem urna, et interdum nisi. Nunc libero leo, porta blandit euismod bibendum, tempor a dolor. <br /><br />
+							<?php echo $node -> content ['body']['#value']; ?>
 						</div>
 						
 						<div class="separator"></div>
