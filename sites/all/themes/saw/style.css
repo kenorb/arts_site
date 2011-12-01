@@ -624,6 +624,7 @@ ul.links li {
   width: 60px;
 }
 
+.flag-action,
 input[type=button],
 input[type=submit],
 .comment .reply a	 {
@@ -646,6 +647,11 @@ input[type=submit],
 	padding: 10px 15px;
 }
 
+.flag-action {
+	padding: 6px 10px !important;
+}
+
+.flag-action:hover,
 input[type=button]:hover,
 input[type=submit]:hover,
 .comment .reply a:hover {
@@ -653,6 +659,7 @@ input[type=submit]:hover,
 	color: #D75A46 !important;
 	cursor: pointer;
 	text-decoration: none;
+	text-shadow: 1px 1px 1px #fff !important;
 }
 
 
@@ -2787,5 +2794,11 @@ div.admin-panel .body {
 	padding-left: 0px;
 }
 
+.node-art .favlinks {
+	margin-top: 10px;
+}
 
 
+.comment-unpublished {
+  background-color: #ffb;
+}

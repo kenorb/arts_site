@@ -78,15 +78,12 @@
 							<span class="num">45</span> Views
 						</div>
 						
-						<div class="centered">
+						<div class="centered favlinks">
 							<div>
-								<?php echo flag_create_link ('add_to_favourites', $node -> nid); ?>
-							</div>
-							
-							<div>
-								<?php echo flag_create_link ('bookmarks', $node -> nid); ?>
+								<?php echo flag_create_link ('add_to_favourites', $node -> nid); ?> <?php echo flag_create_link ('bookmarks', $node -> nid); ?>
 							</div>
 						</div>
+						
 						
 						<div class="featured">
 						
