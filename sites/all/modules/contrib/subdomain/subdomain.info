@@ -1,0 +1,12 @@
+
+name = Subdomain
+core = 6.x
+description = automatically create subdomains and assign nodes to those subdomains
+package = Other
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-2.x-dev"
+core = "6.x"
+project = "subdomain"
+datestamp = "1298620286"
+

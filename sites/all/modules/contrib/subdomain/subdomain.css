@@ -1,0 +1,9 @@
+#subdomain-check {
+  margin-left: 1em;
+  color: green;
+  font-weight:bold;
+}
+
+#subdomain-check.duplicate {
+  color: red;
+}
