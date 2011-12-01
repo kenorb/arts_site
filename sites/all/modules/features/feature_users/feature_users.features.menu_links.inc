@@ -540,42 +540,6 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-45',
   );
-  // Exported menu link: menu-toolbar:chat/chat
-  $menu_links['menu-toolbar:chat/chat'] = array(
-    'menu_name' => 'menu-toolbar',
-    'link_path' => 'chat/chat',
-    'router_path' => 'chat/chat',
-    'link_title' => 'Chat',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-48',
-  );
-  // Exported menu link: menu-toolbar:news
-  $menu_links['menu-toolbar:news'] = array(
-    'menu_name' => 'menu-toolbar',
-    'link_path' => 'news',
-    'router_path' => 'news',
-    'link_title' => 'News',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-43',
-  ); 
   // Exported menu link: menu-toolbar:market
   $menu_links['menu-toolbar:market'] = array(
     'menu_name' => 'menu-toolbar',
@@ -611,6 +575,42 @@ function feature_users_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-47',
+  );
+  // Exported menu link: menu-toolbar:news
+  $menu_links['menu-toolbar:news'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'news',
+    'router_path' => 'news',
+    'link_title' => 'News',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-43',
+  );
+  // Exported menu link: menu-toolbar:chat/chat
+  $menu_links['menu-toolbar:chat/chat'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'chat/chat',
+    'router_path' => 'chat/chat',
+    'link_title' => 'Chat',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-48',
   );
   // Exported menu link: menu-toolbar:online
   $menu_links['menu-toolbar:online'] = array(
