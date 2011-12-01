@@ -39,7 +39,7 @@ a, a:visited {
 
 .form-item .description {
   color: #666666;
-  font-size: 11px;
+  font-size: 12px;
   padding: 2px;
 }
 
@@ -52,7 +52,9 @@ a, a:visited {
 #sidebar-right a,
 #sidebar-right a:visited,
 .node a,
-.node a:visited {
+.node a:visited,
+#main table a,
+#main table a:visited {
 	padding: 2px 4px;
 	border-radius: 4px;
 	text-shadow: 1px 1px 1px #fff;
@@ -62,14 +64,17 @@ a, a:visited {
 #sidebar-right a.active,
 .node a.active {
 	color: #000;
+	font-weight: bold;
 }
 
 #sidebar-left a:hover,
 #sidebar-right a:hover,
-#main .node a:hover {
+#main .node a:hover,
+#main table a:hover {
 	background-color: #0292CC;
 	text-shadow: 1px 1px 1px #23d;
 	color: #fff;
+	text-decoration: none;
 }
 
 input,
@@ -136,7 +141,7 @@ h5 {
 }
 
 .form-item label.option {
-	font-size: 14px !important;
+	font-size: 16px !important;
 	border: 0;
 	padding: 0px 0 4px 0px;
 	vertical-align: middle;
@@ -194,12 +199,12 @@ fieldset.collapsed {
 
 p {
   margin: 0 0 1.3em 0;
-  padding: 10px;
+  padding: 0px;
   color: #333;
   text-align: justify;
   text-indent:10px;
   line-height: 120%;
-  font-size: 12px;
+  font-size: 13px;
 }
 blockquote {
   border-left: 4px solid #69c;  /* LTR */
@@ -225,8 +230,7 @@ pre {
   color: #000;
 }
 .item-list .title {
-  color: #369;
-  font-size: 0.85em;
+  
 }
 
 /*
@@ -516,9 +520,18 @@ ul.links li {
 	border-radius: 5px;
   background-color: #fff;
   border: 1px solid #ddd;
-  padding: 6px 10px;
+  padding: 6px 10px !important;
   margin-bottom: 20px;
+	overflow: hidden;
+	max-height: 80px;
 }
+
+.messages:hover {
+	overflow: visible;
+	max-height: 1000px;
+	opacity: 0.9;
+}
+
 .error {
   border-color: red;
 }
@@ -527,7 +540,6 @@ ul.links li {
   margin: 0;
 }
 #sidebar-left, #sidebar-right {
-  font-size: 0.75em;
   /* padding in px not ex because IE messes up 100% width tables otherwise */
   padding: 25px 10px 75px 10px;
   vertical-align: top;
@@ -546,12 +558,10 @@ ul.links li {
 }
 
 #sidebar-left li, #sidebar-right li {
-  font-size: 1em;
   list-style-image: url('arrow-next.png');
 }
 .node .content {
   text-align: left; /* LTR */
-  font-size: 0.85em;
   line-height: 1.3;
 }
 
@@ -817,19 +827,15 @@ li.leaf {
 }
 
 .content h1 {
-  color: #369;
   font-size: 1.9em;
 }
 .content h2 {
-  color: #ab1017;
   font-size: 1.7em;
 }
 .content h3 {
-  color: #333;
   font-weight: bold;
 }
 .content h4 {
-  color: #8be;
   font-size: 1.3em;
 }
 .content h5 {
@@ -867,8 +873,7 @@ div.links {
 	text-transform: uppercase;
 }
 .block .content {
-  padding: 5px;
-  font-size: 12px;
+  padding: 2px;
 }
 .block {
   margin-bottom: 1.5em;
@@ -984,7 +989,6 @@ div.admin-panel .body {
 ** Module specific styles
 */
 .content {
-  font-size: 12px;
 }
 .content .active {
 }
@@ -1587,14 +1591,10 @@ div.admin-panel .body {
 
 
 
-
-
-
   .recent-activity-row {
-    padding: 4px 8px;
+    padding: 2px 0px;
     margin-bottom: 3px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ddd;
+    
   }
   
   .recent-activity-row a {
@@ -1605,16 +1605,16 @@ div.admin-panel .body {
   }
   
   .recent-activity-row .time-elapsed {
-    font-size: 0.9em;
+    font-size: 11px;
     border-bottom: 1px solid #eee;
     text-align: left;
   }
 
   .recent-activity-row .message {
-    font-size: 0.95em;
+    font-size: 13px;
     width: 140px;
     text-align: left;
-    font-weight: bold;
+    
   }
 
 
@@ -1979,7 +1979,7 @@ div.admin-panel .body {
   }
   
   .arts-filters .preface {
-    font-size: 0.9em;
+    font-size: 13px;
     font-weight: bold;
     color: #444;
   }
@@ -2023,10 +2023,10 @@ div.admin-panel .body {
   }
   
   .arts-row .details {
-    margin-top: -34px;
-    height: 34px;
+    height: 40px;
+    margin-top: -40px;
     background-color: rgba(255,255,255,0.7);
-    font-size: 0.7em;
+    font-size: 13px;
     display: inline-block;
     width: 100%;
   }
@@ -2044,6 +2044,7 @@ div.admin-panel .body {
   .arts-row a {
     border: 0px !important;
     color: #05a !important;
+		text-shadow: none !important;
   }
   
   .arts-row a:hover {
@@ -2126,8 +2127,7 @@ div.admin-panel .body {
     background-image: url('images/toolbar-icons/news.png') !important;
   }
   
-  /* @TODO: Temporary link just show other icons in the toolbar */
-  #quickbar .path-manage-arts span.icon {
+  #quickbar .path-chat-chat span.icon {
     background-image: url('images/toolbar-icons/chat.png') !important;
   }
 
@@ -2635,6 +2635,9 @@ div.admin-panel .body {
 
 #edit-vote-wrapper label {
 	text-align: center;
+	font-size: 16px;
+	border-bottom: 0;
+	margin-bottom: 0;
 }
 
 #edit-vote-wrapper .fivestar-summary {
@@ -2797,4 +2800,118 @@ div.admin-panel .body {
 
 .comment-unpublished {
   background-color: #ffb;
+}
+
+.views-table,
+#main .sticky-enabled {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 6px;
+	border: 1px solid #ddd !important;
+}
+
+.views-table th,
+#main .sticky-enabled th {
+	padding: 7px 5px;
+	background: #eaeff3 url('images/table-th-background.png') repeat-x;
+	border: 0;
+}
+
+#features-form-links a {
+	padding: 10px 20px !important;
+}
+
+#features-form-table .sign {
+	font-size: 11px;
+}
+
+#features-form-table a {
+	text-shadow: none !important;
+}
+
+#features-form-table .admin-default {
+	background: none !important;
+}
+
+#features-form-table .admin-default:hover {
+	color: #000;
+}
+
+#features-form-table .state .admin-loading {
+	background-color: #eee;
+}
+
+#features-form-table .state .admin-loading,
+#features-form-table .state a {
+	padding: 4px 10px;
+}
+
+#views-ajax-form {
+	clear: both;
+}
+
+.views-display .tab-section .inside .views-category {
+	padding: 4px;
+}
+
+.views-category-title {
+	background: none !important;
+	border: 0 !important;
+}
+
+.views-tabset .views-display,
+#views-ajax-title
+{
+	margin-left: 130px;
+}
+
+#views-ajax-pad {
+	margin-left: 12px;
+}
+
+.views-tabset .views-tabs {
+	width: 130px !important;
+	background: none !important;
+	border: 0 !important;
+}
+
+.views-tabs input {
+	width: 95%;
+	margin: 0;
+}
+
+form#views-add-display-form,
+form#views-ui-reorder-displays-button {
+	border: 0 !important;
+	margin: 5px;
+}
+
+#views-tab-default .clear-block:after {
+	display: block;
+}
+
+
+.block ul {
+	padding: 0px 5px;
+}
+
+.content > ul {
+	padding-left: 10px;
+}
+
+
+#blocks td {
+	padding: 3px 10px;
+}
+
+#blocks td a {
+	margin-right: 10px;
+}
+
+#chatroom-create-chat-form {
+	margin-bottom: 20px;
+}
+
+.admin-overridden {
+	text-shadow: none !important;
 }

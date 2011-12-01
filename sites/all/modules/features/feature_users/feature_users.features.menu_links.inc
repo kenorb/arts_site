@@ -540,11 +540,11 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-45',
   );
-  // Exported menu link: menu-toolbar:manage/arts
-  $menu_links['menu-toolbar:manage/arts'] = array(
+  // Exported menu link: menu-toolbar:chat/chat
+  $menu_links['menu-toolbar:chat/chat'] = array(
     'menu_name' => 'menu-toolbar',
-    'link_path' => 'manage/arts',
-    'router_path' => 'manage/arts',
+    'link_path' => 'chat/chat',
+    'router_path' => 'chat/chat',
     'link_title' => 'Chat',
     'options' => array(
       'attributes' => array(
