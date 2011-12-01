@@ -1,10 +1,17 @@
 <?php
 
-	$trail		= end (menu_get_active_trail ());
+	$trail				= end (menu_get_active_trail ());
 	
-	$viewName	= strtolower ($view -> query -> pager -> display -> display_title);
+	$viewNameOrig	= $view -> query -> pager -> display -> display_title;
+	$viewName			= strtolower ($viewNameOrig);
 	
+	$subdomain 		= '';
+	
+	$subdomainUserId	= null;//subdomain_get_sid ($subdomain);
 ?>
+
+<h1 class="title"><?php if (substr ($viewName, 0, 7) != 'default'): ?> <?php echo $viewNameOrig; ?> <?php endif; ?><?php if ($subdomain != ''): ?> <a href="/user/<?php echo $subdomainUserId; ?>"><?php echo $subdomain . "'s"; ?></a> <?php endif;?> arts</h1>
+
 <?php if ($viewName != 'user profile arts'): ?>
 <div class="arts-filters">
 	<span class="preface">You can filter by:</span>
@@ -18,6 +25,7 @@
 
 <div class="arts-rows">
 
+<?php if ($view -> style_plugin -> rendered_fields): ?>
 	<?php foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
 		<div class="arts-row">
 			<div class="image">
@@ -46,6 +54,10 @@
 				</div>
 		</div>
 	<?php endforeach; ?>
+
+<?php else: ?>
+	<i>We're sorry. No arts here</i>
+<?php endif; ?>
 	
 	<div class="clear"></div>
 	

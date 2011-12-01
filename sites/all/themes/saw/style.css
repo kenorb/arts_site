@@ -2915,3 +2915,8 @@ form#views-ui-reorder-displays-button {
 .admin-overridden {
 	text-shadow: none !important;
 }
+
+#views-ajax-pad fieldset {
+	clear: both;
+	margin-bottom: 20px;
+}

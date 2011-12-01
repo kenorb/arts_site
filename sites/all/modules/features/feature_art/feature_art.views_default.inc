@@ -19,7 +19,6 @@ function feature_art_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
-  $handler->display->display_options['title'] = 'Arts';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -238,6 +237,15 @@ function feature_art_views_default_views() {
   $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
   $handler->display->display_options['sorts']['totalcount']['table'] = 'node_counter';
   $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
+  /* Argument: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'php';
+  $handler->display->display_options['arguments']['uid']['default_argument_options']['code'] = 'return subdomain_get_sid (subdomain_get_current_subdomain ());';
+  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['uid']['not'] = 0;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -302,7 +310,6 @@ function feature_art_views_default_views() {
   /* Display: Default */
   $handler = $view->new_display('page', 'Default', 'arts_most_viewed');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Arts';
   $handler->display->display_options['path'] = 'arts';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Arts';
@@ -311,7 +318,6 @@ function feature_art_views_default_views() {
   /* Display: Most viewed */
   $handler = $view->new_display('page', 'Most viewed', 'arts_most_viewed2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Most viewed arts';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Node statistics: Total views */
   $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
@@ -344,7 +350,6 @@ function feature_art_views_default_views() {
   /* Display: Most recent */
   $handler = $view->new_display('page', 'Most recent', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Most recent arts';
   $handler->display->display_options['path'] = 'arts/most-recent';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Recent arts';
@@ -353,7 +358,6 @@ function feature_art_views_default_views() {
   /* Display: Best selling artists */
   $handler = $view->new_display('page', 'Best selling artists', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Best selling artists';
   $handler->display->display_options['path'] = 'arts/best-selling-artists';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Best selling artists';
@@ -362,7 +366,6 @@ function feature_art_views_default_views() {
   /* Display: Featured artists */
   $handler = $view->new_display('page', 'Featured artists', 'page_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Featured artists';
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -436,7 +439,6 @@ function feature_art_views_default_views() {
   /* Display: Highest rated */
   $handler = $view->new_display('page', 'Highest rated', 'page_4');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Highest rated arts';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Node statistics: Total views */
   $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
@@ -474,7 +476,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $translatables['Arts'] = array(
     t('Defaults'),
-    t('Arts'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -498,22 +499,21 @@ function feature_art_views_default_views() {
     t('Post date'),
     t('For Sell'),
     t('Original Art'),
+    t('All'),
     t('Published'),
     t('Search'),
     t('Education'),
     t('Category'),
     t('Default'),
     t('Most viewed'),
-    t('Most viewed arts'),
     t('Total views'),
     t('Random'),
     t('Most recent'),
-    t('Most recent arts'),
     t('Best selling artists'),
     t('Featured artists'),
     t('Highest rated'),
-    t('Highest rated arts'),
     t('User Profile Arts'),
+    t('Arts'),
   );
 
   $views[$view->name] = $view;
