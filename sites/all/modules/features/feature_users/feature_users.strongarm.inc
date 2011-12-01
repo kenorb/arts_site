@@ -147,6 +147,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_alerts_default';
+  $strongarm->value = FALSE;
+  $export['chatroom_alerts_default'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'chatroom_allow_anon_name';
   $strongarm->value = 1;
   $export['chatroom_allow_anon_name'] = $strongarm;
@@ -154,9 +161,37 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_auto_archive';
+  $strongarm->value = 0;
+  $export['chatroom_auto_archive'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_block_0';
+  $strongarm->value = '5';
+  $export['chatroom_block_0'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_block_update_interval';
+  $strongarm->value = '5';
+  $export['chatroom_block_update_interval'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'chatroom_chat_date_format';
   $strongarm->value = '* \\S\\e\\n\\t \\a\\t G:i';
   $export['chatroom_chat_date_format'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_chat_message_text';
+  $strongarm->value = 'Type your message and hit enter';
+  $export['chatroom_chat_message_text'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -175,9 +210,23 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_desk_minutes_online';
+  $strongarm->value = '15';
+  $export['chatroom_desk_minutes_online'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'chatroom_desk_nid';
   $strongarm->value = '';
   $export['chatroom_desk_nid'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_desk_open_message';
+  $strongarm->value = '';
+  $export['chatroom_desk_open_message'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -194,6 +243,20 @@ function feature_users_strongarm() {
     10 => 0,
   );
   $export['chatroom_desk_staff_rids'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_guest_user_prefix';
+  $strongarm->value = 'guest-';
+  $export['chatroom_guest_user_prefix'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_online_list_timeout';
+  $strongarm->value = '10';
+  $export['chatroom_online_list_timeout'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -493,9 +556,562 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'faq_answer_label';
+  $strongarm->value = 'A: ';
+  $export['faq_answer_label'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_back_to_top';
+  $strongarm->value = '';
+  $export['faq_back_to_top'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_category_display';
+  $strongarm->value = 'categories_inline';
+  $export['faq_category_display'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'faq_category_hide_qa_accordion';
   $strongarm->value = 0;
   $export['faq_category_hide_qa_accordion'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_category_listing';
+  $strongarm->value = 'ul';
+  $export['faq_category_listing'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_count';
+  $strongarm->value = 0;
+  $export['faq_count'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_default_sorting';
+  $strongarm->value = 'DESC';
+  $export['faq_default_sorting'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_disable_node_links';
+  $strongarm->value = 1;
+  $export['faq_disable_node_links'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_display';
+  $strongarm->value = 'questions_inline';
+  $export['faq_display'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_enable_term_links';
+  $strongarm->value = 1;
+  $export['faq_enable_term_links'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_group_questions_top';
+  $strongarm->value = 0;
+  $export['faq_group_questions_top'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_hide_child_terms';
+  $strongarm->value = 0;
+  $export['faq_hide_child_terms'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_hide_qa_accordion';
+  $strongarm->value = 0;
+  $export['faq_hide_qa_accordion'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_qa_mark';
+  $strongarm->value = 1;
+  $export['faq_qa_mark'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_question_label';
+  $strongarm->value = 'Q: ';
+  $export['faq_question_label'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_question_length';
+  $strongarm->value = 'short';
+  $export['faq_question_length'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_question_listing';
+  $strongarm->value = 'ol';
+  $export['faq_question_listing'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_question_long_form';
+  $strongarm->value = 1;
+  $export['faq_question_long_form'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_show_expand_all';
+  $strongarm->value = 1;
+  $export['faq_show_expand_all'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_show_node_links';
+  $strongarm->value = 0;
+  $export['faq_show_node_links'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_show_term_page_children';
+  $strongarm->value = 0;
+  $export['faq_show_term_page_children'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_use_categories';
+  $strongarm->value = 0;
+  $export['faq_use_categories'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_use_teaser';
+  $strongarm->value = 0;
+  $export['faq_use_teaser'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_art';
+  $strongarm->value = 1;
+  $export['fivestar_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_color_type';
+  $strongarm->value = 'solid';
+  $export['fivestar_color_type'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_colors';
+  $strongarm->value = array(
+    'on1' => '#ffeb38',
+    'on2' => '#fff385',
+    'hover1' => '#ffd60a',
+    'hover2' => '#ffe561',
+    'off1' => '#8f8f8f',
+    'off2' => '#e6e6e6',
+    'matte' => '#ffffff',
+  );
+  $export['fivestar_colors'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_comment_idea';
+  $strongarm->value = '0';
+  $export['fivestar_comment_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_event';
+  $strongarm->value = 1;
+  $export['fivestar_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_feedback_art';
+  $strongarm->value = 1;
+  $export['fivestar_feedback_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_feedback_event';
+  $strongarm->value = 1;
+  $export['fivestar_feedback_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_feedback_idea';
+  $strongarm->value = 1;
+  $export['fivestar_feedback_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_feedback_profile';
+  $strongarm->value = 1;
+  $export['fivestar_feedback_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_idea';
+  $strongarm->value = 1;
+  $export['fivestar_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_art';
+  $strongarm->value = array(
+    0 => 'Cancel rating',
+    1 => 'Poor',
+    2 => 'Okay',
+    3 => 'Good',
+    4 => 'Great',
+    5 => 'Awesome',
+    6 => 'Give it @star/@count',
+    7 => 'Give it @star/@count',
+    8 => 'Give it @star/@count',
+    9 => 'Give it @star/@count',
+    10 => 'Give it @star/@count',
+  );
+  $export['fivestar_labels_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_enable_art';
+  $strongarm->value = 1;
+  $export['fivestar_labels_enable_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_enable_event';
+  $strongarm->value = 1;
+  $export['fivestar_labels_enable_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_enable_idea';
+  $strongarm->value = 1;
+  $export['fivestar_labels_enable_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_enable_profile';
+  $strongarm->value = 1;
+  $export['fivestar_labels_enable_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_event';
+  $strongarm->value = array(
+    0 => 'Cancel rating',
+    1 => 'Poor',
+    2 => 'Okay',
+    3 => 'Good',
+    4 => 'Great',
+    5 => 'Awesome',
+    6 => 'Give it @star/@count',
+    7 => 'Give it @star/@count',
+    8 => 'Give it @star/@count',
+    9 => 'Give it @star/@count',
+    10 => 'Give it @star/@count',
+  );
+  $export['fivestar_labels_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_idea';
+  $strongarm->value = array(
+    0 => 'Cancel rating',
+    1 => 'Poor',
+    2 => 'Okay',
+    3 => 'Good',
+    4 => 'Great',
+    5 => 'Awesome',
+    6 => 'Give it @star/@count',
+    7 => 'Give it @star/@count',
+    8 => 'Give it @star/@count',
+    9 => 'Give it @star/@count',
+    10 => 'Give it @star/@count',
+  );
+  $export['fivestar_labels_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_labels_profile';
+  $strongarm->value = array(
+    0 => 'Cancel rating',
+    1 => 'Poor',
+    2 => 'Okay',
+    3 => 'Good',
+    4 => 'Great',
+    5 => 'Awesome',
+    6 => 'Give it @star/@count',
+    7 => 'Give it @star/@count',
+    8 => 'Give it @star/@count',
+    9 => 'Give it @star/@count',
+    10 => 'Give it @star/@count',
+  );
+  $export['fivestar_labels_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_art';
+  $strongarm->value = 'below';
+  $export['fivestar_position_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_event';
+  $strongarm->value = 'below';
+  $export['fivestar_position_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_idea';
+  $strongarm->value = 'hidden';
+  $export['fivestar_position_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_profile';
+  $strongarm->value = 'below';
+  $export['fivestar_position_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_teaser_art';
+  $strongarm->value = 'hidden';
+  $export['fivestar_position_teaser_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_teaser_event';
+  $strongarm->value = 'hidden';
+  $export['fivestar_position_teaser_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_teaser_idea';
+  $strongarm->value = 'hidden';
+  $export['fivestar_position_teaser_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_position_teaser_profile';
+  $strongarm->value = 'hidden';
+  $export['fivestar_position_teaser_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_profile';
+  $strongarm->value = 1;
+  $export['fivestar_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_stars_art';
+  $strongarm->value = '5';
+  $export['fivestar_stars_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_stars_event';
+  $strongarm->value = '5';
+  $export['fivestar_stars_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_stars_idea';
+  $strongarm->value = '5';
+  $export['fivestar_stars_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_stars_profile';
+  $strongarm->value = '5';
+  $export['fivestar_stars_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_style_art';
+  $strongarm->value = 'average';
+  $export['fivestar_style_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_style_event';
+  $strongarm->value = 'average';
+  $export['fivestar_style_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_style_idea';
+  $strongarm->value = 'average';
+  $export['fivestar_style_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_style_profile';
+  $strongarm->value = 'average';
+  $export['fivestar_style_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_tags';
+  $strongarm->value = 'vote';
+  $export['fivestar_tags'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_text_art';
+  $strongarm->value = 'dual';
+  $export['fivestar_text_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_text_event';
+  $strongarm->value = 'dual';
+  $export['fivestar_text_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_text_idea';
+  $strongarm->value = 'dual';
+  $export['fivestar_text_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_text_profile';
+  $strongarm->value = 'dual';
+  $export['fivestar_text_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_title_art';
+  $strongarm->value = 1;
+  $export['fivestar_title_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_title_event';
+  $strongarm->value = 1;
+  $export['fivestar_title_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_title_idea';
+  $strongarm->value = 1;
+  $export['fivestar_title_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_title_profile';
+  $strongarm->value = 1;
+  $export['fivestar_title_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_unvote_art';
+  $strongarm->value = 0;
+  $export['fivestar_unvote_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_unvote_event';
+  $strongarm->value = 0;
+  $export['fivestar_unvote_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_unvote_idea';
+  $strongarm->value = 0;
+  $export['fivestar_unvote_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_unvote_profile';
+  $strongarm->value = 0;
+  $export['fivestar_unvote_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_widget';
+  $strongarm->value = 'sites/arts/files/fivestar/oxygen/oxygen.css';
+  $export['fivestar_widget'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -3687,6 +4303,48 @@ function feature_users_strongarm() {
   $strongarm->name = 'recaptcha_theme';
   $strongarm->value = 'red';
   $export['recaptcha_theme'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subdomain_home';
+  $strongarm->value = 'view';
+  $export['subdomain_home'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subdomain_mode';
+  $strongarm->value = 'user';
+  $export['subdomain_mode'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subdomain_prepend_www';
+  $strongarm->value = 0;
+  $export['subdomain_prepend_www'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subdomain_source';
+  $strongarm->value = 'custom';
+  $export['subdomain_source'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subdomain_view';
+  $strongarm->value = 'Arts';
+  $export['subdomain_view'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subdomain_vocab';
+  $strongarm->value = '2';
+  $export['subdomain_vocab'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
