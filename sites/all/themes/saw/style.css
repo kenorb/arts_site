@@ -2920,3 +2920,19 @@ form#views-ui-reorder-displays-button {
 	clear: both;
 	margin-bottom: 20px;
 }
+
+.faq-answer .faq-answer-label {
+	float: none;
+	margin-right: 0px;
+}
+
+.faq-answer p {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	line-height: normal;
+}
+
+.faq-answer .print-link {
+	display: none;
+}

@@ -140,6 +140,64 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_alerts';
+  $strongarm->value = 0;
+  $export['chatroom_alerts'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_allow_anon_name';
+  $strongarm->value = 1;
+  $export['chatroom_allow_anon_name'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_chat_date_format';
+  $strongarm->value = '* \\S\\e\\n\\t \\a\\t G:i';
+  $export['chatroom_chat_date_format'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_custom_sounds';
+  $strongarm->value = FALSE;
+  $export['chatroom_custom_sounds'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_desk_closed_message';
+  $strongarm->value = 'Our help desk is closed, please try again later.';
+  $export['chatroom_desk_closed_message'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_desk_nid';
+  $strongarm->value = '';
+  $export['chatroom_desk_nid'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'chatroom_desk_staff_rids';
+  $strongarm->value = array(
+    5 => 5,
+    14 => 14,
+    1 => 0,
+    2 => 0,
+    7 => 0,
+    6 => 0,
+    15 => 0,
+    10 => 0,
+  );
+  $export['chatroom_desk_staff_rids'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_profile';
   $strongarm->value = '0';
   $export['comment_anonymous_profile'] = $strongarm;
@@ -424,6 +482,20 @@ function feature_users_strongarm() {
   $strongarm->name = 'extlink_target';
   $strongarm->value = '_blank';
   $export['extlink_target'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_answer_category_name';
+  $strongarm->value = 0;
+  $export['faq_answer_category_name'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'faq_category_hide_qa_accordion';
+  $strongarm->value = 0;
+  $export['faq_category_hide_qa_accordion'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
