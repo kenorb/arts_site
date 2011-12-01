@@ -648,7 +648,8 @@ input[type=submit],
 }
 
 .flag-action {
-	padding: 6px 10px !important;
+	padding: 6px 5px !important;
+	margin: 4px 0px;
 }
 
 .flag-action:hover,
@@ -2795,7 +2796,7 @@ div.admin-panel .body {
 }
 
 .node-art .favlinks {
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 
