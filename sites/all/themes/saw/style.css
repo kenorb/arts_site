@@ -500,7 +500,7 @@ ul.links li {
 }
 #main {
   /* padding in px not ex because IE messes up 100% width tables otherwise */
-  padding: 30px 35px 50px 35px;
+  padding: 30px 5px 50px 5px;
   position: relative;
   text-align: left;
 }
@@ -535,15 +535,13 @@ ul.links li {
 }
 
 #sidebar-left {
-	min-width: 175px;
-	width: 175px;
-	max-width: 175px;
+	min-width: 195px;
+	width: 195px;
 }
 
 #sidebar-right {
-	min-width: 175px;
-	max-width: 175px;
-	width: 175px;
+	min-width: 195px;
+	width: 195px;
 	
 }
 
