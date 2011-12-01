@@ -537,11 +537,13 @@ ul.links li {
 #sidebar-left {
 	min-width: 175px;
 	width: 175px;
+	max-width: 175px;
 }
 
 #sidebar-right {
-	min-width: 100px;
-	width: 100px;
+	min-width: 175px;
+	max-width: 175px;
+	width: 175px;
 	
 }
 
@@ -1459,7 +1461,7 @@ div.admin-panel .body {
   }
   
   #sidebar-right .month-view .mini td {
-    padding: 2px 6px !important;
+    padding: 2px 2px !important;
   }
   
   
