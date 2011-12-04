@@ -504,7 +504,7 @@ ul.links li {
 }
 #main {
   /* padding in px not ex because IE messes up 100% width tables otherwise */
-  padding: 30px 5px 50px 5px;
+  padding: 0px 5px 50px 5px;
   position: relative;
   text-align: left;
 }
