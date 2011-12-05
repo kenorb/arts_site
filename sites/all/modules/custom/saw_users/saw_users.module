@@ -19,7 +19,7 @@ function saw_users_init ()
 	global $user;
 	
 	if (arg (0) == 'ideas' && arg (1) == 'list' && !$user -> uid)
-		drupal_set_message ('To vote, please <a href="/user">login</a> or <a href="/user/register">register</a>.', 'warning');
+		drupal_set_message (t('To vote, please !1 login !2 or !3 register!4', array ('!1' => '<a href="/user">', '!2' => '</a>', '!3' => '<a href="/user/register">', '!4' => '</a>.')), 'warning');
 }
 
 /**
