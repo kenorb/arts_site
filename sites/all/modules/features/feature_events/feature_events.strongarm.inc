@@ -83,9 +83,13 @@ function feature_events_strongarm() {
     'menu' => '-4',
     'taxonomy' => '-3',
     'path' => '7',
-    'locations' => '0',
+    'attachments' => '11',
+    'custom_breadcrumbs' => '12',
+    'og_nodeapi' => '1',
+    'print' => '10',
+    'signup_node_info' => '8',
+    'workflow' => '9',
     'nodewords' => '2',
-    'notifications' => '100',
   );
   $export['content_extra_weights_event'] = $strongarm;
 

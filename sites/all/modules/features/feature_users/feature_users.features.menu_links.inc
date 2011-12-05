@@ -594,11 +594,11 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-43',
   );
-  // Exported menu link: menu-toolbar:chat/chat
-  $menu_links['menu-toolbar:chat/chat'] = array(
+  // Exported menu link: menu-toolbar:node/113
+  $menu_links['menu-toolbar:node/113'] = array(
     'menu_name' => 'menu-toolbar',
-    'link_path' => 'chat/chat',
-    'router_path' => 'chat/chat',
+    'link_path' => 'node/113',
+    'router_path' => 'node/%',
     'link_title' => 'Chat',
     'options' => array(
       'attributes' => array(
@@ -760,8 +760,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-50',
+    'expanded' => '0',
+    'weight' => '0',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/events
@@ -769,18 +769,14 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'manage/events',
     'router_path' => 'manage/events',
-    'link_title' => 'Events',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'Manage Events',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-48',
+    'expanded' => '0',
+    'weight' => '0',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:manage/forums
@@ -813,8 +809,8 @@ function feature_users_menu_default_menu_links() {
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-49',
+    'expanded' => '0',
+    'weight' => '0',
     'parent_path' => 'workspace/%',
   );
   // Exported menu link: navigation:node/add/art
@@ -822,12 +818,8 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/art',
     'router_path' => 'node/add/art',
-    'link_title' => 'Add Art',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'Art',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
@@ -841,12 +833,8 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/event',
     'router_path' => 'node/add/event',
-    'link_title' => 'Add Event',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'Event',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
@@ -879,7 +867,7 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'node/add/item',
     'router_path' => 'node/add/item',
-    'link_title' => 'Add Item',
+    'link_title' => 'Item',
     'options' => array(
       'attributes' => array(
         'title' => 'Buy & Exchange',
@@ -898,18 +886,14 @@ function feature_users_menu_default_menu_links() {
     'menu_name' => 'navigation',
     'link_path' => 'workspace/%',
     'router_path' => 'workspace/%',
-    'link_title' => 'Manage',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
+    'link_title' => 'My workspace',
+    'options' => array(),
     'module' => 'system',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
     'expanded' => '0',
-    'weight' => '-50',
+    'weight' => '-10',
   );
   // Exported menu link: secondary-links:arts
   $menu_links['secondary-links:arts'] = array(
@@ -952,9 +936,6 @@ function feature_users_menu_default_menu_links() {
   t('-');
   t('Account');
   t('Account Settings');
-  t('Add Art');
-  t('Add Event');
-  t('Add Item');
   t('Add forum topic');
   t('Art');
   t('Arts');
@@ -967,7 +948,6 @@ function feature_users_menu_default_menu_links() {
   t('Create content');
   t('Education');
   t('Event');
-  t('Events');
   t('Examples');
   t('Forum topic');
   t('Forums');
@@ -979,9 +959,11 @@ function feature_users_menu_default_menu_links() {
   t('Item');
   t('Items');
   t('Manage');
+  t('Manage Events');
   t('Market');
   t('Membership');
   t('Message');
+  t('My workspace');
   t('News');
   t('Newsletter issue');
   t('Online');
