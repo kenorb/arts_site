@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbsapi.install,v 1.1.2.3 2010/05/03 22:49:15 mgn Exp $
 /**
  * @file
  * Install file for the custom_breadcrumbsapi module.

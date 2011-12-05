@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbs_taxonomy.inc,v 1.1.2.19 2010/12/30 18:36:25 mgn Exp $
 
 /**
  * @file
@@ -59,6 +58,7 @@ function custom_breadcrumbs_taxonomy_term_page($str_tids, $callback, $file, $fil
  *   An array of taxonomy terms to use (potentially) to construct the breadcrumb.
  */
 function _custom_breadcrumbs_taxonomy_set_breadcrumb($tid, $vid = NULL, $is_term_page = FALSE, $objs = array(), $terms = array()) {
+  unset($_SESSION['custom_breadcrumbs_taxonomy_set']);
   if (variable_get('custom_breadcrumbs_taxonomy_use_hierarchy', TRUE) && (!custom_breadcrumbs_exclude_path())) {
     $breadcrumb = custom_breadcrumbs_taxonomy_generate_breadcrumb($tid, $vid, $is_term_page, $objs);
     if ($is_term_page) {
@@ -68,6 +68,8 @@ function _custom_breadcrumbs_taxonomy_set_breadcrumb($tid, $vid = NULL, $is_term
       $breadcrumb[] = check_plain($objs['node']->title);
     }
     drupal_set_breadcrumb($breadcrumb);
+    custom_breadcrumbs_taxonomy_set_session();
+
     // Optionally save the unique breadcrumb id of the last set breadcrumb.
     custom_breadcrumbs_unique_breadcrumb_id('taxonomy');
   }
@@ -81,7 +83,9 @@ function _custom_breadcrumbs_taxonomy_set_breadcrumb($tid, $vid = NULL, $is_term
         $breadcrumbs = custom_breadcrumbs_load_breadcrumbs('custom_breadcrumbs_taxonomy', 'custom_breadcrumbs_taxonomy_term', array('tid' => $term->tid), $languages);
         $objs['taxonomy'] = $term;
         if ($breadcrumb = custom_breadcrumbs_select_breadcrumb($breadcrumbs, $objs)) {
-          custom_breadcrumbs_set_breadcrumb($breadcrumb, $objs);
+          if (custom_breadcrumbs_set_breadcrumb($breadcrumb, $objs)) {
+            custom_breadcrumbs_taxonomy_set_session();
+          }
           _custom_breadcrumbs_taxonomy_recent_term($term->tid);
           return;
         }
@@ -98,7 +102,9 @@ function _custom_breadcrumbs_taxonomy_set_breadcrumb($tid, $vid = NULL, $is_term
       $breadcrumbs = custom_breadcrumbs_load_breadcrumbs('custom_breadcrumbs_taxonomy', 'custom_breadcrumbs_taxonomy_vocabulary', array('vid' => $vid), $languages);
       $objs['taxonomy'] = $term;
       if ($breadcrumb = custom_breadcrumbs_select_breadcrumb($breadcrumbs, $objs)) {
-        custom_breadcrumbs_set_breadcrumb($breadcrumb, $objs);
+        if (custom_breadcrumbs_set_breadcrumb($breadcrumb, $objs)) {
+          custom_breadcrumbs_taxonomy_set_session();
+        }
         return;
       }
     }
@@ -152,11 +158,15 @@ function custom_breadcrumbs_taxonomy_node_get_recent_term($node) {
  *   selected taxonomy term id, retrieved from the session variable.
  */
 function _custom_breadcrumbs_taxonomy_recent_term($tid = NULL) {
-  if (!is_null($tid)) {
-    $_SESSION['custom_breadcrumbs_previous_term'] = $tid;
-  }
-  elseif (isset($_SESSION['custom_breadcrumbs_previous_term'])) {
-    return $_SESSION['custom_breadcrumbs_previous_term'];
+  global $user;
+  if (variable_get('custom_breadcrumbs_taxonomy_session', FALSE) &&
+      !(($user->uid == 0) && variable_get('custom_breadcrumbs_taxonomy_no_anon_sessions', FALSE))) {
+    if (!is_null($tid)) {
+      $_SESSION['custom_breadcrumbs_previous_term'] = $tid;
+    }
+    elseif (isset($_SESSION['custom_breadcrumbs_previous_term'])) {
+      return $_SESSION['custom_breadcrumbs_previous_term'];
+    }
   }
 }
 
@@ -244,19 +254,22 @@ function custom_breadcrumbs_taxonomy_generate_breadcrumb($tid, $vid = NULL, $is_
     $types = custom_breadcrumbs_token_types($objs);
   }
   $trail = array();
-  $trail = _custom_breadcrumbs_taxonomy_home_trail();
+    
+  if (!in_array($vocabid, variable_get('custom_breadcrumbs_taxonomy_excluded_vocabs', array()))) {
+    $trail = _custom_breadcrumbs_taxonomy_home_trail();
 
-  if (!is_null($vocabid)) {
-    $vocab_trail = _custom_breadcrumbs_taxonomy_vocabulary_trail($vocabid, $is_term_page, $objs, $types, count($trail));
-    $trail = array_merge($trail, $vocab_trail);
-  }
+    if (!is_null($vocabid)) {
+      $vocab_trail = _custom_breadcrumbs_taxonomy_vocabulary_trail($vocabid, $is_term_page, $objs, $types, count($trail));
+      $trail = array_merge($trail, $vocab_trail);
+    }
 
-  if (!is_null($tid)) {
-    $term_trail = _custom_breadcrumbs_taxonomy_term_trail($tid, $is_term_page, $objs, $types, count($trail));
-    $trail = array_merge($trail, $term_trail);
-    // Optionally remove the current TERM from end of breadcrumb trail.
-    if ((!variable_get('custom_breadcrumbs_taxonomy_show_current_term', TRUE) || ($is_term_page && !variable_get('custom_breadcrumbs_taxonomy_show_current_term_term', FALSE))) && (count($trail) > 1)) {
-      array_pop($trail);
+    if (!is_null($tid)) {
+      $term_trail = _custom_breadcrumbs_taxonomy_term_trail($tid, $is_term_page, $objs, $types, count($trail));
+      $trail = array_merge($trail, $term_trail);
+      // Optionally remove the current TERM from end of breadcrumb trail.
+      if ((!variable_get('custom_breadcrumbs_taxonomy_show_current_term', TRUE) || ($is_term_page && !variable_get('custom_breadcrumbs_taxonomy_show_current_term_term', FALSE))) && (count($trail) > 1)) {
+        array_pop($trail);
+      }
     }
   }
   return $trail;
@@ -388,4 +401,14 @@ function _custom_breadcrumbs_taxonomy_term_trail($tid, $is_term_page = FALSE, $o
     ++$part;
   }
   return $trail;
+}
+
+/**
+ * Optionally, set a session variable to indicate that a custom breadcrumbs taxonomy breadcrumb has been set.
+ */
+function custom_breadcrumbs_taxonomy_set_session() {
+  global $user;
+  if (variable_get('custom_breadcrumbs_taxonomy_session', FALSE) && !(($user->uid==0) && variable_get('custom_breadcrumbs_taxonomy_no_anon_sessions', TRUE))) {
+    $_SESSION['custom_breadcrumbs_taxonomy_set'] = TRUE;
+  }
 }

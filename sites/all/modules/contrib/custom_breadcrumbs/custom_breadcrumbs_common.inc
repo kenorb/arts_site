@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbs_common.inc,v 1.1.2.9 2010/05/03 22:49:15 mgn Exp $
 
 /**
  * @file

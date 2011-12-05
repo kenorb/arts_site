@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbs_paths.module,v 1.1.2.26 2010/12/30 18:36:25 mgn Exp $
 
 /**
  * @file
@@ -185,8 +184,8 @@ function _custom_breadcrumbs_paths_get_breadcrumbs($matchpath = FALSE, $path = N
     $param = array();
     if (!$matchpath) {
       // Check for path prefix and strip it out if its found.
-      $prefix = $language->language .'/';
-      $path = is_null($path) ? str_replace($prefix, '', $_REQUEST['q']) : $path;
+      $prefix = $language->prefix . '\/';
+      $path = is_null($path) ? preg_replace('/^' . $prefix . '/', '', $_REQUEST['q']) : $path;
       $param = array('specific_path' => $path);
     }
     $breadcrumbs = custom_breadcrumbs_load_breadcrumbs('custom_breadcrumbs_paths', NULL, $param, $languages);

@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbsapi.module,v 1.1.2.9 2010/10/22 15:55:33 mgn Exp $
 /**
  * @file
  * Provide custom breadcrumbs for module pages.
@@ -160,7 +159,7 @@ function custom_breadcrumbsapi_form(&$form_state, $type) {
     $form['#module'] = 'custom_breadcrumbsapi';
     $form['#infokey'] = 'module';
     $form += custom_breadcrumbs_common_form_elements($bid, $breadcrumb);
-    $form['visibility_php']['#description'] = t('Determine whether this breadcrumb should be displayed by using a PHP snippet to return TRUE or FALSE. For module pages in the theme registry, you will have access to the %var array. Consult the individual template files for variable names that are used as the arguments of this array.', array('%var' => '$variables'));
+    $form['visibility_php']['#description'] = t('Determine whether this breadcrumb should be displayed by using a PHP snippet to return TRUE or FALSE. For module pages in the theme registry, you will have access to the %var array. Consult the individual template files for variable names that are used as the arguments of this array.  Do not use opening and closing php tags.', array('%var' => '$variables'));
     $form['#submit'][] = 'custom_breadcrumbs_form_submit';
     $form['#validate'][] = 'custom_breadcrumbs_form_validate';
   }

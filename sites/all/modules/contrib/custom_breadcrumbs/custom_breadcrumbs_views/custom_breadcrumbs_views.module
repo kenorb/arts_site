@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbs_views.module,v 1.1.2.21 2010/05/03 22:49:15 mgn Exp $
 /**
  * @file
  * Provide custom breadcrumbs for views pages.
@@ -162,7 +161,7 @@ function custom_breadcrumbs_views_form(&$form_state, $type) {
   $form['#module'] = 'custom_breadcrumbs_views';
   $form['#infokey'] = 'views';
   $form += custom_breadcrumbs_common_form_elements($bid, $breadcrumb);
-  $form['visibility_php']['#description'] = t('Determine whether this breadcrumb should be displayed by using a PHP snippet to return TRUE or FALSE.');
+  $form['visibility_php']['#description'] = t('Determine whether this breadcrumb should be displayed by using a PHP snippet to return TRUE or FALSE. Do not use opening and closing php tags.');
   $form['#submit'][] = 'custom_breadcrumbs_form_submit';
   $form['#validate'][] = 'custom_breadcrumbs_form_validate';
 

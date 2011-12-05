@@ -1,5 +1,4 @@
 <?php
-// $Id: custom_breadcrumbs_panels.module,v 1.1.2.9 2010/12/30 18:36:25 mgn Exp $
 /**
  * @file
  * Provide custom breadcrumbs for panels pages.
@@ -102,9 +101,49 @@ function custom_breadcrumbs_panels_nodeapi($node, $op, $teaser, $page) {
 /**
  * Implements hook_ctools_render_alter().
  */
-function custom_breadcrumbs_panels_ctools_render_alter($info, $page, $args, $contexts, $task, $subtask) {
+function custom_breadcrumbs_panels_ctools_render_alter($info, $page, $args, $contexts, $task, $subtask, $handler) {
   // Don't really do anything with the panel. This is just a pretense to insert a breadcrumb.
   static $module_weights = array();
+
+  if ($page) {
+    global $language;
+    $languages = array('language' => $language->language, 'all' => '');
+    // Check to see if the panel ID matches any custom_breadcrumb panel_id.
+    // First, try to find a match on panels variant id.
+    $id = $handler->name;
+    $breadcrumbs = custom_breadcrumbs_load_breadcrumbs('custom_breadcrumbs_panels', NULL, array('panel_id' => $id), $languages);
+
+    // If nothing matched, try matching on panels page id.
+    if (empty($breadcrumbs)) {
+      $id = $handler->task;
+      $breadcrumbs = custom_breadcrumbs_load_breadcrumbs('custom_breadcrumbs_panels', NULL, array('panel_id' => $id), $languages);
+    }
+    if (!empty($breadcrumbs)) {
+      if ($breadcrumb = custom_breadcrumbs_select_breadcrumb($breadcrumbs, array('panel' => $info))) {
+        $objs = array('panel' => $info);
+        foreach ($contexts as $context) {
+          if ($context->type == 'node')  {
+            $objs['node'] = $context->data;
+          }
+        }
+        custom_breadcrumbs_set_breadcrumb($breadcrumb, $objs);
+        // Stop after a match has been found.
+        return;
+      }
+    }
+  }
+
+  // Is this a taxonomy term template?
+  if (isset($task['admin path']) && ($task['admin path'] == "taxonomy/term/%term") && module_exists('custom_breadcrumbs_taxonomy') && variable_get('custom_breadcrumbs_taxonomy_panels', FALSE)) {
+     module_load_include('inc', 'custom_breadcrumbs_taxonomy');
+     foreach ($contexts as $context) {
+      if (isset ($context->data->tid)) {
+        $terms = array($context->data->tid => $context->data);
+        _custom_breadcrumbs_taxonomy_set_breadcrumb($context->data->tid, $context->data->vid, TRUE, array(), $terms);
+        return;
+      }
+    }
+  }
 
   // Is this a node template?
   if (isset($task['admin path']) && ($task['admin path'] == "node/%node")) {
@@ -127,34 +166,9 @@ function custom_breadcrumbs_panels_ctools_render_alter($info, $page, $args, $con
     }
   }
 
-  // Is this a taxonomy term template? 
-  if (isset($task['admin path']) && ($task['admin path'] == "taxonomy/term/%term") && module_exists('custom_breadcrumbs_taxonomy') && variable_get('custom_breadcrumbs_taxonomy_panels', FALSE)) {
-     module_load_include('inc', 'custom_breadcrumbs_taxonomy');
-     foreach ($contexts as $context) {
-      if (isset ($context->data->tid)) {
-        $terms = array($context->data->tid => $context->data);
-        _custom_breadcrumbs_taxonomy_set_breadcrumb($context->data->tid, $context->data->vid, TRUE, array(), $terms);
-        return;
-      }
-    }
-  }
-
-  if ($page) {
-    global $language;
-    $languages = array('language' => $language->language, 'all' => '');
-    // Check to see if the panel ID matches any custom_breadcrumb panel_id.
-    $id = isset($subtask['name']) ? 'page-' . $subtask['name'] : $task['name'];
-    $breadcrumbs = custom_breadcrumbs_load_breadcrumbs('custom_breadcrumbs_panels', NULL, array('panel_id' => $id), $languages);
-    if (!empty($breadcrumbs)) {
-      if ($breadcrumb = custom_breadcrumbs_select_breadcrumb($breadcrumbs, array('panel' => $info))) {
-        custom_breadcrumbs_set_breadcrumb($breadcrumb, array('panel' => $info));
-        return;
-      }
-    }
-    if (variable_get('custom_breadcrumbs_set_menu_breadcrumb', FALSE)) {
-      // If a panels breadcrumb has not been defined for this panel, then use the default menu structure.
-      custom_breadcrumbs_set_menu_breadcrumb();
-    }
+  if (variable_get('custom_breadcrumbs_set_menu_breadcrumb', FALSE)) {
+    // If a panels breadcrumb has not been defined for this panel, then use the default menu structure.
+    custom_breadcrumbs_set_menu_breadcrumb();
   }
 }
 
@@ -205,14 +219,29 @@ function custom_breadcrumbs_panels_form(&$form_state, $type) {
   $pages = array('operations' => array());
   page_manager_get_pages($tasks, $pages);
   foreach ($pages['rows'] as $id => $info) {
-    $options[$id] = $id;
+    // Build optgroups for pages with multiple variants. Show admin titles for
+    // pages & variants.
+    $task = page_manager_get_page_cache($id);
+    $title = decode_entities($task->subtask['admin title']);
+    if (count($task->handlers) > 1) {
+      $options[$title] = array($id => t('!title (All variants)', array('!title' => $title)));
+      foreach ($task->handlers as $handler) {
+        $options[$title][$handler->name] = decode_entities($handler->conf['title']);
+      }
+    }
+    else {
+      $handler = reset($task->handlers);
+      // The ID stored must be the ID of the variant, but we use the page admin
+      // title since this is often more helpful when there's only one variant.
+      $options[$handler->name] = $title;
+    }
   }
   $form['panel_id'] = array(
     '#type'          => 'select',
-    '#title'         => t('Custom Panel Page Id'),
+    '#title'         => t('Custom Panel Page'),
     '#required'      => TRUE,
     '#options'       => $options,
-    '#description'   => t('The Panel that this custom breadcrumb trail will apply to.'),
+    '#description'   => t('The Panel variant (or page) that this custom breadcrumb trail will apply to. If you want to apply the custom breadcrumb trail to all variants of a Panel page, choose the \'All variants\' option for that page.'),
     '#default_value' => isset($breadcrumb->panel_id) ? $breadcrumb->panel_id : NULL,
     '#weight'        => -10,
   );
@@ -220,7 +249,7 @@ function custom_breadcrumbs_panels_form(&$form_state, $type) {
   $form['#module'] = 'custom_breadcrumbs_panels';
   $form['#infokey'] = 'panels';
   $form += custom_breadcrumbs_common_form_elements($bid, $breadcrumb);
-  $form['visibility_php']['#description'] = t('Determine whether this breadcrumb should be displayed by using a snippet of PHP to return TRUE or FALSE.');
+  $form['visibility_php']['#description'] = t('Determine whether this breadcrumb should be displayed by using a snippet of PHP to return TRUE or FALSE. Do not use opening and closing php tags.');
   $form['#submit'][] = 'custom_breadcrumbs_form_submit';
   $form['#validate'][] = 'custom_breadcrumbs_form_validate';
 
