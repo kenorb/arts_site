@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp_views_handler_field_rsvp_invite_hash_link.inc,v 1.1.2.1 2009/06/01 23:20:31 ulf1 Exp $
 
 class rsvp_views_handler_field_rsvp_invite_hash_link extends views_handler_field {
   

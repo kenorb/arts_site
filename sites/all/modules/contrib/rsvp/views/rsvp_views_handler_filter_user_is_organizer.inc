@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp_views_handler_filter_user_is_organizer.inc,v 1.1.2.1 2009/03/24 00:12:32 ulf1 Exp $
 
 
 /**

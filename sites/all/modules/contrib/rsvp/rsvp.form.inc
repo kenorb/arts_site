@@ -1,6 +1,5 @@
 <?php
 
-// $Id: rsvp.form.inc,v 1.3.2.7 2009/11/05 22:36:47 ulf1 Exp $
 
 /**
  * @module rsvp_form

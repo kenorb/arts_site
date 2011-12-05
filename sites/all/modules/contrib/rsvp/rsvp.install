@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp.install,v 1.10.2.5 2009/11/05 22:36:47 ulf1 Exp $ 
 
 function rsvp_install() {
   drupal_install_schema('rsvp');

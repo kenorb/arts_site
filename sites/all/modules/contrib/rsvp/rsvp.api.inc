@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp.api.inc,v 1.2.2.9 2010/05/25 00:11:23 ulf1 Exp $
 
 /**
  * @module rsvp_api

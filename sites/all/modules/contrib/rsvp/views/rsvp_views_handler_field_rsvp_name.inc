@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp_views_handler_field_rsvp_name.inc,v 1.1.2.2 2009/03/01 22:26:13 ulf1 Exp $
 
 
 /**

@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp-invitation-page.tpl.php,v 1.3.2.3 2009/05/26 18:37:09 ulf1 Exp $
 
 /**
  * @file rsvp-invitation-page.tpl.php

@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp.views_default.inc,v 1.1.2.2 2009/06/01 23:20:31 ulf1 Exp $
 
 /**
  * Implementation of hook_default_view_views().

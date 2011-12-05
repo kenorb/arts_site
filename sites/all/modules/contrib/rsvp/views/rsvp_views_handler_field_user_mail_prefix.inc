@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp_views_handler_field_user_mail_prefix.inc,v 1.1.2.1 2009/12/31 17:38:39 ulf1 Exp $
 /**
  * Field handler to provide acess control for the email field
  */

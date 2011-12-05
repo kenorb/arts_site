@@ -1,4 +1,3 @@
-// $Id: rsvp_edit.js,v 1.1.2.1 2009/11/05 22:36:47 ulf1 Exp $
 if (Drupal.jsEnabled) {
   // Define the selectors of the fields that needs hiding/showing
   var reply_start_date = new Array("#edit-reply-startdate-wrapper");

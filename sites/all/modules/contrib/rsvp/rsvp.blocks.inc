@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp.blocks.inc,v 1.2.2.6 2009/11/17 05:52:24 ulf1 Exp $
 
 /**
  * @module rsvp_blocks

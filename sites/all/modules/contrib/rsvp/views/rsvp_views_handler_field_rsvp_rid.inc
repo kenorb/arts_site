@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp_views_handler_field_rsvp_rid.inc,v 1.1.2.1 2009/06/01 23:20:32 ulf1 Exp $
 
 class rsvp_views_handler_field_rsvp_rid extends views_handler_field {
 

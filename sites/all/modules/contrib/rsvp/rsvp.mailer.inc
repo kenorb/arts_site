@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp.mailer.inc,v 1.1.2.1 2009/02/27 21:03:54 ulf1 Exp $
 
 /**
  * @module rsvp_mailer

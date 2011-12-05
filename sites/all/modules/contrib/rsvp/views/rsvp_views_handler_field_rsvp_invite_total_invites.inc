@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp_views_handler_field_rsvp_invite_total_invites.inc,v 1.1.2.1 2009/03/07 21:34:35 ulf1 Exp $
 
 /**
  * Handler for total invites field.

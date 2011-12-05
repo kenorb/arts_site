@@ -1,5 +1,4 @@
 <?php
-// $Id: rsvp-guestlist-block.tpl.php,v 1.2.2.3 2009/11/05 22:36:47 ulf1 Exp $
 
 /**
  * @file rsvp-guestlist-block.tpl.php
