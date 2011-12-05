@@ -140,17 +140,19 @@ h5 {
     font-size: 17px;
 }
 
-.form-item label.option {
+.form-item label.option,
+.field-items {
 	font-size: 16px !important;
 	border: 0;
 	padding: 0px 0 4px 0px;
 	vertical-align: middle;
 }
 
-.form-item label {
+.form-item label,
+.field-label {
   clear: both;
   color: #000;
-  font: 300 160% myriad-pro,Arial,Sans-Serif;
+  font: 300 160% myriad-pro,Arial,Sans-Serif !important;
 	border-bottom: 1px dotted #aaa;
   padding-bottom: 4px;
 	margin-bottom: 10px;
@@ -1705,16 +1707,9 @@ div.admin-panel .body {
     text-transform: lowercase;
     color: #239;
   }
-  
-  #forum .links a:hover {
-    background: #336699;
-    color: #fff;
-    font-weight: normal;
-  }
-  
 
   #forum tr.index-0 td {
-    height: 48px;
+    height: 44px;
   }
   
   #forum td.forum .name a,
@@ -1722,10 +1717,11 @@ div.admin-panel .body {
     padding: 2px 5px;
     border-radius: 5px;
     margin-top: 2px;
+    font-size: 22px;
   }
   
   #forum div.description {
-    font-size: 0.7em;
+    font-size: 13px;
     margin: 0px 0px 0px 10px;
     color: #333;
     font-style: italic;
@@ -1738,11 +1734,6 @@ div.admin-panel .body {
     background-color: #ddd !important;
   }
   
-
-  #forum td.forum .name a:hover,
-  #forum td.container .name a:hover {
-    text-decoration: underline;
-  }
   
   #forum tr.even,
   #forum tr.odd {
@@ -1757,7 +1748,7 @@ div.admin-panel .body {
   
   #forum td.last-reply,
   #forum td.created {
-    font-size: 0.8em !important;
+    font-size: 12px !important;
     width: 180px;
   }
   
@@ -2999,4 +2990,65 @@ a.vud-link-down:hover {
   text-shadow: 1px 1px 1px #444;
   border-radius: 5px;
   background-color: #0292cc !important;
+}
+
+.vud-widget-upanddown .clear-block:after {
+  display: block;
+}
+
+.field-type-filefield a:hover {
+  background: none !important;
+}
+
+.field-type-filefield .field-label {
+  display: none;
+}
+
+.field-type-filefield .field-items {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#signup-form div {
+  text-align: center;
+}
+
+
+.rsvp_form {
+  border: 0;
+  margin: 10px;
+}
+
+.rsvp_form_header {
+  font-weight: normal;
+}
+
+.rsvp_form_header_left {
+  font-size: 23px;
+}
+
+.rsvp_guestlist_answer_block_header {
+  border: 0;
+}
+
+.rsvp_guestlist_answer_block_header_none {
+  background-color: #fff;
+  border-radius: 7px;
+  border: 1px solid #ddd;
+  padding: 10px 10px 3px 10px;
+}
+
+.rsvp_guestlist_answer_block_header_notsend {
+  background-color: #ffa;
+  border: 1px solid #e6e600;
+  border-radius: 7px;
+  padding: 10px 10px 3px 10px;
+}
+
+.rsvp_invitation_message div {
+  border: 0;
+}
+
+.rsvp_invitation_message div b {
+  display: none;
 }
