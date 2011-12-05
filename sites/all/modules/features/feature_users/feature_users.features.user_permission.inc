@@ -22,6 +22,23 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: admin own group forums
+  $permissions['admin own group forums'] = array(
+    'name' => 'admin own group forums',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: administer CAPTCHA settings
+  $permissions['administer CAPTCHA settings'] = array(
+    'name' => 'administer CAPTCHA settings',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
   // Exported permission: administer chat rooms
   $permissions['administer chat rooms'] = array(
     'name' => 'administer chat rooms',
@@ -49,6 +66,14 @@ function feature_users_user_default_permissions() {
   // Exported permission: administer faq order
   $permissions['administer faq order'] = array(
     'name' => 'administer faq order',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: administer forums
+  $permissions['administer forums'] = array(
+    'name' => 'administer forums',
     'roles' => array(
       '0' => 'admin',
     ),
@@ -86,6 +111,25 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: create forum topics
+  $permissions['create forum topics'] = array(
+    'name' => 'create forum topics',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete any forum topic
+  $permissions['delete any forum topic'] = array(
+    'name' => 'delete any forum topic',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
   // Exported permission: delete faq content
   $permissions['delete faq content'] = array(
     'name' => 'delete faq content',
@@ -99,6 +143,24 @@ function feature_users_user_default_permissions() {
     'name' => 'delete own faq content',
     'roles' => array(
       '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: delete own forum topics
+  $permissions['delete own forum topics'] = array(
+    'name' => 'delete own forum topics',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: edit any forum topic
+  $permissions['edit any forum topic'] = array(
+    'name' => 'edit any forum topic',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
     ),
   );
 
@@ -134,9 +196,56 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit own forum topics
+  $permissions['edit own forum topics'] = array(
+    'name' => 'edit own forum topics',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: make forums public
+  $permissions['make forums public'] = array(
+    'name' => 'make forums public',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: rate content
+  $permissions['rate content'] = array(
+    'name' => 'rate content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+    ),
+  );
+
+  // Exported permission: skip CAPTCHA
+  $permissions['skip CAPTCHA'] = array(
+    'name' => 'skip CAPTCHA',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: staff chat desk
   $permissions['staff chat desk'] = array(
     'name' => 'staff chat desk',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: use PHP for fivestar target
+  $permissions['use PHP for fivestar target'] = array(
+    'name' => 'use PHP for fivestar target',
     'roles' => array(
       '0' => 'admin',
     ),
@@ -162,6 +271,429 @@ function feature_users_user_default_permissions() {
       '5' => 'premium buyer',
       '6' => 'premium seller',
       '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions
+  $permissions['view revisions'] = array(
+    'name' => 'view revisions',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any art content
+  $permissions['view revisions of any art content'] = array(
+    'name' => 'view revisions of any art content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any blog content
+  $permissions['view revisions of any blog content'] = array(
+    'name' => 'view revisions of any blog content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any chat content
+  $permissions['view revisions of any chat content'] = array(
+    'name' => 'view revisions of any chat content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any chatroom content
+  $permissions['view revisions of any chatroom content'] = array(
+    'name' => 'view revisions of any chatroom content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any education content
+  $permissions['view revisions of any education content'] = array(
+    'name' => 'view revisions of any education content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any event content
+  $permissions['view revisions of any event content'] = array(
+    'name' => 'view revisions of any event content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any faq content
+  $permissions['view revisions of any faq content'] = array(
+    'name' => 'view revisions of any faq content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any forum content
+  $permissions['view revisions of any forum content'] = array(
+    'name' => 'view revisions of any forum content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any group content
+  $permissions['view revisions of any group content'] = array(
+    'name' => 'view revisions of any group content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any idea content
+  $permissions['view revisions of any idea content'] = array(
+    'name' => 'view revisions of any idea content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any item content
+  $permissions['view revisions of any item content'] = array(
+    'name' => 'view revisions of any item content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any membership content
+  $permissions['view revisions of any membership content'] = array(
+    'name' => 'view revisions of any membership content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any page content
+  $permissions['view revisions of any page content'] = array(
+    'name' => 'view revisions of any page content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any panel content
+  $permissions['view revisions of any panel content'] = array(
+    'name' => 'view revisions of any panel content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any product content
+  $permissions['view revisions of any product content'] = array(
+    'name' => 'view revisions of any product content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any profile content
+  $permissions['view revisions of any profile content'] = array(
+    'name' => 'view revisions of any profile content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of any simplenews content
+  $permissions['view revisions of any simplenews content'] = array(
+    'name' => 'view revisions of any simplenews content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of any story content
+  $permissions['view revisions of any story content'] = array(
+    'name' => 'view revisions of any story content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own art content
+  $permissions['view revisions of own art content'] = array(
+    'name' => 'view revisions of own art content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of own blog content
+  $permissions['view revisions of own blog content'] = array(
+    'name' => 'view revisions of own blog content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own chat content
+  $permissions['view revisions of own chat content'] = array(
+    'name' => 'view revisions of own chat content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of own chatroom content
+  $permissions['view revisions of own chatroom content'] = array(
+    'name' => 'view revisions of own chatroom content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of own education content
+  $permissions['view revisions of own education content'] = array(
+    'name' => 'view revisions of own education content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own event content
+  $permissions['view revisions of own event content'] = array(
+    'name' => 'view revisions of own event content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own faq content
+  $permissions['view revisions of own faq content'] = array(
+    'name' => 'view revisions of own faq content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own forum content
+  $permissions['view revisions of own forum content'] = array(
+    'name' => 'view revisions of own forum content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own group content
+  $permissions['view revisions of own group content'] = array(
+    'name' => 'view revisions of own group content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own idea content
+  $permissions['view revisions of own idea content'] = array(
+    'name' => 'view revisions of own idea content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own item content
+  $permissions['view revisions of own item content'] = array(
+    'name' => 'view revisions of own item content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own membership content
+  $permissions['view revisions of own membership content'] = array(
+    'name' => 'view revisions of own membership content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own page content
+  $permissions['view revisions of own page content'] = array(
+    'name' => 'view revisions of own page content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own panel content
+  $permissions['view revisions of own panel content'] = array(
+    'name' => 'view revisions of own panel content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own product content
+  $permissions['view revisions of own product content'] = array(
+    'name' => 'view revisions of own product content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: view revisions of own profile content
+  $permissions['view revisions of own profile content'] = array(
+    'name' => 'view revisions of own profile content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of own simplenews content
+  $permissions['view revisions of own simplenews content'] = array(
+    'name' => 'view revisions of own simplenews content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
+    ),
+  );
+
+  // Exported permission: view revisions of own story content
+  $permissions['view revisions of own story content'] = array(
+    'name' => 'view revisions of own story content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
     ),
   );
 
