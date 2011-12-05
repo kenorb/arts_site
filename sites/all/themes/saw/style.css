@@ -2936,3 +2936,63 @@ form#views-ui-reorder-displays-button {
 .faq-answer .print-link {
 	display: none;
 }
+
+
+.vud-widget-upanddown .up-active,
+.vud-widget-upanddown .up-inactive,
+.vud-widget-upanddown .up-active:hover,
+.vud-widget-upanddown .up-inactive:hover {
+  background: transparent url('images/vote_up.gif') center center;
+}
+
+
+.vud-widget-upanddown .down-active,
+.vud-widget-upanddown .down-inactive,
+.vud-widget-upanddown .down-active:hover,
+.vud-widget-upanddown .down-inactive:hover {
+  background: transparent url('images/vote_down.gif') center center;
+}
+
+.vud-widget-upanddown .down-active,
+.vud-widget-upanddown .up-active {
+  opacity: 0.08;
+}
+
+.vud-widget-upanddown {
+  width: 70px;
+  clear: both;
+  margin-bottom: 6px !important;
+}
+
+a.vud-link-up:hover,
+a.vud-link-down:hover {
+  background: none !important;
+}
+
+.views-field-vud-node-widget .clear-block {
+  display: inline !important;
+}
+
+.views-field-vud-node-widget .clear-block:after {
+  display: block !important;
+}
+
+.view-Ideas .views-field-title {
+  min-width: 160px;
+}
+
+.down-current-score,
+.up-current-score {
+  float: right;
+  width: 40px;
+  margin: 0 !important;
+  padding-top: 0px !important;
+  font-size: 13px !important;
+  font-weight: bold;
+}
+
+.admin-panel h3 {
+  text-shadow: 1px 1px 1px #444;
+  border-radius: 5px;
+  background-color: #0292cc !important;
+}

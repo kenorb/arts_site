@@ -14,6 +14,12 @@ function saw_users_init ()
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/searchbox.js", "saw_users");
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/profilemenu.js", "saw_users");
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/toolbar.js", "saw_users");
+	
+	
+	global $user;
+	
+	if (arg (0) == 'ideas' && arg (1) == 'list' && !$user -> uid)
+		drupal_set_message ('To vote, please <a href="/user">login</a> or <a href="/user/register">register</a>.', 'warning');
 }
 
 /**
