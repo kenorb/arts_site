@@ -9,6 +9,51 @@ function feature_events_default_fe_block_settings() {
   // saw
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -41,10 +86,100 @@ calendar/*',
     'cache' => '-1',
   );
 
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $export['saw'] = $theme;
 
   // studentart
   $theme = array();
+
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
 
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
@@ -74,6 +209,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'studentart',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
@@ -83,6 +263,51 @@ calendar/*',
   // bluemarine
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'bluemarine',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'bluemarine',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'bluemarine',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -111,6 +336,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'bluemarine',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'bluemarine',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'bluemarine',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
@@ -120,6 +390,51 @@ calendar/*',
   // chameleon
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'chameleon',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'chameleon',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'chameleon',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -148,6 +463,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'chameleon',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'chameleon',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'chameleon',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
@@ -157,6 +517,51 @@ calendar/*',
   // marvin
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'marvin',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'marvin',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'marvin',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -185,6 +590,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'marvin',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'marvin',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'marvin',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
@@ -194,6 +644,51 @@ calendar/*',
   // garland
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -222,6 +717,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
@@ -231,6 +771,51 @@ calendar/*',
   // minnelli
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'minnelli',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'minnelli',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'minnelli',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -259,6 +844,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'minnelli',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'minnelli',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'minnelli',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
@@ -268,6 +898,51 @@ calendar/*',
   // pushbutton
   $theme = array();
 
+  $theme['rsvp-0'] = array(
+    'module' => 'rsvp',
+    'delta' => '0',
+    'theme' => 'pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-1'] = array(
+    'module' => 'rsvp',
+    'delta' => '1',
+    'theme' => 'pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['rsvp-2'] = array(
+    'module' => 'rsvp',
+    'delta' => '2',
+    'theme' => 'pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Featured-featured_events'] = array(
     'module' => 'views',
     'delta' => 'Featured-featured_events',
@@ -296,6 +971,51 @@ calendar/*',
     'visibility' => '1',
     'pages' => 'calendar
 calendar/*',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_1',
+    'theme' => 'pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-block_2',
+    'theme' => 'pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-rsvp_calendar-calendar_block_1'] = array(
+    'module' => 'views',
+    'delta' => 'rsvp_calendar-calendar_block_1',
+    'theme' => 'pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
     'title' => '',
     'cache' => '-1',
   );
