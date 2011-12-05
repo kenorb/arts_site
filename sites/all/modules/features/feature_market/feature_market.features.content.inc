@@ -205,7 +205,7 @@ sell|For Sell',
       'form' => array(
         'fields' => array(
           'name' => array(
-            'collect' => '1',
+            'collect' => '0',
             'default' => '',
             'weight' => '2',
           ),
@@ -215,7 +215,7 @@ sell|For Sell',
             'weight' => '4',
           ),
           'additional' => array(
-            'collect' => '1',
+            'collect' => '0',
             'default' => '',
             'weight' => '6',
           ),
@@ -225,7 +225,7 @@ sell|For Sell',
             'weight' => '8',
           ),
           'province' => array(
-            'collect' => '1',
+            'collect' => '0',
             'default' => '',
             'weight' => '10',
           ),
