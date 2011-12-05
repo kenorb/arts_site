@@ -1529,6 +1529,10 @@ div.admin-panel .body {
   .community-view .views-table {
     margin-bottom: 36px;
   }
+  
+  .community-view .button a:hover {
+    background: none !important;
+  }
 
   .community-view,
   .community-view h2 {
