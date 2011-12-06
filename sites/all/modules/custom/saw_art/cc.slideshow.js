@@ -58,7 +58,7 @@
 		
 		var prepareImage = CC.Fn.bind (this, function (img, frameIndex)
 		{
-			if (frameIndex == null)
+			//if (frameIndex == null)
 				return img;
 				
 			CC.Fn.StripImage (img);

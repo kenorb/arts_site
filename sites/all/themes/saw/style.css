@@ -141,6 +141,11 @@ h5 {
     font-size: 17px;
 }
 
+h1 a:hover,
+h2 a:hover {
+	color: #fff !important;
+}
+
 .form-item label.option,
 .field-items {
 	font-size: 16px !important;
@@ -1954,17 +1959,17 @@ div.admin-panel .body {
 
 
   .view-image-block .imagefield {
-    padding: 2px;
+    padding: 2px !important;
     border: 1px solid #ddd;
-    margin: 3px;
+    margin: 3px !important;
     display: inline-block;
   }
   
   .view-image-block .imagefield:hover {
     border: 1px solid #888;
     background-color: #fff;
-    padding: 3px;
-    margin: 2px;
+    padding: 3px !important;
+    margin: 2px !important;
     border-radius: 3px;
     box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
   }
@@ -2302,6 +2307,14 @@ div.admin-panel .body {
 		width: 100%;
 	}
 	
+	.user-arts-slideshow a {
+		padding: 0 !important;
+	}
+	
+	.user-arts-slideshow a:hover {
+		background: none !important;
+	}
+	
 	.user-arts-slideshow .big-area-container {
 		width: 210px;
 	}
@@ -2634,6 +2647,7 @@ div.admin-panel .body {
 	font-size: 16px;
 	border-bottom: 0;
 	margin-bottom: 0;
+	white-space: nowrap;
 }
 
 #edit-vote-wrapper .fivestar-summary {
@@ -3070,7 +3084,11 @@ span.cke_skin_kama {
 	border: 0 !important;
 }
 
-#cke_top_edit-comment {
-	
+#block-views-user_arts-user_arts_block h3 {
+	font-size: 36px;
 }
 
+.views-field-field-image-fid a:hover {
+	background: none !important;
+}
+}
