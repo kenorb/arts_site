@@ -98,7 +98,8 @@ input[type=radio] {
 }
 
 body.cke_show_borders {
-  background: #fff;				
+  background: #fff;
+	padding: 7px !important;
 }
 
 table {
@@ -3052,3 +3053,24 @@ a.vud-link-down:hover {
 .rsvp_invitation_message div b {
   display: none;
 }
+
+
+#cke_contents_edit-comment,
+#cke_contents_edit-comment iframe {
+	height: 80px !important;
+}
+
+#cke_bottom_edit-comment {
+	display: none;
+}
+
+span.cke_skin_kama {
+	padding: 0 !important;
+	margin-bottom: 10px !important;
+	border: 0 !important;
+}
+
+#cke_top_edit-comment {
+	
+}
+
