@@ -1262,7 +1262,9 @@ div.admin-panel .body {
   
   .view-marketplace .image img {
     border-radius: 4px;
-  }
+    max-height: 100px;
+    max-width: 100px;
+	}
   
   .view-marketplace .left-column,
   .view-marketplace .middle-column,
