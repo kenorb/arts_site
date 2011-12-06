@@ -22,6 +22,25 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: access content
+  $permissions['access content'] = array(
+    'name' => 'access content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: access user profiles
+  $permissions['access user profiles'] = array(
+    'name' => 'access user profiles',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: admin own group forums
   $permissions['admin own group forums'] = array(
     'name' => 'admin own group forums',
@@ -50,6 +69,14 @@ function feature_users_user_default_permissions() {
   // Exported permission: administer chats
   $permissions['administer chats'] = array(
     'name' => 'administer chats',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: administer custom breadcrumbs
+  $permissions['administer custom breadcrumbs'] = array(
+    'name' => 'administer custom breadcrumbs',
     'roles' => array(
       '0' => 'admin',
     ),
@@ -254,6 +281,14 @@ function feature_users_user_default_permissions() {
   // Exported permission: use chat desk
   $permissions['use chat desk'] = array(
     'name' => 'use chat desk',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: use php in custom breadcrumbs
+  $permissions['use php in custom breadcrumbs'] = array(
+    'name' => 'use php in custom breadcrumbs',
     'roles' => array(
       '0' => 'admin',
     ),
