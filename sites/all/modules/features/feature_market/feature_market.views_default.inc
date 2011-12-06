@@ -224,7 +224,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search';
-  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   /* Filter: Location: Name */
   $handler->display->display_options['filters']['name']['id'] = 'name';
