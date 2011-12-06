@@ -155,7 +155,8 @@ h2 a:hover {
 }
 
 .form-item label,
-.field-label {
+.field-label,
+.views-exposed-widget label {
   clear: both;
   color: #000;
   font: 300 160% myriad-pro,Arial,Sans-Serif !important;
@@ -163,6 +164,30 @@ h2 a:hover {
   padding-bottom: 4px;
 	margin-bottom: 10px;
 	display: block;
+}
+
+.views-exposed-widget label {
+	display: inline;
+	border-bottom: none;
+	font-size: 17px !important;
+}
+
+.views-exposed-widget .form-item,
+.views-exposed-widget .views-widget {
+	display: inline;
+}
+
+.views-exposed-form .views-exposed-widget {
+	display: inline;
+	float: none;
+}
+
+.views-exposed-form {
+	padding: 5px 10px 0px 10px;
+	margin: 5px 0px 10px 0px;
+	border: 1px solid #e4e4e4;
+	border-radius: 6px;
+	background-color: #eee;
 }
 
 
@@ -1150,7 +1175,12 @@ div.admin-panel .body {
 
   .view-marketplace {
     border-radius: 6px;
+		margin-bottom: 25px;
   }
+	
+	.view-marketplace p {
+		margin: 10px 10px 20px 10px;
+	}
 	
 	.view-marketplace .view-filters {
 		margin-bottom: 30px;
@@ -1699,9 +1729,7 @@ div.admin-panel .body {
   .views-exposed-widget input:focus,
   .views-exposed-widget select:hover,
   .views-exposed-widget select:focus {
-	background: #336699;
-	color: #fff;
-	cursor: pointer;
+		cursor: pointer;
   }
   
   
@@ -3091,4 +3119,14 @@ span.cke_skin_kama {
 .views-field-field-image-fid a:hover {
 	background: none !important;
 }
+
+.marketplace-page-view h2 {
+	border-bottom: 1px dotted #aaa;
+	clear: both;
+}
+
+.views-exposed-form {
+	background: #eaeff3 url('images/table-th-background.png') repeat-x;
+	box-shadow: 1px 1px 3px #fff;
+	border: 1px solid #ccc;
 }
