@@ -238,6 +238,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
   $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
   $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
+	$handler->display->display_options['filters']['name']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['name']['case'] = 0;
   /* Filter: User: Roles */
   $handler->display->display_options['filters']['rid']['id'] = 'rid';
