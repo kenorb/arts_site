@@ -3,14 +3,22 @@
 	$trail				= end (menu_get_active_trail ());
 	
 	$viewNameOrig	= $view -> query -> pager -> display -> display_title;
-	$viewName			= strtolower ($viewNameOrig);
 	
+	$viewName			= strtolower ($viewNameOrig);
 	$subdomain 		= '';
 	
 	$subdomainUserId	= null;//subdomain_get_sid ($subdomain);
+	
 ?>
 
-<h1 class="title"><?php if (substr ($viewName, 0, 7) != 'default'): ?> <?php echo $viewNameOrig; ?> <?php endif; ?><?php if ($subdomain != ''): ?> <a href="/user/<?php echo $subdomainUserId; ?>"><?php echo $subdomain . "'s"; ?></a> <?php endif;?> arts</h1>
+<h1 class="title">
+<?php if ($viewNameOrig == 'User Profile Arts'): ?>
+	<?php global $user_content_profile; ?>
+	<a href="/users/<?php echo $user_content_profile -> name; ?>"><?php echo $user_content_profile -> name; ?></a>'s arts
+<?php else: ?>
+	<?php if (substr ($viewName, 0, 7) != 'default'): echo $viewNameOrig; ?><?php endif;?> arts
+<?php endif; ?>
+</h1>
 
 <?php if ($viewName != 'user profile arts'): ?>
 <div class="arts-filters">

@@ -48,17 +48,21 @@ a, a:visited {
 }
 
 #sidebar-left a,
-#sidebar-left a:visited,
 #sidebar-right a,
-#sidebar-right a:visited,
 .node a,
 .node a:visited,
 #main table a,
-#main table a:visited {
+#main .panel-flexible a {
 	padding: 2px 4px;
 	border-radius: 4px;
 	text-shadow: 1px 1px 1px #fff;
 }
+
+#sidebar-left a:visited,
+#sidebar-right a:visited,
+#main table a:visited {
+}
+
 
 #sidebar-left a.active,
 #sidebar-right a.active,
@@ -70,10 +74,11 @@ a, a:visited {
 #sidebar-left a:hover,
 #sidebar-right a:hover,
 #main .node a:hover,
+#main .panel-flexible a:hover,
 #main table a:hover {
 	background-color: #0292CC;
 	text-shadow: 1px 1px 1px #23d;
-	color: #fff !important;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -687,7 +692,11 @@ input[type=submit],
 }
 
 .comment .reply a {
-	padding: 10px 15px;
+	padding: 10px 15px !important;
+}
+
+.comment .reply a:hover {
+	background-color: transparent !important;
 }
 
 .flag-action {
@@ -854,10 +863,7 @@ li.leaf {
 ** additional rules /with only the differing properties!/ to .parent .class.
 ** See .comment .title for an example.
 */
-#content .title, #content .title a, #content .title a:hover, #content .title a:visited,
- #content .title a:link, #content .title a:active {
-  color: #333;
-}
+
 
 .content h1 {
   font-size: 1.9em;
@@ -1186,6 +1192,10 @@ div.admin-panel .body {
 		margin-bottom: 30px;
 	}
   
+	.user-profile-nodes-view h1 {
+		padding-left: 4px;
+	}
+	
   .user-profile-nodes-view .view-marketplace .image {
     min-height: 50px;
     min-width: 50px;
@@ -1641,7 +1651,7 @@ div.admin-panel .body {
 
   .recent-activity-row {
     padding: 2px 0px;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
     
   }
   
@@ -1654,16 +1664,17 @@ div.admin-panel .body {
   
   .recent-activity-row .time-elapsed {
     font-size: 11px;
-    border-bottom: 1px solid #eee;
     text-align: left;
   }
 
   .recent-activity-row .message {
-    font-size: 13px;
-    width: 140px;
+    font-size: 11px;
     text-align: left;
-    
   }
+	
+	.recent-activity-row .message a {
+		padding: 2px 1px !important;
+	}
 
 
 
@@ -2039,21 +2050,30 @@ div.admin-panel .body {
   .arts-rows {
     margin-top: 10px;
   }
+	
+	.arts-rows i {
+		margin: 20px;
+		display: block;
+	}
   
   .arts-row {
     padding: 2px;
     border: 1px solid #ddd;
     float: left;
     margin: 6px;
-    
+		border-radius: 5px;
   }
+	
+	.arts-row img {
+		border-radius: 3px;
+	}
   
   .arts-row:hover {
     border: 1px solid #888;
     background-color: #fff;
     padding: 6px;
     margin: 2px;
-    border-radius: 5px;
+    border-radius: 3px;
     box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
   }
   
@@ -2078,12 +2098,13 @@ div.admin-panel .body {
   
   .arts-row a {
     border: 0px !important;
-    color: #05a !important;
 		text-shadow: none !important;
+		padding: 0px !important;
+		border-radius: 5px;
   }
   
   .arts-row a:hover {
-    text-decoration: underline;
+		background: none !important;
   }
   
   .arts-row .details td.title,
@@ -2268,8 +2289,29 @@ div.admin-panel .body {
 
   .profile-statistics {
     width: 100%;
-    font-size: 1.2em;
+    font-size: 14px;
   }
+	
+	.profile-statistics .separator {
+		border-bottom: 1px dotted #aaa !important;
+	}
+	
+	.profile-statistics td.value {
+		font-weight: bold;
+		text-align: right;
+		width: 50px;
+	}
+	
+	.profile-statistics span.image {
+		width: 30px;
+		display: block;
+		float: left;
+	}
+	
+	.profile-statistics img {
+		margin-right: 10px;
+		vertical-align: -13%;
+	}
     
   .pane-content .block .title h3 {
     padding: 0 !important;
@@ -2485,13 +2527,34 @@ div.admin-panel .body {
 
   }
   
-  .author-pane .author-privatemsg a,
-  .author-pane .author-pane-ur-link-item a,
-  .author-pane .author-pane-contact a {
-  	padding-left: 30px;
+  .author-pane div.author-privatemsg a,
+  .author-pane div.author-pane-ur-link-item a,
+  .author-pane div.author-pane-contact a {
+		padding: 0px 0px 0px 30px;
+		margin: 0;
   	vertical-align: middle;
   }
+	
+  .author-pane .author-pane-contact .author-contact a,
+	.author-pane .author-pane-contact .author-privatemsg a,
+	.author-pane .author-pane-contact .author-user-relationship a	{
+		padding: 0px 0px 0px 30px !important;
+	}
+
+  .author-pane .author-privatemsg a:hover,
+  .author-pane .author-pane-ur-link-item a:hover,
+  .author-pane .author-pane-contact .author-contact a:hover,
+	.author-pane .author-pane-contact .author-privatemsg a:hover,
+	.author-pane .author-pane-contact .author-user-relationship a:hover	{
+		text-shadow: none !important;
+		background-color: transparent !important;
+		color: #000 !important;
+	}
   
+	.author-pane .author-pane-contact .author-flag-friend a	{
+		padding: 0px !important;	
+		margin: 0px !important;
+	}
   
   .author-pane .author-pane-line.author-name {
     font-size: 30px;
@@ -3143,4 +3206,80 @@ span.cke_skin_kama {
 
 td.multi-day .inner .view-field a {
 	color: #000 !important;
+}
+
+.view-recent-activity .views-field.views-field-name {
+	width: 0px;
+	white-space: nowrap;
+}
+
+.news-page-view table {
+	width: auto;
+	min-width: 600px;
+}
+
+.pane-user-profile-nodes {
+	padding: 5px 5px 5px 8px;
+}
+
+.pane-user-profile-nodes h1 {
+	
+	font-size: 26px;
+}
+
+.pane-user-profile-nodes .arts-rows {
+	background-color: #FFFFFF;
+	border: 1px solid #AAAAAA;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	margin-top: 0;
+	padding: 2px;
+}
+
+.pane-user-profile-nodes .arts-row {
+	border: 0;
+}
+
+.pane-user-profile-nodes .arts-row:hover {
+	padding: 3px;
+	margin: 5px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	background-color: #eee;
+	
+}
+
+.profile-user-about-info {
+	padding: 12px 5px 5px 8px;
+}
+
+.profile-user-about-info h2 {
+	color: #d5a;
+}
+
+.profile-user-about-text h2 {
+	color: #6b5;
+}
+
+.profile-user-about-info h2,
+.profile-user-about-text h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.profile-user-about-text {
+	padding: 12px 5px 5px 8px;
+}
+
+html.js fieldset.collapsible legend a {
+	padding-left: 18px !important;
+}
+
+.geo abbr {
+	border-bottom: 0;
+	color: #077;
+}
+
+
+.pane-node-comment-form h2 {
+	color: #994;
 }

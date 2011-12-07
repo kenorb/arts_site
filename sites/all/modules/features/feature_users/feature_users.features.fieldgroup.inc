@@ -48,11 +48,16 @@ function feature_users_fieldgroup_default_groups() {
       ),
     ),
     'weight' => '1',
+    'parent' => '',
     'fields' => array(
       '0' => 'field_first_name',
       '1' => 'field_last_name',
       '2' => 'field_gender',
       '3' => 'field_birthday',
+    ),
+    'depth' => 0,
+    'parents' => array(
+      '0' => '',
     ),
   );
 

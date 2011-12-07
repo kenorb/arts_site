@@ -809,7 +809,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['keys_1']['expose']['operator'] = 'keys_1_op';
   $handler->display->display_options['filters']['keys_1']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['keys_1']['expose']['label'] = 'In';
-  $handler->display->display_options['filters']['keys_1']['expose']['use_operator'] = FALSE;
+  $handler->display->display_options['filters']['keys_1']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['keys_1']['expose']['identifier'] = 'in';
   $handler->display->display_options['filters']['keys_1']['expose']['single'] = TRUE;
   /* Filter: Location: Country */
@@ -821,7 +821,7 @@ function feature_market_views_default_views() {
   $handler->display->display_options['filters']['country']['expose']['operator'] = 'country_op';
   $handler->display->display_options['filters']['country']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['country']['expose']['label'] = 'Location: Country';
-  $handler->display->display_options['filters']['country']['expose']['use_operator'] = FALSE;
+  $handler->display->display_options['filters']['country']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['country']['expose']['identifier'] = 'country';
   $handler->display->display_options['path'] = 'user-profile-items';
   $translatables['Marketplace'] = array(

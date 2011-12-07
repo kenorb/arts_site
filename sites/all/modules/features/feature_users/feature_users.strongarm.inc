@@ -353,14 +353,14 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_forum';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['comment_form_location_forum'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_profile';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['comment_form_location_profile'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -374,7 +374,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_forum';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['comment_preview_forum'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -1222,7 +1222,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'form_build_id_forum';
-  $strongarm->value = 'form-9eba3665724ccdd6e280ca0248b1edbb';
+  $strongarm->value = 'form-e51e6684e84f9dbbd91d9248af0aba71';
   $export['form_build_id_forum'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -1254,6 +1254,7 @@ function feature_users_strongarm() {
     0 => '103',
     1 => '107',
     2 => '117',
+    3 => '156',
   );
   $export['forum_containers'] = $strongarm;
 

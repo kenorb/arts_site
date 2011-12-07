@@ -1,5 +1,7 @@
 <div class="user-profile-nodes-view">
 
+<?php
+/*
 <div class="arts-filters">
 	<span class="preface">User:</span>
 	<a href="?feature=artworks"    class="filter <?php if ($_GET ['feature'] == null || $_GET ['feature'] == 'artworks'): ?>active<?php endif; ?>">Artworks</a>
@@ -7,14 +9,19 @@
   <a href="?feature=favourites"  class="filter <?php if ($_GET ['feature'] == 'favourites'): ?>active<?php endif; ?>">Favourites</a>
   <a href="?feature=featured-in" class="filter <?php if ($_GET ['feature'] == 'featured-in'): ?>active<?php endif; ?>">Featured in</a>
 </div>
+*/
+
+$_GET['feature'] = 'artworks';
+?>
 
 <?php global $no_widgets; $no_widgets = true; ?>
 
 	<?php switch (@$_GET ['feature']):
 	
+	
 		default:
 		case 'artworks':
-			print views_embed_view ('Arts', 'user_profile_arts');
+			print views_embed_view ('Arts', 'user_profile_arts', arg (1));
 			break;
 		
 		case 'market':
