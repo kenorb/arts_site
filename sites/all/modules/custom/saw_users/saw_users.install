@@ -152,6 +152,24 @@ EOT;
 	INSERT INTO `actions` (`aid`, `type`, `callback`, `parameters`, `description`) VALUES ('7', 'activity', 'activity_record', 'a:6:{s:18:"comment-pattern-en";s:57:"commented <a class="title" href="/node/[nid]">[title]</a>";s:15:"node-pattern-en";s:57:"commented <a class="title" href="/node/[nid]">[title]</a>";s:30:"node_comment_author-pattern-en";s:57:"commented <a class="title" href="/node/[nid]">[title]</a>";s:19:"everyone-pattern-en";s:57:"commented <a class="title" href="/node/[nid]">[title]</a>";s:14:"activity_types";a:14:{s:4:"blog";s:4:"blog";s:7:"product";s:7:"product";s:3:"art";s:3:"art";s:4:"item";s:4:"item";s:10:"membership";s:10:"membership";s:5:"event";s:5:"event";s:4:"idea";s:4:"idea";s:5:"forum";s:5:"forum";s:5:"panel";s:5:"panel";s:9:"education";s:9:"education";s:5:"group";s:5:"group";s:4:"page";s:4:"page";s:10:"simplenews";s:10:"simplenews";s:5:"story";s:5:"story";}s:3:"aid";s:1:"7";}', 'Record an activity message when: comment insert types Blog entry, Product, Art, Item, Membership, Event, Idea, Forum topic, Panel, Education, Group, Page, Newsletter issue, Story');
 	INSERT INTO `actions` (`aid`, `type`, `callback`, `parameters`, `description`) VALUES ('9', 'activity', 'activity_record', 'a:6:{s:18:"comment-pattern-en";s:104:"said "<span class="comment-body">[comment-body]</span>" on <a class="title" href="/chat/[chat]">chat</a>";s:15:"node-pattern-en";s:104:"said "<span class="comment-body">[comment-body]</span>" on <a class="title" href="/chat/[chat]">chat</a>";s:30:"node_comment_author-pattern-en";s:104:"said "<span class="comment-body">[comment-body]</span>" on <a class="title" href="/chat/[chat]">chat</a>";s:19:"everyone-pattern-en";s:104:"said "<span class="comment-body">[comment-body]</span>" on <a class="title" href="/chat/[chat]">chat</a>";s:14:"activity_types";a:1:{s:8:"chatroom";s:8:"chatroom";}s:3:"aid";s:1:"9";}', 'Record an activity message when: comment insert types Chat room');
 
+	DELETE FROM `actions_aid`;
+	INSERT INTO `actions_aid` (`aid`) VALUES (1);
+	INSERT INTO `actions_aid` (`aid`) VALUES (2);
+	INSERT INTO `actions_aid` (`aid`) VALUES (3);
+	INSERT INTO `actions_aid` (`aid`) VALUES (4);
+	INSERT INTO `actions_aid` (`aid`) VALUES (5);
+	INSERT INTO `actions_aid` (`aid`) VALUES (6);
+	INSERT INTO `actions_aid` (`aid`) VALUES (7);
+	INSERT INTO `actions_aid` (`aid`) VALUES (8);
+	INSERT INTO `actions_aid` (`aid`) VALUES (9);
+	
+	DELETE FROM `trigger_assignments`;
+	INSERT INTO `trigger_assignments` (`hook`, `op`, `aid`, `weight`) VALUES ('nodeapi', 'insert', '3', 1);
+	INSERT INTO `trigger_assignments` (`hook`, `op`, `aid`, `weight`) VALUES ('user', 'view', '4', 1);
+	INSERT INTO `trigger_assignments` (`hook`, `op`, `aid`, `weight`) VALUES ('nodeapi', 'view', '5', 1);
+	INSERT INTO `trigger_assignments` (`hook`, `op`, `aid`, `weight`) VALUES ('comment', 'insert', '7', 1);
+	INSERT INTO `trigger_assignments` (`hook`, `op`, `aid`, `weight`) VALUES ('comment', 'insert', '8', 1);
+	INSERT INTO `trigger_assignments` (`hook`, `op`, `aid`, `weight`) VALUES ('comment', 'insert', '9', 1);
 	
 EOT;
 	
