@@ -10,7 +10,7 @@ function feature_users_default_fe_block_boxes() {
   $fe_block_boxes->info = 'Profile Statistics';
   $fe_block_boxes->format = '5';
   $fe_block_boxes->machine_name = 'profile_statistics';
-  $fe_block_boxes->body = '<?php $stats = saw_users_get_user_stats (arg (1)); ?>
+  $fe_block_boxes->body = '<' . '?php $stats = saw_users_get_user_stats (arg (1)); ?' . '>' . '
 
 <table class="profile-statistics" cellspacing="0" cellpadding="0">
  <tr>
