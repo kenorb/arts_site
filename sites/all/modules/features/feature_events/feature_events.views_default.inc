@@ -93,6 +93,7 @@ function feature_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['style_plugin'] = 'default_summary';
+  $handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'node_data_field_birthday.field_birthday_value' => 'node_data_field_birthday.field_birthday_value',
     'node_data_field_event_date.field_event_date_value' => 'node_data_field_event_date.field_event_date_value',
@@ -118,7 +119,6 @@ function feature_events_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'calendar_nav';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['path'] = 'calendar';
-  $handler->display->display_options['menu']['name'] = 'navigation';
   $handler->display->display_options['calendar_colors'] = array(
     0 => array(),
   );

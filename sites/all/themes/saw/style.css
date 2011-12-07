@@ -73,7 +73,7 @@ a, a:visited {
 #main table a:hover {
 	background-color: #0292CC;
 	text-shadow: 1px 1px 1px #23d;
-	color: #fff;
+	color: #fff !important;
 	text-decoration: none;
 }
 
@@ -1410,6 +1410,10 @@ div.admin-panel .body {
 	.background-2 a {  }
 	.background-3 a {  }
 	.background-4 a {  } 
+	
+	.featured-events a:hover {
+		background: none !important;
+	}
 	
 	.calendar-calendar .cutoff {
 	}
@@ -3131,4 +3135,12 @@ span.cke_skin_kama {
 	background: #eaeff3 url('images/table-th-background.png') repeat-x;
 	box-shadow: 1px 1px 3px #fff;
 	border: 1px solid #ccc;
+}
+
+.calendar-calendar td .inner div.day a {
+    color: #4B85AC !important;
+}
+
+td.multi-day .inner .view-field a {
+	color: #000 !important;
 }

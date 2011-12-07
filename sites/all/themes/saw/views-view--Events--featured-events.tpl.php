@@ -1,9 +1,8 @@
 <div class="featured-events">
-	<script>
-    window._featuredEventId = 1;
-  </script>
-  
-	<?php if ($view -> style_plugin -> rendered_fields) foreach ($view -> style_plugin -> rendered_fields as $fieldId => $row): ?>
+  <?php
+		global $fieldId;
+	?>
+	<?php if ($view -> style_plugin -> rendered_fields) foreach ($view -> style_plugin -> rendered_fields as $row): $fieldId++; ?>
   <?php
   
   	if (!function_exists ('featured_events_get_time'))
@@ -133,5 +132,5 @@
 			</tbody>
 		</table>
 	</div>
-	<?php endforeach; ?>
+	<?php endforeach; else echo '<p>No events found.</p>' ?>
 </div>

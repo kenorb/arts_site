@@ -26,13 +26,13 @@ function feature_art_default_fe_block_settings() {
 
   $export['saw'] = $theme;
 
-  // studentart
+  // saw_pushbutton
   $theme = array();
 
   $theme['views-user_arts-user_arts_block'] = array(
     'module' => 'views',
     'delta' => 'user_arts-user_arts_block',
-    'theme' => 'studentart',
+    'theme' => 'saw_pushbutton',
     'status' => 0,
     'weight' => '0',
     'region' => '',
@@ -44,67 +44,7 @@ function feature_art_default_fe_block_settings() {
     'cache' => '-1',
   );
 
-  $export['studentart'] = $theme;
-
-  // bluemarine
-  $theme = array();
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'bluemarine',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
-    'cache' => '-1',
-  );
-
-  $export['bluemarine'] = $theme;
-
-  // chameleon
-  $theme = array();
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'chameleon',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
-    'cache' => '-1',
-  );
-
-  $export['chameleon'] = $theme;
-
-  // marvin
-  $theme = array();
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'marvin',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
-    'cache' => '-1',
-  );
-
-  $export['marvin'] = $theme;
+  $export['saw_pushbutton'] = $theme;
 
   // garland
   $theme = array();
@@ -125,46 +65,6 @@ function feature_art_default_fe_block_settings() {
   );
 
   $export['garland'] = $theme;
-
-  // minnelli
-  $theme = array();
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'minnelli',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
-    'cache' => '-1',
-  );
-
-  $export['minnelli'] = $theme;
-
-  // pushbutton
-  $theme = array();
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'pushbutton',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
-    'cache' => '-1',
-  );
-
-  $export['pushbutton'] = $theme;
 
   $theme_default = variable_get('theme_default', 'garland');
   $themes = list_themes();
