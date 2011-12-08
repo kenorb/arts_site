@@ -636,13 +636,21 @@ ul.links li {
 }
 
 .comment td.user-info-area {
-	width: 170px;
+	width: 124px;
 	padding-left: 10px;
 }
 
 .comment td.links-area {
   vertical-align: middle;
   width: 80px;
+}
+
+.comment td.links-area a {
+	padding: 0px !important;
+}
+
+.comment td.links-area a:hover {
+	background: none !important;
 }
 
 #comment-controls {
@@ -675,7 +683,9 @@ ul.links li {
 .flag-action,
 input[type=button],
 input[type=submit],
-.comment .reply a	 {
+.comment .reply a,
+a.author-pane-link,
+a.author-privatemsg-icon {
     cursor: pointer;
     background: url("images/buttons.png") repeat-x scroll 0 0 transparent;
     border-color: #E3E2E2 #D7D7D7 #D2D2D2;
@@ -691,7 +701,9 @@ input[type=submit],
     text-transform: uppercase;
 }
 
-.comment .reply a {
+.comment .reply a,
+a.author-pane-link,
+a.author-privatemsg-icon {
 	padding: 10px 15px !important;
 }
 
@@ -707,7 +719,9 @@ input[type=submit],
 .flag-action:hover,
 input[type=button]:hover,
 input[type=submit]:hover,
-.comment .reply a:hover {
+.comment .reply a:hover,
+a.author-pane-link:hover,
+a.author-privatemsg-icon:hover {
 	border-color: #F6D2CC #F6D2CC #F2BFB6;
 	color: #D75A46 !important;
 	cursor: pointer;
@@ -2538,7 +2552,36 @@ div.admin-panel .body {
   .author-pane .author-pane-contact .author-contact a,
 	.author-pane .author-pane-contact .author-privatemsg a,
 	.author-pane .author-pane-contact .author-user-relationship a	{
-		padding: 0px 0px 0px 30px !important;
+		padding: 0px 9px !important;
+		text-align: center;
+		height: auto;
+		min-height: auto;
+		display: block;
+		margin: 0px;
+		width: 200px;
+	}
+	
+	.author-pane-contact >div {
+		float: left;
+	}
+	
+	.author-contact,
+	.author-privatemsg,
+	.author-user-relationship {
+		height: auto;
+		background: none;
+	}
+	
+	.author-contact.author-pane-line,
+	.author-contact.author-privatemsg,
+	.author-contact.author-user-relationship
+	{
+		background: none !important;
+	}
+	
+	.author-pane-contact .author-pane-line {
+		padding-top: 2px;
+		padding-bottom: 2px;
 	}
 
   .author-pane .author-privatemsg a:hover,
@@ -2548,7 +2591,6 @@ div.admin-panel .body {
 	.author-pane .author-pane-contact .author-user-relationship a:hover	{
 		text-shadow: none !important;
 		background-color: transparent !important;
-		color: #000 !important;
 	}
   
 	.author-pane .author-pane-contact .author-flag-friend a	{
@@ -3282,4 +3324,60 @@ html.js fieldset.collapsible legend a {
 
 .pane-node-comment-form h2 {
 	color: #994;
+}
+
+.pane-profile-group-basic h2 {
+	color: #3cf;
+}
+
+.pane-profile-group-basic .field {
+	clear: both;
+}
+
+.pane-profile-group-basic .fieldgroup,
+.pane-profile-group-basic .field-label,
+.pane-profile-group-basic .field-items {
+	font-size: 13px !important;
+}
+
+.pane-profile-group-basic .field-label {
+	font-family: inherit !important;
+	display: block;
+	float: left;
+	border-bottom: 0;
+}
+
+.pane-profile-group-basic .field-field-first-name .field-items,
+.pane-profile-group-basic .field-field-last-name .field-items,
+.pane-profile-group-basic .field-field-gender .field-items {
+	font-weight: bold;
+	float: right;
+	display: inline;
+}
+
+.pane-profile-group-basic .field-field-birthday {
+	border-top: 1px dotted #aaa;
+	padding-top: 5px;
+}
+
+.pane-profile-group-basic .field-field-birthday .field-items {
+	text-align: left;
+}
+
+.pane-profile-group-basic .field-field-birthday .field-label-inline-first {
+	font-weight: normal;
+	float: left;
+}
+
+.pane-profile-group-basic .field-field-birthday .date-display-single {
+	float: right;
+	display: block;
+	font-weight: bold;
+}
+
+.pane-field-about-me .field-field-about-me {
+	background: none repeat scroll 0 0 #E2E5E8;
+	border-radius: 5px 5px 5px 5px;
+	padding: 2px 10px;
+	text-shadow: 1px 1px 1px #FFFFFF;
 }
