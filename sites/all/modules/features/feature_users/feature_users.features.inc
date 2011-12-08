@@ -254,6 +254,7 @@ function feature_users_flag_default_flags() {
       '0' => 'name',
     ),
     'api_version' => 2,
+    'status' => FALSE,
   );
   return $flags;
 }

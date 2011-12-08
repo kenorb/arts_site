@@ -1249,24 +1249,12 @@ function feature_users_views_default_views() {
   $handler->display->display_options['sorts']['aid']['table'] = 'activity';
   $handler->display->display_options['sorts']['aid']['field'] = 'aid';
   $handler->display->display_options['sorts']['aid']['order'] = 'DESC';
-  /* Argument: User: Uid */
-  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['table'] = 'users';
-  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['relationship'] = 'nid';
-  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
-  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'fixed';
   /* Filter: Activity: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'activity';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter: User: Name */
-  $handler->display->display_options['filters']['uid']['id'] = 'uid';
-  $handler->display->display_options['filters']['uid']['table'] = 'users';
-  $handler->display->display_options['filters']['uid']['field'] = 'uid';
-  $handler->display->display_options['filters']['uid']['relationship'] = 'nid';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
@@ -1618,6 +1606,32 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter: User relationships: Relationship status */
+  $handler->display->display_options['filters']['approved']['id'] = 'approved';
+  $handler->display->display_options['filters']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['approved']['field'] = 'approved';
+  $handler->display->display_options['filters']['approved']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['approved']['value'] = '1';
+  /* Filter: User relationships: Relationship type */
+  $handler->display->display_options['filters']['rtype']['id'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['rtype']['field'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['rtype']['value'] = array(
+    0 => '1',
+  );
+  /* Filter: User: Current */
+  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['uid_current']['value'] = '0';
+  /* Filter: User relationships: Requester or Requestee is current user */
+  $handler->display->display_options['filters']['requester_or_requestee_current_user']['id'] = 'requester_or_requestee_current_user';
+  $handler->display->display_options['filters']['requester_or_requestee_current_user']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['requester_or_requestee_current_user']['field'] = 'requester_or_requestee_current_user';
+  $handler->display->display_options['filters']['requester_or_requestee_current_user']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['requester_or_requestee_current_user']['value'] = '1';
 
   /* Display: News Page */
   $handler = $view->new_display('page', 'News Page', 'news_page');
@@ -1644,8 +1658,8 @@ function feature_users_views_default_views() {
     t('Activity Creation Date'),
     t('Uid'),
     t('Name'),
-    t('All'),
     t('Page'),
+    t('All'),
     t('Recent Activity'),
     t('Global Activity'),
     t('Who'),
