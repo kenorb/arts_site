@@ -14,6 +14,7 @@ function saw_users_init ()
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/searchbox.js", "saw_users");
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/profilemenu.js", "saw_users");
 	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/toolbar.js", "saw_users");
+	drupal_add_js (drupal_get_path ('module', 'saw_users') . "/hacks.js", "saw_users");
 	
 	
 	global $user;

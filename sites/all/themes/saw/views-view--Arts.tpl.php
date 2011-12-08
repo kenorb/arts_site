@@ -13,8 +13,8 @@
 
 <h1 class="title">
 <?php if ($viewNameOrig == 'User Profile Arts'): ?>
-	<?php global $user_content_profile; ?>
-	<a href="/users/<?php echo $user_content_profile -> name; ?>"><?php echo $user_content_profile -> name; ?></a>'s arts
+	<?php if (!$view -> build_info ['substitutions'] ['%1']) $view -> build_info ['substitutions'] ['%1'] = $user -> name; ?>
+	<a href="/users/<?php echo $view -> build_info ['substitutions'] ['%1']; ?>"><?php echo $view -> build_info ['substitutions'] ['%1']; ?></a>'s arts
 <?php else: ?>
 	<?php if (substr ($viewName, 0, 7) != 'default'): echo $viewNameOrig; ?><?php endif;?> arts
 <?php endif; ?>

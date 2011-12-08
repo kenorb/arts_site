@@ -215,6 +215,45 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['name']['link_to_user'] = 1;
   $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  /* Field: Node: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nid']['link_to_node'] = 1;
+  /* Field: Content: For Sell (field_for_sell) */
+  $handler->display->display_options['fields']['field_for_sell_value']['id'] = 'field_for_sell_value';
+  $handler->display->display_options['fields']['field_for_sell_value']['table'] = 'node_data_field_for_sell';
+  $handler->display->display_options['fields']['field_for_sell_value']['field'] = 'field_for_sell_value';
+  $handler->display->display_options['fields']['field_for_sell_value']['label'] = 'For Sell';
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_for_sell_value']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_for_sell_value']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_for_sell_value']['link_to_node'] = 1;
   /* Sort criterion: Node: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -467,9 +506,11 @@ function feature_art_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Arts';
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['type'] = 'mini';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['path'] = 'arts/most-viewed';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Recent arts';
@@ -496,8 +537,9 @@ function feature_art_views_default_views() {
     t('.'),
     t(','),
     t('Name'),
-    t('Post date'),
+    t('Nid'),
     t('For Sell'),
+    t('Post date'),
     t('Original Art'),
     t('All'),
     t('Published'),
