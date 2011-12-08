@@ -523,11 +523,11 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-47',
   );
-  // Exported menu link: menu-toolbar:calendar
-  $menu_links['menu-toolbar:calendar'] = array(
+  // Exported menu link: menu-toolbar:events
+  $menu_links['menu-toolbar:events'] = array(
     'menu_name' => 'menu-toolbar',
-    'link_path' => 'calendar',
-    'router_path' => 'calendar',
+    'link_path' => 'events',
+    'router_path' => 'events',
     'link_title' => 'Calendar',
     'options' => array(
       'attributes' => array(
