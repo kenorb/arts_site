@@ -2129,11 +2129,14 @@ div.admin-panel .body {
   }
   
   .arts-row .details td.title,
-  .arts-row .details td.original-price {
+  .arts-row .details td.original,
+	.arts-row .details td.print,
+	.arts-row .details td.out-of-stock,
+	.arts-row .details td.not-for-sale {
     padding-left: 5px;
     border: 0px !important;
   }
-  
+	 
   .arts-row .details td.price {
     text-align: right;
     padding-right: 5px;
@@ -2838,6 +2841,18 @@ div.admin-panel .body {
 	font-weight: bold;
 	margin-bottom: 10px;
 	color: #888;
+}
+
+.arts-row .details td.original {
+	color: #050;
+}
+
+.arts-row .details td.not-for-sale {
+	color: #555;
+}
+
+.arts-row .details td.out-of-stock {
+	color: #d30;
 }
 
 .node-art .out-of-stock {

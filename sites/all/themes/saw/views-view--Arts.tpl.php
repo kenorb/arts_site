@@ -51,11 +51,33 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="original-price">
-									<b>Original</b> - <?php echo $row ['sell_price']; ?>
-								</td>
-								<td class="price">
-								</td>
+								<?php $numItemsAvailable = db_result (db_query ('SELECT stock FROM {uc_product_stock} WHERE nid = %d', $view -> result [$fieldId] -> nid)); ?>
+					
+								<?php if ($view -> result [$fieldId] -> node_data_field_for_sell_field_for_sell_value == 'on'): ?>
+								
+									<?php if ($numItemsAvailable > 0): ?>
+
+										<?php if ($view -> result [$fieldId] -> node_data_field_copy_original_field_copy_original_value == 'original'): ?>
+											<td class="original"><b>Original</b></td>
+										<?php else: ?>
+											<td class="print"><b>Print</b></td>
+										<?php endif; ?>
+										
+										<td class="price"><?php echo $row ['sell_price']; ?></td>
+										
+									<?php else: ?>
+									
+										<td class="out-of-stock"><b>Out of stock</b></td>
+									<td class="price"></td>
+										
+									<?php endif; ?>
+									
+								<?php else: ?>
+								
+									<td class="not-for-sale"><b>Not for sale</b></td>
+									<td class="price"></td>
+									
+								<?php endif; ?>
 							</tr>
 						</tbody>
 					</table>
