@@ -153,7 +153,7 @@ h2 a:hover {
 
 .form-item label.option,
 .field-items {
-	font-size: 16px !important;
+	font-size: 16px;
 	border: 0;
 	padding: 0px 0 4px 0px;
 	vertical-align: middle;
@@ -172,18 +172,21 @@ h2 a:hover {
 }
 
 .views-exposed-widget label {
-	display: inline;
+	display: block;
 	border-bottom: none;
-	font-size: 17px !important;
+	font-size: 14px !important;
+	margin-top: 5px;
+	margin-bottom: 2px;
+	font-family: inherit !important;
+	
 }
 
 .views-exposed-widget .form-item,
 .views-exposed-widget .views-widget {
-	display: inline;
 }
 
 .views-exposed-form .views-exposed-widget {
-	display: inline;
+	
 	float: none;
 }
 
@@ -193,6 +196,10 @@ h2 a:hover {
 	border: 1px solid #e4e4e4;
 	border-radius: 6px;
 	background-color: #eee;
+}
+
+.views-exposed-form label {
+	font-size: 14px !important;
 }
 
 
@@ -2717,7 +2724,7 @@ div.admin-panel .body {
 
 #views-exposed-form-Arts-default .form-radios  {
   text-align: left;
-  margin-left: 30px;
+  margin-left: 5px;
 }
 
 

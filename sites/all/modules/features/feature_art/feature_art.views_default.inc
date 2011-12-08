@@ -282,7 +282,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['tid']['expose']['label'] = 'Education';
-  $handler->display->display_options['filters']['tid']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
   $handler->display->display_options['filters']['tid']['expose']['single'] = TRUE;
   $handler->display->display_options['filters']['tid']['type'] = 'hierarchical_select';
@@ -296,7 +296,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
   $handler->display->display_options['filters']['tid_1']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['tid_1']['expose']['label'] = 'Category';
-  $handler->display->display_options['filters']['tid_1']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['tid_1']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'tid_1';
   $handler->display->display_options['filters']['tid_1']['expose']['single'] = TRUE;
   $handler->display->display_options['filters']['tid_1']['type'] = 'hierarchical_select';
@@ -403,7 +403,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['tid']['expose']['label'] = 'Education';
-  $handler->display->display_options['filters']['tid']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
   $handler->display->display_options['filters']['tid']['expose']['single'] = TRUE;
   $handler->display->display_options['filters']['tid']['type'] = 'hierarchical_select';
@@ -417,7 +417,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
   $handler->display->display_options['filters']['tid_1']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['tid_1']['expose']['label'] = 'Category';
-  $handler->display->display_options['filters']['tid_1']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['tid_1']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'tid_1';
   $handler->display->display_options['filters']['tid_1']['expose']['single'] = TRUE;
   $handler->display->display_options['filters']['tid_1']['type'] = 'hierarchical_select';
