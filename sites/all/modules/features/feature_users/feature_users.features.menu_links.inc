@@ -595,10 +595,10 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-43',
   );
-  // Exported menu link: menu-toolbar:node/113
-  $menu_links['menu-toolbar:node/113'] = array(
+  // Exported menu link: menu-toolbar:node/59
+  $menu_links['menu-toolbar:node/59'] = array(
     'menu_name' => 'menu-toolbar',
-    'link_path' => 'node/113',
+    'link_path' => 'node/59',
     'router_path' => 'node/%',
     'link_title' => 'Chat',
     'options' => array(
