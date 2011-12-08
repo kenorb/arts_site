@@ -5,16 +5,6 @@
  */
 function feature_users_menu_default_menu_links() {
 
-		$query =
-<<<EOT
-			DELETE FROM menu_links WHERE menu_name = 'secondary-links' LIMIT 5;
-			DELETE FROM menu_links WHERE menu_name = 'menu-toolbar';
-EOT;
-	
-		foreach (explode ("\n", $query) as $row)
-			_db_query ($row);
-
-
   $menu_links = array();
 
   // Exported menu link: admin_menu:admin/user/captcha
