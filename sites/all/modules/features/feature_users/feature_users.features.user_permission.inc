@@ -103,6 +103,7 @@ function feature_users_user_default_permissions() {
     'name' => 'administer forums',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'authenticated user',
     ),
   );
 
