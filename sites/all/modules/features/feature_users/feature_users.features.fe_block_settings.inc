@@ -9,21 +9,6 @@ function feature_users_default_fe_block_settings() {
   // saw
   $theme = array();
 
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'saw',
-    'status' => 0,
-    'weight' => '13',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
     'delta' => '0',
@@ -178,21 +163,6 @@ function feature_users_default_fe_block_settings() {
 
   // studentart
   $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'studentart',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
 
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
@@ -349,21 +319,6 @@ function feature_users_default_fe_block_settings() {
   // bluemarine
   $theme = array();
 
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'bluemarine',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
     'delta' => '0',
@@ -518,21 +473,6 @@ function feature_users_default_fe_block_settings() {
 
   // chameleon
   $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'chameleon',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
 
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
@@ -689,21 +629,6 @@ function feature_users_default_fe_block_settings() {
   // marvin
   $theme = array();
 
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'marvin',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
     'delta' => '0',
@@ -858,21 +783,6 @@ function feature_users_default_fe_block_settings() {
 
   // garland
   $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'garland',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
 
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
@@ -1029,21 +939,6 @@ function feature_users_default_fe_block_settings() {
   // minnelli
   $theme = array();
 
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'minnelli',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
-
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
     'delta' => '0',
@@ -1198,21 +1093,6 @@ function feature_users_default_fe_block_settings() {
 
   // pushbutton
   $theme = array();
-
-  $theme['block-profile_statistics'] = array(
-    'module' => 'block',
-    'theme' => 'pushbutton',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'statistics',
-    'cache' => '-1',
-    'machine_name' => 'profile_statistics',
-  );
 
   $theme['fivestar-0'] = array(
     'module' => 'fivestar',
