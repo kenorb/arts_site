@@ -99,6 +99,7 @@ function feature_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['style_plugin'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['default_argument_skip_url'] = 0;
+	$handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'node_data_field_birthday.field_birthday_value' => 'node_data_field_birthday.field_birthday_value',
     'node_data_field_event_date.field_event_date_value' => 'node_data_field_event_date.field_event_date_value',
