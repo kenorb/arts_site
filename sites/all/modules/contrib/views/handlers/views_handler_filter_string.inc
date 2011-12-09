@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_filter_string.inc,v 1.7.2.6 2011/02/05 00:55:21 merlinofchaos Exp $
 
 /**
  * Basic textfield filter to handle string filtering commands

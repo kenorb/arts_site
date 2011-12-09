@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_argument_validate_node.inc,v 1.1.2.4 2011/01/18 21:52:25 merlinofchaos Exp $
 /**
  * @file
  * Contains the 'node' argument validator plugin.
@@ -56,16 +55,16 @@ class views_plugin_argument_validate_node extends views_plugin_argument_validate
     );
   }
 
-  function options_submit(&$form, &$form_state, &$options) {
+  function options_submit(&$form, &$form_state, &$options = array()) {
     // filter trash out of the options so we don't store giant unnecessary arrays
     $options['types'] = array_filter($options['types']);
   }
 
   function convert_options(&$options) {
     if (!isset($options['types']) && !empty($this->argument->options['validate_argument_node_type'])) {
-      $options['types'] = $this->argument->options['validate_argument_node_type'];
+      $options['types'] = isset($this->argument->options['validate_argument_node_type']) ? $this->argument->options['validate_argument_node_type'] : array();
       $options['access'] = !empty($this->argument->options['validate_argument_node_access']);
-      $options['access_op'] = $this->argument->options['validate_argument_node_access_op'];
+      $options['access_op'] = isset($this->argument->options['validate_argument_node_access_op']) ? $this->argument->options['validate_argument_node_access_op'] : 'view';
       $options['nid_type'] = $this->argument->options['validate_argument_nid_type'];
     }
   }
@@ -102,7 +101,7 @@ class views_plugin_argument_validate_node extends views_plugin_argument_validate
         $nids = new stdClass();
         $nids->value = array($argument);
         $nids = views_break_phrase($argument, $nids);
-        if ($nids->value == -1) {
+        if ($nids->value == array(-1)) {
           return FALSE;
         }
 

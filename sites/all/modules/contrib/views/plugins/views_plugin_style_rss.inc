@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_style_rss.inc,v 1.2.2.1 2010/10/12 22:20:57 merlinofchaos Exp $
 /**
  * @file
  * Contains the RSS style plugin.
@@ -97,10 +96,14 @@ class views_plugin_style_rss extends views_plugin_style {
       }
     }
 
-    foreach ($this->view->result as $row) {
+    foreach ($this->view->result as $row_index => $row) {
+      $this->view->row_index = $row_index;
       $rows .= $this->row_plugin->render($row);
     }
 
-    return theme($this->theme_functions(), $this->view, $this->options, $rows);
+    $output = theme($this->theme_functions(), $this->view, $this->options, $rows);
+    unset($this->view->row_index);
+
+    return $output;
   }
 }

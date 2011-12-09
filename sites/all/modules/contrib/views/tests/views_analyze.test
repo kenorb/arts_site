@@ -1,11 +1,12 @@
 <?php
-// $Id: views_analyze.test,v 1.1.4.2 2010/11/20 21:47:59 dereine Exp $
+module_load_include('test', 'views', 'tests/views_query');
+
 /**
  * @file
  * Tests the views analyse system.
  */
 
-class ViewsAnalyzeTest extends viewsSqlTest {
+class ViewsAnalyzeTest extends ViewsSqlTest {
   public static function getInfo() {
     return array(
       'name' => 'Views Analyze',

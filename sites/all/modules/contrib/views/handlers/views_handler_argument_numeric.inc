@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_argument_numeric.inc,v 1.1.2.1 2010/11/18 01:11:58 merlinofchaos Exp $
 /**
  * @file
  * Contains the numeric argument handler.
@@ -27,7 +26,7 @@ class views_handler_argument_numeric extends views_handler_argument {
     // allow + for or, , for and
     $form['break_phrase'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Allow multiple terms per argument.'),
+      '#title' => t('Allow multiple terms per argument'),
       '#description' => t('If selected, users can enter multiple arguments in the form of 1+2+3 or 1,2,3.'),
       '#default_value' => !empty($this->options['break_phrase']),
     );

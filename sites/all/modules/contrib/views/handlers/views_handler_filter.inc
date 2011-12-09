@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_filter.inc,v 1.6.2.20 2011/02/05 00:55:21 merlinofchaos Exp $
 /**
  * @defgroup views_filter_handlers Views' filter handlers
  * @{
@@ -36,12 +35,6 @@ class views_handler_filter extends views_handler {
 
     $this->operator = $this->options['operator'];
     $this->value = $this->options['value'];
-
-    // Compatibility: Set use_operator to true if the old way of using
-    // the operator is set and use_operator is NULL (was never set).
-    if (!empty($options['exposed']) && !empty($options['expose']['operator']) && !isset($options['expose']['use_operator'])) {
-      $this->options['expose']['use_operator'] = TRUE;
-    }
 
     // If there are relationships in the view, allow empty should be true
     // so that we can do IS NULL checks on items. Not all filters respect
@@ -481,7 +474,7 @@ class views_handler_filter extends views_handler {
       $value = $input[$this->options['expose']['identifier']];
 
       // Various ways to check for the absence of optional input.
-      if (empty($this->no_optional) && !empty($this->options['expose']['optional'])) {
+      if (!empty($this->options['expose']['optional'])) {
 
         if (($this->operator == 'empty' || $this->operator == 'not empty') && $value === '') {
           $value = ' ';

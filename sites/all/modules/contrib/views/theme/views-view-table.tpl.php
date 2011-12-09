@@ -1,5 +1,4 @@
 <?php
-// $Id: views-view-table.tpl.php,v 1.8.2.2 2010/12/08 23:17:31 merlinofchaos Exp $
 /**
  * @file views-view-table.tpl.php
  * Template to display a view as a table.
@@ -32,10 +31,10 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($rows as $count => $row): ?>
-      <tr class="<?php print implode(' ', $row_classes[$count]); ?>">
+    <?php foreach ($rows as $row_index => $row): ?>
+      <tr class="<?php print implode(' ', $row_classes[$row_index]); ?>">
         <?php foreach ($row as $field => $content): ?>
-          <td class="<?php print $field_classes[$field][$count]; ?>">
+          <td class="<?php print $field_classes[$field][$row_index]; ?>" <?php print drupal_attributes($field_attributes[$field][$row_index]); ?>>
             <?php print $content; ?>
           </td>
         <?php endforeach; ?>

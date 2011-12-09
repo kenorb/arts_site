@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_argument_default_php.inc,v 1.1.2.1 2009/11/26 00:35:16 merlinofchaos Exp $
 /**
  * @file
  * Contains the php code argument default plugin.
@@ -22,7 +21,7 @@ class views_plugin_argument_default_php extends views_plugin_argument_default {
       '#title' => t('PHP argument code'),
       '#default_value' => $this->options['code'],
       '#process' => array('views_process_dependency'),
-      '#description' => t('Enter PHP code that returns a value to use for this argument. Do not use &lt;?php ?&gt;. You must return only a single value for just this argument.'),
+      '#description' => t('Enter PHP code that returns a value to use for this argument. Do not use &lt;?php ?&gt;. You must return only a single value for just this argument. Some variables are available: the view object will be "$view". The argument handler will be "$argument", for example you may change the title used for substitutions for this argument by setting "argument->validated_title"".'),
     );
 
     // Only do this if using one simple standard form gadget

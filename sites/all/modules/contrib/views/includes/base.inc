@@ -1,5 +1,4 @@
 <?php
-// $Id: base.inc,v 1.2.2.12 2011/02/05 00:16:16 merlinofchaos Exp $
 /**
  * @file
  *
@@ -21,6 +20,13 @@ class views_object {
    * @var view
    */
   var $view = NULL;
+  
+  /**
+   * Handler's definition
+   *
+   * @var array
+   */
+  var $definition;
 
   /**
    * Information about options for all kinds of purposes will be held here.
@@ -139,9 +145,13 @@ class views_object {
           // sent for translation.
           // The $keys array is built from the view name, any localization keys
           // sent in, and the name of the property being processed.
+          $format = NULL;
+          if (isset($definition[$key]['format_key']) && isset($options[$definition[$key]['format_key']])) {
+            $format = $options[$definition[$key]['format_key']];
+          }
           $translation_data = array(
             'value' => $value,
-            'format' => isset($options[$key . '_format']) ? $options[$key . '_format'] : NULL,
+            'format' => $format,
             'keys' => array_merge(array($this->view->name), $localization_keys, array($key)),
           );
           $storage[$key] = $this->view->localization_plugin->translate($translation_data);
@@ -300,10 +310,14 @@ class views_object {
         }
         else if (!empty($definition[$key]['translatable']) && !empty($value)) {
           // Build source data and add to the array
+          $format = NULL;
+          if (isset($definition['format_key']) && isset($options[$definition['format_key']])) {
+            $format = $options[$definition['format_key']];
+          }
           $translatable[] = array(
             'value' => $value,
             'keys' => $translation_keys,
-            'format' => isset($options[$key . '_format']) ? $options[$key . '_format'] : NULL,
+            'format' => $format,
           );
         }
       }
@@ -311,9 +325,14 @@ class views_object {
     else if (!empty($definition['translatable']) && !empty($options)) {
       $value = $options;
       // Build source data and add to the array
+      $format = NULL;
+      if (isset($definition['format_key']) && isset($storage[$definition['format_key']])) {
+        $format = $options[$definition['format_key']];
+      }
       $translatable[] = array(
         'value' => $value,
         'keys' => isset($translation_keys) ? $translation_keys : $parents,
+        'format' => $format,
       );
     }
   }

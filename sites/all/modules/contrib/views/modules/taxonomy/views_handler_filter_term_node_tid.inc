@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_filter_term_node_tid.inc,v 1.8.2.7 2011/01/01 22:47:43 merlinofchaos Exp $
 
 /**
  * Filter by term id
@@ -120,7 +119,7 @@ class views_handler_filter_term_node_tid extends views_handler_filter_many_to_on
       else {
         $options = array();
         if ($this->options['limit']) {
-          $result = db_query(db_rewrite_sql("SELECT * FROM {term_data} t WHERE t.vid = %d ORDER BY t.weight, t.name", 't', 'tid'), $vocabulary->vid);
+          $result = db_query(db_rewrite_sql("SELECT t.* FROM {term_data} t WHERE t.vid = %d ORDER BY t.weight, t.name", 't', 'tid'), $vocabulary->vid);
         }
         else {
           $result = db_query(db_rewrite_sql("SELECT td.* FROM {term_data} td INNER JOIN {vocabulary} v ON td.vid = v.vid ORDER BY v.weight, v.name, td.weight, td.name", 'td', 'tid'));
@@ -195,6 +194,12 @@ class views_handler_filter_term_node_tid extends views_handler_filter_many_to_on
   function accept_exposed_input($input) {
     if (empty($this->options['exposed'])) {
       return TRUE;
+    }
+
+    // If view is an attachment and is inheriting exposed filters, then assume
+    // exposed input has already been validated
+    if (isset($this->view->is_attachment) && $this->view->display_handler->uses_exposed()) {
+      $this->validated_exposed_input = (array)$this->view->exposed_raw_input[$this->options['expose']['identifier']];
     }
 
     // If it's optional and there's no value don't bother filtering.

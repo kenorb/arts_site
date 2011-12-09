@@ -1,5 +1,4 @@
 <?php
-// $Id: system.views.inc,v 1.7.2.3 2011/01/18 21:58:23 merlinofchaos Exp $
 /**
  * @file
  *
@@ -54,7 +53,9 @@ function system_views_data() {
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_file_fid',
+      'parent' => 'views_handler_argument_numeric', // make sure parent is included
       'name field' => 'filename', // the field to display in the summary.
+      'numeric' => TRUE,
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',

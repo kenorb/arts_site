@@ -1,5 +1,4 @@
 <?php
-// $Id: ajax.inc,v 1.19.2.4 2010/10/12 22:18:18 merlinofchaos Exp $
 
 /**
  * @file ajax.inc
@@ -19,7 +18,7 @@ function views_ajax() {
     $display_id = $_REQUEST['view_display_id'];
     $args = isset($_REQUEST['view_args']) && $_REQUEST['view_args'] !== '' ? explode('/', $_REQUEST['view_args']) : array();
     $path = isset($_REQUEST['view_path']) ? $_REQUEST['view_path'] : NULL;
-    $dom_id = isset($_REQUEST['view_dom_id']) ? intval($_REQUEST['view_dom_id']) : NULL;
+    $dom_id = isset($_REQUEST['view_dom_id']) ? preg_replace('/[^a-zA-Z0-9_-]+/', '-', $_REQUEST['view_dom_id']) : NULL;
     $pager_element = isset($_REQUEST['pager_element']) ? intval($_REQUEST['pager_element']) : NULL;
 
     $ajax_arguments = array(
@@ -60,17 +59,11 @@ function views_ajax() {
         // Reuse the same DOM id so it matches that in Drupal.settings.
         $view->dom_id = $dom_id;
 
-        $errors = $view->validate();
-        if ($errors === TRUE) {
-          $object->status = TRUE;
-          $object->title = $view->get_title();
-          $object->display .= $view->preview($display_id, $args);
-        }
-        else {
-          foreach ($errors as $error) {
-            drupal_set_message($error, 'error');
-          }
-        }
+        $object->status = TRUE;
+        $object->display .= $view->preview($display_id, $args);
+        // Get the title after the preview call, to let it set
+        // up both the view's current display and arguments
+        $object->title = $view->get_title();
         // Register the standard JavaScript callback.
         $object->__callbacks = array('Drupal.Views.Ajax.ajaxViewResponse');
         // Allow other modules to extend the data returned.

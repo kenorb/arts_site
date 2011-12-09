@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_math.inc,v 1.1.4.3 2011/01/10 23:14:26 merlinofchaos Exp $
 /**
  * Render a mathematical expression as a numeric value
  *
@@ -65,6 +64,11 @@ class views_handler_field_math extends views_handler_field_numeric {
     // Check to see if hiding should happen before adding prefix and suffix.
     if ($this->options['hide_empty'] && empty($value) && ($value !== 0 || $this->options['empty_zero'])) {
       return '';
+    }
+
+    // Should we format as a plural.
+    if (!empty($this->options['format_plural']) && ($value != 0 || !$this->options['empty_zero'])) {
+      $value = format_plural($value, $this->options['format_plural_singular'], $this->options['format_plural_plural']);
     }
 
     return $this->sanitize_value($this->options['prefix'] . $value . $this->options['suffix']);

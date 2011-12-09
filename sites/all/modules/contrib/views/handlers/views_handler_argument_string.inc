@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_argument_string.inc,v 1.4.2.6 2011/02/04 23:40:27 merlinofchaos Exp $
 
 /**
  * Basic argument handler to implement string arguments that may have length
@@ -101,7 +100,7 @@ class views_handler_argument_string extends views_handler_argument {
     if (!empty($this->definition['many to one'])) {
       $form['add_table'] = array(
         '#type' => 'checkbox',
-        '#title' => t('Allow multiple arguments to work together.'),
+        '#title' => t('Allow multiple arguments to work together'),
         '#description' => t('If selected, multiple instances of this argument can work together, as though multiple terms were supplied to the same argument. This setting is not compatible with the "Reduce duplicates" setting.'),
         '#default_value' => !empty($this->options['add_table']),
       );
@@ -116,7 +115,7 @@ class views_handler_argument_string extends views_handler_argument {
     // allow + for or, , for and
     $form['break_phrase'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Allow multiple terms per argument.'),
+      '#title' => t('Allow multiple terms per argument'),
       '#description' => t('If selected, users can enter multiple arguments in the form of 1+2+3 or 1,2,3.'),
       '#default_value' => !empty($this->options['break_phrase']),
     );
@@ -207,7 +206,7 @@ class views_handler_argument_string extends views_handler_argument {
 
     if (count($this->value) > 1) {
       $operator = 'IN';
-      $placeholders = implode(', ', array_fill(0, sizeof($this->value), "'%s'"));
+      $placeholders = '(' . implode(', ', array_fill(0, sizeof($this->value), "'%s'")) . ')';
       $argument = $this->value;
     }
     else {
@@ -259,7 +258,7 @@ class views_handler_argument_string extends views_handler_argument {
     }
 
     if (!empty($this->options['break_phrase'])) {
-      views_break_phrase($this->argument, $this);
+      views_break_phrase_string($this->argument, $this);
     }
     else {
       $this->value = array($this->argument);

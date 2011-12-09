@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_filter_history_user_timestamp.inc,v 1.1.2.4 2011/02/04 22:36:32 merlinofchaos Exp $
 /**
  * Filter for new content
  */

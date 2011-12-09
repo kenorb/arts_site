@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_query_default.inc,v 1.1.2.29 2011/02/04 23:34:12 merlinofchaos Exp $
 /**
  * @file views_plugin_query_default.inc
  * Defines the default query object which builds SQL to execute using the
@@ -210,7 +209,7 @@ class views_plugin_query_default extends views_plugin_query{
    * @param $alias
    *   What this relationship will be called, and is also the alias
    *   for the table.
-   * @param $join
+   * @param views_join $join
    *   A views_join object (or derived object) to join the alias in.
    * @param $base
    *   The name of the 'base' table this relationship represents; this
@@ -282,7 +281,7 @@ class views_plugin_query_default extends views_plugin_query{
    *   tables exist and are properly aliased. If set to NULL the path to
    *   the primary table will be ensured. If the path cannot be made, the
    *   table will NOT be added.
-   * @param $join
+   * @param views_join $join
    *   In some join configurations this table may actually join back through
    *   a different method; this is most likely to be used when tracing
    *   a hierarchy path. (node->parent->parent2->parent3). This parameter
@@ -301,15 +300,19 @@ class views_plugin_query_default extends views_plugin_query{
       return FALSE;
     }
 
-    return $this->queue_table($table, $relationship, $this->adjust_join($join, $relationship), $alias);
+    if ($join && $relationship) {
+      $join = $this->adjust_join($join, $relationship);
+    }
+
+    return $this->queue_table($table, $relationship, $join, $alias);
   }
 
   /**
-   * Add a table to the query, without ensuring the path.
+   * Add a table to the query without ensuring the path.
    *
-   * This function will test to ensure that the path back to the primary
-   * table is valid and exists; if you do not wish for this testing to
-   * occur, use $query->queue_table() instead.
+   * This is a pretty internal function to Views and add_table() or
+   * ensure_table() should be used instead of this one, unless you are
+   * absolutely sure this is what you want.
    *
    * @param $table
    *   The name of the table to add. It needs to exist in the global table
@@ -317,7 +320,7 @@ class views_plugin_query_default extends views_plugin_query{
    * @param $relationship
    *   The primary table alias this table is related to. If not set, the
    *   primary table will be used.
-   * @param $join
+   * @param views_join $join
    *   In some join configurations this table may actually join back through
    *   a different method; this is most likely to be used when tracing
    *   a hierarchy path. (node->parent->parent2->parent3). This parameter
@@ -429,7 +432,7 @@ class views_plugin_query_default extends views_plugin_query{
    *   The relationship to ensure the table links to. Each relationship will
    *   get a unique instance of the table being added. If not specified,
    *   will be the primary table.
-   * @param $join
+   * @param views_join $join
    *   A views_join object (or derived object) to join the alias in.
    *
    * @return
@@ -617,7 +620,7 @@ class views_plugin_query_default extends views_plugin_query{
    * @param $base_table
    *   The path we're following to get this join.
    *
-   * @return
+   * @return views_join
    *   A views_join object or child object, if one exists.
    */
   function get_join_data($table, $base_table) {
@@ -1021,7 +1024,7 @@ class views_plugin_query_default extends views_plugin_query{
     if (count($this->having)) {
       $this->has_aggregate = TRUE;
     }
-    if ($this->has_aggregate || $this->groupby) {
+    if ($this->has_aggregate && (!empty($this->groupby) || !empty($non_aggregates))) {
       $groupby = "GROUP BY " . implode(', ', array_unique(array_merge($this->groupby, $non_aggregates))) . "\n";
       if ($this->having) {
         $having = $this->condition_sql('having');
@@ -1078,6 +1081,9 @@ class views_plugin_query_default extends views_plugin_query{
       $this->set_distinct();
     }
 
+    // Store the view in the object to be able to use it later.
+    $this->view = $view;
+
     $view->init_pager();
 
     // Let the pager modify the query to add limits.
@@ -1112,7 +1118,7 @@ class views_plugin_query_default extends views_plugin_query{
 
     $items = array();
     if ($query) {
-      $replacements = module_invoke_all('views_query_substitutions', $view);
+      $replacements = $this->view->substitutions();
       $query = str_replace(array_keys($replacements), $replacements, $query);
       $count_query = 'SELECT COUNT(*) FROM (' . str_replace(array_keys($replacements), $replacements, $count_query) . ') count_alias';
 

@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_query.inc,v 1.1.2.12 2011/02/05 00:39:36 merlinofchaos Exp $
 /**
  * @file
  * Defines the base query class, which is the underlying layer in a View.
@@ -48,6 +47,8 @@ class views_plugin_query extends views_plugin {
    *
    * Values to set: $view->result, $view->total_rows, $view->execute_time,
    * $view->pager['current_page'].
+   *
+   * $view->result should contain an array of objects.
    */
   function execute(&$view) {  }
 

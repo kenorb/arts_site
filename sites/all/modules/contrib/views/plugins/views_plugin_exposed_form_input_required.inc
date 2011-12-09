@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_exposed_form_input_required.inc,v 1.1.2.5 2010/11/16 01:09:35 merlinofchaos Exp $
 
 /**
  * Exposed form plugin that provides basic exposed form
@@ -41,7 +40,6 @@ class views_plugin_exposed_form_input_required extends views_plugin_exposed_form
     static $cache = NULL;
     if (!isset($cache)) {
       $view = $this->view;
-      $exposed_data = $view->exposed_data;
       if (is_array($view->filter) && count($view->filter)) {
         foreach ($view->filter as $filter_id => $filter) {
           if ($filter->is_exposed()) {
@@ -59,7 +57,7 @@ class views_plugin_exposed_form_input_required extends views_plugin_exposed_form
     return $cache;
   }
 
-  function pre_render() {
+  function pre_render(&$values) {
     if (!$this->exposed_filter_applied()) {
       $options = array(
         'id' => 'area',

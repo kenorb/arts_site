@@ -1,5 +1,4 @@
 <?php
-// $Id: comment.views.inc,v 1.32.2.10 2010/10/12 23:15:09 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for comment.module
@@ -304,24 +303,45 @@ function comment_views_data() {
   );
 
   $data['comments']['nid'] = array(
-    'title' => t('Node'),
-    'help' => t('The node the comment is a reply to.'),
+    'title' => t('Nid'),
+    'help' => t('The node ID to which the comment is a reply to.'),
     'relationship' => array(
+      'title' => t('Content'),
+      'help' => t('The content to which the comment is a reply to.'),
       'base' => 'node',
       'base field' => 'nid',
       'handler' => 'views_handler_relationship',
       'label' => t('Node'),
     ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'field' => array(
+      'handler' => 'views_handler_field_numeric',
+    ),
   );
 
   $data['comments']['uid'] = array(
-    'title' => t('User'),
+    'title' => t('Uid'),
     'help' => t("The User ID of the comment's author."),
     'relationship' => array(
+      'title' => t('User'),
       'base' => 'users',
       'base field' => 'uid',
       'handler' => 'views_handler_relationship',
       'label' => t('User'),
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'field' => array(
+      'handler' => 'views_handler_filter_user_name',
     ),
   );
 
@@ -418,6 +438,28 @@ function comment_views_data() {
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_ncs_last_updated',
+    ),
+  );
+
+  // last_comment_uid
+  $data['node_comment_statistics']['last_comment_uid'] = array(
+    'title' => t('Last comment uid'),
+    'help' => t('The User ID of the author of the last comment of a node.'),
+    'relationship' => array(
+      'title' => t('Last comment author'),
+      'base' => 'users',
+      'base field' => 'uid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('Last comment author'),
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'field' => array(
+      'handler' => 'views_handler_filter_user_name',
     ),
   );
 

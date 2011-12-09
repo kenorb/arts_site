@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_argument_validate_user.inc,v 1.2.2.6 2010/09/30 20:40:54 dww Exp $
 
 /**
  * Validate whether an argument is a valid user.
@@ -118,7 +117,7 @@ class views_plugin_argument_validate_user extends views_plugin_argument_validate
     }
 
     $this->argument->argument = $account->uid;
-    $this->argument->validated_title = check_plain($account->name);
+    $this->argument->validated_title = isset($account->name) ? check_plain($account->name) : check_plain(variable_get('anonymous', t('Anonymous')));
     return TRUE;
   }
 }

@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_taxonomy.inc,v 1.3.2.1 2011/01/10 23:14:27 merlinofchaos Exp $
 
 /**
  * Field handler to provide simple renderer that allows linking to a taxonomy
@@ -21,6 +20,7 @@ class views_handler_field_taxonomy extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
     $options['link_to_taxonomy'] = array('default' => FALSE);
+    $options['convert_spaces'] = array('default' => FALSE);
     return $options;
   }
 
@@ -34,6 +34,12 @@ class views_handler_field_taxonomy extends views_handler_field {
       '#description' => t('This will override any other link you have set.'),
       '#type' => 'checkbox',
       '#default_value' => !empty($this->options['link_to_taxonomy']),
+    );
+    $form['convert_spaces'] = array(
+      '#title' => t('Convert spaces in term names to hyphens'),
+      '#description' => t('This allows links to work with Views taxonomy term arguments.'),
+      '#type' => 'checkbox',
+      '#default_value' => !empty($this->options['convert_spaces']),
     );
   }
 
@@ -51,6 +57,11 @@ class views_handler_field_taxonomy extends views_handler_field {
       $this->options['alter']['make_link'] = TRUE;
       $this->options['alter']['path'] = taxonomy_term_path($term);
     }
+
+    if (!empty($this->options['convert_spaces'])) {
+      $data = str_replace(' ', '-', $data);
+    }
+
     return $data;
   }
 
