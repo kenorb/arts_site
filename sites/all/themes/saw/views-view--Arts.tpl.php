@@ -23,7 +23,7 @@
 <?php if ($viewName != 'user profile arts'): ?>
 <div class="arts-filters">
 	<span class="preface">You can filter by:</span>
-	<a href="/arts/most-viewed" class="filter <?php if ($viewName == 'most viewed'): ?>active<?php endif; ?>">Most viewed</a>
+	<a href="/arts/most-viewed" class="filter <?php if ($viewName == 'most viewed' || $viewName == 'default'): ?>active<?php endif; ?>">Most viewed</a>
 	<a href="/arts/most-recent" class="filter <?php if ($viewName == 'most recent'): ?>active<?php endif; ?>">Most recent</a>
 	<a href="/arts/best-selling-artists" class="filter <?php if ($viewName == 'best selling artists'): ?>active<?php endif; ?>">Best selling artists</a>
 	<a href="/arts/featured-artists" class="filter <?php if ($viewName == 'featured artists'): ?>active<?php endif; ?>">Featured artists</a>

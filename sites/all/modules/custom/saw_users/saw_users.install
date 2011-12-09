@@ -162,4 +162,45 @@ EOT;
 			
 	}
 
+	function saw_users_update_6 ()
+	{
+		$query =
+<<<EOT
+
+	DELETE FROM menu_links WHERE menu_name = 'menu-toolbar';
+	
+	UPDATE menu_links
+	SET hidden = 1, customized = 1
+	WHERE menu_name = 'primary-links' AND (
+		link_path = 'calendar'
+	);
+	
+	UPDATE menu_links
+	SET hidden = 1, customized = 1
+	WHERE menu_name = 'navigation' AND (
+		link_path = 'workspace/%' OR
+		link_path = 'subdomain/test' OR
+		link_path = 'subdomain/validate' OR
+		link_path = 'subdomain/homepage' OR
+		link_path = 'arts' OR
+		link_path = 'ideas/list' OR
+		link_path = 'community' OR
+		link_path = 'ideas' OR
+		link_path = 'arts/best-selling-artists' OR
+		link_path = 'arts/highest-rated' OR
+		link_path = 'arts/featured-artists' OR
+		link_path = 'arts/most-viewed' OR
+		link_path = 'manage/forums' OR
+		link_path = 'arts/most-recent'
+	);
+
+
+	
+EOT;
+	
+		foreach (explode ("\n", $query) as $row)
+			_db_query ($row);
+			
+	}	
+	
 ?>

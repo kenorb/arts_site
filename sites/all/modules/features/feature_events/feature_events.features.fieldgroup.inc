@@ -59,8 +59,11 @@ function feature_events_fieldgroup_default_groups() {
       ),
     ),
     'weight' => '-4',
-    'fields' => array(
-      '0' => 'field_private',
+    'parent' => '',
+    'fields' => array(),
+    'depth' => 0,
+    'parents' => array(
+      '0' => '',
     ),
   );
 

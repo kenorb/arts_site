@@ -35,6 +35,6 @@ function feature_events_node_info() {
  */
 function feature_events_views_api() {
   return array(
-    'api' => '3.0-alpha1',
+    'api' => '3.0',
   );
 }

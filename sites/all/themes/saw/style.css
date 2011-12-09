@@ -3490,4 +3490,10 @@ ul.pager li.pager-ellipsis:hover {
 	text-shadow: 1px 1px 1px #000 !important;
 }
 
+#block-views-Events-events_page_block .title {
+	display: none;
+}
 
+.attachment .calendar-calendar {
+  margin-top: 7px;
+}
