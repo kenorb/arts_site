@@ -35,6 +35,6 @@ function feature_art_uc_product_default_classes() {
  */
 function feature_art_views_api() {
   return array(
-    'api' => '3.0-alpha1',
+    'api' => '3.0',
   );
 }

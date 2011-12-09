@@ -35,6 +35,6 @@ function feature_market_uc_product_default_classes() {
  */
 function feature_market_views_api() {
   return array(
-    'api' => '3.0-alpha1',
+    'api' => '3.0',
   );
 }
