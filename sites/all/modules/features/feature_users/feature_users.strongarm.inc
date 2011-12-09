@@ -4727,7 +4727,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subdomain_home';
-  $strongarm->value = 'view';
+  $strongarm->value = 'default';
   $export['subdomain_home'] = $strongarm;
 
   $strongarm = new stdClass;

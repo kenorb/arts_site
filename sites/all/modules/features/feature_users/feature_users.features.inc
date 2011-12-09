@@ -21,15 +21,15 @@ function feature_users_flag_default_flags() {
     'title' => 'Comment Abuse',
     'global' => '0',
     'types' => array(
-      '0' => 'story',
-      '1' => 'profile',
-      '2' => 'item',
-      '3' => 'idea',
+      '0' => 'art',
+      '1' => 'blog',
+      '2' => 'event',
+      '3' => 'forum',
       '4' => 'group',
-      '5' => 'forum',
-      '6' => 'event',
-      '7' => 'blog',
-      '8' => 'art',
+      '5' => 'idea',
+      '6' => 'item',
+      '7' => 'profile',
+      '8' => 'story',
     ),
     'flag_short' => 'Flag as offensive',
     'flag_long' => 'Flag this content as offensive.',
@@ -117,11 +117,11 @@ function feature_users_flag_default_flags() {
     'title' => 'Add to favourites',
     'global' => '0',
     'types' => array(
-      '0' => 'art',
-      '1' => 'event',
+      '0' => 'profile',
+      '1' => 'item',
       '2' => 'forum',
-      '3' => 'item',
-      '4' => 'profile',
+      '3' => 'event',
+      '4' => 'art',
     ),
     'flag_short' => 'Add to favourites',
     'flag_long' => '',
@@ -168,9 +168,9 @@ function feature_users_flag_default_flags() {
     'title' => 'Bookmarks',
     'global' => '0',
     'types' => array(
-      '0' => 'forum',
+      '0' => 'art',
       '1' => 'event',
-      '2' => 'art',
+      '2' => 'forum',
     ),
     'flag_short' => 'Bookmark this',
     'flag_long' => 'Add this post to your bookmarks',
@@ -284,6 +284,6 @@ function feature_users_node_info() {
  */
 function feature_users_views_api() {
   return array(
-    'api' => '3.0-alpha1',
+    'api' => '3.0',
   );
 }

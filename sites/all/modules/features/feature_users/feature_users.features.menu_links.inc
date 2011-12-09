@@ -4,128 +4,8 @@
  * Implementation of hook_menu_default_menu_links().
  */
 function feature_users_menu_default_menu_links() {
-
   $menu_links = array();
 
-  // Exported menu link: admin_menu:admin/user/captcha
-  $menu_links['admin_menu:admin/user/captcha'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'admin/user/captcha',
-    'router_path' => 'admin/user/captcha',
-    'link_title' => 'CAPTCHA',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user',
-  );
-  // Exported menu link: admin_menu:admin/user/captcha/captcha
-  $menu_links['admin_menu:admin/user/captcha/captcha'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'admin/user/captcha/captcha',
-    'router_path' => 'admin/user/captcha/captcha',
-    'link_title' => 'CAPTCHA',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-20',
-    'parent_path' => 'admin/user/captcha',
-  );
-  // Exported menu link: admin_menu:admin/user/captcha/captcha/examples
-  $menu_links['admin_menu:admin/user/captcha/captcha/examples'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'admin/user/captcha/captcha/examples',
-    'router_path' => 'admin/user/captcha/captcha/examples',
-    'link_title' => 'Examples',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '5',
-    'parent_path' => 'admin/user/captcha/captcha',
-  );
-  // Exported menu link: admin_menu:admin/user/captcha/captcha/settings
-  $menu_links['admin_menu:admin/user/captcha/captcha/settings'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'admin/user/captcha/captcha/settings',
-    'router_path' => 'admin/user/captcha/captcha/settings',
-    'link_title' => 'General settings',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user/captcha/captcha',
-  );
-  // Exported menu link: admin_menu:admin/user/captcha/image_captcha
-  $menu_links['admin_menu:admin/user/captcha/image_captcha'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'admin/user/captcha/image_captcha',
-    'router_path' => 'admin/user/captcha/image_captcha',
-    'link_title' => 'Image CAPTCHA',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user/captcha',
-  );
-  // Exported menu link: admin_menu:admin/user/captcha/recaptcha
-  $menu_links['admin_menu:admin/user/captcha/recaptcha'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'admin/user/captcha/recaptcha',
-    'router_path' => 'admin/user/captcha/recaptcha',
-    'link_title' => 'reCAPTCHA',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user/captcha',
-  );
-  // Exported menu link: admin_menu:http://drupal.org/project/issues/captcha
-  $menu_links['admin_menu:http://drupal.org/project/issues/captcha'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'http://drupal.org/project/issues/captcha',
-    'router_path' => '',
-    'link_title' => 'CAPTCHA issue queue',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '1',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'http://drupal.org',
-  );
   // Exported menu link: admin_menu:http://drupal.org/project/issues/recaptcha
   $menu_links['admin_menu:http://drupal.org/project/issues/recaptcha'] = array(
     'menu_name' => 'admin_menu',
@@ -143,277 +23,153 @@ function feature_users_menu_default_menu_links() {
     'weight' => '0',
     'parent_path' => 'http://drupal.org',
   );
-  // Exported menu link: admin_menu:node/add
-  $menu_links['admin_menu:node/add'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add',
-    'router_path' => 'node/add',
-    'link_title' => 'Create content',
+  // Exported menu link: menu-my-content:manage/arts
+  $menu_links['menu-my-content:manage/arts'] = array(
+    'menu_name' => 'menu-my-content',
+    'link_path' => 'manage/arts',
+    'router_path' => 'manage/arts',
+    'link_title' => 'Arts',
     'options' => array(
-      'alter' => TRUE,
+      'attributes' => array(
+        'title' => 'Manage Arts',
+      ),
     ),
-    'module' => 'admin_menu',
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/content',
+    'expanded' => '1',
+    'weight' => '-50',
   );
-  // Exported menu link: admin_menu:node/add/art
-  $menu_links['admin_menu:node/add/art'] = array(
-    'menu_name' => 'admin_menu',
+  // Exported menu link: menu-my-content:manage/events
+  $menu_links['menu-my-content:manage/events'] = array(
+    'menu_name' => 'menu-my-content',
+    'link_path' => 'manage/events',
+    'router_path' => 'manage/events',
+    'link_title' => 'Events',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Manage Events',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '1',
+    'weight' => '-49',
+  );
+  // Exported menu link: menu-my-content:manage/forums
+  $menu_links['menu-my-content:manage/forums'] = array(
+    'menu_name' => 'menu-my-content',
+    'link_path' => 'manage/forums',
+    'router_path' => 'manage/forums',
+    'link_title' => 'Forum Topics',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Manage Forum Topics',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '1',
+    'weight' => '-47',
+  );
+  // Exported menu link: menu-my-content:manage/items
+  $menu_links['menu-my-content:manage/items'] = array(
+    'menu_name' => 'menu-my-content',
+    'link_path' => 'manage/items',
+    'router_path' => 'manage/items',
+    'link_title' => 'Items',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Manage Items',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '1',
+    'weight' => '-46',
+  );
+  // Exported menu link: menu-my-content:node/add/art
+  $menu_links['menu-my-content:node/add/art'] = array(
+    'menu_name' => 'menu-my-content',
     'link_path' => 'node/add/art',
     'router_path' => 'node/add/art',
-    'link_title' => 'Art',
+    'link_title' => 'Add Art',
     'options' => array(
-      'alter' => TRUE,
+      'attributes' => array(
+        'title' => 'Add Art',
+      ),
     ),
-    'module' => 'admin_menu',
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
+    'weight' => '-50',
+    'parent_path' => 'manage/arts',
   );
-  // Exported menu link: admin_menu:node/add/blog
-  $menu_links['admin_menu:node/add/blog'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/blog',
-    'router_path' => 'node/add/blog',
-    'link_title' => 'Blog entry',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/education
-  $menu_links['admin_menu:node/add/education'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/education',
-    'router_path' => 'node/add/education',
-    'link_title' => 'Education',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/event
-  $menu_links['admin_menu:node/add/event'] = array(
-    'menu_name' => 'admin_menu',
+  // Exported menu link: menu-my-content:node/add/event
+  $menu_links['menu-my-content:node/add/event'] = array(
+    'menu_name' => 'menu-my-content',
     'link_path' => 'node/add/event',
     'router_path' => 'node/add/event',
-    'link_title' => 'Event',
+    'link_title' => 'Add Event',
     'options' => array(
-      'alter' => TRUE,
+      'attributes' => array(
+        'title' => 'Add Event',
+      ),
     ),
-    'module' => 'admin_menu',
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
+    'weight' => '-50',
+    'parent_path' => 'manage/events',
   );
-  // Exported menu link: admin_menu:node/add/forum
-  $menu_links['admin_menu:node/add/forum'] = array(
-    'menu_name' => 'admin_menu',
+  // Exported menu link: menu-my-content:node/add/forum
+  $menu_links['menu-my-content:node/add/forum'] = array(
+    'menu_name' => 'menu-my-content',
     'link_path' => 'node/add/forum',
     'router_path' => 'node/add/forum',
-    'link_title' => 'Forum topic',
+    'link_title' => 'Add Forum Topic',
     'options' => array(
-      'alter' => TRUE,
+      'attributes' => array(
+        'title' => 'Add Forum Topic',
+      ),
     ),
-    'module' => 'admin_menu',
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
+    'weight' => '-50',
+    'parent_path' => 'manage/forums',
   );
-  // Exported menu link: admin_menu:node/add/group
-  $menu_links['admin_menu:node/add/group'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/group',
-    'router_path' => 'node/add/group',
-    'link_title' => 'Group',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/idea
-  $menu_links['admin_menu:node/add/idea'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/idea',
-    'router_path' => 'node/add/idea',
-    'link_title' => 'Idea',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/item
-  $menu_links['admin_menu:node/add/item'] = array(
-    'menu_name' => 'admin_menu',
+  // Exported menu link: menu-my-content:node/add/item
+  $menu_links['menu-my-content:node/add/item'] = array(
+    'menu_name' => 'menu-my-content',
     'link_path' => 'node/add/item',
     'router_path' => 'node/add/item',
-    'link_title' => 'Item',
+    'link_title' => 'Add Item',
     'options' => array(
-      'alter' => TRUE,
+      'attributes' => array(
+        'title' => 'Add Item',
+      ),
     ),
-    'module' => 'admin_menu',
+    'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/membership
-  $menu_links['admin_menu:node/add/membership'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/membership',
-    'router_path' => 'node/add/membership',
-    'link_title' => 'Membership',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/page
-  $menu_links['admin_menu:node/add/page'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/page',
-    'router_path' => 'node/add/page',
-    'link_title' => 'Page',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/panel
-  $menu_links['admin_menu:node/add/panel'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/panel',
-    'router_path' => 'node/add/panel',
-    'link_title' => 'Panel',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/product
-  $menu_links['admin_menu:node/add/product'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/product',
-    'router_path' => 'node/add/product',
-    'link_title' => 'Product',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/profile
-  $menu_links['admin_menu:node/add/profile'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/profile',
-    'router_path' => 'node/add/profile',
-    'link_title' => 'Profile',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/simplenews
-  $menu_links['admin_menu:node/add/simplenews'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/simplenews',
-    'router_path' => 'node/add/simplenews',
-    'link_title' => 'Newsletter issue',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
-  );
-  // Exported menu link: admin_menu:node/add/story
-  $menu_links['admin_menu:node/add/story'] = array(
-    'menu_name' => 'admin_menu',
-    'link_path' => 'node/add/story',
-    'router_path' => 'node/add/story',
-    'link_title' => 'Story',
-    'options' => array(
-      'alter' => TRUE,
-    ),
-    'module' => 'admin_menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'node/add',
+    'weight' => '-50',
+    'parent_path' => 'manage/items',
   );
   // Exported menu link: menu-profilemenu:<front>
   $menu_links['menu-profilemenu:<front>'] = array(
@@ -667,234 +423,41 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-46',
   );
-  // Exported menu link: navigation:admin/user/captcha
-  $menu_links['navigation:admin/user/captcha'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'admin/user/captcha',
-    'router_path' => 'admin/user/captcha',
-    'link_title' => 'CAPTCHA',
+  // Exported menu link: primary-links:<front>
+  $menu_links['primary-links:<front>'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Home',
     'options' => array(
       'attributes' => array(
-        'title' => 'Administer how and where CAPTCHAs are used.',
+        'title' => '',
       ),
     ),
-    'module' => 'system',
+    'module' => 'menu',
     'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
+    'external' => '1',
+    'has_children' => '0',
     'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user',
+    'weight' => '-50',
   );
-  // Exported menu link: navigation:admin/user/captcha/captcha
-  $menu_links['navigation:admin/user/captcha/captcha'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'admin/user/captcha/captcha',
-    'router_path' => 'admin/user/captcha/captcha',
-    'link_title' => 'CAPTCHA',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-20',
-    'parent_path' => 'admin/user/captcha',
-  );
-  // Exported menu link: navigation:admin/user/captcha/captcha/examples
-  $menu_links['navigation:admin/user/captcha/captcha/examples'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'admin/user/captcha/captcha/examples',
-    'router_path' => 'admin/user/captcha/captcha/examples',
-    'link_title' => 'Examples',
+  // Exported menu link: primary-links:events
+  $menu_links['primary-links:events'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'events',
+    'router_path' => 'events',
+    'link_title' => 'Events',
     'options' => array(
       'attributes' => array(
-        'title' => 'An overview of the available challenge types with examples.',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '5',
-    'parent_path' => 'admin/user/captcha/captcha',
-  );
-  // Exported menu link: navigation:admin/user/captcha/captcha/settings
-  $menu_links['navigation:admin/user/captcha/captcha/settings'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'admin/user/captcha/captcha/settings',
-    'router_path' => 'admin/user/captcha/captcha/settings',
-    'link_title' => 'General settings',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user/captcha/captcha',
-  );
-  // Exported menu link: navigation:admin/user/captcha/image_captcha
-  $menu_links['navigation:admin/user/captcha/image_captcha'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'admin/user/captcha/image_captcha',
-    'router_path' => 'admin/user/captcha/image_captcha',
-    'link_title' => 'Image CAPTCHA',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'admin/user/captcha',
-  );
-  // Exported menu link: navigation:manage/arts
-  $menu_links['navigation:manage/arts'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/arts',
-    'router_path' => 'manage/arts',
-    'link_title' => 'Arts',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/events
-  $menu_links['navigation:manage/events'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/events',
-    'router_path' => 'manage/events',
-    'link_title' => 'Manage Events',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/forums
-  $menu_links['navigation:manage/forums'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/forums',
-    'router_path' => 'manage/forums',
-    'link_title' => 'Forums',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Manage Forum Topics',
+        'title' => 'Events',
       ),
     ),
     'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
+    'has_children' => '0',
+    'expanded' => '0',
     'weight' => '-47',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/items
-  $menu_links['navigation:manage/items'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/items',
-    'router_path' => 'manage/items',
-    'link_title' => 'Items',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:node/add/art
-  $menu_links['navigation:node/add/art'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/art',
-    'router_path' => 'node/add/art',
-    'link_title' => 'Art',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/arts',
-  );
-  // Exported menu link: navigation:node/add/event
-  $menu_links['navigation:node/add/event'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/event',
-    'router_path' => 'node/add/event',
-    'link_title' => 'Event',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/events',
-  );
-  // Exported menu link: navigation:node/add/forum
-  $menu_links['navigation:node/add/forum'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/forum',
-    'router_path' => 'node/add/forum',
-    'link_title' => 'Add forum topic',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'A <em>forum topic</em> is the initial post to a new discussion thread within a forum.',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-50',
-    'parent_path' => 'manage/forums',
-  );
-  // Exported menu link: navigation:node/add/item
-  $menu_links['navigation:node/add/item'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/item',
-    'router_path' => 'node/add/item',
-    'link_title' => 'Item',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Buy & Exchange',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/items',
-  );
-  // Exported menu link: navigation:workspace/%
-  $menu_links['navigation:workspace/%'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'workspace/%',
-    'router_path' => 'workspace/%',
-    'link_title' => 'My workspace',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-10',
   );
   // Exported menu link: secondary-links:arts
   $menu_links['secondary-links:arts'] = array(
@@ -932,215 +495,32 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-50',
   );
-	
-  // Exported menu link: navigation:manage/arts
-  $menu_links['navigation:manage/arts'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/arts',
-    'router_path' => 'manage/arts',
-    'link_title' => 'Arts',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-50',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/events
-  $menu_links['navigation:manage/events'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/events',
-    'router_path' => 'manage/events',
-    'link_title' => 'Events',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-48',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/forums
-  $menu_links['navigation:manage/forums'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/forums',
-    'router_path' => 'manage/forums',
-    'link_title' => 'Forums',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Manage Forum Topics',
-      ),
-    ),
-    'module' => 'menu',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-47',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:manage/items
-  $menu_links['navigation:manage/items'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'manage/items',
-    'router_path' => 'manage/items',
-    'link_title' => 'Items',
-    'options' => array(),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '1',
-    'weight' => '-49',
-    'parent_path' => 'workspace/%',
-  );
-  // Exported menu link: navigation:node/add/art
-  $menu_links['navigation:node/add/art'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/art',
-    'router_path' => 'node/add/art',
-    'link_title' => 'Add Art',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/arts',
-  );
-  // Exported menu link: navigation:node/add/event
-  $menu_links['navigation:node/add/event'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/event',
-    'router_path' => 'node/add/event',
-    'link_title' => 'Add Event',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/events',
-  );
-  // Exported menu link: navigation:node/add/forum
-  $menu_links['navigation:node/add/forum'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/forum',
-    'router_path' => 'node/add/forum',
-    'link_title' => 'Add forum topic',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'A <em>forum topic</em> is the initial post to a new discussion thread within a forum.',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '-50',
-    'parent_path' => 'manage/forums',
-  );
-  // Exported menu link: navigation:node/add/item
-  $menu_links['navigation:node/add/item'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'node/add/item',
-    'router_path' => 'node/add/item',
-    'link_title' => 'Add Item',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Buy & Exchange',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '0',
-    'expanded' => '0',
-    'weight' => '0',
-    'parent_path' => 'manage/items',
-  );
-  // Exported menu link: navigation:workspace/%
-  $menu_links['navigation:workspace/%'] = array(
-    'menu_name' => 'navigation',
-    'link_path' => 'workspace/%',
-    'router_path' => 'workspace/%',
-    'link_title' => 'Manage',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-    ),
-    'module' => 'system',
-    'hidden' => '0',
-    'external' => '0',
-    'has_children' => '1',
-    'expanded' => '0',
-    'weight' => '-50',
-  );	
-	
   // Translatables
   // Included for use with string extractors like potx.
   t('-');
   t('Account');
   t('Account Settings');
-  t('Add forum topic');
-  t('Art');
+  t('Add Art');
+  t('Add Event');
+  t('Add Forum Topic');
+  t('Add Item');
   t('Arts');
-  t('Blog entry');
   t('Buy Student Art');
-  t('CAPTCHA');
-  t('CAPTCHA issue queue');
   t('Calendar');
   t('Chat');
-  t('Create content');
-  t('Education');
-  t('Event');
-  t('Examples');
-  t('Forum topic');
-  t('Forums');
-  t('General settings');
-  t('Group');
+  t('Events');
+  t('Forum Topics');
   t('Help');
-  t('Idea');
-  t('Image CAPTCHA');
-  t('Item');
+  t('Home');
   t('Items');
   t('Manage');
-  t('Manage Events');
   t('Market');
-  t('Membership');
   t('Message');
-  t('My workspace');
   t('News');
-  t('Newsletter issue');
   t('Online');
-  t('Page');
-  t('Panel');
   t('Privacy Settings');
-  t('Product');
-  t('Profile');
   t('Sell My Art');
-  t('Story');
   t('Upgrade to premium?');
-  t('reCAPTCHA');
   t('reCAPTCHA issue queue');
 
 
