@@ -22,7 +22,7 @@
 						<tr>
 							<td class="left-column">
 								<div class="image">
-									<?php echo $row ['field_image_fid']; ?>
+									<?php if ($row ['field_image_fid']) echo $row ['field_image_fid']; else echo '<img alt="no image" src="/sites/all/themes/saw/images/nophoto_100.png" />'; ?>
 								</div>
 							</td>
 							<td class="middle-column">

@@ -18,7 +18,7 @@ function feature_market_uc_product_default_classes() {
     'item' => array(
       'name' => t('Item'),
       'module' => 'uc_product',
-      'description' => t('Buy & Exchange'),
+      'description' => '',
       'has_title' => '1',
       'title_label' => t('Name'),
       'has_body' => '1',
