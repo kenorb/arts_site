@@ -207,6 +207,35 @@ h2 a:hover {
 	font-size: 14px !important;
 }
 
+.block-views .views-exposed-widget label {
+	display: block;
+	clear: both;
+	padding-top: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.block-views .views-exposed-widget {
+	padding: 0;
+}
+
+.block-views .views-exposed-widget label.option {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.block-views .views-exposed-widget input.form-submit {
+	display: block;
+	clear: both;
+	margin: 10px auto 0px auto;
+	text-align: center;
+}
+
+.block-views .views-exposed-widget .form-checkboxes,
+.block-views .views-exposed-widget .form-radios {
+	margin: 0 0 5px 0;
+}
+
 
 tr.odd td, tr.even td {
   padding: 0.3em;
