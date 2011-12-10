@@ -75,7 +75,7 @@
 						</div>
 						
 						<div class="views">
-							<span class="num">45</span> Views
+							<span class="num"><?php echo (int)$node -> links ['statistics_counter'] ['title'] ?></span> Views
 						</div>
 						
 						<div class="separator"></div>

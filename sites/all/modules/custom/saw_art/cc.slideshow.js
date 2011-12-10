@@ -90,7 +90,7 @@
 			
 		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
 		
-		box.find ('.day-count .count').append (this._frames [v] [this._dayCountName]);
+		box.find ('.day-count .count').html (this._frames [v] [this._dayCountName]);
 		
 		$('#user-arts-slideshow-container .user-arts-slideshow').css ('position', 'absolute');
 		$('#user-arts-slideshow-container .user-arts-slideshow').fadeOut (400, function () { $(this).remove (); });

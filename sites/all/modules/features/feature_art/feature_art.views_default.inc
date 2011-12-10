@@ -1639,25 +1639,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_image_fid_1']['format'] = 'imagefield__lightbox2__Thumb_100w__Thumb_100w';
   $handler->display->display_options['fields']['field_image_fid_1']['multiple']['group'] = 0;
   $handler->display->display_options['fields']['field_image_fid_1']['multiple']['multiple_reversed'] = 0;
-  /* Field: Node statistics: Views today */
-  $handler->display->display_options['fields']['daycount']['id'] = 'daycount';
-  $handler->display->display_options['fields']['daycount']['table'] = 'node_counter';
-  $handler->display->display_options['fields']['daycount']['field'] = 'daycount';
-  $handler->display->display_options['fields']['daycount']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['daycount']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['daycount']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['daycount']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['daycount']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['daycount']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['daycount']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['daycount']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['daycount']['format_plural'] = 0;
   /* Sort criterion: Global: Random */
   $handler->display->display_options['sorts']['random']['id'] = 'random';
   $handler->display->display_options['sorts']['random']['table'] = 'views';
@@ -1706,6 +1687,7 @@ function feature_art_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'user_arts_block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Artist Name';
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -1843,6 +1825,8 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['daycount']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['daycount']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['daycount']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['daycount']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['daycount']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['daycount']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['daycount']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['daycount']['alter']['ellipsis'] = 1;
@@ -1851,8 +1835,10 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['daycount']['alter']['html'] = 0;
   $handler->display->display_options['fields']['daycount']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['daycount']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['daycount']['empty'] = '0';
   $handler->display->display_options['fields']['daycount']['hide_empty'] = 0;
   $handler->display->display_options['fields']['daycount']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['daycount']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['daycount']['format_plural'] = 0;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -1900,15 +1886,15 @@ function feature_art_views_default_views() {
     t('Teaser'),
     t('Title'),
     t('Image'),
-    t('Views today'),
-    t('.'),
-    t(','),
     t('All'),
     t('User: Name'),
     t('Block'),
     t('Artist Name'),
     t('Name'),
     t('Nid'),
+    t('Views today'),
+    t('.'),
+    t(','),
     t('True'),
   );
 
