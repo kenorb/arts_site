@@ -59,7 +59,7 @@ function feature_events_default_fe_block_settings() {
     'delta' => 'Events-calendar_block_1',
     'theme' => 'saw',
     'status' => '1',
-    'weight' => '-58',
+    'weight' => '-60',
     'region' => 'right',
     'custom' => '0',
     'throttle' => '0',

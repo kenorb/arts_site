@@ -14,7 +14,7 @@ function feature_ideas_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'ideas';
   $view->core = 6;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
@@ -97,11 +97,11 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
   $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
@@ -117,11 +117,11 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['fields']['teaser']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['teaser']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['teaser']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['teaser']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['teaser']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['teaser']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['teaser']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['teaser']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['teaser']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['teaser']['alter']['html'] = 0;
   $handler->display->display_options['fields']['teaser']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['teaser']['element_default_classes'] = 1;
@@ -137,11 +137,11 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['name']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['name']['alter']['html'] = 0;
   $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
@@ -176,14 +176,13 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Ideas';
   $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['name'] = 'navigation';
   $translatables['Ideas'] = array(
     t('Defaults'),
     t('Ideas'),
     t('more'),
     t('Apply'),
     t('Reset'),
-    t('Sort By'),
+    t('Sort by'),
     t('Asc'),
     t('Desc'),
     t('Items per page'),

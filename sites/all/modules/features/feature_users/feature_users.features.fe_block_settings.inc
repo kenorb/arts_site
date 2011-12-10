@@ -150,7 +150,7 @@ events/*',
     'delta' => 'recent_activity-recent_activity',
     'theme' => 'saw',
     'status' => '1',
-    'weight' => '-63',
+    'weight' => '-62',
     'region' => 'right',
     'custom' => '0',
     'throttle' => '0',
@@ -160,27 +160,12 @@ events/*',
     'cache' => '-1',
   );
 
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'saw',
-    'status' => '1',
-    'weight' => '-62',
-    'region' => 'content',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
-    'cache' => '-1',
-  );
-
   $theme['views-who_is_online-block_1'] = array(
     'module' => 'views',
     'delta' => 'who_is_online-block_1',
     'theme' => 'saw',
     'status' => '1',
-    'weight' => '-62',
+    'weight' => '-61',
     'region' => 'right',
     'custom' => '0',
     'throttle' => '0',
@@ -343,21 +328,6 @@ events/*',
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => '-1',
-  );
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'saw_pushbutton',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
     'cache' => '-1',
   );
 
@@ -529,21 +499,6 @@ events/*',
     'visibility' => '0',
     'pages' => '',
     'title' => '',
-    'cache' => '-1',
-  );
-
-  $theme['views-user_arts-user_arts_block'] = array(
-    'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
-    'theme' => 'garland',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
     'cache' => '-1',
   );
 

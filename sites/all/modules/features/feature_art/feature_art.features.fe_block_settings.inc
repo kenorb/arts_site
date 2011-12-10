@@ -25,6 +25,21 @@ arts/*',
     'cache' => '-1',
   );
 
+  $theme['views-user_arts-user_arts_block'] = array(
+    'module' => 'views',
+    'delta' => 'user_arts-user_arts_block',
+    'theme' => 'saw',
+    'status' => '1',
+    'weight' => '-62',
+    'region' => 'content',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
+    'cache' => '-1',
+  );
+
   $export['saw'] = $theme;
 
   // saw_pushbutton
@@ -46,6 +61,21 @@ arts/*',
     'cache' => '-1',
   );
 
+  $theme['views-user_arts-user_arts_block'] = array(
+    'module' => 'views',
+    'delta' => 'user_arts-user_arts_block',
+    'theme' => 'saw_pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
+    'cache' => '-1',
+  );
+
   $export['saw_pushbutton'] = $theme;
 
   // garland
@@ -64,6 +94,21 @@ arts/*',
     'pages' => 'arts
 arts/*',
     'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-user_arts-user_arts_block'] = array(
+    'module' => 'views',
+    'delta' => 'user_arts-user_arts_block',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '1',
+    'pages' => '<front>',
+    'title' => 'User Arts',
     'cache' => '-1',
   );
 

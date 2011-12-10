@@ -14,7 +14,7 @@ function feature_community_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'community';
   $view->core = 6;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
@@ -36,11 +36,11 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['uid']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['uid']['element_default_classes'] = 1;
@@ -62,7 +62,7 @@ function feature_community_views_default_views() {
     t('more'),
     t('Apply'),
     t('Reset'),
-    t('Sort By'),
+    t('Sort by'),
     t('Asc'),
     t('Desc'),
     t('Uid'),
@@ -80,7 +80,7 @@ function feature_community_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'recent_groups';
   $view->core = 6;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
@@ -152,11 +152,11 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
   $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
@@ -217,7 +217,7 @@ function feature_community_views_default_views() {
     t('more'),
     t('Apply'),
     t('Reset'),
-    t('Sort By'),
+    t('Sort by'),
     t('Asc'),
     t('Desc'),
     t('Items per page'),
@@ -243,7 +243,7 @@ function feature_community_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'recent_topics_posts';
   $view->core = 6;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
@@ -320,11 +320,11 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['type']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['type']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['type']['alter']['html'] = 0;
   $handler->display->display_options['fields']['type']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['type']['element_default_classes'] = 1;
@@ -341,11 +341,11 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
   $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
@@ -360,10 +360,10 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['timestamp']['alter']['text'] = '[timestamp] <br />';
   $handler->display->display_options['fields']['timestamp']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['timestamp']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['timestamp']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['timestamp']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['timestamp']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['timestamp']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['timestamp']['alter']['html'] = 0;
   $handler->display->display_options['fields']['timestamp']['hide_empty'] = 0;
   $handler->display->display_options['fields']['timestamp']['empty_zero'] = 0;
@@ -377,10 +377,10 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['comment_count']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['comment_count']['alter']['text'] = '[comment_count]  ';
   $handler->display->display_options['fields']['comment_count']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['comment_count']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['comment_count']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['comment_count']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['comment_count']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['comment_count']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['comment_count']['alter']['html'] = 0;
   $handler->display->display_options['fields']['comment_count']['empty'] = '0';
   $handler->display->display_options['fields']['comment_count']['hide_empty'] = 0;
@@ -392,10 +392,10 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['new_comments']['label'] = '';
   $handler->display->display_options['fields']['new_comments']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['new_comments']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['new_comments']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['new_comments']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['new_comments']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['new_comments']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['new_comments']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['new_comments']['alter']['html'] = 0;
   $handler->display->display_options['fields']['new_comments']['hide_empty'] = 1;
   $handler->display->display_options['fields']['new_comments']['empty_zero'] = 0;
@@ -410,10 +410,10 @@ function feature_community_views_default_views() {
   $handler->display->display_options['fields']['last_comment_name']['alter']['alter_text'] = 1;
   $handler->display->display_options['fields']['last_comment_name']['alter']['text'] = 'by [last_comment_name] <br />';
   $handler->display->display_options['fields']['last_comment_name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['last_comment_name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['last_comment_name']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['last_comment_name']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['last_comment_name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['last_comment_name']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['last_comment_name']['alter']['html'] = 0;
   $handler->display->display_options['fields']['last_comment_name']['hide_empty'] = 0;
   $handler->display->display_options['fields']['last_comment_name']['empty_zero'] = 0;
@@ -448,7 +448,7 @@ function feature_community_views_default_views() {
     t('See all topics by user'),
     t('Apply'),
     t('Reset'),
-    t('Sort By'),
+    t('Sort by'),
     t('Asc'),
     t('Desc'),
     t('No posts.'),
