@@ -9,18 +9,19 @@ function feature_art_default_fe_block_settings() {
   // saw
   $theme = array();
 
-  $theme['views-user_arts-user_arts_block'] = array(
+  $theme['views--exp-Arts-page_1'] = array(
     'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
+    'delta' => '-exp-Arts-page_1',
     'theme' => 'saw',
     'status' => '1',
-    'weight' => '-62',
-    'region' => 'content',
+    'weight' => '-63',
+    'region' => 'right',
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
+    'pages' => 'arts
+arts/*',
+    'title' => '',
     'cache' => '-1',
   );
 
@@ -29,9 +30,9 @@ function feature_art_default_fe_block_settings() {
   // saw_pushbutton
   $theme = array();
 
-  $theme['views-user_arts-user_arts_block'] = array(
+  $theme['views--exp-Arts-page_1'] = array(
     'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
+    'delta' => '-exp-Arts-page_1',
     'theme' => 'saw_pushbutton',
     'status' => 0,
     'weight' => '0',
@@ -39,8 +40,9 @@ function feature_art_default_fe_block_settings() {
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
+    'pages' => 'arts
+arts/*',
+    'title' => '',
     'cache' => '-1',
   );
 
@@ -49,9 +51,9 @@ function feature_art_default_fe_block_settings() {
   // garland
   $theme = array();
 
-  $theme['views-user_arts-user_arts_block'] = array(
+  $theme['views--exp-Arts-page_1'] = array(
     'module' => 'views',
-    'delta' => 'user_arts-user_arts_block',
+    'delta' => '-exp-Arts-page_1',
     'theme' => 'garland',
     'status' => 0,
     'weight' => '0',
@@ -59,8 +61,9 @@ function feature_art_default_fe_block_settings() {
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '1',
-    'pages' => '<front>',
-    'title' => 'User Arts',
+    'pages' => 'arts
+arts/*',
+    'title' => '',
     'cache' => '-1',
   );
 
