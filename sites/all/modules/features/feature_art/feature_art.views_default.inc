@@ -78,7 +78,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['empty']['area_1']['label'] = 'No arts';
   $handler->display->display_options['empty']['area_1']['empty'] = FALSE;
   $handler->display->display_options['empty']['area_1']['content'] = 'No arts found';
-  $handler->display->display_options['empty']['area_1']['format'] = '1';
   /* Field: Node: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -509,6 +508,20 @@ function feature_art_views_default_views() {
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Recent arts';
   $handler->display->display_options['menu']['weight'] = '0';
+
+  /* Display: Arts Front Page */
+  $handler = $view->new_display('block', 'Arts Front Page', 'arts_front_page');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'page_1';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '25, 50, 100, 200';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $translatables['Arts'] = array(
     t('Defaults'),
     t('more'),
@@ -547,6 +560,7 @@ function feature_art_views_default_views() {
     t('Highest rated'),
     t('User Profile Arts'),
     t('Arts'),
+    t('Arts Front Page'),
   );
 
   $views[$view->name] = $view;

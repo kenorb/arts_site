@@ -11,24 +11,28 @@
 	
 ?>
 
-<h1 class="title">
-<?php if ($viewNameOrig == 'User Profile Arts'): ?>
-	<?php if (!$view -> build_info ['substitutions'] ['%1']) $view -> build_info ['substitutions'] ['%1'] = $user -> name; ?>
-	<a href="/users/<?php echo $view -> build_info ['substitutions'] ['%1']; ?>"><?php echo $view -> build_info ['substitutions'] ['%1']; ?></a>'s arts
-<?php else: ?>
-	<?php if (substr ($viewName, 0, 7) != 'default'): echo $viewNameOrig; ?><?php endif;?> arts
-<?php endif; ?>
-</h1>
+<?php global $no_top; if (!$no_top): ?>
 
-<?php if ($viewName != 'user profile arts'): ?>
-<div class="arts-filters">
-	<span class="preface">You can filter by:</span>
-	<a href="/arts/most-viewed" class="filter <?php if ($viewName == 'most viewed' || $viewName == 'default'): ?>active<?php endif; ?>">Most viewed</a>
-	<a href="/arts/most-recent" class="filter <?php if ($viewName == 'most recent'): ?>active<?php endif; ?>">Most recent</a>
-	<a href="/arts/best-selling-artists" class="filter <?php if ($viewName == 'best selling artists'): ?>active<?php endif; ?>">Best selling artists</a>
-	<a href="/arts/featured-artists" class="filter <?php if ($viewName == 'featured artists'): ?>active<?php endif; ?>">Featured artists</a>
-	<a href="/arts/highest-rated" class="filter <?php if ($viewName == 'highest rated'): ?>active<?php endif; ?>">Highest rated</a>
-</div>
+	<h1 class="title">
+	<?php if ($viewNameOrig == 'User Profile Arts'): ?>
+		<?php if (!$view -> build_info ['substitutions'] ['%1']) $view -> build_info ['substitutions'] ['%1'] = $user -> name; ?>
+		<a href="/users/<?php echo $view -> build_info ['substitutions'] ['%1']; ?>"><?php echo $view -> build_info ['substitutions'] ['%1']; ?></a>'s arts
+	<?php else: ?>
+		<?php if (substr ($viewName, 0, 7) != 'default'): echo $viewNameOrig; ?><?php endif;?> arts
+	<?php endif; ?>
+	</h1>
+
+	<?php if ($viewName != 'user profile arts'): ?>
+	<div class="arts-filters">
+		<span class="preface">You can filter by:</span>
+		<a href="/arts/most-viewed" class="filter <?php if ($viewName == 'most viewed' || $viewName == 'default'): ?>active<?php endif; ?>">Most viewed</a>
+		<a href="/arts/most-recent" class="filter <?php if ($viewName == 'most recent'): ?>active<?php endif; ?>">Most recent</a>
+		<a href="/arts/best-selling-artists" class="filter <?php if ($viewName == 'best selling artists'): ?>active<?php endif; ?>">Best selling artists</a>
+		<a href="/arts/featured-artists" class="filter <?php if ($viewName == 'featured artists'): ?>active<?php endif; ?>">Featured artists</a>
+		<a href="/arts/highest-rated" class="filter <?php if ($viewName == 'highest rated'): ?>active<?php endif; ?>">Highest rated</a>
+	</div>
+	<?php endif; ?>
+
 <?php endif; ?>
 
 <div class="arts-rows">
