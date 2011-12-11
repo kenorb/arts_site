@@ -417,8 +417,6 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 #secondary-menu .secondary-links {
 }
 
-ul.links li {
-}
 
 #navlist li {
   border-left: 1px solid #2e4d59; /* LTR */
@@ -596,13 +594,20 @@ ul.links li {
 }
 
 .messages {
-	border-radius: 5px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 6px 10px !important;
-  margin-bottom: 20px;
-	overflow: hidden;
+	-moz-border-bottom-colors: none !important;
+	-moz-border-image: none !important;
+	-moz-border-left-colors: none !important;
+	-moz-border-right-colors: none !important;
+	-moz-border-top-colors: none !important;
+	background-color: transparent !important;
+	border: 0 !important;
+	color: #777 !important;
+	font-style: italic;
+	margin-bottom: 0;
 	max-height: 80px;
+	overflow: hidden;
+	padding: 1px 7px !important;
+	text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 .messages:hover {
@@ -726,7 +731,8 @@ input[type=button],
 input[type=submit],
 .comment .reply a,
 a.author-pane-link,
-a.author-privatemsg-icon {
+a.author-privatemsg-icon,
+div.links ul.links li a {
     cursor: pointer;
     background: url("images/buttons.png") repeat-x scroll 0 0 transparent;
     border-color: #E3E2E2 #D7D7D7 #D2D2D2;
@@ -736,10 +742,37 @@ a.author-privatemsg-icon {
     color: #292929 !important;
     margin: 5px 4px;
     font: bold 11px/32px myriad-pro,Arial,Helvetica,sans-serif;
-    padding: 0px 18px;
+    padding: 5px 18px !important;
 		height: 32px;
 		min-height: 32px;
     text-transform: uppercase;
+}
+
+div.links ul.links li a {
+	margin: 0;
+	padding: 4px !important;
+	background: none !important;
+	border: 0 !important;
+}
+
+div.links ul.links li:hover a {
+	color: #fff !important;
+	background: #0292CC !important;
+	text-shadow: 1px 1px 1px #555 !important;
+}
+
+div.links ul.links li {
+	padding: 0px 1px;
+	display: block;
+	float: left;
+}
+
+div.links ul.links li.spam {
+	display: none;
+}
+
+span.flag-throbber {
+	display: none;
 }
 
 .comment .reply a,
@@ -979,12 +1012,12 @@ div.links {
   margin: .5em 0 2.5em 0;
 }
 .node .content, .comment .content {
-  margin: .5em 0 .5em 0;
+  margin: 20px 0;
 }
 .node .taxonomy {
   color: #999;
-  font-size: 0.83em;
-  padding: 1.5em;
+  font-size: 13px;
+  padding: 5px 5px;
 }
 .node .picture {
   border: 1px solid #fff;
@@ -1013,7 +1046,9 @@ div.links {
   margin: 10px;
 }
 div.links {
-  font-size: 0.75em;
+  font-size: 12px;
+	border-top: 1px dotted #aaa;
+	padding-top: 10px;
 }
 div.links .prev, div.links .next, div.links .up {
   font-size: 1.15em;
@@ -2705,7 +2740,9 @@ div.admin-panel .body {
   }
   
 	#comments {
-		border-top: 1px dotted #aaa;
+    
+    clear: both;
+		padding-top: 0px;
 	}
 	
   .comment {
@@ -2741,7 +2778,7 @@ div.admin-panel .body {
   }
   
   .submitted {
-    border-bottom: 1px dotted #aaa;
+    border-bottom: 0px;
     color: #000;
   }
   
@@ -3529,4 +3566,80 @@ ul.pager li.pager-ellipsis:hover {
 
 .attachment .calendar-calendar {
   margin-top: 7px;
+}
+
+.forum-topic-navigation {
+	border-bottom: 0px;
+	border-top: 0px;
+	clear: both;
+}
+
+.node .content {
+	background: #f0f5f9 url('images/node-content-background.png') repeat-x;
+	min-height: 150px;
+	padding: 10px;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	margin-top: 0px;
+}
+
+.node.sticky .content {
+	min-height: 0px;
+	border: 0;
+	background: none;
+}
+
+.node .submitted,
+.node .taxonomy {
+	font-size: 12px;
+	display: inline;
+}
+
+.node .links {
+	background: #fff url('images/node-links-background.png') repeat-x 0px -20px !important;
+	min-height: 42px;
+	border-bottom: 1px dotted #d6d;
+}
+
+.node .print-link {
+	
+}
+
+.node .details {
+	padding: 10px;
+	float: right;
+	border-left: 1px dotted #aaa;
+	margin-left: 10px;
+}
+
+li.addtoany {
+	margin-top: -7px;
+	display: block;
+	float: left;
+}
+
+li.addtoany a {
+	border: 0 !important;
+	background: none !important;
+}
+
+div.links ul.links li.addtoany:hover a {
+	background-color: transparent !important;
+}
+
+li.statistics_counter {
+	float: right !important;
+	margin-top: 6px;
+}
+
+.taxonomy ul.links {
+	border: 0;
+}
+
+.forum-topic-navigation .topic-next {
+	float: none;
+}
+
+.forum-topic-navigation .topic-previous {
+	float: none;
 }
