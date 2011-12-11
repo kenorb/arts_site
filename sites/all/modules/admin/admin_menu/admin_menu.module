@@ -298,7 +298,7 @@ function admin_menu_translated_menu_link_alter(&$item, $map) {
     $interval = time() - variable_get('user_block_seconds_online', 900);
     $count_anon = sess_count($interval);
     $count_auth = db_result(db_query("SELECT COUNT(DISTINCT uid) FROM {sessions} WHERE uid > 0 AND timestamp >= %d", $interval));
-    //$icon_users = '<img src="'. base_path() . drupal_get_path('module', 'admin_menu') .'/images/icon_users.png" width="16" height="15" alt="@title" title="@title" />';
+    $icon_users = '<img src="'. base_path() . drupal_get_path('module', 'admin_menu') .'/images/icon_users.png" width="16" height="15" alt="@title" title="@title" />';
 
     $title = array('@title' => t('Current anonymous / authenticated users'));
     $icon_users = strtr($icon_users, $title);
