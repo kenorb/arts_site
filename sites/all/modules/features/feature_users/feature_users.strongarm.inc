@@ -324,6 +324,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_story';
+  $strongarm->value = '0';
+  $export['comment_anonymous_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_controls_education';
   $strongarm->value = '3';
   $export['comment_controls_education'] = $strongarm;
@@ -362,6 +369,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'comment_controls_simplenews';
   $strongarm->value = '3';
   $export['comment_controls_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_controls_story';
+  $strongarm->value = '3';
+  $export['comment_controls_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -408,6 +422,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_story';
+  $strongarm->value = '4';
+  $export['comment_default_mode_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_order_education';
   $strongarm->value = '1';
   $export['comment_default_order_education'] = $strongarm;
@@ -450,6 +471,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_order_story';
+  $strongarm->value = '1';
+  $export['comment_default_order_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_education';
   $strongarm->value = '50';
   $export['comment_default_per_page_education'] = $strongarm;
@@ -488,6 +516,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'comment_default_per_page_simplenews';
   $strongarm->value = '50';
   $export['comment_default_per_page_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_story';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -537,6 +572,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'comment_form_location_simplenews';
   $strongarm->value = '0';
   $export['comment_form_location_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_story';
+  $strongarm->value = '0';
+  $export['comment_form_location_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -604,6 +646,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_story';
+  $strongarm->value = '1';
+  $export['comment_preview_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_profile';
   $strongarm->value = '2';
   $export['comment_profile'] = $strongarm;
@@ -614,6 +663,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'comment_simplenews';
   $strongarm->value = '2';
   $export['comment_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_story';
+  $strongarm->value = '2';
+  $export['comment_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -656,6 +712,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'comment_subject_field_simplenews';
   $strongarm->value = '1';
   $export['comment_subject_field_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_story';
+  $strongarm->value = '1';
+  $export['comment_subject_field_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1492,7 +1555,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'form_build_id_forum';
-  $strongarm->value = 'form-e51e6684e84f9dbbd91d9248af0aba71';
+  $strongarm->value = 'form-dbfe1e5d19804eb7bf37722ec49b95fc';
   $export['form_build_id_forum'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -1781,6 +1844,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'language_content_type_simplenews';
   $strongarm->value = '0';
   $export['language_content_type_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_story';
+  $strongarm->value = '0';
+  $export['language_content_type_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -3695,16 +3765,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => 0,
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -3869,16 +3939,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => 0,
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -4043,16 +4113,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => 0,
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -4130,16 +4200,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => '1',
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -4217,16 +4287,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => 0,
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -4391,16 +4461,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => '11',
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -4478,16 +4548,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => 0,
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -4802,6 +4872,16 @@ function feature_users_strongarm() {
     0 => 'status',
   );
   $export['node_options_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_story';
+  $strongarm->value = array(
+    0 => 'status',
+    1 => 'promote',
+  );
+  $export['node_options_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -5135,6 +5215,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'upload_simplenews';
   $strongarm->value = '1';
   $export['upload_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'upload_story';
+  $strongarm->value = '1';
+  $export['upload_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

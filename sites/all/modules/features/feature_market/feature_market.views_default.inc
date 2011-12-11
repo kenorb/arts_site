@@ -451,7 +451,6 @@ function feature_market_views_default_views() {
   $handler->display->display_options['empty']['area']['label'] = 'No featured events available.';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
   $handler->display->display_options['empty']['area']['content'] = 'Looks like there\'s no featured events.';
-  $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Image (field_image) */
   $handler->display->display_options['fields']['field_image_fid']['id'] = 'field_image_fid';

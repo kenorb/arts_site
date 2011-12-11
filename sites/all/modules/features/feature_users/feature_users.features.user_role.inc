@@ -21,6 +21,11 @@ function feature_users_user_default_roles() {
     'name' => 'art collector',
   );
 
+  // Exported role: art student
+  $roles['art student'] = array(
+    'name' => 'art student',
+  );
+
   // Exported role: authenticated user
   $roles['authenticated user'] = array(
     'name' => 'authenticated user',
@@ -31,6 +36,11 @@ function feature_users_user_default_roles() {
     'name' => 'moderator',
   );
 
+  // Exported role: premium
+  $roles['premium'] = array(
+    'name' => 'premium',
+  );
+
   // Exported role: premium buyer
   $roles['premium buyer'] = array(
     'name' => 'premium buyer',
@@ -39,6 +49,11 @@ function feature_users_user_default_roles() {
   // Exported role: premium seller
   $roles['premium seller'] = array(
     'name' => 'premium seller',
+  );
+
+  // Exported role: student
+  $roles['student'] = array(
+    'name' => 'student',
   );
 
   // Exported role: user admin

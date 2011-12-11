@@ -22,7 +22,7 @@ body.admin-menu {
 }
 
 html, body {
-  height: 100%;
+  
 }
 
 body {
@@ -3643,4 +3643,8 @@ li.statistics_counter {
 
 .forum-topic-navigation .topic-previous {
 	float: none;
+}
+
+.wysiwyg-status-1 {
+	display: none;
 }

@@ -115,6 +115,17 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: create art products
+  $permissions['create art products'] = array(
+    'name' => 'create art products',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art student',
+      '2' => 'authenticated user',
+      '3' => 'student',
+    ),
+  );
+
   // Exported permission: create chat rooms
   $permissions['create chat rooms'] = array(
     'name' => 'create chat rooms',
@@ -166,6 +177,15 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: delete own art products
+  $permissions['delete own art products'] = array(
+    'name' => 'delete own art products',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: delete own faq content
   $permissions['delete own faq content'] = array(
     'name' => 'delete own faq content',
@@ -197,6 +217,15 @@ function feature_users_user_default_permissions() {
     'name' => 'edit faq',
     'roles' => array(
       '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: edit own art products
+  $permissions['edit own art products'] = array(
+    'name' => 'edit own art products',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
     ),
   );
 
@@ -325,7 +354,9 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any art content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'moderator',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
     ),
   );
 
@@ -334,7 +365,9 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any blog content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'moderator',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
     ),
   );
 
@@ -343,12 +376,13 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any chat content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'art collector',
-      '2' => 'authenticated user',
-      '3' => 'moderator',
-      '4' => 'premium buyer',
-      '5' => 'premium seller',
-      '6' => 'user admin',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'user admin',
     ),
   );
 
@@ -357,6 +391,8 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any chatroom content',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
     ),
   );
 

@@ -101,3 +101,36 @@ function saw_removetab ($label, &$vars) {
     }
   }
 }
+
+
+// Thanks to 
+function saw_fieldset ($element)
+{
+  // remove stuff we don't want shown
+	
+	global $user;
+	
+	if (!in_array ('admin', $user -> roles) && !in_array ('moderator', $user -> roles))
+		switch ($element['#title']) {
+			case "Input format":
+			case "Revision information":
+			case "Authoring information":
+			case "Menu settings":
+			case "URL path settings":
+			case "Publishing options":
+			$element['#attributes'] = array("style" => "display:none;");
+			break;
+		}
+
+  if (!empty($element['#collapsible'])) {
+    drupal_add_js('misc/collapse.js');
+    if (!isset($element['#attributes']['class'])) {
+      $element['#attributes']['class'] = '';
+    }
+    $element['#attributes']['class'] .= ' collapsible';
+    if (!empty($element['#collapsed'])) {
+      $element['#attributes']['class'] .= ' collapsed';
+    }
+  }
+  return '<fieldset'. drupal_attributes($element['#attributes']) .'>'. ($element['#title'] ? '<legend>'. $element['#title'] .'</legend>' : '') . (isset($element['#description']) && $element['#description'] ? '<div class="description">'. $element['#description'] .'</div>' : '') . (!empty($element['#children']) ? $element['#children'] : '') . (isset($element['#value']) ? $element['#value'] : '') ."</fieldset>\n";
+}

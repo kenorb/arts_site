@@ -174,7 +174,6 @@ function feature_users_views_default_views() {
   $handler->display->display_options['header']['text']['label'] = '';
   $handler->display->display_options['header']['text']['empty'] = TRUE;
   $handler->display->display_options['header']['text']['content'] = '<em>You may use the word and to require multiple keywords, i.e, <strong>red and car</strong>. You may enclose words in quotes to perform an exact phrase match, i.e, <strong>"red car"</strong>.</em>';
-  $handler->display->display_options['header']['text']['format'] = '1';
   /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['nid_or_self']['id'] = 'nid_or_self';
   $handler->display->display_options['relationships']['nid_or_self']['table'] = 'node_comments';
