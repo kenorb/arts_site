@@ -3628,8 +3628,9 @@ div.links ul.links li.addtoany:hover a {
 }
 
 li.statistics_counter {
-	float: right !important;
+	float: left !important;
 	margin-top: 6px;
+	margin-left: 7px;
 }
 
 .taxonomy ul.links {
