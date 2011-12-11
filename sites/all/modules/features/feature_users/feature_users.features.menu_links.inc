@@ -297,6 +297,24 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-45',
   );
+  // Exported menu link: menu-toolbar:faq
+  $menu_links['menu-toolbar:faq'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'faq',
+    'router_path' => 'faq',
+    'link_title' => 'Help',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Frequency Asked Questions',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '50',
+  );
   // Exported menu link: menu-toolbar:market
   $menu_links['menu-toolbar:market'] = array(
     'menu_name' => 'menu-toolbar',

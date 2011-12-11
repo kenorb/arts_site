@@ -2285,6 +2285,10 @@ div.admin-panel .body {
   #quickbar .path-user span.icon {
     background-image: url('images/toolbar-icons/account.png') !important;
   }
+	
+	#quickbar .path-user {
+		border-left: 0px;
+	}
 
   #quickbar .path-messages span.icon {
     background-image: url('images/toolbar-icons/message.png') !important;
@@ -2301,6 +2305,22 @@ div.admin-panel .body {
   #quickbar .path-market span.icon {
     background-image: url('images/toolbar-icons/marketplace.png') !important;
   }
+	
+  #quickbar .path-faq span.icon {
+    background-image: url('images/toolbar-icons/help.png') !important;
+  }
+	
+	#quickbar .path-market {
+		
+	}
+
+	#quickbar li {
+		border-right: 1px solid #246;
+	}
+	
+	#quickbar .path-faq {
+		border-right: 0px;
+	}
 
   div#quickbar div.depth-0 .icon {
     display: block;
