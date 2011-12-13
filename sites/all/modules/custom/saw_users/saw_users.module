@@ -134,3 +134,32 @@ function saw_fieldset ($element)
   }
   return '<fieldset'. drupal_attributes($element['#attributes']) .'>'. ($element['#title'] ? '<legend>'. $element['#title'] .'</legend>' : '') . (isset($element['#description']) && $element['#description'] ? '<div class="description">'. $element['#description'] .'</div>' : '') . (!empty($element['#children']) ? $element['#children'] : '') . (isset($element['#value']) ? $element['#value'] : '') ."</fieldset>\n";
 }
+
+function saw_users_form_user_register_alter (&$form, &$form_state)
+{
+  $form ['#validate'] [] = 'saw_users_user_register_validate';
+}
+
+function saw_users_user_register_validate ($form, &$form_state)
+{
+
+  $studentRoles	= array ();
+	$result				= db_query ("SELECT rid FROM role WHERE name = 'art student' OR name = 'student' ORDER BY name");
+	
+	while ($row = db_fetch_object ($result))
+		$studentRoles [] = $row -> rid;
+	
+	$mail = $form_state ['values']['mail'];
+	
+	foreach ($form_state ['values']['user_roles'] as $id => $value)
+	{
+		if (!$value)
+			continue;
+		
+		if (in_array ($id, $studentRoles) && substr ($mail, -6) != '.ac.uk')
+		{
+			form_set_error ('mail', t('For students, e-mail address must ends with: .ac.uk'));
+			break;
+		}
+	}
+}

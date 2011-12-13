@@ -619,8 +619,11 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 	opacity: 0.9;
 }
 
-.error {
+div.messages.error {
   border-color: red;
+	color: #f33 !important;
+	font-weight: bold;
+	max-height: 1000px;
 }
 .nav {
   padding: 0;
