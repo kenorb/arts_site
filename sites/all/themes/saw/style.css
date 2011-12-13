@@ -3249,7 +3249,8 @@ a.vud-link-down:hover {
 }
 
 .views-field-vud-node-widget .clear-block {
-  display: inline !important;
+  display: block !important;
+	clear: both;
 }
 
 .views-field-vud-node-widget .clear-block:after {
