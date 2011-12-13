@@ -104,7 +104,7 @@ input[type=radio] {
 
 body.cke_show_borders {
   background: #fff;
-	padding: 7px !important;
+	padding: 4px !important;
 }
 
 table {
@@ -278,12 +278,13 @@ fieldset.collapsed {
 	padding: 0px 21px;
 }
 
+
+body.cke_show_borders p,
 p {
-  margin: 0 0 1.3em 0;
+  margin: 0px !important;
   padding: 0px;
   color: #333;
-/*  text-align: justify;*/
-  text-indent:10px;
+  text-indent: 0px !important;
   line-height: 120%;
   font-size: 13px;
 }
@@ -992,7 +993,7 @@ div.links {
 .block .title h3 {
   color: #333;
   font-weight: normal;
-  padding: 10px 5px 6px 0px; /* LTR */
+  padding: 6px 5px 3px 0px; /* LTR */
   margin-bottom: 6px;
 	font-size: 15px;
 	border-bottom: 1px dotted #AAAAAA;
@@ -1012,10 +1013,10 @@ div.links {
   font-size: 1.1em;
 }
 .node {
-  margin: .5em 0 2.5em 0;
+  margin: 10px 0 10px 0;
 }
 .node .content, .comment .content {
-  margin: 20px 0;
+  margin: 7px 0;
 }
 .node .taxonomy {
   color: #999;
@@ -3600,10 +3601,14 @@ ul.pager li.pager-ellipsis:hover {
 .node .content {
 	background: #f0f5f9 url('images/node-content-background.png') repeat-x;
 	min-height: 150px;
-	padding: 10px;
+	padding: 0;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	margin-top: 0px;
+}
+
+#main .node.sticky .content {
+	padding: 0px 5px 0px 5px;
 }
 
 .node.sticky .content {
@@ -3622,6 +3627,15 @@ ul.pager li.pager-ellipsis:hover {
 	background: #fff url('images/node-links-background.png') repeat-x 0px -20px !important;
 	min-height: 42px;
 	border-bottom: 1px dotted #d6d;
+}
+
+#main .node.sticky .links {
+	background: none !important;
+	min-height: 0px;
+	border-top: 0px;
+	border-bottom: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
 }
 
 .node .print-link {
