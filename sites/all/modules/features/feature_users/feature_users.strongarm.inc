@@ -5009,6 +5009,30 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'print_html_link_pos';
+  $strongarm->value = array(
+    'link' => 'link',
+    'corner' => 0,
+  );
+  $export['print_html_link_pos'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_html_node_link_pages';
+  $strongarm->value = '';
+  $export['print_html_node_link_pages'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_html_node_link_visibility';
+  $strongarm->value = '0';
+  $export['print_html_node_link_visibility'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'print_mail_display_comment_forum';
   $strongarm->value = 0;
   $export['print_mail_display_comment_forum'] = $strongarm;
@@ -5030,6 +5054,30 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'print_mail_link_pos';
+  $strongarm->value = array(
+    'link' => 'link',
+    'corner' => 0,
+  );
+  $export['print_mail_link_pos'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_mail_node_link_pages';
+  $strongarm->value = '';
+  $export['print_mail_node_link_pages'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_mail_node_link_visibility';
+  $strongarm->value = '0';
+  $export['print_mail_node_link_visibility'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'print_pdf_display_comment_forum';
   $strongarm->value = 0;
   $export['print_pdf_display_comment_forum'] = $strongarm;
@@ -5047,6 +5095,30 @@ function feature_users_strongarm() {
   $strongarm->name = 'print_pdf_display_urllist_forum';
   $strongarm->value = 1;
   $export['print_pdf_display_urllist_forum'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_pdf_link_pos';
+  $strongarm->value = array(
+    'link' => 'link',
+    'corner' => 0,
+  );
+  $export['print_pdf_link_pos'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_pdf_node_link_pages';
+  $strongarm->value = '';
+  $export['print_pdf_node_link_pages'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_pdf_node_link_visibility';
+  $strongarm->value = '0';
+  $export['print_pdf_node_link_visibility'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
