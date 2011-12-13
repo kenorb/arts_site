@@ -4,7 +4,7 @@
   var onUpdateToolbar = function ()
   {
     if (!initialToolbarPositionTop)
-      initialToolbarPositionTop = Math.ceil ($('#toolbar-area').offset ().top + 1);
+      initialToolbarPositionTop = Math.ceil ($('#toolbar-area').offset ().top + 2);
     
     var windowScrollTop = $(window).scrollTop ();
     

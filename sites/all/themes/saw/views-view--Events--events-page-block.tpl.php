@@ -3,6 +3,8 @@
 	<?php
 		global $no_up_widgets; $no_up_widgets = true;
 		
+		
+		
 		$view1 = views_embed_view ('Events', 'featured_events');
 		$view2 = views_embed_view ('Events', 'events');
 		
