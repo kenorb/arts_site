@@ -735,7 +735,7 @@ input[type=submit],
 .comment .reply a,
 a.author-pane-link,
 a.author-privatemsg-icon,
-div.links ul.links li a {
+.node ul.links li a {
     cursor: pointer;
     background: url("images/buttons.png") repeat-x scroll 0 0 transparent;
     border-color: #E3E2E2 #D7D7D7 #D2D2D2;
@@ -751,26 +751,26 @@ div.links ul.links li a {
     text-transform: uppercase;
 }
 
-div.links ul.links li a {
+.node  ul.links li a {
 	margin: 0;
 	padding: 4px !important;
 	background: none !important;
 	border: 0 !important;
 }
 
-div.links ul.links li:hover a {
+.node  ul.links li:hover a {
 	color: #fff !important;
 	background: #0292CC !important;
 	text-shadow: 1px 1px 1px #555 !important;
 }
 
-div.links ul.links li {
+.node  ul.links li {
 	padding: 0px 1px;
 	display: block;
 	float: left;
 }
 
-div.links ul.links li.spam {
+.node  ul.links li.spam {
 	display: none;
 }
 
@@ -1021,7 +1021,7 @@ div.links {
 .node .taxonomy {
   color: #999;
   font-size: 13px;
-  padding: 5px 5px;
+  padding: 0px 5px;
 }
 .node .picture {
   border: 1px solid #fff;
@@ -3599,11 +3599,9 @@ ul.pager li.pager-ellipsis:hover {
 }
 
 .node .content {
-	background: #f0f5f9 url('images/node-content-background.png') repeat-x;
 	min-height: 150px;
 	padding: 0;
-	border-left: 1px solid #ddd;
-	border-right: 1px solid #ddd;
+	
 	margin-top: 0px;
 }
 
@@ -3617,10 +3615,21 @@ ul.pager li.pager-ellipsis:hover {
 	background: none;
 }
 
+.node .submitted {
+	margin-top: 8px;
+	border-left: 1px dotted #aaa;
+	padding: 10px 0px 10px 10px;
+}
+
+.node .taxonomy {
+	padding: 10px 6px;
+}
+
 .node .submitted,
 .node .taxonomy {
 	font-size: 12px;
-	display: inline;
+	display: block;
+	float: left;
 }
 
 .node .links {
@@ -3645,7 +3654,6 @@ ul.pager li.pager-ellipsis:hover {
 .node .details {
 	padding: 10px;
 	float: right;
-	border-left: 1px dotted #aaa;
 	margin-left: 10px;
 }
 
