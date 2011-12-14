@@ -332,9 +332,11 @@ pre {
   background: transparent url('images/banner.jpg') top center no-repeat;
   background-color: transparent;
   height: 92px;
-  width: 1200px;
+  width: 100%;
   text-align: left;
-  border: none; 
+  border: none;
+	padding-right: 58px;
+	padding-left: 82px;
 }
 
 #search-theme-form {
@@ -362,7 +364,12 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 #primary-menu .primary-links {
   font-size: 16px;
   float: left;
- 
+}
+
+#primary-menu .primary-links,
+#primary-menu .secondary-links {
+	padding-left: 32px;
+	white-space: nowrap;
 }
 
 #primary-menu p {
@@ -388,7 +395,9 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 }
 
 #home {
-  background: transparent url('images/mlogo.png') center 20px no-repeat;
+  background: url("images/mlogo.png") no-repeat scroll right 20px transparent;
+	min-width: 253px;
+	width: 25%;
 }
 .secondary-links, .secondary-links a:link, .secondary-links a:visited {
   color: #fefffa;
@@ -425,7 +434,6 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
   border-left: 1px solid #2e4d59; /* LTR */
 }
 #subnavlist li, ul.primary-links li, ul.secondary-links li {
-  border-left: 1px solid #2e4d59; /* LTR */
 }
 #navlist li.first, #subnavlist li.first, ul.links li.first {
   border: none;
@@ -1939,11 +1947,13 @@ div.admin-panel .body {
 
 
   .login-box {
-    padding-top: 21px
+    padding-top: 21px;
+		text-align: right;
   }
 
   .profile-menu-container {
-    margin: 0; padding: 0;
+    margin: 0 0 0 auto;
+		padding: 0;
     font-size: 0.9em !important;
     border: 0px;
     border-radius: 4px;
@@ -2026,21 +2036,27 @@ div.admin-panel .body {
 
   .searchBox {
   }
+	
+	td.search-box > form > div {
+		width: 177px;
+	}
   
   .search-box .dropdown {
+		background: url('images/profile-menu-dropdown-background.png') left -24px repeat-x #135785;
     display: block;
     position: absolute;
     margin-top: 29px;
     margin-left: 6px;
     font-size: 0.8em;
-    color: #222;
+    color: #FDFDFD;
     padding: 7px 5px;
     z-index: 1000;
     border-bottom: 1px solid #888;
     box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
-    background: #ccc;
-    text-shadow: 0px 1px 0px #eee;
+    text-shadow: 0px 1px 0px #111;
     border-radius: 5px;
+		font-size: 12px;
+		width: 140px;
     
   }
   
@@ -2054,6 +2070,7 @@ div.admin-panel .body {
   
   .search-box div {
     display: block;
+    margin: 0 0 0 auto;
   }
   
   .search-box .item.thumbs {
@@ -2246,7 +2263,9 @@ div.admin-panel .body {
 }
   
   #quickbar {
-    left: 450px;
+		margin-left: -400px !important;
+		width: 800px;
+		left: 50%;
     overflow: hidden;
     background: url('images/toolbar-background.png') repeat-x top left #215c80 !important; 
   }
@@ -3710,4 +3729,8 @@ li.statistics_counter {
 
 .wysiwyg-status-1 {
 	display: none;
+}
+
+li.menu-4023 {
+	padding-left: 219px !important;
 }
