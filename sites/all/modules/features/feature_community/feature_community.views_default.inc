@@ -142,7 +142,6 @@ function feature_community_views_default_views() {
   $handler->display->display_options['empty']['text']['label'] = '';
   $handler->display->display_options['empty']['text']['empty'] = FALSE;
   $handler->display->display_options['empty']['text']['content'] = 'No groups';
-  $handler->display->display_options['empty']['text']['format'] = '1';
   /* Field: Node: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -310,7 +309,6 @@ function feature_community_views_default_views() {
   $handler->display->display_options['empty']['text']['label'] = '';
   $handler->display->display_options['empty']['text']['empty'] = FALSE;
   $handler->display->display_options['empty']['text']['content'] = 'No posts.';
-  $handler->display->display_options['empty']['text']['format'] = '1';
   /* Field: Node: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';

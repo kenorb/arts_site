@@ -171,20 +171,20 @@ function feature_users_menu_default_menu_links() {
     'weight' => '-50',
     'parent_path' => 'manage/items',
   );
-  // Exported menu link: menu-profilemenu:<front>
-  $menu_links['menu-profilemenu:<front>'] = array(
+  // Exported menu link: menu-profilemenu:faq
+  $menu_links['menu-profilemenu:faq'] = array(
     'menu_name' => 'menu-profilemenu',
-    'link_path' => '<front>',
-    'router_path' => '',
+    'link_path' => 'faq',
+    'router_path' => 'faq',
     'link_title' => 'Help',
     'options' => array(
       'attributes' => array(
-        'title' => '',
+        'title' => 'Frequency Asked Questions',
       ),
     ),
     'module' => 'menu',
     'hidden' => '0',
-    'external' => '1',
+    'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-45',
@@ -459,6 +459,42 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-50',
   );
+  // Exported menu link: primary-links:arts
+  $menu_links['primary-links:arts'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'arts',
+    'router_path' => 'arts',
+    'link_title' => 'Art',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '1',
+    'expanded' => '0',
+    'weight' => '-49',
+  );
+  // Exported menu link: primary-links:contact
+  $menu_links['primary-links:contact'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'contact',
+    'router_path' => 'contact',
+    'link_title' => 'Contact',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-43',
+  );
   // Exported menu link: primary-links:events
   $menu_links['primary-links:events'] = array(
     'menu_name' => 'primary-links',
@@ -475,7 +511,39 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-47',
+    'weight' => '-46',
+  );
+  // Exported menu link: primary-links:ideas/list
+  $menu_links['primary-links:ideas/list'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'ideas/list',
+    'router_path' => 'ideas/list',
+    'link_title' => 'Ideas',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-45',
+  );
+  // Exported menu link: primary-links:market
+  $menu_links['primary-links:market'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'market',
+    'router_path' => 'market',
+    'link_title' => 'Market',
+    'options' => array(),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-48',
   );
   // Exported menu link: secondary-links:arts
   $menu_links['secondary-links:arts'] = array(
@@ -522,14 +590,17 @@ function feature_users_menu_default_menu_links() {
   t('Add Event');
   t('Add Forum Topic');
   t('Add Item');
+  t('Art');
   t('Arts');
   t('Buy Student Art');
   t('Calendar');
   t('Chat');
+  t('Contact');
   t('Events');
   t('Forum Topics');
   t('Help');
   t('Home');
+  t('Ideas');
   t('Items');
   t('Manage');
   t('Market');
