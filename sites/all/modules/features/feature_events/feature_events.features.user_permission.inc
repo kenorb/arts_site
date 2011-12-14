@@ -27,7 +27,8 @@ function feature_events_user_default_permissions() {
     'name' => 'rsvp invite friendlist',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'moderator',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
     ),
   );
 
@@ -36,6 +37,7 @@ function feature_events_user_default_permissions() {
     'name' => 'rsvp invite user_relationships',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'authenticated user',
     ),
   );
 
@@ -62,8 +64,9 @@ function feature_events_user_default_permissions() {
     'name' => 'rsvp on own events',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'premium buyer',
-      '2' => 'premium seller',
+      '1' => 'authenticated user',
+      '2' => 'premium buyer',
+      '3' => 'premium seller',
     ),
   );
 

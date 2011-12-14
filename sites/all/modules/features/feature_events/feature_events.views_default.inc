@@ -20,7 +20,6 @@ function feature_events_views_default_views() {
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->display->display_options['title'] = 'Calendar';
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['items_per_page'] = 0;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -99,7 +98,6 @@ function feature_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['style_plugin'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['default_argument_skip_url'] = 0;
-	$handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'node_data_field_birthday.field_birthday_value' => 'node_data_field_birthday.field_birthday_value',
     'node_data_field_event_date.field_event_date_value' => 'node_data_field_event_date.field_event_date_value',
@@ -108,6 +106,29 @@ function feature_events_views_default_views() {
     0 => 'AND',
     1 => 'OR',
   );
+  /* Filter: Search: Search Terms */
+  $handler->display->display_options['filters']['keys']['id'] = 'keys';
+  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
+  $handler->display->display_options['filters']['keys']['field'] = 'keys';
+  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Find';
+  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
+  /* Filter: Location: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'location';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = 'allwords';
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['name']['case'] = 0;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -604,6 +625,29 @@ function feature_events_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = '1';
+  /* Filter: Search: Search Terms */
+  $handler->display->display_options['filters']['keys']['id'] = 'keys';
+  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
+  $handler->display->display_options['filters']['keys']['field'] = 'keys';
+  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Find';
+  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
+  /* Filter: Location: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'location';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = 'allwords';
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['name']['case'] = 0;
 
   /* Display: Events */
   $handler = $view->new_display('block', 'Events', 'events');
@@ -902,6 +946,29 @@ function feature_events_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = '1';
+  /* Filter: Search: Search Terms */
+  $handler->display->display_options['filters']['keys']['id'] = 'keys';
+  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
+  $handler->display->display_options['filters']['keys']['field'] = 'keys';
+  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Find';
+  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
+  /* Filter: Location: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'location';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = 'word';
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['name']['case'] = 0;
 
   /* Display: Events Page Block */
   $handler = $view->new_display('block', 'Events Page Block', 'events_page_block');
@@ -925,8 +992,62 @@ function feature_events_views_default_views() {
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = FALSE;
   $handler->display->display_options['empty']['area']['content'] = 'No events yet.';
-  $handler->display->display_options['empty']['area']['format'] = '1';
   $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    0 => 'AND',
+    1 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: Search: Search Terms */
+  $handler->display->display_options['filters']['keys']['id'] = 'keys';
+  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
+  $handler->display->display_options['filters']['keys']['field'] = 'keys';
+  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Find';
+  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
+  /* Filter: Location: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'location';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = 'allwords';
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['name']['case'] = 0;
+  /* Filter: Node: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter: Node: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  /* Filter: Signup: User: Current User */
+  $handler->display->display_options['filters']['signup_user_current']['id'] = 'signup_user_current';
+  $handler->display->display_options['filters']['signup_user_current']['table'] = 'signup_log';
+  $handler->display->display_options['filters']['signup_user_current']['field'] = 'signup_user_current';
+  $handler->display->display_options['filters']['signup_user_current']['value'] = '1';
+  $handler->display->display_options['filters']['signup_user_current']['group'] = '1';
+  /* Filter: Workflow: Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['filters']['sid']['group'] = '1';
   $translatables['Events'] = array(
     t('Defaults'),
     t('Calendar'),
@@ -941,6 +1062,8 @@ function feature_events_views_default_views() {
     t('Date'),
     t('Birthday'),
     t('All'),
+    t('Find'),
+    t('In'),
     t('Calendar page'),
     t('Calendar block'),
     t('Year view'),
