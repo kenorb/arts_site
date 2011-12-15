@@ -8,16 +8,6 @@
   <h2><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
 <?php endif; ?>
 
-  <div class="meta">
-  <?php if ($submitted): ?>
-    <span class="submitted"><?php print $submitted ?></span>
-  <?php endif; ?>
-
-  <?php if ($terms): ?>
-    <div class="terms terms-inline"><?php print $terms ?></div>
-  <?php endif;?>
-  </div>
-
   <div class="content">
 		<div class="node-art">
 		
@@ -225,14 +215,23 @@
 							<?php echo $node -> content ['body']['#value']; ?>
 						</div>
 						
-						<div class="separator"></div>
+						
 												
 					</td>
 				</tr>
 			</table>
 		</div>
 	
-		
+		  <div class="meta">
+  <?php if ($submitted): ?>
+    <span class="submitted"><?php print $submitted ?></span>
+  <?php endif; ?>
+
+  <?php if ($terms): ?>
+    <div class="terms terms-inline"><?php print $terms ?></div>
+  <?php endif;?>
+  </div>
+	
     <?php #echo '<pre style="font-size: 0.8em; font-family: Consolas; background-color: #fff; text-align: left;">'; echo htmlentities (print_r ($node, true)); echo '</pre>'; ?>
   </div>
 
