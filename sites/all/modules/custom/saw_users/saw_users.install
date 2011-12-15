@@ -758,6 +758,27 @@ EOT;
 	INSERT INTO `wysiwyg` (`format`, `editor`, `settings`) VALUES (4, 'ckeditor', 'a:20:{s:7:"default";i:1;s:11:"user_choose";i:0;s:11:"show_toggle";i:0;s:5:"theme";s:8:"advanced";s:8:"language";s:2:"en";s:7:"buttons";a:2:{s:7:"default";a:18:{s:4:"Bold";i:1;s:6:"Italic";i:1;s:9:"Underline";i:1;s:6:"Strike";i:1;s:12:"JustifyBlock";i:1;s:12:"BulletedList";i:1;s:12:"NumberedList";i:1;s:4:"Link";i:1;s:6:"Unlink";i:1;s:11:"Superscript";i:1;s:9:"Subscript";i:1;s:10:"Blockquote";i:1;s:5:"Paste";i:1;s:13:"PasteFromWord";i:1;s:12:"RemoveFormat";i:1;s:11:"SpecialChar";i:1;s:8:"Maximize";i:1;s:5:"Scayt";i:1;}s:6:"drupal";a:1:{s:5:"break";i:1;}}s:11:"toolbar_loc";s:3:"top";s:13:"toolbar_align";s:4:"left";s:8:"path_loc";s:6:"bottom";s:8:"resizing";i:1;s:11:"verify_html";i:1;s:12:"preformatted";i:0;s:22:"convert_fonts_to_spans";i:1;s:17:"remove_linebreaks";i:0;s:23:"apply_source_formatting";i:0;s:27:"paste_auto_cleanup_on_paste";i:0;s:13:"block_formats";s:32:"p,address,pre,h2,h3,h4,h5,h6,div";s:11:"css_setting";s:4:"none";s:8:"css_path";s:0:"";s:11:"css_classes";s:0:"";}');
 	INSERT INTO `wysiwyg` (`format`, `editor`, `settings`) VALUES (5, '', NULL);
 	INSERT INTO `wysiwyg` (`format`, `editor`, `settings`) VALUES (6, 'ckeditor', 'a:20:{s:7:"default";i:1;s:11:"user_choose";i:0;s:11:"show_toggle";i:0;s:5:"theme";s:8:"advanced";s:8:"language";s:2:"en";s:7:"buttons";a:1:{s:7:"default";a:10:{s:4:"Bold";i:1;s:6:"Italic";i:1;s:9:"Underline";i:1;s:6:"Strike";i:1;s:12:"BulletedList";i:1;s:12:"NumberedList";i:1;s:4:"Link";i:1;s:12:"RemoveFormat";i:1;s:8:"Maximize";i:1;s:5:"Scayt";i:1;}}s:11:"toolbar_loc";s:3:"top";s:13:"toolbar_align";s:4:"left";s:8:"path_loc";s:6:"bottom";s:8:"resizing";i:1;s:11:"verify_html";i:1;s:12:"preformatted";i:0;s:22:"convert_fonts_to_spans";i:1;s:17:"remove_linebreaks";i:1;s:23:"apply_source_formatting";i:0;s:27:"paste_auto_cleanup_on_paste";i:0;s:13:"block_formats";s:32:"p,address,pre,h2,h3,h4,h5,h6,div";s:11:"css_setting";s:5:"theme";s:8:"css_path";s:0:"";s:11:"css_classes";s:0:"";}');
+	DELETE FROM `blocks_roles`;
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('block', '1', 12);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('block', '2', 1);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('block', '5', 2);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-admin', 5);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-admin', 6);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 2);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 5);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 6);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 7);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 14);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 15);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 16);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 17);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 18);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('menu', 'menu-my-content', 19);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('uc_cart', '0', 2);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('user', '1', 5);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('user', '1', 6);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('user', '2', 5);
+	INSERT INTO `blocks_roles` (`module`, `delta`, `rid`) VALUES ('user', '3', 5);
 
 EOT;
 	

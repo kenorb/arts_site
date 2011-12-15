@@ -778,8 +778,7 @@ a.author-privatemsg-icon,
 
 .node  ul.links li {
 	padding: 0px 1px;
-	display: block;
-	float: left;
+	display: inline;
 }
 
 .node  ul.links li.spam {
@@ -1027,6 +1026,7 @@ div.links {
 }
 .node {
   margin: 10px 0 10px 0;
+	clear: both;
 }
 .node .content, .comment .content {
   margin: 7px 0;
@@ -3668,7 +3668,7 @@ ul.pager li.pager-ellipsis:hover {
 .node .submitted {
 	margin-top: 8px;
 	border-left: 1px dotted #aaa;
-	padding: 10px 0px 10px 10px;
+	padding: 10px 10px 10px 10px;
 }
 
 .node .taxonomy {
@@ -3687,8 +3687,8 @@ ul.pager li.pager-ellipsis:hover {
 	min-height: 42px;
 	border-bottom: 1px dotted #d6d;
 	display: block !important;
-	float: left;
 	margin-bottom: 10px;
+	padding: 12px 7px;
 }
 
 #main .node.sticky .links {
@@ -3762,4 +3762,8 @@ li.menu-4023 {
 
 .node .meta {
 	float: right;
+}
+
+#store-footer {
+	display: none;
 }
