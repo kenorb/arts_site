@@ -2029,6 +2029,13 @@ function feature_users_views_default_views() {
   );
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 0;
+  /* Empty text: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'There are currently no logged users.';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -2113,16 +2120,6 @@ function feature_users_views_default_views() {
   $handler->display->display_options['filters']['access']['operator'] = '>=';
   $handler->display->display_options['filters']['access']['value']['value'] = '-10 minutes';
   $handler->display->display_options['filters']['access']['value']['type'] = 'offset';
-  /* Filter: User: Roles */
-  $handler->display->display_options['filters']['rid']['id'] = 'rid';
-  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
-  $handler->display->display_options['filters']['rid']['field'] = 'rid';
-  $handler->display->display_options['filters']['rid']['value'] = array(
-    5 => '5',
-    7 => '7',
-    6 => '6',
-  );
-  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
   /* Filter: User: Active */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'users';
@@ -2161,6 +2158,28 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['name']['link_to_user'] = 1;
   $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: User: Last access */
+  $handler->display->display_options['filters']['access']['id'] = 'access';
+  $handler->display->display_options['filters']['access']['table'] = 'users';
+  $handler->display->display_options['filters']['access']['field'] = 'access';
+  $handler->display->display_options['filters']['access']['operator'] = '>=';
+  $handler->display->display_options['filters']['access']['value']['value'] = '-10 minutes';
+  $handler->display->display_options['filters']['access']['value']['type'] = 'offset';
+  /* Filter: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  /* Filter: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['value'] = array(
+    5 => '5',
+    6 => '6',
+  );
+  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
 
   /* Display: Who is online */
   $handler = $view->new_display('page', 'Who is online', 'page_1');
@@ -2204,6 +2223,20 @@ function feature_users_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: User: Last access */
+  $handler->display->display_options['filters']['access']['id'] = 'access';
+  $handler->display->display_options['filters']['access']['table'] = 'users';
+  $handler->display->display_options['filters']['access']['field'] = 'access';
+  $handler->display->display_options['filters']['access']['operator'] = '>=';
+  $handler->display->display_options['filters']['access']['value']['value'] = '-10 minutes';
+  $handler->display->display_options['filters']['access']['value']['type'] = 'offset';
+  $handler->display->display_options['filters']['access']['allow_null'] = 1;
+  /* Filter: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['path'] = 'online';
   $handler->display->display_options['menu']['title'] = 'Who is online?';
   $handler->display->display_options['menu']['description'] = 'Who is online';
@@ -2219,6 +2252,8 @@ function feature_users_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
+    t('Text area'),
+    t('There are currently no logged users.'),
     t('Registration date'),
     t('Roles'),
     t('Moderators'),
