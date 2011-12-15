@@ -2121,6 +2121,8 @@ div.admin-panel .body {
     border: 1px solid #ddd;
     margin: 3px !important;
     display: inline-block;
+		min-height: 50px;
+    min-width: 100px;
   }
   
   .view-image-block .imagefield:hover {
