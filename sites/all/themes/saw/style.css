@@ -2164,6 +2164,11 @@ div.admin-panel .body {
     margin-top: 10px;
   }
 	
+	.arts-row .image {
+	  min-height: 200px;
+    min-width: 200px;
+	}
+	
 	.arts-rows i {
 		margin: 20px;
 		display: block;
@@ -3733,4 +3738,12 @@ li.statistics_counter {
 
 li.menu-4023 {
 	padding-left: 333px !important;
+}
+
+.imagecache-Thumb_200 {
+	min-width: 200px;
+}
+
+.imagecache-Thumb_100 {
+	min-width: 100px;
 }
