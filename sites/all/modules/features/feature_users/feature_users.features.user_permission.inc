@@ -11,6 +11,15 @@ function feature_users_user_default_permissions() {
     'name' => 'access chat rooms',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium',
+      '6' => 'premium buyer',
+      '7' => 'premium seller',
+      '8' => 'student',
+      '9' => 'user admin',
     ),
   );
 
@@ -19,6 +28,15 @@ function feature_users_user_default_permissions() {
     'name' => 'access chats',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium',
+      '6' => 'premium buyer',
+      '7' => 'premium seller',
+      '8' => 'student',
+      '9' => 'user admin',
     ),
   );
 
@@ -234,6 +252,15 @@ function feature_users_user_default_permissions() {
     'name' => 'edit own chat rooms',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium',
+      '6' => 'premium buyer',
+      '7' => 'premium seller',
+      '8' => 'student',
+      '9' => 'user admin',
     ),
   );
 
@@ -242,6 +269,15 @@ function feature_users_user_default_permissions() {
     'name' => 'edit own chats',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium',
+      '6' => 'premium buyer',
+      '7' => 'premium seller',
+      '8' => 'student',
+      '9' => 'user admin',
     ),
   );
 
@@ -313,6 +349,15 @@ function feature_users_user_default_permissions() {
     'name' => 'use chat desk',
     'roles' => array(
       '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium',
+      '6' => 'premium buyer',
+      '7' => 'premium seller',
+      '8' => 'student',
+      '9' => 'user admin',
     ),
   );
 
