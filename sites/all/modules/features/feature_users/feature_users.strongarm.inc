@@ -47,6 +47,120 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_chatroom';
+  $strongarm->value = array();
+  $export['better_formats_allowed_chatroom'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_education';
+  $strongarm->value = array();
+  $export['better_formats_allowed_education'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_faq';
+  $strongarm->value = array();
+  $export['better_formats_allowed_faq'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_forum';
+  $strongarm->value = array();
+  $export['better_formats_allowed_forum'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_idea';
+  $strongarm->value = array();
+  $export['better_formats_allowed_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_item';
+  $strongarm->value = array();
+  $export['better_formats_allowed_item'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_membership';
+  $strongarm->value = array();
+  $export['better_formats_allowed_membership'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_page';
+  $strongarm->value = array();
+  $export['better_formats_allowed_page'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_panel';
+  $strongarm->value = array();
+  $export['better_formats_allowed_panel'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_product';
+  $strongarm->value = array();
+  $export['better_formats_allowed_product'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_profile';
+  $strongarm->value = array(
+    0 => 6,
+  );
+  $export['better_formats_allowed_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_simplenews';
+  $strongarm->value = array();
+  $export['better_formats_allowed_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_allowed_story';
+  $strongarm->value = array();
+  $export['better_formats_allowed_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_fieldset_title';
+  $strongarm->value = '';
+  $export['better_formats_fieldset_title'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_long_tips_link_text';
+  $strongarm->value = '';
+  $export['better_formats_long_tips_link_text'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'better_formats_per_node_type';
+  $strongarm->value = 1;
+  $export['better_formats_per_node_type'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'captcha_add_captcha_description';
   $strongarm->value = 1;
   $export['captcha_add_captcha_description'] = $strongarm;
