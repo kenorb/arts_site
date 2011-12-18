@@ -1927,6 +1927,69 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_cck_widget_art_field_image';
+  $strongarm->value = 0;
+  $export['imagefield_zip_cck_widget_art_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_cck_widget_event_field_image';
+  $strongarm->value = 0;
+  $export['imagefield_zip_cck_widget_event_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_cck_widget_item_field_image';
+  $strongarm->value = 0;
+  $export['imagefield_zip_cck_widget_item_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_fallback_art_field_image';
+  $strongarm->value = 1;
+  $export['imagefield_zip_fallback_art_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_fallback_event_field_image';
+  $strongarm->value = 1;
+  $export['imagefield_zip_fallback_event_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_fallback_item_field_image';
+  $strongarm->value = 1;
+  $export['imagefield_zip_fallback_item_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_upload_mode_art_field_image';
+  $strongarm->value = 1;
+  $export['imagefield_zip_upload_mode_art_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_upload_mode_event_field_image';
+  $strongarm->value = 1;
+  $export['imagefield_zip_upload_mode_event_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'imagefield_zip_upload_mode_item_field_image';
+  $strongarm->value = 1;
+  $export['imagefield_zip_upload_mode_item_field_image'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_education';
   $strongarm->value = '0';
   $export['language_content_type_education'] = $strongarm;
@@ -3705,16 +3768,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => '4',
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,

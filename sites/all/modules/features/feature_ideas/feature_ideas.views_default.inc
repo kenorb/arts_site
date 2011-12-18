@@ -63,7 +63,6 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['header']['area_1']['field'] = 'area';
   $handler->display->display_options['header']['area_1']['empty'] = FALSE;
   $handler->display->display_options['header']['area_1']['content'] = ' <a href=\'/node/add/idea\' class=\'share\'>Share your idea</a>';
-  $handler->display->display_options['header']['area_1']['format'] = '1';
   /* Relationship: Node: Vote results */
   $handler->display->display_options['relationships']['votingapi_cache']['id'] = 'votingapi_cache';
   $handler->display->display_options['relationships']['votingapi_cache']['table'] = 'node';
