@@ -55,6 +55,8 @@
 	{
 		var box = $(CC.Slideshow.HtmlData);
 		
+		var scrollY = $(window).scrollTop ();
+		
 		
 		var prepareImage = CC.Fn.bind (this, function (img, frameIndex)
 		{
@@ -103,6 +105,8 @@
 		else
 		if (++this._frameIndex >= this._frameCount)
 			this._frameIndex = 0;
+			
+		$(window).scrollTop (scrollY);
 	};
 
 	CC.Slideshow.prototype.stop = function (interval)
