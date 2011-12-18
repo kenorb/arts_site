@@ -2237,6 +2237,12 @@ div.admin-panel .body {
     padding-left: 5px;
     border: 0px !important;
   }
+	
+	.arts-row td.title {
+    max-width: 97px;
+    overflow: hidden;
+    white-space: nowrap;
+	}
 	 
   .arts-row .details td.price {
     text-align: right;
