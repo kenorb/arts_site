@@ -20,6 +20,10 @@ var onEventForSellChange = function (pageInit)
     
     $('#edit-gc-salable').removeAttr ('checked');
     $('#edit-gc-salable').attr ('disabled', true);
+		
+		if ($('#edit-quote-method-0').val () == null && $('#edit-quote-method-1').val () == null)
+			$('#edit-quote-method-0').attr ('checked', 'checked');
+			
     
   }
   
