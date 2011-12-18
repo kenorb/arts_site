@@ -2219,15 +2219,11 @@ div.admin-panel .body {
   }
   
   .arts-row a {
-    border: 0 none !important;
-    border-radius: 5px 5px 5px 5px;
-    display: block;
-    overflow: hidden;
-    padding: 0 !important;
-    text-shadow: none !important;
-    white-space: nowrap;
-    width: 95px;
-	}
+    border: 0px !important;
+		text-shadow: none !important;
+		padding: 0px !important;
+		border-radius: 5px;
+  }
   
   .arts-row a:hover {
 		background: none !important;
@@ -2243,9 +2239,6 @@ div.admin-panel .body {
   }
 	
 	.arts-row td.title {
-    max-width: 97px;
-    overflow: hidden;
-    white-space: nowrap;
 	}
 	 
   .arts-row .details td.price {

@@ -48,10 +48,22 @@
 						<tbody>
 							<tr>
 								<td class="title">
-									<?php echo $row ['title']; ?>
+									<?php
+										if (!function_exists ('max_dots'))
+										{
+											function max_dots ($text, $maxLength)
+											{
+												//if (strlen ($text) > $maxLength)
+													//$text = substr ($text, 0, $maxLength) . '...';
+												
+												return $text;
+											}
+										}
+									?>
+									<?php echo max_dots ($row ['title'], 35); ?>
 								</td>
 								<td class="price">
-									<?php echo $row ['name']; ?>
+									<?php echo max_dots ($row ['name'], 10); ?>
 								</td>
 							</tr>
 							<tr>
