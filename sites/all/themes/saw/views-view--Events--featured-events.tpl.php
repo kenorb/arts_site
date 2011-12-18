@@ -49,7 +49,11 @@
             	<?php echo $row ['title']; ?>
             </div>
             <div class="location">
-            	<?php echo ucwords ($row ['city']); ?>, <?php echo $row ['country']; ?>
+							<?php if ($row ['city'] == '' && $row ['country'] == ''): ?>
+								<i>Unspecified location</i>
+							<?php else: ?>
+								<?php echo ucwords ($row ['city']); ?>, <?php echo $row ['country']; ?>
+							<?php endif; ?>
             </div>
             <div class="description">
           		<?php echo substr ($row ['body'], 0, 200); ?>  
@@ -83,24 +87,29 @@
                           	<tr>
                           		<td>
                                 <div class="date">
-                              		<?php echo $dateStart -> dayOfMonth; ?>/<?php echo $dateStart -> month; ?>/<?php echo $dateStart -> year; ?>,
+                              		<?php echo $dateStart -> dayOfMonth; ?>/<?php echo $dateStart -> month; ?>/<?php echo $dateStart -> year; ?>
                                 </div>
                           		</td>
                               <td>
                                 <div class="time">
-                              		<?php echo $dateStart -> hour; ?>:<?php echo $dateStart -> minutes; ?> -
+																	<?php if (!($dateStart -> hour == 0 && $dateStart -> minutes == 0 && $dateEnd -> hour == 0 && $dateEnd -> minutes == 0)): ?>
+																		<?php echo $dateStart -> hour; ?>:<?php echo $dateStart -> minutes; ?>
+																	<?php endif; ?> -
+																
                                 </div>
                               </td>
                           	</tr>
                           	<tr>
                           		<td>
                                 <div class="date">
-                              		<?php echo $dateEnd -> dayOfMonth; ?>/<?php echo $dateEnd -> month; ?>/<?php echo $dateEnd -> year; ?>,
+                              		<?php echo $dateEnd -> dayOfMonth; ?>/<?php echo $dateEnd -> month; ?>/<?php echo $dateEnd -> year; ?>
                                 </div>
                           		</td>
                               <td>
                                 <div class="time">
-                              		<?php echo $dateEnd -> hour; ?>:<?php echo $dateEnd -> minutes; ?>
+																	<?php if (!($dateStart -> hour == 0 && $dateStart -> minutes == 0 && $dateEnd -> hour == 0 && $dateEnd -> minutes == 0)): ?>
+																		<?php echo $dateEnd -> hour; ?>:<?php echo $dateEnd -> minutes; ?>
+																	<?php endif; ?>
                                 </div>
                               </td>
                           	</tr>

@@ -1592,6 +1592,7 @@ div.admin-panel .body {
   
   .month-view .mini th {
     font-size: 0.9em;
+		text-shadow: 1px 1px 1px #FFFFFF;
   }
   
   .month-view .mini td.has-events {
@@ -1615,6 +1616,11 @@ div.admin-panel .body {
   .month-view .mini thead tr {
     background-color: #ddd;
   }
+	
+	.month-view .mini thead th {
+		font-size: 11px;
+		padding: 6px 2px;
+	}
   
   .month-view .mini {
     border: 1px solid #ddd !important;
@@ -1624,8 +1630,16 @@ div.admin-panel .body {
     padding: 6px 6px !important;
   }
   
+	#sidebar-right .month-view .mini {
+		border: 0px !important;
+	}
+	
   #sidebar-right .month-view .mini td {
-    padding: 2px 2px !important;
+		border-color: #FFFFFF #BBBBBB #BBBBBB #FFFFFF !important;
+		border-radius: 3px 3px 3px 3px;
+		border-style: solid !important;
+		border-width: 1px !important;
+		padding: 0px 2px !important;
   }
   
   
@@ -1638,6 +1652,11 @@ div.admin-panel .body {
     font-weight: bold;
     font-size: 1.2em;
   }
+	
+	.featured-events .datetime .time {
+		min-width: 80px;
+		font-weight: normal;
+	}
 	
 	.featured-events .datetime .date {
 	}
@@ -3193,15 +3212,15 @@ form#views-ui-reorder-displays-button {
 	display: block;
 }
 
-
 .block ul {
-	padding: 0px 8px !important;
+    font-weight: normal;
+    padding: 0 8px !important;
 }
 
 .content > ul {
-	padding-left: 13px !important;
+    font-weight: bold;
+    padding-left: 13px !important;
 }
-
 
 #blocks td {
 	padding: 3px 10px;
@@ -3637,7 +3656,7 @@ ul.pager li.pager-ellipsis:hover {
 	text-shadow: 1px 1px 1px #000 !important;
 }
 
-#block-views-Events-events_page_block .title {
+#block-views-Events-events_page_block h3.title {
 	display: none;
 }
 
@@ -3685,7 +3704,7 @@ ul.pager li.pager-ellipsis:hover {
 	float: left;
 }
 
-.node .links {
+.node div.links {
 	background: #fff url('images/node-links-background.png') repeat-x 0px -20px !important;
 	min-height: 42px;
 	border-bottom: 1px dotted #d6d;
@@ -3779,4 +3798,8 @@ li.menu-4023 {
 .clear-block {
     clear: both !important;
     display: block;
+}
+
+.ui-tabs-container .clear-block {
+  clear: none !important;
 }

@@ -97,7 +97,6 @@ function feature_events_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
   $handler->display->display_options['arguments']['date_argument']['style_plugin'] = 'default_summary';
-	$handler->display->display_options['arguments']['date_argument']['default_argument_type'] = 'date'; // THIS MUST BE HERE! IT IS NOT EXPORTED BY FEATURES WHICH IS SHAMEFUL
   $handler->display->display_options['arguments']['date_argument']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'node_data_field_birthday.field_birthday_value' => 'node_data_field_birthday.field_birthday_value',
@@ -134,6 +133,18 @@ function feature_events_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = '1';
+  /* Filter: User: Current */
+  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['value'] = '1';
+  $handler->display->display_options['filters']['uid_current']['group'] = '1';
+  /* Filter: RSVP: Current user invited */
+  $handler->display->display_options['filters']['rsvp_user_invited']['id'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['table'] = 'rsvp_invite';
+  $handler->display->display_options['filters']['rsvp_user_invited']['field'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['value'] = '1';
+  $handler->display->display_options['filters']['rsvp_user_invited']['group'] = '1';
 
   /* Display: Calendar page */
   $handler = $view->new_display('calendar', 'Calendar page', 'calendar_1');
@@ -572,7 +583,8 @@ function feature_events_views_default_views() {
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter: Node: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -580,15 +592,6 @@ function feature_events_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
-  /* Filter: User: Roles */
-  $handler->display->display_options['filters']['rid']['id'] = 'rid';
-  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
-  $handler->display->display_options['filters']['rid']['field'] = 'rid';
-  $handler->display->display_options['filters']['rid']['value'] = array(
-    15 => '15',
-    10 => '10',
-  );
-  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
   /* Filter: Signup: User: Current User */
   $handler->display->display_options['filters']['signup_user_current']['id'] = 'signup_user_current';
   $handler->display->display_options['filters']['signup_user_current']['table'] = 'signup_log';
@@ -603,6 +606,92 @@ function feature_events_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = '1';
+  /* Filter: User: Current */
+  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['value'] = '1';
+  $handler->display->display_options['filters']['uid_current']['group'] = '1';
+  /* Filter: RSVP: Current user invited */
+  $handler->display->display_options['filters']['rsvp_user_invited']['id'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['table'] = 'rsvp_invite';
+  $handler->display->display_options['filters']['rsvp_user_invited']['field'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['value'] = '1';
+  $handler->display->display_options['filters']['rsvp_user_invited']['group'] = '1';
+  /* Filter: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['value'] = array(
+    18 => '18',
+    19 => '19',
+  );
+  $handler->display->display_options['filters']['rid']['group'] = '2';
+  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
+
+  /* Display: Events Page Block */
+  $handler = $view->new_display('block', 'Events Page Block', 'events_page_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'events_page_events';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* Empty text: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = FALSE;
+  $handler->display->display_options['empty']['area']['content'] = 'No events yet.';
+  $handler->display->display_options['empty']['area']['tokenize'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: Node: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter: Node: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  /* Filter: Signup: User: Current User */
+  $handler->display->display_options['filters']['signup_user_current']['id'] = 'signup_user_current';
+  $handler->display->display_options['filters']['signup_user_current']['table'] = 'signup_log';
+  $handler->display->display_options['filters']['signup_user_current']['field'] = 'signup_user_current';
+  $handler->display->display_options['filters']['signup_user_current']['value'] = '1';
+  $handler->display->display_options['filters']['signup_user_current']['group'] = '1';
+  /* Filter: Workflow: Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['filters']['sid']['group'] = '1';
+  /* Filter: User: Current */
+  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['value'] = '1';
+  $handler->display->display_options['filters']['uid_current']['group'] = '1';
+  /* Filter: RSVP: Current user invited */
+  $handler->display->display_options['filters']['rsvp_user_invited']['id'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['table'] = 'rsvp_invite';
+  $handler->display->display_options['filters']['rsvp_user_invited']['field'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['value'] = '1';
+  $handler->display->display_options['filters']['rsvp_user_invited']['group'] = '1';
 
   /* Display: Events */
   $handler = $view->new_display('block', 'Events', 'events');
@@ -616,14 +705,6 @@ function feature_events_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Node: Content Profile */
-  $handler->display->display_options['relationships']['content_profile_rel']['id'] = 'content_profile_rel';
-  $handler->display->display_options['relationships']['content_profile_rel']['table'] = 'users';
-  $handler->display->display_options['relationships']['content_profile_rel']['field'] = 'content_profile_rel';
-  $handler->display->display_options['relationships']['content_profile_rel']['label'] = 'Profile';
-  $handler->display->display_options['relationships']['content_profile_rel']['required'] = 0;
-  $handler->display->display_options['relationships']['content_profile_rel']['type'] = 'profile';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Node: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -869,94 +950,6 @@ function feature_events_views_default_views() {
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  /* Filter: Node: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'event' => 'event',
-  );
-  /* Filter: User: Roles */
-  $handler->display->display_options['filters']['rid']['id'] = 'rid';
-  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
-  $handler->display->display_options['filters']['rid']['field'] = 'rid';
-  $handler->display->display_options['filters']['rid']['operator'] = 'not';
-  $handler->display->display_options['filters']['rid']['value'] = array(
-    15 => '15',
-    10 => '10',
-  );
-  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
-  /* Filter: Signup: User: Current User */
-  $handler->display->display_options['filters']['signup_user_current']['id'] = 'signup_user_current';
-  $handler->display->display_options['filters']['signup_user_current']['table'] = 'signup_log';
-  $handler->display->display_options['filters']['signup_user_current']['field'] = 'signup_user_current';
-  $handler->display->display_options['filters']['signup_user_current']['value'] = '1';
-  $handler->display->display_options['filters']['signup_user_current']['group'] = '1';
-  /* Filter: Workflow: Current state */
-  $handler->display->display_options['filters']['sid']['id'] = 'sid';
-  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
-  $handler->display->display_options['filters']['sid']['field'] = 'sid';
-  $handler->display->display_options['filters']['sid']['value'] = array(
-    3 => '3',
-  );
-  $handler->display->display_options['filters']['sid']['group'] = '1';
-
-  /* Display: Events Page Block */
-  $handler = $view->new_display('block', 'Events Page Block', 'events_page_block');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['defaults']['link_display'] = FALSE;
-  $handler->display->display_options['link_display'] = 'events_page_events';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* Empty text: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = FALSE;
-  $handler->display->display_options['empty']['area']['content'] = 'No events yet.';
-  $handler->display->display_options['empty']['area']['tokenize'] = 0;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    0 => 'AND',
-    1 => 'OR',
-  );
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter: Search: Search Terms */
-  $handler->display->display_options['filters']['keys']['id'] = 'keys';
-  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
-  $handler->display->display_options['filters']['keys']['field'] = 'keys';
-  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['limit_operators'] = array();
-  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Find';
-  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
-  $handler->display->display_options['filters']['keys']['expose']['single'] = TRUE;
-  /* Filter: Location: Name */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'location';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['operator'] = 'allwords';
-  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
-  $handler->display->display_options['filters']['name']['expose']['limit_operators'] = array();
-  $handler->display->display_options['filters']['name']['expose']['label'] = 'In';
-  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
-  $handler->display->display_options['filters']['name']['expose']['optional'] = TRUE;
-  $handler->display->display_options['filters']['name']['expose']['single'] = TRUE;
-  $handler->display->display_options['filters']['name']['case'] = 0;
-  /* Filter: Node: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter: Node: Type */
@@ -980,6 +973,29 @@ function feature_events_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = '1';
+  /* Filter: User: Current */
+  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['value'] = '1';
+  $handler->display->display_options['filters']['uid_current']['group'] = '1';
+  /* Filter: RSVP: Current user invited */
+  $handler->display->display_options['filters']['rsvp_user_invited']['id'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['table'] = 'rsvp_invite';
+  $handler->display->display_options['filters']['rsvp_user_invited']['field'] = 'rsvp_user_invited';
+  $handler->display->display_options['filters']['rsvp_user_invited']['value'] = '1';
+  $handler->display->display_options['filters']['rsvp_user_invited']['group'] = '1';
+  /* Filter: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['operator'] = 'not';
+  $handler->display->display_options['filters']['rid']['value'] = array(
+    18 => '18',
+    19 => '19',
+  );
+  $handler->display->display_options['filters']['rid']['group'] = '2';
+  $handler->display->display_options['filters']['rid']['reduce_duplicates'] = 0;
   $translatables['Events'] = array(
     t('Defaults'),
     t('Calendar'),
@@ -1008,11 +1024,9 @@ function feature_events_views_default_views() {
     t('More »'),
     t('contact'),
     t('Nid'),
-    t('Events'),
     t('Events Page Block'),
     t('No events yet.'),
-    t('Find'),
-    t('In'),
+    t('Events'),
   );
 
   $views[$view->name] = $view;
