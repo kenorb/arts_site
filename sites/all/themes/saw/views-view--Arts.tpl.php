@@ -53,17 +53,17 @@
 										{
 											function max_dots ($text, $maxLength)
 											{
-												//if (strlen ($text) > $maxLength)
-													//$text = substr ($text, 0, $maxLength) . '...';
+												if (strlen ($text) > $maxLength + 2)
+													$text = substr ($text, 0, $maxLength) . '...';
 												
 												return $text;
 											}
 										}
 									?>
-									<?php echo max_dots ($row ['title'], 35); ?>
+									<a href="<?php echo $row ['path']; ?>"><?php echo max_dots ($view -> result [$fieldId] -> node_title, 14); ?></a>
 								</td>
 								<td class="price">
-									<?php echo max_dots ($row ['name'], 10); ?>
+									<a href="/users/<?php echo $view -> result [$fieldId] -> users_name; ?>"><?php echo max_dots ($view -> result [$fieldId] -> users_name, 9); ?></a>
 								</td>
 							</tr>
 							<tr>
