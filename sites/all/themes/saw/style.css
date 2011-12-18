@@ -126,8 +126,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1,
 #main .block .title h3 {
-  color: #333;
-  color: #3F3F41;
+  color: #000;
   font-family: 'Helvetica Neue','Helvetica','Arial Black','Arial',San-serif;
   font-size: 30px;
   letter-spacing: -2px;
@@ -658,6 +657,11 @@ div.messages.error {
 #sidebar-left li, #sidebar-right li {
   list-style-image: url('arrow-next.png');
 }
+
+#sidebar-left div > ul > li, #sidebar-right div > ul > li {
+	list-style-image: url('arrow-next-top.png');
+}
+
 .node .content {
 /*  text-align: left; /* LTR */
   line-height: 1.3;
@@ -1003,7 +1007,7 @@ div.links {
   font-size: 9px;
 }
 .block .title h3 {
-  color: #333;
+  color: #000;
   font-weight: normal;
   padding: 6px 5px 3px 0px; /* LTR */
   margin-bottom: 6px;
@@ -1289,6 +1293,7 @@ div.admin-panel .body {
   .view-marketplace {
     border-radius: 6px;
 		margin-bottom: 25px;
+		padding-top: 14px;
   }
 	
 	.view-marketplace p {
@@ -1408,12 +1413,11 @@ div.admin-panel .body {
   .view-marketplace .user {
     font-weight: bold;
     font-size: 1.1em;
-    border-bottom: 1px solid #B3B3B3;
+    border-bottom: 1px dotted #B3B3B3;
     padding-bottom: 2px;
   }
   
   .view-marketplace a {
-    color: #225776 !important;
     border-bottom: none !important;
 	}
 	
@@ -2702,6 +2706,7 @@ div.admin-panel .body {
 		padding: 0px 0px 0px 30px;
 		margin: 0;
   	vertical-align: middle;
+		clear: both;
   }
 	
   .author-pane .author-pane-contact .author-contact a,
@@ -3803,3 +3808,8 @@ li.menu-4023 {
 .ui-tabs-container .clear-block {
   clear: none !important;
 }
+
+div.image a:hover {
+	background-color: transparent !important;
+}
+

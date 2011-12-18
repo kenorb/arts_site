@@ -3715,7 +3715,7 @@ function feature_users_strongarm() {
       'add' => '1',
     ),
     'form' => array(
-      'weight' => '4',
+      'weight' => '5',
       'collapsible' => 1,
       'collapsed' => 0,
       'fields' => array(
@@ -3766,7 +3766,7 @@ function feature_users_strongarm() {
       ),
     ),
     'display' => array(
-      'weight' => '4',
+      'weight' => '5',
       'hide' => array(
         'name' => 0,
         'street' => 0,
