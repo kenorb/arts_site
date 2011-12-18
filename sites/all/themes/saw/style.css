@@ -3772,3 +3772,8 @@ li.menu-4023 {
 #store-footer {
 	display: none;
 }
+
+.clear-block {
+    clear: both !important;
+    display: block;
+}
