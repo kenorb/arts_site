@@ -820,7 +820,7 @@ EOT;
 
 EOT;
 	
-		foreach (explode ("\n", $query) as $row)
+		foreach (explode ("\n\t", $query) as $row)
 			_db_query ($row);
 			
 	}
