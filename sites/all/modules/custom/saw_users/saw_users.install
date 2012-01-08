@@ -786,5 +786,44 @@ EOT;
 			_db_query ($row);
 			
 	}
+
+
+	function saw_users_update_10 ()
+	{
+		$query =
+<<<EOT
+
+	DELETE FROM `custom_breadcrumb`;
+	DELETE FROM `custom_breadcrumbs_paths`;
+	INSERT INTO `custom_breadcrumb` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `node_type`, `language`) VALUES (3, 'Art Node', 'Arts', 'arts\r\n', '', 'art', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (3, 'Arts', 'Arts', 'arts', '', 'arts', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (4, 'Item', 'Market', 'market', '', 'item/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (5, 'market', 'Market', 'market', '', 'market', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (6, 'Events', 'Events', 'events', '', 'events', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (7, 'Events / *', 'Events', 'events', '', 'events/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (9, 'Community', 'Community', 'community', '', 'community', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (10, 'Forum', 'Community\r\nForums', 'community\r\nforum', '', 'forum', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (11, 'Forums / *', 'Community\r\nForums', 'community\r\nforum', '', 'forums/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (12, 'Art', 'Arts', 'arts', '', 'art/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (13, 'Groups', 'Community\r\nGroups', 'community\r\ngroup', '', 'group', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (14, 'Group / *', 'Community\r\nGroups', 'community\r\ngroups', '', 'group/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (15, 'Ideas', 'Ideas', 'ideas/list', '', 'ideas/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (16, 'Idea', 'Ideas', 'ideas/list', '', 'idea/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (17, 'Message', 'Messages', 'messages', '', 'messages*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (18, 'Workspace', 'Manage', 'workspace/me', '', 'workspace/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (19, 'News', 'News', 'news', '', 'news', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (20, 'Faq', 'Frequently Asked Questions', 'faq', '', 'faq', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (21, 'Faq / *', 'Frequently Asked Questions', 'faq', '', 'faq/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (22, 'Add Node', 'Manage', 'workspace/me', '', 'node/add/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (23, 'Manage', 'Manage', 'workspace/me', '', 'manage/*', '');
+	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (24, 'Online', 'Online', 'online', '', 'online', '');
+
+EOT;
+	
+		foreach (explode ("\n", $query) as $row)
+			_db_query ($row);
+			
+	}
+
 	
 ?>

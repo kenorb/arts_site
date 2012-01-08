@@ -65,6 +65,15 @@ function saw_render_block ($name)
 
 function saw_users_get_user_stats ($userId = null)
 {
+
+	// #463: When we are in /user/me, a PHP warning occurs
+	if ($userId === 'me')
+	{
+		global $user;
+		
+		$userId = $user -> uid;
+	}
+
 	$block = db_fetch_object (db_query (
 	"
 			SELECT

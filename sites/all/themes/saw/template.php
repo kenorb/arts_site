@@ -63,4 +63,14 @@ function removetab ($label, &$vars)
   }
 }
 
+function saw_breadcrumb ($vars)
+{
+	if (!$vars)
+		$vars [] = '<a href="/">Home</a>';
+	
+	$vars = array_unique ($vars);
+	
+	return '<div class="breadcrumb">' . implode (' » ', $vars) . '</div>';
+}
+
 ?>
