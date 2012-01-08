@@ -144,7 +144,7 @@ function saw_users_user_register_validate ($form, &$form_state)
 {
 
   $studentRoles	= array ();
-	$result				= db_query ("SELECT rid FROM role WHERE name = 'art student' OR name = 'student' ORDER BY name");
+	$result				= db_query ("SELECT rid FROM role WHERE name = 'art student' ORDER BY name");
 	
 	while ($row = db_fetch_object ($result))
 		$studentRoles [] = $row -> rid;
@@ -158,7 +158,7 @@ function saw_users_user_register_validate ($form, &$form_state)
 		
 		if (in_array ($id, $studentRoles) && substr ($mail, -6) != '.ac.uk')
 		{
-			form_set_error ('mail', t('For students, e-mail address must ends with: .ac.uk'));
+			form_set_error ('mail', t('For art students, e-mail address must ends with: .ac.uk'));
 			break;
 		}
 	}
