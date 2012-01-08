@@ -286,9 +286,13 @@ function _spam_filter_duplicate_content_hash($content, $fields) {
     $content = (array)$content;
   }
   $hash = '';
-  foreach ($fields['main'] as $field) {
-    $hash .= $content[$field];
+  
+  if (isset($fields['main']) && is_array($fields['main'])) {
+    foreach ($fields['main'] as $field) {
+      $hash .= $content[$field];
+    }
   }
+
   return md5($hash);
 }
 
@@ -300,7 +304,7 @@ function spam_filter_duplicate_spam_filter($content, $type, $fields, $extra = ar
   $action = array();
   $hash = _spam_filter_duplicate_content_hash($content, $fields);
   $id = spam_invoke_module($type, 'content_id', $content, $extra);
-  $spam_filter_duplicate_hash = db_result(db_query("SELECT COUNT(d.iid) FROM {spam_filter_duplicate} d LEFT JOIN {spam_tracker} t ON d.sid = t.sid WHERE content_hash = '%s' AND content_id <> %d", $hash, $id)) + 1;
+  $spam_filter_duplicate_hash = db_result(db_query("SELECT COUNT(d.iid) FROM {spam_filter_duplicate} d LEFT JOIN {spam_tracker} t ON d.sid = t.sid WHERE content_hash = '%s' AND content_id <> '%s'", $hash, $id)) + 1;
   if ($spam_filter_duplicate_hash >= variable_get('spam_filter_duplicate_threshold', SPAM_FILTER_DUPLICATE_DEFAULT_THRESHOLD)) {
     $sids = db_query("SELECT sid FROM {spam_filter_duplicate} WHERE content_hash = '%s'", $hash);
     if (!$filter_test) {

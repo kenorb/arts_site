@@ -56,10 +56,12 @@ function _spam_filter_url_extract($content, $type, $fields, $extra = array()) {
 
   if (!isset($spam_filter_urls["$type-$id"])) {
     $string = '';
-    foreach ($fields['main'] as $field) {
-      $string .= $content["$field"] .' ';
+    if (isset($fields['main']) && is_array($fields['main'])) {
+      foreach ($fields['main'] as $field) {
+        $string .= $content["$field"] .' ';
+      }
     }
-    if (is_array($fields['other'])) {
+    if (isset($fields['other']) && is_array($fields['other'])) {
       foreach ($fields['other'] as $field) {
         $string .= $content["$field"] .' ';
       }
@@ -74,6 +76,7 @@ function _spam_filter_url_extract($content, $type, $fields, $extra = array()) {
     // Match www domains/addresses.
     preg_match_all("`(<p>|<li>|[ \n\r\t\(])(www\.[a-zA-Z0-9@:%_+*~#?&=.,/;-]*[a-zA-Z0-9@:%_+~#\&=/;-])([.,?!]*?)(?=(</p>|</li>|<br\s*/?>|[ \n\r\t\)]))`i", $string, $matches_www);
     $matches = array_merge($matches_absolute[2], $matches_email[2], $matches_www[2]);
+    $u = array();
     foreach ($matches as $spam_filter_url) {
       $spam_filter_url = preg_replace("'$URI'", '', $spam_filter_url);
       // get full domain (ie www.sample.com)
@@ -177,10 +180,15 @@ function spam_filter_url_update($spam_filter_urls, $yes, $type, $id) {
  */
 function _spam_filter_url_count($spam_filter_url = NULL) {
   // build up an array of all URLs seen in current content
-  static $spam_filter_urls = array();
+  static $spam_filter_urls = array('total' => 0);
 
   if ($spam_filter_url != NULL) {
-    $spam_filter_urls["$spam_filter_url"]++;
+    if (empty($spam_filter_urls["$spam_filter_url"])) {
+      $spam_filter_urls["$spam_filter_url"] = 1;
+    }
+    else {
+      $spam_filter_urls["$spam_filter_url"]++;
+    }
     $spam_filter_urls['total']++;
   }
 

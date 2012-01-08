@@ -2,9 +2,9 @@ name = Spam API
 description = The core Spam API for autodetecting and managing spam.
 package = Spam
 core = 6.x
-; Information added by drupal.org packaging script on 2011-02-25
-version = "6.x-1.x-dev"
+; Information added by drupal.org packaging script on 2011-11-20
+version = "6.x-1.4"
 core = "6.x"
 project = "spam"
-datestamp = "1298620244"
+datestamp = "1321829144"
 

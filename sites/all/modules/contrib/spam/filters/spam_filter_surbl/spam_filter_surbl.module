@@ -65,7 +65,7 @@ function _spam_filter_surbl_url_extract($content, $type, $fields, $extra = array
     foreach ($fields['main'] as $field) {
       $string .= $content["$field"] .' ';
     }
-    if (is_array($fields['other'])) {
+    if (isset($fields['other']) && is_array($fields['other'])) {
       foreach ($fields['other'] as $field) {
         $string .= $content["$field"] .' ';
       }

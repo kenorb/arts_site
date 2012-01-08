@@ -23,7 +23,7 @@ function spam_user($type, &$edit, &$user, $category = NULL) {
       if (user_spamapi('filter_content_type', $user) && user_access('administer spam')) {
         foreach (spam_links('user', $user->uid, $user) as $link) {
           if ($link['href']) {
-            $links .= l($link['title'], $link['href']) .' ';
+            $links .= l($link['title'], $link['href'], array('query' => array_merge($link['query'], array('destination' => 'user/'. $user->uid)))) .' ';
           }
           else {
             $links .= $link['title'] .' ';
@@ -131,7 +131,7 @@ function user_spamapi($op, $arg1 = NULL, $arg2 = NULL, $arg3 = NULL) {
 
     case 'redirect':
       if (is_numeric($arg1)) {
-        return drupal_goto("/user/$arg1");
+        return drupal_goto("user/$arg1");
       }
       break;
 
@@ -157,7 +157,7 @@ function user_spamapi($op, $arg1 = NULL, $arg2 = NULL, $arg3 = NULL) {
       }
 
     case 'overview_filter_join':
-      return 'INNER JOIN {users} u ON t.content_id = u.uid';
+      return 'INNER JOIN {users} u ON t.content_id = CAST(u.uid AS CHAR(32))';
 
     case 'overview_filter_where':
       switch ($arg1) {
@@ -267,7 +267,7 @@ function spam_mark_user_as_spam_action(&$object, $context = array()) {
   }
   // make sure we have a user record
   if ($uid) {
-    spam_mark_as_not_spam('user', $uid);
+    spam_mark_as_spam('user', $uid);
     // record a message noting the action taken
     watchdog('action', 'Marked user %uid as not spam.', array('%uid' => $uid) );
   }

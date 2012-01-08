@@ -98,6 +98,7 @@ function spam_filter_node_age_spam_filter($content, $type, $fields, $extra = arr
     }
   }
   else {
+    $id = spam_invoke_module($type, 'content_id', $content, $extra);
     spam_log(SPAM_DEBUG, 'spam_filter_node_age_spam_filter', t('content type is not comment, skipping'), $type, $id);
     $action['total'] = 0;
   }

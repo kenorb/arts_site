@@ -11,14 +11,33 @@
 function spam_nodeapi(&$node, $op) {
   switch ($op) {
     case 'update':
-      spam_content_update($node, 'node');
+      if (!spam_bypass_filters()) {
+        spam_content_update($node, 'node');
+        $spam = spam_content_is_spam($node, 'node', $node->nid);
+        if (isset($spam['is_spam']) && $spam['is_spam']) {
+          $node->is_spam = TRUE;
+        }
+      }
       break;
     case 'insert':
-      spam_content_insert($node, 'node');
+      if (!spam_bypass_filters()) {
+        spam_content_insert($node, 'node');
+        $spam = spam_content_is_spam($node, 'node', $node->nid);
+        if (isset($spam['is_spam']) && $spam['is_spam']) {
+          $node->is_spam = TRUE;
+        }
+      }
       break;
     case 'delete':
       spam_content_delete($node, 'node');
       break;
+    case 'view':
+      $node->is_spam = FALSE;
+      if (spam_score_is_spam(_spam_content_node_score($node->nid))) {
+        drupal_add_css(drupal_get_path('module', 'spam') .'/content/spam-node.css');
+        $node->is_spam = TRUE;
+      }
+
   }
 }
 
@@ -36,6 +55,19 @@ function _spam_content_node_nid($id = NULL) {
 }
 
 /**
+ * Retrieve spam score, caching in memory for repeated use.
+ */
+function _spam_content_node_score($nid) {
+  static $scores = array();
+
+  if (!isset($scores[$nid])) {
+    $scores[$nid] = db_result(db_query("SELECT score FROM {spam_tracker} WHERE content_type = 'node' AND content_id = '%s'", $nid));
+  }
+
+  return $scores[$nid];
+}
+
+/**
  * Spam module _spamapi() hook.
  */
 function node_spamapi($op, $arg1 = NULL, $arg2 = NULL, $arg3 = NULL) {
@@ -48,7 +80,12 @@ function node_spamapi($op, $arg1 = NULL, $arg2 = NULL, $arg3 = NULL) {
       if (is_object($arg1)) {
         $arg1 = (array)$arg1;
       }
-      return _spam_content_node_nid($arg1['nid']);
+      if (isset($arg1['nid'])) {
+        return _spam_content_node_nid($arg1['nid']);
+      }
+      else {
+        return 0;
+      }
 
     case 'content_types':
       // Register all node types with the spam module.
@@ -140,10 +177,10 @@ function node_spamapi($op, $arg1 = NULL, $arg2 = NULL, $arg3 = NULL) {
       break;
 
     case 'redirect':
-      return drupal_goto("/node/$arg1");
+      return drupal_goto("node/$arg1");
 
     case 'overview_filter_join':
-      return 'INNER JOIN {node} n ON t.content_id = n.nid';
+      return 'INNER JOIN {node} n ON t.content_id = CAST(n.nid AS CHAR(32))';
 
     case 'overview_filter_where':
       switch ($arg1) {
@@ -155,20 +192,30 @@ function node_spamapi($op, $arg1 = NULL, $arg2 = NULL, $arg3 = NULL) {
 
     case 'publish':
       if (is_numeric($arg1)) {
-      	$arg1 = node_load($arg1);
+        $arg1 = node_load(array('nid' => $arg1));
         node_publish_action($arg1);
-	node_save($arg1);
+        node_save($arg1);
       }
       break;
 
     case 'unpublish':
       if (is_numeric($arg1)) {
-      	$arg1 = node_load($arg1);
+        $arg1 = node_load($arg1);
         node_unpublish_action($arg1);
-	node_save($arg1);
+        node_save($arg1);
       }
       break;
 
+  }
+}
+
+/**
+ * Preprocess function to add some class for comments marked as spam.
+ */
+function spam_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  if ($node->is_spam) {
+    $vars['content'] = '<div class="node-spam-content">' . $vars['content'] . '</div>';
   }
 }
 
@@ -213,7 +260,7 @@ function spam_mark_node_as_spam_action(&$object, $context = array()) {
   }
   // make sure we have a node record
   if ($nid) {
-    spam_mark_as_not_spam('node', $nid);
+    spam_mark_as_spam('node', $nid);
     // record a message noting the action taken
     watchdog('action', 'Marked node %nid as spam.', array('%nid' => $nid) );
   }

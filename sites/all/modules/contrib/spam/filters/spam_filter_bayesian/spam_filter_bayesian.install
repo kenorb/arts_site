@@ -96,9 +96,11 @@ function spam_filter_bayesian_uninstall() {
   // Remove tables.
   drupal_uninstall_schema('spam_filter_bayesian');
 
-  $tables = array('spam_filter_bayesian_tokens');
-  foreach ($tables as $table) {
-  }
+  variable_del('spam_filter_bayesian_overlap_cjk');
+  variable_del('spam_filter_bayesian_minimum_token_length');
+  variable_del('spam_filter_bayesian_tokenizer');
+  variable_del('spam_filter_bayesian_default_probability');
+
   drupal_set_message(t('All bayesian module configuration data and tables have been deleted.'));
 }
 
