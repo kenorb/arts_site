@@ -121,6 +121,7 @@
             <?php print $feed_icons; ?>
             <!-- end main content -->
       
+							<div class="clear-block"></div>
             </div><!-- main -->
           </td>
           <?php if ($right != ""): ?>

@@ -3813,3 +3813,6 @@ div.image a:hover {
 	background-color: transparent !important;
 }
 
+div.admin.clear-block .clear-block {
+	clear: none !important;
+}
