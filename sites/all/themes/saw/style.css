@@ -334,8 +334,8 @@ pre {
   width: 100%;
   text-align: left;
   border: none;
-	padding-right: 58px;
-	padding-left: 82px;
+/*	padding-right: 34px;
+	padding-left: 82px;*/
 }
 
 #search-theme-form {
@@ -360,20 +360,22 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
   padding: 5px;
 }
 
+#primary-menu {
+}
+
 #primary-menu .primary-links {
   font-size: 16px;
-  float: left;
+	padding-top: 22px;
 }
 
 #primary-menu .primary-links,
 #primary-menu .secondary-links {
-	padding-left: 32px;
 	white-space: nowrap;
 }
 
 #primary-menu p {
   color: #fdfdfd;
-  padding: 9px 5px 0px 10px;
+  padding: 9px 24px 0 10px;
   margin-top: 10px;
   font-size: 14px; 
 }
@@ -395,13 +397,12 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 
 #home {
   background: url("images/mlogo.png") no-repeat scroll right 20px transparent;
-	min-width: 253px;
 	width: 25%;
 }
 .secondary-links, .secondary-links a:link, .secondary-links a:visited {
   color: #fefffa;
   padding: 6px;
-  text-align: left;
+  text-align: center;
 	font-size: 15px;
 	text-shadow: 1px 1px 0px #000;
 }
@@ -1976,7 +1977,14 @@ div.admin-panel .body {
   .login-box {
     padding-top: 13px;
 		text-align: right;
+		width: 25%;
+		padding-right: 32px;
   }
+	
+	td.primary-links {
+		width: 50%;
+		text-align: center;
+	}
 
   .profile-menu-container {
     margin: 0 0 0 auto;
@@ -2064,6 +2072,10 @@ div.admin-panel .body {
   .searchBox {
   }
 	
+	td.search-box {
+		width: 210px;
+	}
+	
 	td.search-box > form > div {
 		width: 177px;
 	}
@@ -2097,7 +2109,7 @@ div.admin-panel .body {
   
   .search-box div {
     display: block;
-    margin: 0 0 0 auto;
+    margin: 0;
   }
   
   .search-box .item.thumbs {
@@ -3782,7 +3794,7 @@ li.statistics_counter {
 	display: none;
 }
 
-li.menu-4023 {
+#banner li.menu-4023 {
 	padding-left: 333px !important;
 }
 
@@ -3924,4 +3936,18 @@ div.admin.clear-block .clear-block {
 	border: 0 none;
 	display: inline-block;
 	width: 175px;
+}
+
+
+#toolbar-area.unlogged #breadcrumb-container {
+	min-width: 406px;
+	width: 25%;
+}
+
+
+.unlogged-links {
+	margin-right: 201px;
+	position: relative;
+	text-align: center;
+	
 }

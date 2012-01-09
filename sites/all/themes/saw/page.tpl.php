@@ -64,26 +64,36 @@
           </tr>
           <tr>
             <td class="secondary-links" width="50%" valign="middle">
-							<?php if (!$logged_in) $secondary_links ['menu-9668'] = array ('attributes' => array ('title' => ''), 'href' => 'user/register', 'title' => 'Sell My Art'); krsort ($secondary_links); ?>
-              <?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
-            </td>
-            <td class="search-box" valign="middle" width="20%">
-              <form action="/search" method="get">
-								<div id="search" class="container-inline">
-								  <div class="search-box"></div>
-								</div>
-							</form>
+							<?php if ($logged_in): ?>
+								<?php if (!$logged_in) $secondary_links ['menu-9668'] = array ('attributes' => array ('title' => ''), 'href' => 'user/register', 'title' => 'Sell My Art'); krsort ($secondary_links); ?>
+								<?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
+							<?php endif; ?>
             </td>
           </tr>
         </table>
       </div>
       
-      <div id="toolbar-area">
+      <div id="toolbar-area" <?php if (!$logged_in): ?>class="unlogged"<?php endif; ?>>
         <table id="toolbar" cellspacing="0" cellpadding="0">
           <tr>
             <td id="breadcrumb-container">
               <?php print $breadcrumb ?>
             </td>
+						<td>
+							<?php if (!$logged_in): ?>
+								<div class="secondary-links unlogged-links">
+									<?php if (!$logged_in) $secondary_links ['menu-9668'] = array ('attributes' => array ('title' => ''), 'href' => 'user/register', 'title' => 'Sell My Art'); krsort ($secondary_links); ?>
+									<?php print theme('links', $secondary_links, array('class' => 'links', 'id' => 'subnavlist')) ?>
+								</div>
+							<?php endif; ?>
+						</td>
+						<td class="search-box" valign="middle" width="20%">
+							<form action="/search" method="get">
+								<div id="search" class="container-inline">
+									<div class="search-box"></div>
+								</div>
+							</form>
+						</td>
           </tr>
         </table>
        </div>
