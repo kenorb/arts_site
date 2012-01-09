@@ -976,6 +976,8 @@ li.leaf {
 }
 .content h2 {
   font-size: 1.7em;
+    margin-bottom: 11px;
+    margin-top: 17px;
 }
 .content h3 {
   font-weight: bold;
@@ -3815,4 +3817,111 @@ div.image a:hover {
 
 div.admin.clear-block .clear-block {
 	clear: none !important;
+}
+
+.node-event .left-column input {
+	width: 60%;	
+}
+
+.node-event h3 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.node-event .left-column input {
+	width: 60%;	
+}
+
+.node-event .left-column {
+	vertical-align: top;
+	min-width: 300px;
+}
+
+.node-event .description {
+	padding: 3px 6px;
+}
+
+.node-event .datetime {
+	margin-left: 10px;
+	color: #057;
+	font-size: 16px;
+	text-shadow: 0 1px 1px #FFFFFF;
+}
+
+.node-event .datetime img.cal {
+	vertical-align: -33%;
+	margin-right: 4px;
+}
+
+.node-event .datetime img.arrow {
+	vertical-align: -11%;
+	margin: 0px 7px;
+}
+
+.node-event .datetime .text-date-or-time {
+	
+}
+
+.node-event .middle-column {
+	padding-top: 20px;
+	width: 45%;
+}
+.node-event .separator {
+	height: 0px;
+	border-top: 1px dotted #aaa;
+	margin: 10px 0px;
+}
+
+.node-event div.right {
+	float: right;
+}
+
+.node-event .related-groups {
+	margin-top: 6px;
+}
+
+.node-event .terms {
+	margin-top: 6px;
+	display: block !important;
+}
+
+.node-event .top {
+	width: 100%;
+}
+
+.node-event .top .right,
+.node-event .top .right div {
+	text-align: right !important;
+	vertical-align: top;
+}
+
+.node-event .top .right h3 {
+	margin: 0;
+	padding: 0;
+	font-size: 16px !important;
+}
+
+.node-event .top .right em {
+	font-style: normal;
+}
+
+.node-event ul.links li a {
+	font: inherit !important;
+	text-transform: inherit !important;
+	color: #0292CC !important;
+}
+
+.node-event .art-screen {
+	min-height: 402px;
+}
+
+.view-content .node .content {
+	min-height: 50px;
+}
+
+#signup-node-admin-summary-form label {
+	border: 0 none;
+	display: inline-block;
+	width: 175px;
 }
