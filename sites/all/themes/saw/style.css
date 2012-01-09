@@ -3951,3 +3951,7 @@ div.admin.clear-block .clear-block {
 	text-align: center;
 	
 }
+
+ul#chatroom-user-list {
+	display: none;
+}
