@@ -201,7 +201,6 @@
 			
 			<div class="separator"></div>
 			
-			
 		</div>
 		
 	<?php endif; ?>
