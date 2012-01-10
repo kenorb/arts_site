@@ -860,6 +860,14 @@ a.author-privatemsg-icon:hover {
   margin-bottom: -93px;
 }
 
+.wrapper.tagadelic {
+	margin-bottom: 5px;
+}
+
+.content #tags {
+	text-align: center;
+}
+
 #footer,
 .push {
   margin-bottom: -80px;
@@ -3955,3 +3963,34 @@ div.admin.clear-block .clear-block {
 ul#chatroom-user-list {
 	display: none;
 }
+
+.node.type-taxonomy {
+	border: 1px dotted #aaa;
+	padding: 10px;
+	background-color: #FFFFFF;
+	border: 1px solid #AAAAAA;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.node.type-taxonomy div.links {
+	border-bottom: 0;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.node.type-taxonomy div.submitted {
+	border-left: 0;
+}
+
+.node.type-taxonomy .content {
+	padding-left: 20px;
+	border-top: 1px dotted #aaa;
+	padding-top: 10px;
+}
+
+.galleria-stage,
+.galleria-content {
+	height: 500px;
+}
+#galleria{height:467px}

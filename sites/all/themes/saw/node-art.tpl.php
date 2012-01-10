@@ -1,6 +1,6 @@
-<?php drupal_add_js (drupal_get_path ('module', 'saw_art') . "/../../../libraries/galleria/galleria-1.2.5.min.js", "saw_art"); ?>
+<?php global $x; if (!$x++) drupal_add_js (drupal_get_path ('module', 'saw_art') . "/../../../libraries/galleria/galleria-1.2.6.min.js", "saw_art"); ?>
 
-<div id="node-<?php print $node->nid; ?>" class="node<?php if ($sticky) { print ' sticky'; } ?><?php if (!$status) { print ' node-unpublished'; } ?> clear-block">
+<div id="node-<?php print $node->nid; ?>" class="node<?php if ($sticky) { print ' sticky'; } ?><?php if (!$status) { print ' node-unpublished'; } ?> clear-block type-<?php echo arg(0); ?> art-id-<?php global $artId; if (!isset ($artId)) $artId = 0; else $artId++; echo $artId; ?>">
 
 <?php print $picture ?>
 
@@ -115,35 +115,38 @@
 					<td class="middle-column">
 					
 						<div class="art-screen">
-							<?php foreach ($node -> content ['field_image'] as $img): ?>
-								<?php echo $img; ?>
+							<?php foreach ($node -> field_image as $img): ?>
+								<img src="/<?php echo $img ['filepath']; ?>" />
 							<?php endforeach; ?>
 						</div>
 						<script>
 							$(function () {
 							
-								Galleria.loadTheme ('/sites/all/libraries/galleria/themes/classic/galleria.classic.min.js');
+								<?php if (!$artId): ?>
+									Galleria.loadTheme ('/sites/all/libraries/galleria/themes/classic/galleria.classic.min.js');
+								<?php endif; ?>
 								
-								var Gallery = $("div.art-screen").galleria ({
-										preload: 3,
-										transition: 'fade',
-										height: 600,
-										clicknext: true
-										
+								var current = $('.art-id-<?php echo $artId; ?>');
+									
+								current.find ('.art-screen').galleria ({
+									preload: 3,
+									transition: 'fade',
+									height: 600,
+									clicknext: true
 								});
 								
-								$('td.prev input').click (function () {
-									Galleria.get (0).prev ();
+								current.find ('td.prev input').click (function () {
+									Galleria.get (<?php echo $artId; ?>).prev ();
 								})
 								
-								$('td.next input').click (function () {
-									Galleria.get (0).next ();
+								current.find ('td.next input').click (function () {
+									Galleria.get (<?php echo $artId; ?>).next ();
 								})
-							
-								csses = [
+						
+								var csses = [
 									{},
 									{
-										'width':							$('.galleria-container').width (),
+										'width':							current.find ('.galleria-container').width (),
 										'height':							'600px',
 										'overflow':						null,
 										'top':								'-540px',
@@ -154,39 +157,44 @@
 									}];
 									
 								var GalleryToggleThumbnails = function () {
+									console.log ('asd');
+									var csses = arguments.callee.csses;
 										
-									if (typeof GalleryShowThumbnail == 'undefined')
-										GalleryShowThumbnail = false;
+									if (typeof GalleryShowThumbnail<?php echo $artId; ?> == 'undefined')
+										GalleryShowThumbnail<?php echo $artId; ?> = false;
 										
-									GalleryShowThumbnail = !GalleryShowThumbnail;
+									GalleryShowThumbnail<?php echo $artId; ?> = !GalleryShowThumbnail<?php echo $artId; ?>;
 									
 									if (typeof csses [0].width == 'undefined')
 										csses [0] = {
 											'width':						'5000px',
-											'height':						$('.galleria-thumbnails').css ('height'),
-											'overflow':					$('.galleria-thumbnails').css ('overflow'),
-											'top':							$('.galleria-thumbnails').css ('top'),
-											'left':							$('.galleria-thumbnails').css ('left') + 'px',
-											'z-index':					$('.galleria-thumbnails').css ('z-index'),
-											'background-color':	$('.galleria-thumbnails').css ('background-color'),
-											'opacity':					$('.galleria-thumbnails').css ('opacity')
+											'height':						current.find ('.galleria-thumbnails').css ('height'),
+											'overflow':					current.find ('.galleria-thumbnails').css ('overflow'),
+											'top':							current.find ('.galleria-thumbnails').css ('top'),
+											'left':							current.find ('.galleria-thumbnails').css ('left') + 'px',
+											'z-index':					current.find ('.galleria-thumbnails').css ('z-index'),
+											'background-color':	current.find ('.galleria-thumbnails').css ('background-color'),
+											'opacity':					current.find ('.galleria-thumbnails').css ('opacity')
 										}
 									
-									$('.galleria-thumbnails-list').css ('overflow', GalleryShowThumbnail ? null : 'hidden');
+									current.find ('.galleria-thumbnails-list').css ('overflow', GalleryShowThumbnail<?php echo $artId; ?> ? null : 'hidden');
 									
-									$('.galleria-thumbnails').css (csses [GalleryShowThumbnail ? 1 : 0]);
+									current.find ('.galleria-thumbnails').css (csses [GalleryShowThumbnail<?php echo $artId; ?> ? 1 : 0]);
 									
-									if (GalleryShowThumbnail)
-										$('.galleria-thumbnails-list img').click (GalleryToggleThumbnails);
+									if (GalleryShowThumbnail<?php echo $artId; ?>)
+										current.find ('.galleria-thumbnails-list img').click (GalleryToggleThumbnails);
 									else
-										$('.galleria-thumbnails img').unbind ('click', GalleryToggleThumbnails);
+										current.find ('.galleria-thumbnails img').unbind ('click', GalleryToggleThumbnails);
 									
 									
-									$('.galleria-thumbnails-container .galleria-image img').css (GalleryShowThumbnail ? {width: 100, height: 100} : {width: 40, height: 40});
-									$('.galleria-thumbnails-container .galleria-image').css (GalleryShowThumbnail ? {width: 100, height: 100} : {width: 40, height: 40});
+									current.find ('.galleria-thumbnails-container .galleria-image img').css (GalleryShowThumbnail<?php echo $artId; ?> ? {width: 100, height: 100} : {width: 40, height: 40});
+									current.find ('.galleria-thumbnails-container .galleria-image').css (GalleryShowThumbnail<?php echo $artId; ?> ? {width: 100, height: 100} : {width: 40, height: 40});
 								};
 								
-								$('td.thumbs input').click (GalleryToggleThumbnails);
+								GalleryToggleThumbnails.csses = csses;
+								
+								current.find ('td.thumbs input').click (GalleryToggleThumbnails);
+
 							})
 						</script>
 						
