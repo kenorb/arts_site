@@ -151,7 +151,7 @@
       <table id="footer-menu-list">
         <tr>
           <td id="copyright">
-            <?php echo "Copyright &copy; 2008-2011 Student Art World";?>
+            <span class="text"><?php echo "Copyright &copy; 2008-2011 Student Art World";?></span>
           </td>
         </tr>
         <tr>

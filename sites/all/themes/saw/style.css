@@ -900,8 +900,18 @@ a.author-privatemsg-icon:hover {
 }
 
 #footer #copyright {
-  padding-top: 8px;
+  padding-top: 2px;
   color: #ddd;
+	text-align: center;
+}
+
+#footer #copyright .text {
+	border-bottom: 1px dotted #447711;
+	padding: 0 80px 12px 80px;
+}
+
+#footer #footer_menu {
+	padding-top: 9px;
 }
 
 #footer #footer_menu .block .content .menu {
