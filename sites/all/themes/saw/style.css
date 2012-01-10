@@ -396,7 +396,7 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 }
 
 #home {
-  background: url("images/mlogo.png") no-repeat scroll right 20px transparent;
+  background: url("images/mlogo.png") no-repeat scroll 47px 20px transparent;
 	width: 25%;
 }
 .secondary-links, .secondary-links a:link, .secondary-links a:visited {
