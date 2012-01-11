@@ -2210,7 +2210,7 @@ Galleria.prototype = {
             // the gallery is ready, let's just wait for the css
             var num = { width: 0, height: 0 };
             var testHeight = function() {
-                return self.$( 'stage' ).height ();
+                return self.$( 'stage' ).height();
             };
 
             // check container and thumbnail height
@@ -2227,29 +2227,20 @@ Galleria.prototype = {
                         } else {
 
                             // else extract the measures from different sources and grab the highest value
-														
-                            num[ m ] = Utils.parseValue( $container [m] () );
-
-														if (!num[ m ] || num [m] == 'auto')
-															num[ m ] = Utils.parseValue( $container.css( m ) );         // 1. the container css
-                            
-														if (!num[ m ] || num [m] == 'auto')
-															num[ m ] = Utils.parseValue( self.$( 'target' ).css( m ) ); // 2. the target css
-															
-														if (!num[ m ] || num [m] == 'auto')
-															num[ m ] = $container.css (m);                              // 3. the container jQuery method
-															
-														if (!num[ m ] || num [m] == 'auto')
-															num[ m ] = self.$( 'target' ).css (m);                      // 4. the container jQuery method
-                            
+                            num[ m ] = Math.max(
+                                Utils.parseValue( $container.css( m ) ),         // 1. the container css
+                                Utils.parseValue( self.$( 'target' ).css( m ) ), // 2. the target css
+                                $container[ m ](),                               // 3. the container jQuery method
+                                self.$( 'target' )[ m ]()                        // 4. the container jQuery method
+                            );
                         }
-												
-                        // apply the new measures
 
-                        $container.css (m, num[ m ] + 'px');
+                        // apply the new measures
+                        $container[ m ]( num[ m ] );
+
                     });
-										
-                    return num.width && num.height > 10;
+
+                    return testHeight() && num.width && num.height > 10;
 
                 },
                 success: function() {
@@ -2273,7 +2264,7 @@ Galleria.prototype = {
                         Galleria.raise('Could not extract a stage height from the CSS. Traced height: ' + testHeight() + 'px.', true);
                     }
                 },
-                timeout: 3000
+                timeout: 10000
             });
         });
 
@@ -2730,12 +2721,6 @@ Galleria.prototype = {
                     self.$( 'stage' ).css( 'display', 'inline-block' );
                 }
 
-								
-
-								
-								self.$( 'stage' ).width (self.$( 'stage' ).parent ().width());
-								self.$( 'stage' ).height (self.$( 'stage' ).parent ().height());
-								
                 self._stageWidth  = self.$( 'stage' ).width();
                 self._stageHeight = self.$( 'stage' ).height();
 
