@@ -109,6 +109,9 @@ function saw_breadcrumb ($vars)
 	if (!$vars)
 		$vars [] = '<a href="/">Home</a>';
 	
+	if (($id = array_search ('<a href="/user/me">My account</a>', $vars)) !== false)
+		unset ($vars [$id]);
+	
 	$vars = array_unique ($vars);
 	
 	return '<div class="breadcrumb">' . implode (' » ', $vars) . '</div>';
