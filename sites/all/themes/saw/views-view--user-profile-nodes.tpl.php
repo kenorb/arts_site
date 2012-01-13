@@ -21,7 +21,7 @@ $_GET['feature'] = 'artworks';
 	
 		default:
 		case 'artworks':
-			print views_embed_view ('Arts', 'user_profile_arts', arg (1));
+			print views_embed_view ('Arts', 'user_profile_arts', (arg (1) == 'me') ? $user -> uid  : arg (1));
 			break;
 		
 		case 'market':
