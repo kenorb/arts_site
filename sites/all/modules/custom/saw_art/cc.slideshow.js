@@ -90,9 +90,11 @@
 		for (var v = 0; v < this._frameIndex && num < 3; v++, num++)
 			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
-		box.find ('.teaser').append (this._frames [v] [this._teaserName]);
+		var teaser = this._frames [this._frameIndex] [this._teaserName];
+			
+		box.find ('.teaser').html (teaser ? teaser : "<i>No description added.</i>");
 		
-		box.find ('.day-count .count').html (this._frames [v] [this._dayCountName]);
+		box.find ('.day-count .count').html (this._frames [this._frameIndex] [this._dayCountName]);
 		
 		$('#user-arts-slideshow-container .user-arts-slideshow').css ('position', 'absolute');
 		$('#user-arts-slideshow-container .user-arts-slideshow').fadeOut (400, function () { $(this).remove (); });
