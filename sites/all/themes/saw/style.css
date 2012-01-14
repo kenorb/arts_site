@@ -906,7 +906,6 @@ a.author-privatemsg-icon:hover {
 }
 
 #footer #copyright .text {
-	border-bottom: 1px dotted #447711;
 	padding: 0 80px 12px 80px;
 }
 
@@ -938,7 +937,7 @@ a.author-privatemsg-icon:hover {
   display: inline;
   list-style: none;
   margin: 5px 3px 5px 8px;
-  background: url('bullet-white.png') left 0.8px no-repeat;'
+  background: url('bullet-white.png') left 0.8px no-repeat;
 }
 
 #footer li a {
