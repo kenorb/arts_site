@@ -2595,12 +2595,12 @@ div.admin-panel .body {
   #user-arts-slideshow-container img:hover,
   div.field.field-type-filefield.field-field-image div.field-item img,
   #field_image_values img {
-    border: 1px solid #888;
+    /*border: 1px solid #888;*/
     background-color: #fff;
     padding: 5px;
     margin: 2px;
     border-radius: 3px;
-    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.8);
+    /*box-shadow: 1px 0 4px rgba(0, 0, 0, 0.8);*/
   }
   
   div.field.field-type-filefield.field-field-image div.field-item img {
