@@ -2551,6 +2551,8 @@ div.admin-panel .body {
   	border: 0px;
   }
   
+	
+	
 	#user-arts-slideshow-container .teaser-separator {
 		border-bottom: 1px solid #AAAAAA;
 		margin-left: 238px;
@@ -2560,6 +2562,18 @@ div.admin-panel .body {
     top: -1px;
 	}
 	
+	#user-arts-slideshow-container .day-count {
+		padding-left: 10px;
+		padding-right: 10px;
+		border-top: 1px dotted #bbb;
+		width: 100px;
+		float: right;
+	}
+	
+	#user-arts-slideshow-container .teaser-text {
+		min-height: 80px;
+	}
+	
   #user-arts-slideshow-container .teaser {
 		background: url("images/buttons.png") repeat-x scroll 0 0 transparent !important;
 		border-bottom: 2px solid #AAAAAA;
@@ -2567,7 +2581,7 @@ div.admin-panel .body {
 		border-bottom-right-radius: 7px;
 		border-left: 2px solid #AAAAAA;
 		border-right: 2px solid #AAAAAA;
-		min-height: 66px;
+		min-height: 80px;
 		padding: 5px 10px !important;
 		position: relative;
     top: -1px;
@@ -2652,7 +2666,8 @@ div.admin-panel .body {
 	}
 	
 	.user-arts-slideshow .day-count {
-		text-align: right;
+		text-align: center;
+		padding-top: 4px;
 	}
 	
 	.user-arts-slideshow .count {
