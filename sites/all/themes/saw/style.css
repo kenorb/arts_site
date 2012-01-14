@@ -900,7 +900,7 @@ a.author-privatemsg-icon:hover {
 }
 
 #footer #copyright {
-  padding-top: 2px;
+  padding-top: 7px !important;
   color: #ddd;
 	text-align: center;
 }
@@ -910,7 +910,7 @@ a.author-privatemsg-icon:hover {
 }
 
 #footer #footer_menu {
-	padding-top: 9px;
+	padding-top: 2px !important;
 }
 
 #footer #footer_menu .block .content .menu {
