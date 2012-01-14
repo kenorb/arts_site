@@ -151,6 +151,7 @@
 			'</tr>' +
       '<tr class="teaser-area">' +
         '<td colspan="10">' +
+					'<div class="teaser-separator"></div>' +
           '<div class="teaser">' +
           '</div>' +
         '</td>' +
