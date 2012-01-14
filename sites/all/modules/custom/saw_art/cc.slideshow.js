@@ -92,7 +92,7 @@
 			
 		var teaser = this._frames [this._frameIndex] [this._teaserName];
 			
-		box.find ('.teaser').html (teaser ? teaser : "<i>No description added.</i>");
+		box.find ('.teaser-text').html (teaser ? teaser : "<i>No description added.</i>");
 		
 		box.find ('.day-count .count').html (this._frames [this._frameIndex] [this._dayCountName]);
 		
@@ -153,14 +153,13 @@
         '<td colspan="10">' +
 					'<div class="teaser-separator"></div>' +
           '<div class="teaser">' +
-          '</div>' +
-        '</td>' +
-      '</tr>' +
-      '<tr>' +
-        '<td colspan="10">' +
-          '<div class="day-count">' +
-            '<span class="count"></span> views today' +
-          '</div>' +
+						'<div class="teaser-text">' +
+						'</div>' +
+						'<div class="day-count">' +
+							'<span class="count"></span> views today' +
+						'</div>' +
+						'<div style="clear: both"></div>' +
+					'</div>' +
         '</td>' +
       '</tr>' +
 		'</table>';
