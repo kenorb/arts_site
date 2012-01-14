@@ -2551,17 +2551,44 @@ div.admin-panel .body {
   	border: 0px;
   }
   
+	#user-arts-slideshow-container .teaser-separator {
+		border-bottom: 1px solid #AAAAAA;
+		margin-left: 238px;
+		border-left: 2px solid #AAAAAA;
+		background-color: #fff;
+		position: relative;
+    top: -1px;
+	}
+	
   #user-arts-slideshow-container .teaser {
-    padding-top: 10px;
-  }
+		background: url("images/buttons.png") repeat-x scroll 0 0 transparent !important;
+		border-bottom: 2px solid #AAAAAA;
+		border-bottom-left-radius: 7px;
+		border-bottom-right-radius: 7px;
+		border-left: 2px solid #AAAAAA;
+		border-right: 2px solid #AAAAAA;
+		min-height: 66px;
+		padding: 5px 10px !important;
+		position: relative;
+    top: -1px;
+		box-shadow: 2px 3px 5px #AAAAAA;
+	}
   
   #user-arts-slideshow-container .teaser > p {
   	padding: 2px 5px;
   }
   
   #user-arts-slideshow-container .big-area {
-  	padding: 0px 11px 0px 0px;
+  	padding: 12px 11px 4px 9px;
   	border-right: 1px dotted #888;
+		border-top: 1px solid #aaa;
+		border-left: 2px solid #aaa;
+		border-right: 2px solid #aaa;
+		border-top-left-radius: 7px;
+		border-top-right-radius: 7px;
+		background-color: #fff !important;
+		box-shadow: 2px 0 5px #AAAAAA;
+		
   }
   
   #user-arts-slideshow-container .big-area img,
@@ -2603,6 +2630,7 @@ div.admin-panel .body {
 	.user-arts-slideshow .small-area td {
     padding-left: 5px;
     overflow: auto;
+		padding-top: 13px;
   }
 	
 	.user-arts-slideshow .small-area {
@@ -2616,6 +2644,7 @@ div.admin-panel .body {
 	
 	.user-arts-slideshow .teaser-area td {
 		height: 90px;
+		margin-top: 8px;
 	}
 	
 	.user-arts-slideshow .big-area img {
