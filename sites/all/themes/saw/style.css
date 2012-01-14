@@ -938,6 +938,7 @@ a.author-privatemsg-icon:hover {
   list-style: none;
   margin: 5px 3px 5px 8px;
   background: url('bullet-white.png') left 0.8px no-repeat;
+	padding-left: 0px !important;
 }
 
 #footer li a {
