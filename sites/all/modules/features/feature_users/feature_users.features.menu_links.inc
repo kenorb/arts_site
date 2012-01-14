@@ -529,7 +529,7 @@ function feature_users_menu_default_menu_links() {
     'external' => '0',
     'has_children' => '0',
     'expanded' => '0',
-    'weight' => '-45',
+    'weight' => '-44',
   );
   // Exported menu link: primary-links:market
   $menu_links['primary-links:market'] = array(

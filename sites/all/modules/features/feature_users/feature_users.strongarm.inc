@@ -904,20 +904,6 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_append_page_title';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_append_page_title'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_append_page_title_no_link';
-  $strongarm->value = 0;
-  $export['custom_breadcrumbs_append_page_title_no_link'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'custom_breadcrumbs_even_odd_class';
   $strongarm->value = 0;
   $export['custom_breadcrumbs_even_odd_class'] = $strongarm;
@@ -1002,104 +988,6 @@ function feature_users_strongarm() {
   $strongarm->name = 'custom_breadcrumbs_set_menu_breadcrumb';
   $strongarm->value = 0;
   $export['custom_breadcrumbs_set_menu_breadcrumb'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_art';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_art'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_chatroom';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_chatroom'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_education';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_education'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_faq';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_faq'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_forum';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_forum'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_idea';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_idea'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_item';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_item'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_membership';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_membership'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_page';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_page'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_panel';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_panel'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_product';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_product'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_profile';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_profile'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_simplenews';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_simplenews'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'custom_breadcrumbs_show_form_table_story';
-  $strongarm->value = 1;
-  $export['custom_breadcrumbs_show_form_table_story'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
