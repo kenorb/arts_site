@@ -399,9 +399,7 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any art content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'authenticated user',
-      '3' => 'moderator',
+      '1' => 'moderator',
     ),
   );
 
@@ -410,9 +408,7 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any blog content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'authenticated user',
-      '3' => 'moderator',
+      '1' => 'moderator',
     ),
   );
 
@@ -421,13 +417,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any chat content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -436,8 +430,6 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any chatroom content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'authenticated user',
     ),
   );
 
@@ -446,13 +438,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any education content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -461,13 +451,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any event content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -476,13 +464,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any faq content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -491,13 +477,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any forum content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -506,13 +490,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any group content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -521,13 +503,11 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of any idea content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 
@@ -613,13 +593,12 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of own art content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
     ),
   );
 
@@ -638,13 +617,12 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of own chat content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
     ),
   );
 
@@ -653,13 +631,12 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions of own chatroom content',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'art collector',
-      '3' => 'authenticated user',
-      '4' => 'moderator',
-      '5' => 'premium buyer',
-      '6' => 'premium seller',
-      '7' => 'user admin',
+      '1' => 'art collector',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
+      '4' => 'premium buyer',
+      '5' => 'premium seller',
+      '6' => 'user admin',
     ),
   );
 
@@ -693,7 +670,8 @@ function feature_users_user_default_permissions() {
     'roles' => array(
       '0' => 'admin',
       '1' => 'art collector',
-      '2' => 'moderator',
+      '2' => 'authenticated user',
+      '3' => 'moderator',
     ),
   );
 
