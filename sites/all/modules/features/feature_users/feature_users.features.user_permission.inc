@@ -389,8 +389,7 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'moderator',
+      '1' => 'moderator',
     ),
   );
 
@@ -562,11 +561,10 @@ function feature_users_user_default_permissions() {
     'roles' => array(
       '0' => 'admin',
       '1' => 'art collector',
-      '2' => 'authenticated user',
-      '3' => 'moderator',
-      '4' => 'premium buyer',
-      '5' => 'premium seller',
-      '6' => 'user admin',
+      '2' => 'moderator',
+      '3' => 'premium buyer',
+      '4' => 'premium seller',
+      '5' => 'user admin',
     ),
   );
 

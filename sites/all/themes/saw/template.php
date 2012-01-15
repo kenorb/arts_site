@@ -25,7 +25,6 @@ function menu_tertiary_links() {
  * @param array $variables
  */
 function saw_preprocess_forum_list (&$variables) {
-	
 	/*
 	 * #291: Removes unnecesary subforums. 
 	 */
