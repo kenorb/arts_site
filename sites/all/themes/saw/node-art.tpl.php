@@ -32,7 +32,15 @@
 										<h3>Prints</h3>
 									<?php endif; ?>
 									<div class="available">
-										<span class="num"><?php echo $numItemsAvailable ?></span> Available <div class="right"><span class="price">£<?php echo number_format ($node -> sell_price, 2); ?></span></div>
+										
+											<?php if ($numItemsAvailable <= 10000): ?>
+												<span class="num">
+													<?php echo $numItemsAvailable ?>
+												</span> Available
+											<?php else: ?>
+												Unlimited number
+											<?php endif; ?>
+											<div class="right"><span class="price">£<?php echo number_format ($node -> sell_price, 2); ?></span></div>
 									</div>
 									<div class="centered">
 										<?php echo $node -> content ['add_to_cart']['#value']; ?>

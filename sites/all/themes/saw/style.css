@@ -92,6 +92,11 @@ textarea {
     padding: 2px;
 }
 
+input[disabled], select[disabled], textarea[disabled] {
+	background: #ddd;
+	color: #888;
+}
+
 table.sticky-enabled tr {
 	background: none;
 	border: none;

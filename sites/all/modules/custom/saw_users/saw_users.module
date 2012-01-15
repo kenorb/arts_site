@@ -197,6 +197,75 @@ function saw_users_menu_alter (&$items)
 	}
 }
 
+function saw_users_form_alter (&$form, &$form_state, $form_id)
+{
+
+	switch ($form_id)
+	{
+		case 'art_node_form':
+		case 'item_node_form':
+		
+			$itemsAvailable						= saw_users_node_stock_level_get ($form ['nid'] ['#value']);
+			$itemsAvailableUnlimited	= $itemsAvailable > 10000;
+		
+			$form ['base'] ['stock_level'] = array (
+				'#type'					=> 'fieldset',
+				'#title'				=> 'Stock level',
+				'#collapsible'	=> false,
+				'#collapsed'		=> true,
+				'#weight'				=> 24,
+				
+				'stock_level' => array (
+					'#name'						=> 'stock_level',
+					'#type'						=> 'textfield',
+					'#title'					=> 'Stock level',
+					'#default_value'	=> $itemsAvailableUnlimited ? '' : $itemsAvailable,
+					'#description'		=> 'Number of items available for sell',
+					'#weight'					=> 24
+				),
+			
+				'stock_level_unlimited' => array (
+					'#name'						=> 'stock_level_unlimited',
+					'#type'						=> 'checkbox',
+					'#title'					=> 'Unlimited number of items to sell',
+					'#default_value'	=> $itemsAvailableUnlimited,
+					'#weight'					=> 24.5
+				)
+			);
+
+			$form ['#validate'] []	= 'saw_users_node_stock_level_validate';
+			$form ['#submit'] []		= 'saw_users_node_stock_level_submit';
+		
+			break;
+	}
+
+}
+
+function saw_users_node_stock_level_get ($nodeId)
+{
+	return (int)db_result (db_query ('SELECT stock FROM {uc_product_stock} WHERE nid = %d', $nodeId));
+}
+
+function saw_users_node_stock_level_set ($nodeId, $level)
+{
+	db_query ("UPDATE {uc_product_stock} SET stock = '%d' WHERE nid = %d", (int)$level, $nodeId);
+}
+
+
+function saw_users_node_stock_level_validate ($form, &$form_state)
+{
+	if ($form ['#post'] ['field_for_sell'] ['value'] == 'on')
+	{
+		if (!$form ['#post'] ['stock_level_unlimited'] && ($form ['#post'] ['stock_level'] < 0 || !is_numeric ($form ['#post'] ['stock_level'])))
+			form_set_error ('stock_level', t('Stock level must be greater or equal to zero'));
+	}
+}
+
+function saw_users_node_stock_level_submit ($form, &$form_state)
+{
+	saw_users_node_stock_level_set ($form ['nid'] ['#value'], $form ['#post'] ['stock_level_unlimited'] ? 10001 : $form ['#post'] ['stock_level']);	
+}
+
 /**
  * #460: Moderator shouldn't have access to Spam Site configuration
  */ 

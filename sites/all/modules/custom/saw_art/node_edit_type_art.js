@@ -9,6 +9,11 @@ var onEventForSellChange = function (pageInit)
     
     $('#edit-gc-salable').val ('checked', true);
     $('#edit-gc-salable').removeAttr ('disabled');
+		
+		if ($('#edit-stock-level-unlimited').attr ('checked'))
+			$('#edit-stock-level').attr ('disabled', true);
+		else
+			$('#edit-stock-level').removeAttr ('disabled');
   }
   else
   {
@@ -24,6 +29,7 @@ var onEventForSellChange = function (pageInit)
 		if (!$('#edit-quote-method-0').attr ('checked') && !$('#edit-quote-method-1').attr ('checked'))
 			$('#edit-quote-method-0').attr ('checked', true);
   }
+	
   
   
 };
@@ -33,4 +39,5 @@ onEventForSellChange (true);
 
 // Executed when For Sell checkbox changes its value
 $("#edit-field-for-sell-value").change (onEventForSellChange);
+$("#edit-stock-level-unlimited").change (onEventForSellChange);
 
