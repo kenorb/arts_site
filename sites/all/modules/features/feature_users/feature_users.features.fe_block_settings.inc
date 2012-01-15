@@ -848,8 +848,8 @@ art/*',
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '2',
-    'pages' => 'return $is_logged;',
-    'title' => '',
+    'pages' => 'global $is_logged; return $is_logged;',
+    'title' => 'Moderators and critics online',
     'cache' => '-1',
   );
 
@@ -1697,8 +1697,8 @@ art/*',
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '2',
-    'pages' => 'return $is_logged;',
-    'title' => '',
+    'pages' => 'global $is_logged; return $is_logged;',
+    'title' => 'Moderators and critics online',
     'cache' => '-1',
   );
 
@@ -2546,8 +2546,8 @@ art/*',
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '2',
-    'pages' => 'return $is_logged;',
-    'title' => '',
+    'pages' => 'global $is_logged; return $is_logged;',
+    'title' => 'Moderators and critics online',
     'cache' => '-1',
   );
 
