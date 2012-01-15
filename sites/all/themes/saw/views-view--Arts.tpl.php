@@ -63,7 +63,7 @@
 									<a href="<?php echo $row ['path']; ?>"><?php echo max_dots ($view -> result [$fieldId] -> node_title, 14); ?></a>
 								</td>
 								<td class="price">
-									<a href="/users/<?php echo $view -> result [$fieldId] -> users_name; ?>"><?php echo max_dots ($view -> result [$fieldId] -> users_name, 9); ?></a>
+									<a href="/users/<?php preg_match ('/users\/([^"]+)"/', $row ['name'], $matches); echo $matches [1]; ?>"><?php echo max_dots ($view -> result [$fieldId] -> users_name, 9); ?></a>
 								</td>
 							</tr>
 							<tr>

@@ -202,7 +202,7 @@
 							<tr>
 								<td class="general-info">
 									<div class="name"><?php echo ucfirst ($node -> title); ?></div>
-									<span class="type">Painting</span> <span class="by">by <a href="/users/<?php echo $node -> name ?>"><?php echo $node -> name; ?></a></span>
+									<span class="type">Painting</span> <span class="by">by <a href="/users/<?php preg_match ('/users\/([^"]+)"/', $variables ['name'], $matches); echo $matches [1]; ?>"><?php echo $node -> name; ?></a></span>
 									
 								</td>
 								<td class="art-screen-button prev">
