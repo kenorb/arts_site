@@ -18,7 +18,7 @@ $_GET['feature'] = 'artworks';
 	<tr>
 		<td class="area-left">
 		</td>
-		<td>
+		<td class="area-middle">
 
 			<?php global $no_widgets; $no_widgets = true; ?>
 			
