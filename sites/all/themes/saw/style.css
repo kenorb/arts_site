@@ -3597,7 +3597,8 @@ td.multi-day .inner .view-field a {
 	padding: 12px 5px 5px 8px;
 }
 
-.profile-user-about-info h2 {
+.profile-user-about-info h2,
+#content-profile-title-education {
 	color: #d5a;
 }
 
@@ -3606,9 +3607,38 @@ td.multi-day .inner .view-field a {
 }
 
 .profile-user-about-info h2,
-.profile-user-about-text h2 {
+.profile-user-about-text h2,
+#content-profile-title-education {
   font-size: 30px;
   font-weight: bold;
+	text-transform: lowercase;
+}
+
+#content-profile-title-education {
+	margin-top: 14px;
+}
+
+#content-profile-display-education {
+	border: 0;
+}
+
+#content-profile-display-education .field-label {
+	font-family: inherit !important;
+	font-size: 14px !important;
+	
+}
+
+#content-profile-display-education .field-item {
+	padding-left: 3px;
+	font-weight: bold !important;
+	display: list-item;
+}
+
+#content-profile-display-education .field-items {
+	margin-left: 30px;
+	padding-bottom: 12px;
+	font-size: 16px;
+	
 }
 
 .profile-user-about-text {
@@ -4085,4 +4115,9 @@ ul#chatroom-user-list {
 
 .view-more-artworks {
 	text-align: right;
+}
+
+#content-profile-display-education .links,
+#content-profile-display-education .details {
+	display: none !important;
 }

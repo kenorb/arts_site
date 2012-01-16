@@ -1,4 +1,15 @@
 <?php
+
+function saw_preprocess_user_profile (&$user)
+{
+	global $user_education;
+	
+	$user_education = $user ['account'] -> content ['content_profile'] ['content_profile_education'] ['#children'];
+	
+	$user = array ();
+	
+}
+
 function student_art_preprocess_page(&$vars) {
   $vars['tertiary_links'] = menu_tertiary_links();
 }
