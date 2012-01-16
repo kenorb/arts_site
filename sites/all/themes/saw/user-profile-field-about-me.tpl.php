@@ -1,2 +1,0 @@
-<?php global $user_content_profile; if (!$user_content_profile) $user_content_profile = content_profile_load ('profile', arg(1)); ?>
-<?php echo $user_content_profile -> field_about_me [0] ['value']; ?>

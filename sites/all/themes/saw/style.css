@@ -52,7 +52,8 @@ a, a:visited {
 .node a,
 .node a:visited,
 #main table a,
-#main .panel-flexible a {
+#main .panel-flexible a,
+#main h1 a {
 	padding: 2px 4px;
 	border-radius: 4px;
 	text-shadow: 1px 1px 1px #fff;
@@ -75,7 +76,8 @@ a, a:visited {
 #sidebar-right a:hover,
 #main .node a:hover,
 #main .panel-flexible a:hover,
-#main table a:hover {
+#main table a:hover,
+#main h1 a:hover {
 	background-color: #0292CC;
 	text-shadow: 1px 1px 1px #23d;
 	color: #fff;
@@ -3543,13 +3545,40 @@ td.multi-day .inner .view-field a {
 	font-size: 26px;
 }
 
+.pane-user-profile-nodes .artworks {
+  margin: 0 auto;
+	min-width: 70%;
+}
+
+.pane-user-profile-nodes .artworks .area-left,
+.pane-user-profile-nodes .artworks .area-right {
+	width: 30px;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+.pane-user-profile-nodes .artworks .area-left {
+	border-color: #ccc;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-left: 1px solid #ccc;
+}
+
+.pane-user-profile-nodes .artworks .area-right {
+	border-color: #ccc;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-right: 1px solid #ccc;
+}
+
 .pane-user-profile-nodes .arts-rows {
-	background-color: #FFFFFF;
-	border: 1px solid #AAAAAA;
 	border-radius: 3px 3px 3px 3px;
-	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 	margin-top: 0;
 	padding: 2px;
+}
+
+.pane-user-profile-nodes .arts-row .details {
+  background: rgba(240, 245, 249, 0.8);
 }
 
 .pane-user-profile-nodes .arts-row {
@@ -4053,3 +4082,7 @@ ul#chatroom-user-list {
 	height: 500px;
 }
 #galleria{height:467px}
+
+.view-more-artworks {
+	text-align: right;
+}

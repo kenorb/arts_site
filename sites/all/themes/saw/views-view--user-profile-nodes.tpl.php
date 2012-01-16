@@ -14,28 +14,41 @@
 $_GET['feature'] = 'artworks';
 ?>
 
-<?php global $no_widgets; $no_widgets = true; ?>
+<table class="artworks">
+	<tr>
+		<td class="area-left">
+		</td>
+		<td>
 
-	<?php switch (@$_GET ['feature']):
-	
-	
-		default:
-		case 'artworks':
-			print views_embed_view ('Arts', 'user_profile_arts', (arg (1) == 'me') ? $user -> uid  : arg (1));
-			break;
-		
-		case 'market':
-			print views_embed_view ('Marketplace', 'user_profile_items');
-  		break;
-  		
-		case 'favourites':
-			print views_embed_view ('Featured', 'user_profile_favourites');
-  		break;
-  		
-  		
-
-  endswitch; ?>
-
-<?php $no_widgets = false; ?>
+			<?php global $no_widgets; $no_widgets = true; ?>
+			
+				<?php switch (@$_GET ['feature']):
+				
+				
+					default:
+					case 'artworks':
+						global $no_user_name; $no_user_name = true;
+						
+						print views_embed_view ('Arts', 'user_profile_arts', (arg (1) == 'me') ? $user -> uid  : arg(1));
+						break;
+					
+					case 'market':
+						print views_embed_view ('Marketplace', 'user_profile_items');
+			  		break;
+			  		
+					case 'favourites':
+						print views_embed_view ('Featured', 'user_profile_favourites');
+			  		break;
+			  		
+			  		
+			  endswitch; ?>
+			
+			<?php $no_widgets = false; ?>
+      
+    </td>
+		<td class="area-right">
+		</td>
+  </tr>
+</table>
    
 </div>

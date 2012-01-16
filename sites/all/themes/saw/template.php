@@ -4,6 +4,10 @@ function student_art_preprocess_page(&$vars) {
 }
 
 function saw_preprocess_page (&$vars) {
+	
+	$vars ['title']				= preg_replace ('/(Profile of (.*))/', "\\2's profile", $vars ['title']);
+	$vars ['head_title']	= preg_replace ('/^Profile of (.*) \|/', "\\1's profile |", $vars ['head_title']);
+	
 	removetab ('Personal Heartbeat', $vars);
 	removetab ('OpenID Identities', $vars);
 	removetab ('Track Page Visits', $vars);

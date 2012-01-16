@@ -9,6 +9,8 @@
 	
 	$subdomainUserId	= null;//subdomain_get_sid ($subdomain);
 	
+	global $no_user_name;
+	
 ?>
 
 <?php global $no_top; if (!$no_top): ?>
@@ -16,7 +18,7 @@
 	<h1 class="title">
 	<?php if ($viewNameOrig == 'User Profile Arts'): ?>
 		<?php if (!$view -> build_info ['substitutions'] ['%1']) $view -> build_info ['substitutions'] ['%1'] = $user -> name; ?>
-		<a href="/users/<?php echo $view -> build_info ['substitutions'] ['%1']; ?>"><?php echo $view -> build_info ['substitutions'] ['%1']; ?></a>'s arts
+		Artworks
 	<?php else: ?>
 		<?php if (substr ($viewName, 0, 7) != 'default'): echo $viewNameOrig; ?><?php endif;?> arts
 	<?php endif; ?>
@@ -63,7 +65,9 @@
 									<a href="<?php echo $row ['path']; ?>"><?php echo max_dots ($view -> result [$fieldId] -> node_title, 14); ?></a>
 								</td>
 								<td class="price">
-									<a href="/users/<?php preg_match ('/users\/([^"]+)"/', $row ['name'], $matches); echo $matches [1]; ?>"><?php echo max_dots ($view -> result [$fieldId] -> users_name, 9); ?></a>
+									<?php if (!$no_user_name): ?>
+										<a href="/users/<?php preg_match ('/users\/([^"]+)"/', $row ['name'], $matches); echo $matches [1]; ?>"><?php echo max_dots ($view -> result [$fieldId] -> users_name, 9); ?></a>
+									<?php endif; ?>
 								</td>
 							</tr>
 							<tr>
@@ -102,13 +106,18 @@
 	<?php endforeach; ?>
 
 <?php else: ?>
-	<i>We're sorry. No arts here</i>
+	<i>No arts found.</i>
 <?php endif; ?>
 	
 	<div class="clear"></div>
 	
 </div>
 
+<?php if ($viewNameOrig == 'User Profile Arts' && count ($view -> style_plugin -> rendered_fields) > 0): ?>
+	<div class="view-more-artworks">
+		<a href="/arts/<?php echo saw_users_username_from_id ($view -> result [0] -> users_uid); ?>">View more artworks</a>
+	</div>
+<?php endif; ?>
 
 <?php echo $view -> exposed_widgets; ?>
 

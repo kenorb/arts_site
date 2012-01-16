@@ -199,7 +199,6 @@ function saw_users_menu_alter (&$items)
 
 function saw_users_form_alter (&$form, &$form_state, $form_id)
 {
-
 	switch ($form_id)
 	{
 		case 'art_node_form':
@@ -277,4 +276,32 @@ function saw_users_menu_access_admin_settings_spam ()
 		return false;
 	
 	return true;
+}
+
+function saw_users_user_link_from_name ($userName)
+{
+	return '/' . db_result (db_query ("
+		SELECT dst FROM url_alias
+		LEFT JOIN users U ON U.name = '%s'
+		WHERE src = CONCAT('user/', U.uid)
+		LIMIT 1
+	", $userName));
+}
+
+function saw_users_userid_from_name ($userName)
+{
+	return db_result (db_query ("
+		SELECT uid FROM users
+		WHERE name = '%s'
+		LIMIT 1
+	", $userName));
+}
+
+function saw_users_username_from_id ($userId)
+{
+	return db_result (db_query ("
+		SELECT name FROM users
+		WHERE uid = %d
+		LIMIT 1
+	", $userId));
 }

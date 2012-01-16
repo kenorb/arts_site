@@ -1,0 +1,2 @@
+<h1>Recent <a href="<?php echo saw_users_user_link_from_name ($view -> args [0]); ?>"><?php echo $view -> args [0]; ?></a> arts</h1>
+<?php global $no_user_name; $no_user_name = true; global $no_top; $no_top = true; include 'views-view--Arts.tpl.php'; ?>
