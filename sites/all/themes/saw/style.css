@@ -4121,3 +4121,7 @@ ul#chatroom-user-list {
 #content-profile-display-education .details {
 	display: none !important;
 }
+
+#user-profile .panel-pane.pane-custom.pane-1 .pane-content {
+	margin-top: 12px;
+}
