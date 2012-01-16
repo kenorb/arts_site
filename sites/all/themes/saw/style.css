@@ -3557,6 +3557,10 @@ td.multi-day .inner .view-field a {
 	border-bottom: 1px solid;
 }
 
+.pane-user-profile-nodes .artworks .area-middle {
+	padding-bottom: 12px;
+}
+
 .pane-user-profile-nodes .artworks .area-left {
 	border-color: #ccc;
 	border-top-left-radius: 7px;

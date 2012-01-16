@@ -113,7 +113,7 @@
 	
 </div>
 
-<?php if ($viewNameOrig == 'User Profile Arts' && count ($view -> style_plugin -> rendered_fields) > 0): ?>
+<?php if ($viewNameOrig == 'User Profile Arts' && count ($view -> style_plugin -> rendered_fields) > 4): ?>
 	<div class="view-more-artworks">
 		<a href="/arts/<?php echo saw_users_username_from_id ($view -> result [0] -> users_uid); ?>">View more artworks</a>
 	</div>
