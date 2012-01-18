@@ -40,9 +40,13 @@
       <tbody>
         <tr>
 			    <td class="left-column">
-						<div class="image">
-							<?php echo $row ['field_image_fid']; ?>
-						</div>
+						<table class="image" cellspacing="0" cellpadding="0">
+							<tr>
+								<td>
+									<?php echo preg_replace ('%<a href="/event/[^>]+>%', '', $row ['field_image_fid']); ?>
+								</td>
+							</tr>
+						</table>
 			    </td>
 					<td class="middle-column">
 			      <div class="title">

@@ -1490,11 +1490,15 @@ div.admin-panel .body {
   
   .featured-events .image {
     width: 100px;
-    max-height: 100px;
+    height: 104px;
+		max-height: 104px;
     padding: 2px;
     margin-right: 5px;
     border-radius: 4px;
   }
+	
+	.featured-events .image {
+	}
   
   .featured-events .image img {
     border-radius: 4px;
@@ -4127,5 +4131,13 @@ ul#chatroom-user-list {
 }
 
 #user-profile .panel-pane.pane-custom.pane-1 .pane-content {
+	margin-top: 12px;
+}
+
+#user-register .form-checkboxes label {
+	text-transform: capitalize;
+}
+
+#username-check-informer {
 	margin-top: 12px;
 }

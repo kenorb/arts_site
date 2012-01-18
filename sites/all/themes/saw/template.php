@@ -10,6 +10,25 @@ function saw_preprocess_user_profile (&$user)
 	
 }
 
+function saw_theme (&$existing, $type, $theme, $path)
+{
+	return array (
+		'user_register' => array (
+			'arguments'	=> array ('form' => NULL),
+			'template'	=> 'user-register'
+		)
+	);
+}
+
+function saw_user_register ($form)
+{
+
+	print_r ($form);
+	exit;
+
+	return _phptemplate_callback ('user_register', array ('form' => $form));
+}
+
 function student_art_preprocess_page(&$vars) {
   $vars['tertiary_links'] = menu_tertiary_links();
 }
