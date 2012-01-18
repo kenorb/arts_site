@@ -906,5 +906,19 @@ EOT;
 			
 	}
 
+	function saw_users_update_13 ()
+	{
+		$query =
+<<<EOT
+
+	DELETE FROM `customdestination`;
+	INSERT INTO `customdestination` (`fid`, `dst`) VALUES ('profile_node_form', 'http://arts.com/user/me/edit/profile');
+			
+EOT;
+	
+		foreach (explode ("\n\t", $query) as $row)
+			_db_query ($row);
+			
+	}	
 	
 ?>
