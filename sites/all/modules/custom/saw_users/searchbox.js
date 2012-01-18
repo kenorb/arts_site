@@ -26,11 +26,6 @@ var searchBox = function (area)
 			cssClass: 'normal'
 		},
 		{
-			name:   'profile',
-			title:  "People",
-			cssClass: 'normal'
-		},
-		{
 			name:   'forum',
 			title:  "Forum",
 			cssClass: 'normal'

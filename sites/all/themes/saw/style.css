@@ -4141,3 +4141,11 @@ ul#chatroom-user-list {
 #username-check-informer {
 	margin-top: 12px;
 }
+
+.bef-checkboxes .form-item {
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin: 0px 0px 0px 5px;
+	background-color: #fff;
+}
