@@ -5,7 +5,7 @@
       <tbody>
         <tr>
           <td class="button groups">
-            <a href="/group">
+            <a href="/og">
 	            <div class="icon">
 	            </div>
 	            <div class="title">
