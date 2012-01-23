@@ -2556,15 +2556,18 @@ div.admin-panel .body {
 	div.small-images {
     display: inline-block;
     overflow: hidden;
+		white-space: pre-wrap;
+    word-wrap: break-word;
+		max-height: 200px;
 	}
   
   #user-arts-slideshow-container img,
   div.field.field-type-filefield.field-field-image div.field-item img {
   	cursor: pointer;
     padding: 0px;
-    margin: 8px;
-    display: inline-block;
+    margin: 7px;
   	border: 0px;
+		max-height: 200px;
   }
   
 	
