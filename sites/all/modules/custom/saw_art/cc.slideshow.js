@@ -84,11 +84,11 @@
 		
 		var num = 0;
 		
-		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 10, this._frameCount) && num < 3; i++, num++)
-			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [i] [this._smallImageName]), i));
+		for (var i = this._frameIndex + 1; i < Math.min (this._frameIndex + 1 + 10, this._frameCount) && num < 10; i++, num++)
+			box.find ('.small-area td div').append (prepareImage ($('<span/>').html (this._frames [i] [this._smallImageName]), i));
 			
-		for (var v = 0; v < this._frameIndex && num < 3; v++, num++)
-			box.find ('.small-area td').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
+		for (var v = 0; v < this._frameIndex && num < 10; v++, num++)
+			box.find ('.small-area td div').append (prepareImage ($('<span/>').html (this._frames [v] [this._smallImageName]), v));
 			
 		var teaser = this._frames [this._frameIndex] [this._teaserName];
 			
@@ -142,7 +142,7 @@
 					'<table class="user-arts-slideshow-smalls" cellpadding="0" cellspacing="0">' +
 						'<tr class="small-area">' +
 								'<td>' +
-									'<div>' +
+									'<div class="small-images">' +
 									'</div>' +
 								'</td>' +
 						'</tr>' +

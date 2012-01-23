@@ -2552,6 +2552,11 @@ div.admin-panel .body {
   
   #user-arts-slideshow-container .small-area {
   }
+	
+	div.small-images {
+    display: inline-block;
+    overflow: hidden;
+	}
   
   #user-arts-slideshow-container img,
   div.field.field-type-filefield.field-field-image div.field-item img {
@@ -2693,6 +2698,8 @@ div.admin-panel .body {
 	.user-arts-slideshow-smalls {
 		height: 209px;
 		width: 100%;
+		table-layout: fixed;
+		overflow: hidden;
 	}
 	
   .user-arts-slideshow-smalls td {
