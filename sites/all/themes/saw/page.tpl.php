@@ -53,6 +53,9 @@
 											<td colspan="3" class="items">
 												<?php
 													$menu = module_invoke('menu', 'block', 'view', 'menu-profilemenu');
+													
+													saw_users_alter_profilemenu ($menu);
+													
 													echo str_replace ('>-<', '><div class="separator"></div><', $menu ['content']); ?>
 											</td>
 										</tr>
