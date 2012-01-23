@@ -3557,31 +3557,13 @@ td.multi-day .inner .view-field a {
 .pane-user-profile-nodes .artworks .area-left,
 .pane-user-profile-nodes .artworks .area-right {
 	width: 30px;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
 }
 
 .pane-user-profile-nodes .artworks .area-middle {
 	padding-bottom: 12px;
 }
 
-.pane-user-profile-nodes .artworks .area-left {
-	border-color: #ccc;
-	border-top-left-radius: 7px;
-	border-bottom-left-radius: 7px;
-	border-left: 1px solid #ccc;
-}
-
-.pane-user-profile-nodes .artworks .area-right {
-	border-color: #ccc;
-	border-top-right-radius: 7px;
-	border-bottom-right-radius: 7px;
-	border-right: 1px solid #ccc;
-}
-
 .pane-user-profile-nodes .arts-rows {
-	border-radius: 3px 3px 3px 3px;
-	margin-top: 0;
 	padding: 2px;
 }
 
