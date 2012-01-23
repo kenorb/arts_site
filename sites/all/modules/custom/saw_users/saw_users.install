@@ -923,12 +923,12 @@ EOT;
 	
 	function saw_users_update_14 ()
 	{
-		saw_user_update_8 ();
-		saw_user_update_9 ();
-		saw_user_update_10 ();
-		saw_user_update_11 ();
-		saw_user_update_12 ();
-		saw_user_update_13 ();
+		saw_users_update_8 ();
+		saw_users_update_9 ();
+		saw_users_update_10 ();
+		saw_users_update_11 ();
+		saw_users_update_12 ();
+		saw_users_update_13 ();
 	}
 
 ?>
