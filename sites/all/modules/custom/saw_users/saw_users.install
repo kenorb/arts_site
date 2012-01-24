@@ -969,6 +969,12 @@ EOT;
 	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (29, 'Manage Attachments', 'Manage\r\nAttachments', 'manage/me\r\nmanage/me/attachments', '', 'manage/me/attachments', '');
 	INSERT INTO `custom_breadcrumbs_paths` (`bid`, `name`, `titles`, `paths`, `visibility_php`, `specific_path`, `language`) VALUES (30, 'Manage Configure', 'Manage\r\nConfigure', 'manage/me\r\nmanage/me/configure', '', 'manage/me/configure', '');
 	
+	DELETE FROM `url_alias` WHERE src IN ('workspace/me', 'workspace/me/comments', 'workspace/me/attachments', 'workspace/me/configure');
+	INSERT INTO `url_alias` (`pid`, `src`, `dst`, `language`) VALUES (1089, 'workspace/me', 'manage/me', '');
+	INSERT INTO `url_alias` (`pid`, `src`, `dst`, `language`) VALUES (1090, 'workspace/me/comments', 'manage/me/comments', '');
+	INSERT INTO `url_alias` (`pid`, `src`, `dst`, `language`) VALUES (1091, 'workspace/me/attachments', 'manage/me/attachments', '');
+	INSERT INTO `url_alias` (`pid`, `src`, `dst`, `language`) VALUES (1092, 'workspace/me/configure', 'manage/me/configure', '');
+	
 EOT;
 	
 		foreach (explode ("\n\t", $query) as $row)
