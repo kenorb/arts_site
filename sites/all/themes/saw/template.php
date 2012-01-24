@@ -33,10 +33,12 @@ function student_art_preprocess_page(&$vars) {
   $vars['tertiary_links'] = menu_tertiary_links();
 }
 
-function saw_preprocess_page (&$vars) {
-	
+function saw_preprocess_page (&$vars)
+{
 	$vars ['title']				= preg_replace ('/(Profile of (.*))/', "\\2's profile", $vars ['title']);
+	$vars ['title']				= preg_replace ('/(Workspace: (.*))/', "Manage: \\2", $vars ['title']);
 	$vars ['head_title']	= preg_replace ('/^Profile of (.*) \|/', "\\1's profile |", $vars ['head_title']);
+	$vars ['head_title']	= preg_replace ('/(Workspace: (.*))/', "Manage: \\2", $vars ['head_title']);
 	
 	removetab ('Personal Heartbeat', $vars);
 	removetab ('OpenID Identities', $vars);
@@ -46,7 +48,6 @@ function saw_preprocess_page (&$vars) {
 	removetab ('signups', $vars);
 	removetab ('votes', $vars);
 	removetab ('activity', $vars);
-	
 }
 
 function menu_tertiary_links() {
@@ -144,10 +145,32 @@ function saw_breadcrumb ($vars)
 	
 	if (($id = array_search ('<a href="/user/me">My account</a>', $vars)) !== false)
 		unset ($vars [$id]);
+		
+	$uniques	= array ();
+	$urls			= array ();
 	
-	$vars = array_unique ($vars);
+	foreach ($vars as $id => $var)
+	{
+		preg_match ('/>(.*?)</', $var, $matches1);
+		preg_match ('/href="(.*?)"/', $var, $matches2);
+		
+		$url = '<a title="' . $matches1 [1] . '" href="' . $matches2 [1] . '">' . $matches1 [1] . '</a>';
+		
+		if (!array_key_exists ($matches2 [1], $urls) || strlen ($matches2 [1]) < $urls [$matches2 [1]])
+		{
+			unset ($urls [$matches2 [1]]);
+		
+			$urls [$matches2 [1]] = strlen ($matches2 [1]);
+		
+			$uniques [$url] = $matches1 [1];
+		}
+	}
 	
-	return '<div class="breadcrumb">' . implode (' » ', $vars) . '</div>';
+	$uniques = array_unique ($uniques);
+	foreach ($uniques as &$var	)
+		$var = str_replace ('Workspace: ', '', $var);
+	
+	return '<div class="breadcrumb">' . implode (' » ', array_keys ($uniques)) . '</div>';
 }
 
 ?>
