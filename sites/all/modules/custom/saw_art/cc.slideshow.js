@@ -138,7 +138,7 @@
 						'</div>' +
 					'</div>' +
 				'</td>' +
-				'<td>' +
+				'<td class="small-area-container">' +
 					'<table class="user-arts-slideshow-smalls" cellpadding="0" cellspacing="0">' +
 						'<tr class="small-area">' +
 								'<td>' +

@@ -2540,6 +2540,7 @@ div.admin-panel .body {
 
   .user-arts-slideshow td {
   	vertical-align: top;
+    vertical-align: top;		
   }
   
   .user-arts-slideshow {
@@ -2558,17 +2559,8 @@ div.admin-panel .body {
     overflow: hidden;
 		white-space: pre-wrap;
     word-wrap: break-word;
-		max-height: 200px;
+		max-height: 215px;
 	}
-  
-  #user-arts-slideshow-container img,
-  div.field.field-type-filefield.field-field-image div.field-item img {
-  	cursor: pointer;
-    padding: 0px;
-    margin: 7px;
-  	border: 0px;
-		max-height: 200px;
-  }
   
 	
 	
@@ -2593,6 +2585,19 @@ div.admin-panel .body {
 		min-height: 80px;
 	}
 	
+	#user-arts-slideshow-container .small-area-container {
+
+	}
+	
+	.user-arts-slideshow-smalls {
+    background: url('images/slideshow-small-container-background.png') repeat-x;
+    border-top-right-radius: 7px;
+    box-shadow: 2px 0 5px #AAAAAA;
+    border-right: 2px solid #AAAAAA;
+    border-top: 1px solid #AAAAAA;
+		
+	}
+	
   #user-arts-slideshow-container .teaser {
 		background: url("images/buttons.png") repeat-x scroll 0 0 transparent !important;
 		border-bottom: 2px solid #AAAAAA;
@@ -2605,6 +2610,7 @@ div.admin-panel .body {
 		position: relative;
     top: -1px;
 		box-shadow: 2px 3px 5px #AAAAAA;
+		padding-right: 6px !important;
 	}
   
   #user-arts-slideshow-container .teaser > p {
@@ -2612,17 +2618,26 @@ div.admin-panel .body {
   }
   
   #user-arts-slideshow-container .big-area {
-  	padding: 12px 11px 4px 9px;
+  	padding: 5px 11px 4px 9px;
   	border-right: 1px dotted #888;
 		border-top: 1px solid #aaa;
 		border-left: 2px solid #aaa;
 		border-right: 2px solid #aaa;
 		border-top-left-radius: 7px;
-		border-top-right-radius: 7px;
 		background-color: #fff !important;
 		box-shadow: 2px 0 5px #AAAAAA;
 		
   }
+
+  #user-arts-slideshow-container img,
+  div.field.field-type-filefield.field-field-image div.field-item img {
+  	cursor: pointer;
+    padding: 0px;
+    margin: 6px 6px;
+  	border: 0px;
+		max-height: 200px;
+  }
+  
   
   #user-arts-slideshow-container .big-area img,
   #user-arts-slideshow-container img:hover,
@@ -2630,8 +2645,8 @@ div.admin-panel .body {
   #field_image_values img {
     /*border: 1px solid #888;*/
     background-color: #fff;
-    padding: 5px;
-    margin: 2px;
+    padding: 4px;
+    margin: 2px 2px;
     border-radius: 3px;
     /*box-shadow: 1px 0 4px rgba(0, 0, 0, 0.8);*/
   }
@@ -2652,6 +2667,10 @@ div.admin-panel .body {
 		padding: 0 !important;
 	}
 	
+	.user-arts-slideshow a:hover img {
+		box-shadow: 2px 0px 5px #333;
+	}
+	
 	.user-arts-slideshow a:hover {
 		background: none !important;
 	}
@@ -2663,7 +2682,7 @@ div.admin-panel .body {
 	.user-arts-slideshow .small-area td {
     padding-left: 5px;
     overflow: auto;
-		padding-top: 13px;
+		padding-top: 6px;
   }
 	
 	.user-arts-slideshow .small-area {
@@ -2699,7 +2718,7 @@ div.admin-panel .body {
   }
 
 	.user-arts-slideshow-smalls {
-		height: 209px;
+		height: 221px;
 		width: 100%;
 		table-layout: fixed;
 		overflow: hidden;
