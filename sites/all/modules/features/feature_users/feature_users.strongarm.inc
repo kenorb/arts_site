@@ -514,7 +514,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1327505794;
+  $strongarm->value = 1327519593;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -1247,6 +1247,20 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'default_container_yn';
+  $strongarm->value = 0;
+  $export['default_container_yn'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'default_container';
+  $strongarm->value = '-1';
+  $export['default_container'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'og_visibility';
   $strongarm->value = '1';
   $export['og_visibility'] = $strongarm;
@@ -1410,6 +1424,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_idea';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'og_max_groups_idea';
   $strongarm->value = '';
   $export['og_max_groups_idea'] = $strongarm;
@@ -1452,6 +1473,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'openid_autoreg_name';
   $strongarm->value = 'OpenID user !randomid';
   $export['openid_autoreg_name'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_art';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_art'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1897,6 +1925,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_simplenews';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'og_content_type_usage_simplenews';
   $strongarm->value = 'omitted';
   $export['og_content_type_usage_simplenews'] = $strongarm;
@@ -1918,6 +1953,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_item';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_item'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'og_content_type_usage_idea';
   $strongarm->value = 'omitted';
   $export['og_content_type_usage_idea'] = $strongarm;
@@ -1932,9 +1974,23 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_blog';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_blog'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'og_content_type_usage_blog';
   $strongarm->value = 'group_post_standard';
   $export['og_content_type_usage_blog'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_membership';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_membership'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1949,6 +2005,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'signup_date_field_membership';
   $strongarm->value = '0';
   $export['signup_date_field_membership'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_education';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_education'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2430,6 +2493,20 @@ function feature_users_strongarm() {
     ),
   );
   $export['custom_breadcrumbs_menu_theme'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'default_forum_name';
+  $strongarm->value = 'General discussion';
+  $export['default_forum_name'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_forum';
+  $strongarm->value = 1;
+  $export['enable_revisions_page_forum'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -3652,6 +3729,39 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'forum_all_public';
+  $strongarm->value = 1;
+  $export['forum_all_public'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'forum_allow_public';
+  $strongarm->value = 0;
+  $export['forum_allow_public'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'forum_auto_public';
+  $strongarm->value = 1;
+  $export['forum_auto_public'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'forum_containers';
+  $strongarm->value = array(
+    0 => '103',
+    1 => '107',
+    2 => '117',
+    3 => '156',
+  );
+  $export['forum_containers'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'forum_default_container';
   $strongarm->value = '-1';
   $export['forum_default_container'] = $strongarm;
@@ -3676,6 +3786,13 @@ function feature_users_strongarm() {
   $strongarm->name = 'forum_limit';
   $strongarm->value = '0';
   $export['forum_limit'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'forum_nav_vocabulary';
+  $strongarm->value = '2';
+  $export['forum_nav_vocabulary'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -7024,6 +7141,15 @@ function feature_users_strongarm() {
   $strongarm->name = 'upload_story';
   $strongarm->value = '1';
   $export['upload_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workflow_forum';
+  $strongarm->value = array(
+    0 => 'node',
+  );
+  $export['workflow_forum'] = $strongarm;
 
   return $export;
 }
