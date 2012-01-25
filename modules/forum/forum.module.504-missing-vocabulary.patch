@@ -1,0 +1,34 @@
+Index: forum.module
+===================================================================
+--- forum.module	(revision 525)
++++ forum.module	(working copy)
+@@ -666,15 +666,21 @@
+     // Format the "post new content" links listing.
+     $forum_types = array();
+ 
++		var_dump ($vocabulary);
++		exit;
++		
+     // Loop through all node types for forum vocabulary.
+-    foreach ($vocabulary->nodes as $type) {
+-      // Check if the current user has the 'create' permission for this node type.
+-      if (node_access('create', $type)) {
+-        // Fetch the "General" name of the content type;
+-        // Push the link with title and url to the array.
+-        $forum_types[$type] = array('title' => t('Post new @node_type', array('@node_type' => node_get_types('name', $type))), 'href' => 'node/add/'. str_replace('_', '-', $type) .'/'. $variables['tid']);
+-      }
+-    }
++		if ($vocabulary && $vocabulary -> nodes)
++		{
++			foreach ($vocabulary->nodes as $type) {
++				// Check if the current user has the 'create' permission for this node type.
++				if (node_access('create', $type)) {
++					// Fetch the "General" name of the content type;
++					// Push the link with title and url to the array.
++					$forum_types[$type] = array('title' => t('Post new @node_type', array('@node_type' => node_get_types('name', $type))), 'href' => 'node/add/'. str_replace('_', '-', $type) .'/'. $variables['tid']);
++				}
++			}
++		}
+ 
+     if (empty($forum_types)) {
+       // The user is logged-in; but denied access to create any new forum content type.
