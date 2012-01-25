@@ -6,9 +6,6 @@ Index: forum.module
      // Format the "post new content" links listing.
      $forum_types = array();
  
-+		var_dump ($vocabulary);
-+		exit;
-+		
      // Loop through all node types for forum vocabulary.
 -    foreach ($vocabulary->nodes as $type) {
 -      // Check if the current user has the 'create' permission for this node type.
