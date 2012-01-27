@@ -649,6 +649,534 @@ function feature_users_views_default_views() {
 
   $views[$view->name] = $view;
 
+  // Exported view: friends_profile
+  $view = new view;
+  $view->name = 'friends_profile';
+  $view->description = 'Various page displays for flag_friend.';
+  $view->tag = 'flag.friend';
+  $view->base_table = 'users';
+  $view->human_name = 'Friends in profile';
+  $view->core = 6;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Defaults */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'picture' => 'picture',
+    'name' => 'picture',
+    'message' => 'message',
+    'ops' => 'ops',
+    'uid' => 'ops',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'picture' => array(
+      'sortable' => 0,
+      'separator' => '',
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'separator' => '',
+    ),
+    'message' => array(
+      'separator' => '',
+    ),
+    'ops' => array(
+      'separator' => '',
+    ),
+    'uid' => array(
+      'separator' => '',
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 0;
+  /* Empty text: Global: Text area */
+  $handler->display->display_options['empty']['text']['id'] = 'area';
+  $handler->display->display_options['empty']['text']['table'] = 'views';
+  $handler->display->display_options['empty']['text']['field'] = 'area';
+  $handler->display->display_options['empty']['text']['label'] = '';
+  $handler->display->display_options['empty']['text']['empty'] = FALSE;
+  $handler->display->display_options['empty']['text']['content'] = 'No Friends have been added.';
+  $handler->display->display_options['empty']['text']['format'] = '1';
+  /* Relationship: User relationships: Requestee user */
+  $handler->display->display_options['relationships']['requestee_id']['id'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requestee_id']['field'] = 'requestee_id';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  /* Filter: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter: User: Current */
+  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
+  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
+  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
+  /* Filter: User relationships: Relationship status */
+  $handler->display->display_options['filters']['approved']['id'] = 'approved';
+  $handler->display->display_options['filters']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['approved']['field'] = 'approved';
+  $handler->display->display_options['filters']['approved']['value'] = '0';
+  /* Filter: User relationships: Relationship type */
+  $handler->display->display_options['filters']['rtype']['id'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['rtype']['field'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['value'] = array(
+    0 => '1',
+  );
+  /* Filter: User relationships: Requester user is current user */
+  $handler->display->display_options['filters']['requester_id_current']['id'] = 'requester_id_current';
+  $handler->display->display_options['filters']['requester_id_current']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['requester_id_current']['field'] = 'requester_id_current';
+
+  /* Display: Page (friends) */
+  $handler = $view->new_display('page', 'Page (friends)', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Friends';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: User relationships: Requestee user */
+  $handler->display->display_options['relationships']['requestee_id']['id'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requestee_id']['field'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['required'] = 1;
+  /* Relationship: User relationships: Requester user */
+  $handler->display->display_options['relationships']['requester_id']['id'] = 'requester_id';
+  $handler->display->display_options['relationships']['requester_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requester_id']['field'] = 'requester_id';
+  $handler->display->display_options['relationships']['requester_id']['required'] = 1;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['relationship'] = 'requestee_id';
+  $handler->display->display_options['fields']['picture']['label'] = 'Friend';
+  $handler->display->display_options['fields']['picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['picture']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = 1;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'requestee_id';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  /* Field: User relationships: Relationship status */
+  $handler->display->display_options['fields']['approved']['id'] = 'approved';
+  $handler->display->display_options['fields']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['fields']['approved']['field'] = 'approved';
+  $handler->display->display_options['fields']['approved']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['approved']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['approved']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['approved']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['approved']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['approved']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['approved']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['approved']['hide_alter_empty'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Argument: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['relationship'] = 'requester_id';
+  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'user';
+  $handler->display->display_options['arguments']['uid']['default_argument_options']['user'] = TRUE;
+  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['uid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: User relationships: Relationship status */
+  $handler->display->display_options['filters']['approved']['id'] = 'approved';
+  $handler->display->display_options['filters']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['approved']['field'] = 'approved';
+  $handler->display->display_options['filters']['approved']['value'] = '1';
+  /* Filter: User relationships: Relationship type */
+  $handler->display->display_options['filters']['rtype']['id'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['rtype']['field'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['relationship'] = 'requestee_id';
+  $handler->display->display_options['filters']['rtype']['value'] = array(
+    0 => '1',
+  );
+  /* Filter: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  $handler->display->display_options['path'] = 'user/%/friends/all';
+  $handler->display->display_options['menu']['type'] = 'default tab';
+  $handler->display->display_options['menu']['title'] = 'View All Friends';
+  $handler->display->display_options['menu']['weight'] = '-10';
+  $handler->display->display_options['tab_options']['type'] = 'tab';
+  $handler->display->display_options['tab_options']['title'] = 'Friends';
+  $handler->display->display_options['tab_options']['weight'] = '0';
+
+  /* Display: Page (pending) */
+  $handler = $view->new_display('page', 'Page (pending)', 'page_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Friend Requests';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['text']['id'] = 'area';
+  $handler->display->display_options['header']['text']['table'] = 'views';
+  $handler->display->display_options['header']['text']['field'] = 'area';
+  $handler->display->display_options['header']['text']['label'] = '';
+  $handler->display->display_options['header']['text']['empty'] = FALSE;
+  $handler->display->display_options['header']['text']['content'] = 'These are users who would like to be your friend.';
+  $handler->display->display_options['header']['text']['format'] = '1';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* Empty text: Global: Text area */
+  $handler->display->display_options['empty']['text']['id'] = 'area';
+  $handler->display->display_options['empty']['text']['table'] = 'views';
+  $handler->display->display_options['empty']['text']['field'] = 'area';
+  $handler->display->display_options['empty']['text']['label'] = '';
+  $handler->display->display_options['empty']['text']['empty'] = FALSE;
+  $handler->display->display_options['empty']['text']['content'] = 'No Friend Requests.';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: User relationships: Requestee user */
+  $handler->display->display_options['relationships']['requestee_id']['id'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requestee_id']['field'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['required'] = 1;
+  /* Relationship: User relationships: Requester user */
+  $handler->display->display_options['relationships']['requester_id']['id'] = 'requester_id';
+  $handler->display->display_options['relationships']['requester_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requester_id']['field'] = 'requester_id';
+  $handler->display->display_options['relationships']['requester_id']['required'] = 1;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['relationship'] = 'requester_id';
+  $handler->display->display_options['fields']['picture']['label'] = 'User';
+  $handler->display->display_options['fields']['picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['picture']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = 1;
+  /* Field: User relationships: Status link */
+  $handler->display->display_options['fields']['status_link']['id'] = 'status_link';
+  $handler->display->display_options['fields']['status_link']['table'] = 'user_relationships';
+  $handler->display->display_options['fields']['status_link']['field'] = 'status_link';
+  $handler->display->display_options['fields']['status_link']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['status_link']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['status_link']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['status_link']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['status_link']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['status_link']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['status_link']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['status_link']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['status_link']['hide_alter_empty'] = 1;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'requester_id';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Argument: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['relationship'] = 'requestee_id';
+  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'user';
+  $handler->display->display_options['arguments']['uid']['default_argument_options']['user'] = TRUE;
+  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['uid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: User relationships: Relationship status */
+  $handler->display->display_options['filters']['approved']['id'] = 'approved';
+  $handler->display->display_options['filters']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['approved']['field'] = 'approved';
+  $handler->display->display_options['filters']['approved']['value'] = '0';
+  /* Filter: User relationships: Relationship type */
+  $handler->display->display_options['filters']['rtype']['id'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['rtype']['field'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['value'] = array(
+    0 => '1',
+  );
+  $handler->display->display_options['path'] = 'user/%/friends/pending';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Friend Requests';
+  $handler->display->display_options['menu']['weight'] = '0';
+
+  /* Display: Page (flagged) */
+  $handler = $view->new_display('page', 'Page (flagged)', 'page_3');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Awaiting Friend Approvals';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['text']['id'] = 'area';
+  $handler->display->display_options['header']['text']['table'] = 'views';
+  $handler->display->display_options['header']['text']['field'] = 'area';
+  $handler->display->display_options['header']['text']['label'] = '';
+  $handler->display->display_options['header']['text']['empty'] = TRUE;
+  $handler->display->display_options['header']['text']['content'] = 'These are users who you have requested to be friends with.';
+  $handler->display->display_options['header']['text']['format'] = '1';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* Empty text: Global: Text area */
+  $handler->display->display_options['empty']['text']['id'] = 'area';
+  $handler->display->display_options['empty']['text']['table'] = 'views';
+  $handler->display->display_options['empty']['text']['field'] = 'area';
+  $handler->display->display_options['empty']['text']['label'] = '';
+  $handler->display->display_options['empty']['text']['empty'] = FALSE;
+  $handler->display->display_options['empty']['text']['content'] = 'No Friend Requests.';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: User relationships: Requestee user */
+  $handler->display->display_options['relationships']['requestee_id']['id'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requestee_id']['field'] = 'requestee_id';
+  $handler->display->display_options['relationships']['requestee_id']['required'] = 1;
+  /* Relationship: User relationships: Requester user */
+  $handler->display->display_options['relationships']['requester_id']['id'] = 'requester_id';
+  $handler->display->display_options['relationships']['requester_id']['table'] = 'user_relationships';
+  $handler->display->display_options['relationships']['requester_id']['field'] = 'requester_id';
+  $handler->display->display_options['relationships']['requester_id']['required'] = 1;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['relationship'] = 'requestee_id';
+  $handler->display->display_options['fields']['picture']['label'] = 'User';
+  $handler->display->display_options['fields']['picture']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['picture']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['picture']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['picture']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['picture']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['picture']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['picture']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = 1;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'requestee_id';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['name']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['name']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
+  /* Field: User relationships: Relationship status */
+  $handler->display->display_options['fields']['approved']['id'] = 'approved';
+  $handler->display->display_options['fields']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['fields']['approved']['field'] = 'approved';
+  $handler->display->display_options['fields']['approved']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['approved']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['approved']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['approved']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['approved']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['approved']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['approved']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['approved']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['approved']['hide_alter_empty'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Argument: User: Uid */
+  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['table'] = 'users';
+  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
+  $handler->display->display_options['arguments']['uid']['relationship'] = 'requester_id';
+  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid']['style_plugin'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'user';
+  $handler->display->display_options['arguments']['uid']['default_argument_options']['user'] = TRUE;
+  $handler->display->display_options['arguments']['uid']['default_argument_skip_url'] = 0;
+  $handler->display->display_options['arguments']['uid']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['uid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter: User relationships: Relationship status */
+  $handler->display->display_options['filters']['approved']['id'] = 'approved';
+  $handler->display->display_options['filters']['approved']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['approved']['field'] = 'approved';
+  $handler->display->display_options['filters']['approved']['value'] = '0';
+  /* Filter: User relationships: Relationship type */
+  $handler->display->display_options['filters']['rtype']['id'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['table'] = 'user_relationships';
+  $handler->display->display_options['filters']['rtype']['field'] = 'rtype';
+  $handler->display->display_options['filters']['rtype']['value'] = array(
+    0 => '1',
+  );
+  $handler->display->display_options['path'] = 'user/%/friends/flagged';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Awaiting Friend Approvals';
+  $handler->display->display_options['menu']['weight'] = '0';
+
+  /* Display: Current user's Friends block */
+  $handler = $view->new_display('block', 'Current user\'s Friends block', 'block_1');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['link_to_user'] = 1;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $translatables['friends_profile'] = array(
+    t('Defaults'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('No Friends have been added.'),
+    t('requestee'),
+    t('Name'),
+    t('Page (friends)'),
+    t('Friends'),
+    t('requester'),
+    t('Friend'),
+    t('Relationship status'),
+    t('All'),
+    t('Page (pending)'),
+    t('Friend Requests'),
+    t('These are users who would like to be your friend.'),
+    t('No Friend Requests.'),
+    t('User'),
+    t('Status link'),
+    t('Page (flagged)'),
+    t('Awaiting Friend Approvals'),
+    t('These are users who you have requested to be friends with.'),
+    t('Current user\'s Friends block'),
+  );
+
+  $views[$view->name] = $view;
+
   // Exported view: manage_events
   $view = new view;
   $view->name = 'manage_events';

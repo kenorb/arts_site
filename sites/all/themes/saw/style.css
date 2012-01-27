@@ -4161,3 +4161,10 @@ ul#chatroom-user-list {
 	margin: 0px 0px 0px 5px;
 	background-color: #fff;
 }
+
+.views-query-info pre {
+  font-family: Consolas;
+  font-size: 11px;
+	min-height: 400px;
+	background-color: #fff;
+}
