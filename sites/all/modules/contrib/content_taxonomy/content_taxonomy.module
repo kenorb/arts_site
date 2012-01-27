@@ -1,6 +1,5 @@
 <?php
 
-// $Id: content_taxonomy.module,v 1.2.2.15.2.33 2009/08/19 12:45:58 mh86 Exp $
 
 /**
  * @file
@@ -136,10 +135,11 @@ function content_taxonomy_field_settings($op, $field) {
       
       // Add a relation to the taxonomy term table.
       $data[$table_alias][$field['field_name'] .'_value']['relationship'] = array(
-        'handler' => 'views_handler_relationship',
+        'handler' => 'content_taxonomy_handler_relationship',
         'base' => 'term_data',
         'field' => 'tid',
         'label' => t('@field-title term', array('@field-title' => check_plain(t($field['widget']['label'])))),
+        'content_field_name' => $field['field_name'],
       );
 
       // Swap the filter handler to the 'in' operator.
@@ -187,6 +187,11 @@ function content_taxonomy_field($op, &$node, $field, &$items, $teaser, $page) {
         // and inserting of terms
         if (empty($node->taxonomy)) {
           $node->taxonomy[$field['vid']] = NULL;
+        }
+        
+        if ($node->nid) {
+          // Remove old associations of a node to its terms
+          db_query('DELETE FROM {term_node} WHERE nid = %d', $node->nid);
         }
       }
       break;
@@ -254,26 +259,27 @@ function content_taxonomy_allowed_values($field) {
   
   //for opt groups call different function
   if (isset($field['widget']['group_parent']) && $field['widget']['group_parent'] > 0) {
-    return content_taxonomy_allowed_values_groups($field);
+    $options = content_taxonomy_allowed_values_groups($field);
   }
+  else {
+    $depth = (is_numeric($field['depth'])) ? $field['depth'] : NULL;
+    $tree = taxonomy_get_tree($field['vid'], content_taxonomy_field_get_parent($field), -1, $depth);
   
-  $depth = (is_numeric($field['depth'])) ? $field['depth'] : NULL;
-
-  $tree = taxonomy_get_tree($field['vid'], content_taxonomy_field_get_parent($field), -1, $depth);
-  
-  if (is_array($tree)) {
-    foreach ($tree as $term) {
-      _content_taxonomy_localize_term($term);
-      if ($field['widget']['show_depth']) {
-        $value = str_repeat(' - ', $term->depth) . $term->name;
+    if (is_array($tree)) {
+      foreach ($tree as $term) {
+        _content_taxonomy_localize_term($term);
+        if ($field['widget']['show_depth']) {
+          $value = str_repeat(' - ', $term->depth) . $term->name;
+        }
+        else {
+          $value = $term->name;
+        }
+        //do a check_plain except for selects because form api does that
+        $options[$term->tid] = ($field['widget']['type'] == 'content_taxonomy_select') ? $value : check_plain($value);
       }
-      else {
-        $value = $term->name;
-      }
-      //do a check_plain except for selects because form api does that
-      $options[$term->tid] = ($field['widget']['type'] == 'content_taxonomy_select') ? $value : check_plain($value);
     }
   }
+  
   if (($field['widget']['type'] == 'content_taxonomy_select' && !$field['multiple']) || ($field['widget']['type'] == 'content_taxonomy_options' && !$field['multiple'] && !$field['required'])) {
     $options = array('' => theme('content_taxonomy_options_widgets_none', $field)) + $options;
   }
@@ -327,10 +333,10 @@ function content_taxonomy_field_get_parent($field) {
  * hides the taxonomy form if there exists a content taxonomy field, which is set to 'hide default taxonomy fields'
  */
 function content_taxonomy_form_alter(&$form, $form_state, $form_id) {
-  if (isset($form['type']['#value']) && $form['type']['#value'] .'_node_form' == $form_id && isset($form['taxonomy'])) {
-    if (!is_array($form['taxonomy'])) {
+  if (isset($form['type']['#value']) && $form['type']['#value'] .'_node_form' == $form_id) {
+    if (!isset($form['taxonomy']) || !is_array($form['taxonomy'])) {
       // empty taxonomy arrays can cause errors on preview
-      if ($form_state['post']['op'] == t('Preview')) {
+      if (isset($form_state['post']) && $form_state['post']['op'] == t('Preview')) {
         $form['taxonomy'] = array('#tree' => TRUE);
         $form['taxonomy']['key'] = array('#type' => 'value', '#value' => '');
         return;

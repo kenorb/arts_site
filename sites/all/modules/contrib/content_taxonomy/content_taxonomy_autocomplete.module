@@ -1,5 +1,4 @@
 <?php
-// $Id: content_taxonomy_autocomplete.module,v 1.2.2.4.2.17 2009/08/19 09:42:30 mh86 Exp $
 
 /**
  * @file
@@ -325,6 +324,12 @@ function content_taxonomy_autocomplete_load($field_name, $string = '') {
  * @param $typed_input A string containing all comma separated tags. As the user typed it.
  */
 function content_taxonomy_autocomplete_tags_get_tids($typed_input, $vid, $parent = 0, $extra_parent = 0) {
+  $extra_parent_vid = 0;
+  if ($extra_parent) {
+    $extra_parent_term = taxonomy_get_term($extra_parent);
+    $extra_parent_vid = $extra_parent_term->vid;  
+  }
+    
   // This regexp allows the following types of user input:
   // this, "somecmpany, llc", "and ""this"" w,o.rks", foo bar
   $typed_terms = content_taxonomy_autocomplete_split_tags($typed_input);
@@ -342,7 +347,7 @@ function content_taxonomy_autocomplete_tags_get_tids($typed_input, $vid, $parent
 
     $typed_term_tid = NULL; // tid match if any.
     foreach ($possibilities as $possibility) {
-      if ($possibility->vid == $vid) {
+      if ($possibility->vid == $vid || ($extra_parent_vid != 0 && $possibility->vid == $extra_parent_vid)) {
         if ($parent) {
           $parents = array();
           $parents = taxonomy_get_parents($possibility->tid);
@@ -377,9 +382,16 @@ function content_taxonomy_autocomplete_tags_get_tids($typed_input, $vid, $parent
  * @return an array of newly inserted term ids
  */
 function content_taxonomy_autocomplete_insert_tags($terms, $parent = NULL) {
+  if ($parent) {
+    $parent_term = taxonomy_get_term($parent);
+    $vid = $parent_term->vid;
+  }
   foreach ($terms as $term) {
     $edit = array('vid' => $term['vid'], 'name' => $term['name']);
-    if ($parent) $edit['parent'] = $parent;
+    if ($parent) {
+      $edit['parent'] = $parent;
+      $edit['vid'] = $vid;
+    }
     $status = taxonomy_save_term($edit);
     $saved_terms[$edit['tid']] = $edit['tid'];
   }
@@ -402,17 +414,12 @@ function content_taxonomy_autocomplete_merge_tags($terms, $vid) {
   $typed_terms = array();
   if (!empty($terms)) {
     foreach ($terms as $term) {
-      // Extract terms belonging to the vocabulary in question.
-      if ($term->vid == $vid) {
-        //if ($tid && in_array($term->tid,drupal_map_assoc(array_keys((taxonomy_get_children($tid,$vid)))))) {
-          // Commas and quotes in terms are special cases, so encode 'em.
-          $name = $term->name;
-          if (preg_match('/,/', $term->name) || preg_match('/"/', $term->name)) {
-            $name = '"'. preg_replace('/"/', '""', $name) .'"';
-          }
-          $typed_terms[] = $name;
-       // }
+      // Commas and quotes in terms are special cases, so encode 'em.
+      $name = $term->name;
+      if (preg_match('/,/', $term->name) || preg_match('/"/', $term->name)) {
+        $name = '"'. preg_replace('/"/', '""', $name) .'"';
       }
+      $typed_terms[] = $name;
     }
   }
   return implode(', ', $typed_terms);

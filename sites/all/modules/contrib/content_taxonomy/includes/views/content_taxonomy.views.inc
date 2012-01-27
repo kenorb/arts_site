@@ -12,6 +12,9 @@ function content_taxonomy_views_handlers() {
       'content_taxonomy_handler_filter_many_to_one' => array(
         'parent' => 'content_handler_filter_many_to_one',
       ),
+      'content_taxonomy_handler_relationship' => array(
+        'parent' => 'views_handler_relationship',
+      ),
     ),
   );
 }

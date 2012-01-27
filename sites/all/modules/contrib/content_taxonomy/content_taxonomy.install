@@ -131,8 +131,8 @@ function content_taxonomy_update_6000() {
     }
   }
   content_associate_fields('content_taxonomy');
-  content_associate_fields('content_autocomplete');
-  content_associate_fields('content_options');
+  content_associate_fields('content_taxonomy_autocomplete');
+  content_associate_fields('content_taxonomy_options');
   content_clear_type_cache(TRUE);
   return $ret;
 }

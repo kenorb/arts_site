@@ -1,5 +1,4 @@
 <?php
-// $Id: content_taxonomy_autocomplete.install,v 1.1.2.2 2008/12/17 21:31:07 mh86 Exp $
 
 /**
  * Implementation of hook_install().
