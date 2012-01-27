@@ -29,10 +29,25 @@
 	
 	$form ['autoassignrole_user'] ['#description'] = t('<a href="/page/account-types">See the benefits for each type of account</a>') . '.';
 	
-	print drupal_render ($form ['autoassignrole_user']);
+	$list = array (
+		'group_basic',
+		'user_registration_help',
+		'autoassignrole_user',
+		'account',
+		'legal',
+		'submit'
+	);
+		
 	
-	print drupal_render ($form ['account']);
-	
-	print drupal_render ($form ['submit']);
+	foreach ($list as $name)
+	{
+		$item = $form [$name];
+		
+		unset ($form [$name]);
+		
+		$form [$name] = $item;
+	}
+
+	print drupal_render ($form)	;
 
 ?>
