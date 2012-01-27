@@ -514,7 +514,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1327673406;
+  $strongarm->value = 1327684453;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -2549,15 +2549,17 @@ function feature_users_strongarm() {
   $strongarm->name = 'content_extra_weights_education';
   $strongarm->value = array(
     'title' => '-5',
-    'revision_information' => '20',
-    'author' => '20',
-    'options' => '25',
-    'comment_settings' => '30',
-    'menu' => '-2',
-    'path' => '30',
-    'workflow' => '10',
-    'nodewords' => '10',
-    'notifications' => '100',
+    'revision_information' => '0',
+    'author' => '1',
+    'options' => '2',
+    'comment_settings' => '6',
+    'menu' => '-3',
+    'taxonomy' => '-4',
+    'path' => '5',
+    'custom_breadcrumbs' => '4',
+    'print' => '3',
+    'workflow' => '-1',
+    'nodewords' => '-2',
   );
   $export['content_extra_weights_education'] = $strongarm;
 
@@ -2575,6 +2577,7 @@ function feature_users_strongarm() {
     'path' => '6',
     'attachments' => '5',
     'custom_breadcrumbs' => '9',
+    'locations' => '11',
     'print' => '10',
     'workflow' => '8',
     'nodewords' => '4',

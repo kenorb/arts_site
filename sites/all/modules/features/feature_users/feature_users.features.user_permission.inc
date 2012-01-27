@@ -177,6 +177,24 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: create education content
+  $permissions['create education content'] = array(
+    'name' => 'create education content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: create event content
+  $permissions['create event content'] = array(
+    'name' => 'create event content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: create faq
   $permissions['create faq'] = array(
     'name' => 'create faq',
@@ -195,9 +213,112 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: create group content
+  $permissions['create group content'] = array(
+    'name' => 'create group content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: create page content
+  $permissions['create page content'] = array(
+    'name' => 'create page content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: create profile content
+  $permissions['create profile content'] = array(
+    'name' => 'create profile content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: create simplenews content
+  $permissions['create simplenews content'] = array(
+    'name' => 'create simplenews content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: create story content
+  $permissions['create story content'] = array(
+    'name' => 'create story content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete any education content
+  $permissions['delete any education content'] = array(
+    'name' => 'delete any education content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete any event content
+  $permissions['delete any event content'] = array(
+    'name' => 'delete any event content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
   // Exported permission: delete any forum topic
   $permissions['delete any forum topic'] = array(
     'name' => 'delete any forum topic',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete any group content
+  $permissions['delete any group content'] = array(
+    'name' => 'delete any group content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete any page content
+  $permissions['delete any page content'] = array(
+    'name' => 'delete any page content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: delete any profile content
+  $permissions['delete any profile content'] = array(
+    'name' => 'delete any profile content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete any simplenews content
+  $permissions['delete any simplenews content'] = array(
+    'name' => 'delete any simplenews content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: delete any story content
+  $permissions['delete any story content'] = array(
+    'name' => 'delete any story content',
     'roles' => array(
       '0' => 'admin',
       '1' => 'moderator',
@@ -221,6 +342,25 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: delete own education content
+  $permissions['delete own education content'] = array(
+    'name' => 'delete own education content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete own event content
+  $permissions['delete own event content'] = array(
+    'name' => 'delete own event content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
   // Exported permission: delete own faq content
   $permissions['delete own faq content'] = array(
     'name' => 'delete own faq content',
@@ -232,6 +372,43 @@ function feature_users_user_default_permissions() {
   // Exported permission: delete own forum topics
   $permissions['delete own forum topics'] = array(
     'name' => 'delete own forum topics',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete own group content
+  $permissions['delete own group content'] = array(
+    'name' => 'delete own group content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete own page content
+  $permissions['delete own page content'] = array(
+    'name' => 'delete own page content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: delete own profile content
+  $permissions['delete own profile content'] = array(
+    'name' => 'delete own profile content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+    ),
+  );
+
+  // Exported permission: edit any education content
+  $permissions['edit any education content'] = array(
+    'name' => 'edit any education content',
     'roles' => array(
       '0' => 'admin',
       '1' => 'moderator',

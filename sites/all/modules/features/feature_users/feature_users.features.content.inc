@@ -11,17 +11,16 @@ function feature_users_content_default_fields() {
     'field_name' => 'field_college',
     'type_name' => 'education',
     'display_settings' => array(
-      'weight' => '105',
-      'parent' => '',
       'label' => array(
         'format' => 'above',
+        'exclude' => 0,
       ),
       'teaser' => array(
-        'format' => 'hierarchical_links',
+        'format' => 'default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'hierarchical_links',
+        'format' => 'default',
         'exclude' => 0,
       ),
       '4' => array(
@@ -36,6 +35,18 @@ function feature_users_content_default_fields() {
         'format' => 'default',
         'exclude' => 0,
       ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
       'token' => array(
         'format' => 'default',
         'exclude' => 0,
@@ -47,7 +58,7 @@ function feature_users_content_default_fields() {
     'multiple' => '1',
     'module' => 'content_taxonomy',
     'active' => '1',
-    'save_term_node' => 1,
+    'save_term_node' => 0,
     'vid' => '4',
     'parent' => '73',
     'parent_php_code' => '',
@@ -55,73 +66,12 @@ function feature_users_content_default_fields() {
     'widget' => array(
       'default_value' => array(
         'field_college' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
       'label' => 'College',
-      'weight' => '105',
-      'description' => '',
-      'type' => 'content_taxonomy_hs',
-      'module' => 'hs_content_taxonomy',
-    ),
-  );
-
-  // Exported field: field_other_school
-  $fields['education-field_other_school'] = array(
-    'field_name' => 'field_other_school',
-    'type_name' => 'education',
-    'display_settings' => array(
-      'weight' => '106',
-      'parent' => '',
-      'label' => array(
-        'format' => 'above',
-      ),
-      'teaser' => array(
-        'format' => 'hierarchical_links',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'hierarchical_links',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'content_taxonomy',
-    'required' => '0',
-    'multiple' => '1',
-    'module' => 'content_taxonomy',
-    'active' => '1',
-    'save_term_node' => 1,
-    'vid' => '4',
-    'parent' => '75',
-    'parent_php_code' => '',
-    'depth' => '',
-    'widget' => array(
-      'default_value' => array(
-        'field_other_school' => array(
-          'tids' => array(),
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Other',
-      'weight' => '106',
+      'weight' => '9',
       'description' => '',
       'type' => 'content_taxonomy_hs',
       'module' => 'hs_content_taxonomy',
@@ -133,17 +83,16 @@ function feature_users_content_default_fields() {
     'field_name' => 'field_school',
     'type_name' => 'education',
     'display_settings' => array(
-      'weight' => '104',
-      'parent' => '',
       'label' => array(
         'format' => 'above',
+        'exclude' => 0,
       ),
       'teaser' => array(
-        'format' => 'hierarchical_links',
+        'format' => 'default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'hierarchical_links',
+        'format' => 'default',
         'exclude' => 0,
       ),
       '4' => array(
@@ -158,6 +107,18 @@ function feature_users_content_default_fields() {
         'format' => 'default',
         'exclude' => 0,
       ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
       'token' => array(
         'format' => 'default',
         'exclude' => 0,
@@ -169,7 +130,7 @@ function feature_users_content_default_fields() {
     'multiple' => '1',
     'module' => 'content_taxonomy',
     'active' => '1',
-    'save_term_node' => 1,
+    'save_term_node' => 0,
     'vid' => '4',
     'parent' => '74',
     'parent_php_code' => '',
@@ -177,12 +138,84 @@ function feature_users_content_default_fields() {
     'widget' => array(
       'default_value' => array(
         'field_school' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
       'label' => 'School',
-      'weight' => '104',
+      'weight' => '8',
+      'description' => '',
+      'type' => 'content_taxonomy_hs',
+      'module' => 'hs_content_taxonomy',
+    ),
+  );
+
+  // Exported field: field_school_other
+  $fields['education-field_school_other'] = array(
+    'field_name' => 'field_school_other',
+    'type_name' => 'education',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'content_taxonomy',
+    'required' => '0',
+    'multiple' => '1',
+    'module' => 'content_taxonomy',
+    'active' => '1',
+    'save_term_node' => 0,
+    'vid' => '2',
+    'parent' => '75',
+    'parent_php_code' => '',
+    'depth' => '2',
+    'widget' => array(
+      'default_value' => array(
+        'field_school_other' => array(
+          'tids' => NULL,
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Other',
+      'weight' => '11',
       'description' => '',
       'type' => 'content_taxonomy_hs',
       'module' => 'hs_content_taxonomy',
@@ -245,7 +278,7 @@ other|Other',
       ),
       'default_value_php' => NULL,
       'label' => 'Type of education',
-      'weight' => '102',
+      'weight' => '7',
       'description' => '',
       'type' => 'optionwidgets_buttons',
       'module' => 'optionwidgets',
@@ -257,17 +290,16 @@ other|Other',
     'field_name' => 'field_university',
     'type_name' => 'education',
     'display_settings' => array(
-      'weight' => '103',
-      'parent' => '',
       'label' => array(
         'format' => 'above',
+        'exclude' => 0,
       ),
       'teaser' => array(
-        'format' => 'hierarchical_links',
+        'format' => 'default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'hierarchical_links',
+        'format' => 'default',
         'exclude' => 0,
       ),
       '4' => array(
@@ -282,6 +314,18 @@ other|Other',
         'format' => 'default',
         'exclude' => 0,
       ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
       'token' => array(
         'format' => 'default',
         'exclude' => 0,
@@ -293,7 +337,7 @@ other|Other',
     'multiple' => '1',
     'module' => 'content_taxonomy',
     'active' => '1',
-    'save_term_node' => 1,
+    'save_term_node' => 0,
     'vid' => '4',
     'parent' => '72',
     'parent_php_code' => '',
@@ -301,12 +345,12 @@ other|Other',
     'widget' => array(
       'default_value' => array(
         'field_university' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'University and subject',
-      'weight' => '103',
+      'label' => 'University',
+      'weight' => '10',
       'description' => '',
       'type' => 'content_taxonomy_hs',
       'module' => 'hs_content_taxonomy',
@@ -715,7 +759,7 @@ Male',
   t('Other');
   t('School');
   t('Type of education');
-  t('University and subject');
+  t('University');
 
   return $fields;
 }

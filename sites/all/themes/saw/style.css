@@ -4179,3 +4179,7 @@ ul#chatroom-user-list {
 	min-height: 400px;
 	background-color: #fff;
 }
+
+.field-field-type-of-education {
+	display: none;
+}
