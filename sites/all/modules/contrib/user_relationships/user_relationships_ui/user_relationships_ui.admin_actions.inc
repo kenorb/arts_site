@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_ui.admin_actions.inc,v 1.1.2.16 2010/09/12 18:59:54 alexk Exp $
 /**
  * @file
  * User Relationships admin submit handlers

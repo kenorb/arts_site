@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_ui.theme.inc,v 1.1.2.11 2010/02/23 22:45:38 alexk Exp $
 
 /**
  * @file

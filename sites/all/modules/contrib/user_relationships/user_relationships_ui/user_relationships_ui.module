@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_ui.module,v 1.1.2.40 2010/10/17 06:59:41 alexk Exp $
 /**
  * @file
  * UI components of user_relationships
@@ -82,6 +81,7 @@ function _user_relationships_ui_default_messages($replacements) {
       'submitted'     => t('Your %relationship_name request has been sent to !requestee.', $replacements),
       'accepted'      => t("!requester's %relationship_name request has been approved.", $replacements),
       'disapproved'   => t("!requester has declined your %relationship_name request.", $replacements),
+      'disapprove'    => t("!requester's %relationship_name request has been declined.", $replacements),
       'cancel'        => t('Your %relationship_name request to !requestee has been canceled.', $replacements),
       'default'       => t('No action has been taken.'),
       'removed'       => t('The %relationship_name relationship of !requester to !requestee has been deleted.', $replacements),
@@ -111,7 +111,8 @@ function _user_relationships_ui_default_message_key_translations() {
     'informational' => t('Informational Messages'),
     'submitted'     => t('Submitted'),
     'accepted'      => t('Accepted'),
-    'disapproved'   => t('Disapproved'),
+    'disapproved'   => t('Declined'),
+    'disapprove'    => t('Decline'),
     'cancel'        => t('Cancel'),
     'default'       => t('Default'),
     'removed'       => t('Removed'),
@@ -398,8 +399,8 @@ function user_relationships_ui_init() {
   }
   drupal_add_js(USER_RELATIONSHIPS_UI_PATH .'/user_relationships_ui.js');
   drupal_add_css(USER_RELATIONSHIPS_UI_PATH .'/user_relationships_ui.css');
-  $settings['user_relationships_ui']['loadingimage'] = url(USER_RELATIONSHIPS_UI_PATH .'/images/loadingAnimation.gif');
-  $settings['user_relationships_ui']['savingimage'] = url(USER_RELATIONSHIPS_UI_PATH .'/images/savingimage.gif');
+  $settings['user_relationships_ui']['loadingimage'] = url(USER_RELATIONSHIPS_UI_PATH .'/images/loadingAnimation.gif', array('language' => language_default()));
+  $settings['user_relationships_ui']['savingimage'] = url(USER_RELATIONSHIPS_UI_PATH .'/images/savingimage.gif', array('language' => language_default()));
   $settings['user_relationships_ui']['position'] = array(
     'position' => variable_get('user_relationships_position', 'absolute'), 
     'left' => variable_get('user_relationships_left', '0'), 
@@ -726,10 +727,13 @@ function user_relationships_ui_user($type, &$edit, &$account, $category = NULL) 
     }
 
     // No options have been set so don't display it
-    if (sizeof($form['user_relationships_ui_settings']) == 3) {
+    if (isset($form['user_relationships_ui_settings']) && sizeof($form['user_relationships_ui_settings']) == 3) {
       unset($form['user_relationships_ui_settings']);
     }
-    return $form;
+
+    if (isset($form)) {
+      return $form;
+    }
   }
 }
 

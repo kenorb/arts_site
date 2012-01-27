@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_api.author-pane.inc,v 1.1.2.2 2010/12/22 09:34:01 alexk Exp $
 
 /**
  * @file integration with Author Pane
@@ -11,7 +10,7 @@
 */
 function user_relationships_api_preprocess_author_pane(&$variables) {
   // Check if this preprocess needs to be run given who's calling it.
-  if (!author_pane_run_preprocess('user_relationships_api', $variables['caller'])) {
+  if (function_exists('author_pane_run_preprocess') && !author_pane_run_preprocess('user_relationships_api', $variables['caller'])) {
     return;
   }
 

@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationship_service.inc,v 1.1.2.3 2010/05/14 07:47:40 alexk Exp $
 /**
  * @author Drupal 6 port by Darren Ferguson <http://drupal.org/user/70179>
  * @author Written by scottgifford http://drupal.org/user/245699

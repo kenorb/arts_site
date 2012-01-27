@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_ui.actions.inc,v 1.1.2.16 2010/05/13 19:15:57 alexk Exp $
 
 /**
  * @file
@@ -98,8 +97,8 @@ function user_relationships_ui_request_validate($form, &$form_state) {
     elseif (isset($test_relationships[$rtid])) {
       $message_name = $test_relationships[$rtid]->approved ? 'existing_relationship' : 'existing_request';
       form_set_error('rtid', user_relationships_ui_get_message($message_name, NULL, array(
-        '!requester'                => $requester->name,
-        '!requestee'                => $requestee->name,
+        '!requester'                => theme('username', $requester),
+        '!requestee'                => theme('username', $requestee),
         '%relationship_name'        => $current_relationships[$rtid][0]->name,
         '%relationship_plural_name' => $current_relationships[$rtid][0]->plural_name
       )));

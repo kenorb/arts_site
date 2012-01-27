@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationship_mailer_defaults.inc,v 1.1.2.11 2010/10/17 07:45:34 alexk Exp $
 /**
  * @file User Relationships Mailer implementation. Contains all default strings and action definitions
  */

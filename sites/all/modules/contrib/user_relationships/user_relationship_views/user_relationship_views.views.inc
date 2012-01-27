@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationship_views.views.inc,v 1.1.2.6 2010/09/12 18:08:30 alexk Exp $
 
 /**
  * @file

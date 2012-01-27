@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_api.activity.inc,v 1.1.2.2 2010/01/03 23:03:54 alexk Exp $
 
 /**
  * @file:

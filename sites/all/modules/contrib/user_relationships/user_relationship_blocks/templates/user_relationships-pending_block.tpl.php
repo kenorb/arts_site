@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships-pending_block.tpl.php,v 1.1.2.12 2010/01/03 19:19:11 alexk Exp $
 /**
  * @file
  * Template for relationships requests block

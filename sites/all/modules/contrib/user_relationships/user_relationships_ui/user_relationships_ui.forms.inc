@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_ui.forms.inc,v 1.1.2.24 2010/09/12 18:17:39 alexk Exp $
 
 /**
  * @file
@@ -130,10 +129,19 @@ function user_relationships_ui_request(&$form_state, $requestee) {
     if ($form['rtid']['#default_value']) {
       $relationship = user_relationships_type_load($form['rtid']['#default_value']);
     }
+
+    // http://drupal.org/node/489954 respect destination param if given
+    if (isset($_GET['destination'])) {
+      $dest = $_GET['destination'];
+    }
+    else {
+      $dest = "user/$requestee->uid";
+    }
+
     $form = confirm_form(
       $form,
       t('Request relationship'),
-      "user/$requestee->uid",
+      $dest,
       $relationship ?
       ($relationship->requires_approval 
        ? t('Are you sure you wish to send a new %rel_name request to !name?', array('%name' => $requestee->name, '%rel_name' => ur_tt("user_relationships:rtid:$relationship->rtid:name", $relationship->name), '%rel_plural_name' => ur_tt("user_relationships:rtid:$relationship->rtid:plural_name", $relationship->plural_name), '!name' => theme('username', $requestee))) 
@@ -260,10 +268,19 @@ function user_relationships_ui_remove(&$form_state, $account, $relationship) {
     '#type'   => 'value',
     '#value'  => $viewed_id
   );
+
+  // http://drupal.org/node/489954 respect destination param if given
+  if (isset($_GET['destination'])) {
+    $dest = $_GET['destination'];
+  }
+  else {
+    $dest = ($viewed_id == $user->uid ? 'relationships' : "user/{$viewed_id}/relationships");
+  }
+
   $output = confirm_form(
     $form,
     t('Remove relationship'),
-    ($viewed_id == $user->uid ? 'relationships' : "user/{$viewed_id}/relationships/"),
+    $dest,
 
     t("Are you sure you wish to delete the %relationship_name relationship with !name?", array(
       '%relationship_name'  => ur_tt("user_relationships:rtid:$relationship->rtid:name", $relationship->name),

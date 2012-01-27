@@ -1,5 +1,4 @@
 <?php
-// $Id: views_handler_field_user_relationships_status_link.inc,v 1.1.2.2 2010/01/02 12:42:01 alexk Exp $
 
 /**
  * @file

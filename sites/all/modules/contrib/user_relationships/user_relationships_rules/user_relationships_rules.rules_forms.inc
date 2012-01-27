@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_rules.rules_forms.inc,v 1.1.2.1 2010/11/11 19:37:55 alexk Exp $
 
 
 /**

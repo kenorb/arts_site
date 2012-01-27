@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationship_elaborations.module,v 1.1.2.14 2010/11/14 22:09:15 alexk Exp $
 
 /**
  * @file
@@ -165,7 +164,7 @@ function user_relationship_elaborations_form_alter(&$form, $form_state, $form_id
 
     case 'user_relationships_ui_request':
       // Incase the form is an error form which the UI module has encountered
-      if (!isset($form['error'])) {
+      if (!isset($form['error']) && !variable_get('user_relationships_elaborations_api_only', FALSE)) {
         // Make sure that the select box holding the relationship types is above the elaboration textarea.
         $form['rtid']['#weight'] = -10;
         // Adding text area to elaborate when creating a new relationship with another user.

@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_pending_requests.tpl.php,v 1.1.2.9 2010/01/03 20:17:43 alexk Exp $
 /**
  * @file
  * Page to manage sent and received relationship requests

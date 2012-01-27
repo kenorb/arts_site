@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationships_api.privatemsg.inc,v 1.1.2.8 2010/09/12 19:09:40 alexk Exp $
 /**
  * @file Integration with Privatemsg module
  * @author mansspams http://drupal.org/user/293179

@@ -1,5 +1,4 @@
 <?php
-// $Id: user_relationship_node_access.module,v 1.1.4.16 2010/05/14 07:54:10 alexk Exp $
 // Copyright (C) 2008 Jonathan Brown
 // http://openpackage.biz/
 
@@ -60,7 +59,7 @@ function user_relationship_node_access_theme() {
  * hook_enable()
  */
 function user_relationship_node_access_enable() {
-  node_access_rebuild();
+  node_access_needs_rebuild(TRUE);
 }
 
 
@@ -69,7 +68,7 @@ function user_relationship_node_access_enable() {
  */
 function _user_relationship_node_access_disable() {
   _user_relationship_node_access_disabling(TRUE);
-  node_access_rebuild();
+  node_access_needs_rebuild(TRUE);
 }
 
 
@@ -156,8 +155,8 @@ function user_relationship_node_access_form_alter(&$form, $form_state, $form_id)
     '#tree'         => TRUE,
   );
   //place fieldset where content type admin has placed it on cck field management page
-  if (module_exists('content')) {
-    $fieldset_weight = content_extra_field_weight($form['#node']->type, 'user_relationship_node_access');
+  if ($object_type == 'node' && module_exists('content')) {
+    $fieldset_weight = content_extra_field_weight($node->type, 'user_relationship_node_access');
     if (isset($fieldset_weight)) {
       $form['user_relationship_node_access']['#weight'] = $fieldset_weight;
     }
