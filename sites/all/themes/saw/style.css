@@ -3649,9 +3649,6 @@ td.multi-day .inner .view-field a {
 }
 
 #content-profile-display-education .field-item {
-	padding-left: 3px;
-	font-weight: normal !important;
-	display: list-item;
 }
 
 #content-profile-display-education .field-items {
@@ -4199,22 +4196,20 @@ ul#chatroom-user-list {
 	margin-bottom: 10px;
 }
 
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.odd,
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.even {
-	display: inline !important;
-	font-weight: normal;
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.odd {
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item:first-child {
 	clear: both;
-	font-weight: bold;
-	color: #000;
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.even {
 	font-weight: bold !important;
 	color: #000;
+	margin-left: 6px;
+	display: block !important;
 }
+
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item {
+  display: list-item !important;
+  margin-left: 29px;
+}
+
+
 
 div.node-form > div.admin {
 	clear: left;
