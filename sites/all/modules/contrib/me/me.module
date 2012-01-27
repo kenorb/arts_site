@@ -288,7 +288,7 @@ function me_menu_alter(&$callbacks) {
     $found = FALSE;
     $parts = explode('/', $path, MENU_MAX_PARTS);
     foreach ($handlers as $user_handler => $me_handler) {
-      if (in_array($user_handler, $parts)) {
+      if (isset($user_handler) && in_array($user_handler, $parts)) {
         $found = TRUE;
         break;
       }
@@ -316,7 +316,7 @@ function me_menu_alter(&$callbacks) {
       // We therefore only add load arguments if there are some there already.
       // The only load argument that needs to be passed by reference is map.
       // We make sure that we have map in the right place to be passed by reference.
-      if (is_array($data['load arguments'])) {
+      if (isset($data['load arguments']) && is_array($data['load arguments'])) {
         // Find the current map index, and add our load arguments, putting map
         // in the place we expect it to be.
         if (FALSE !== ($map_index = array_search('%map', $data['load arguments']))) {
@@ -331,23 +331,25 @@ function me_menu_alter(&$callbacks) {
         $parts = explode('/', $new_path, MENU_MAX_PARTS);
         $parent_path = implode('/', array_slice($parts, 0, count($parts) - 1));
       }
-      $parent = $callbacks[$parent_path];
+      if (isset($callbacks[$parent_path])) {
+        $parent = $callbacks[$parent_path];
 
-      if (!isset($data['page callback']) && isset($parent['page callback'])) {
-        $data['page callback'] = $parent['page callback'];
-        if (!isset($data['page arguments']) && isset($parent['page arguments'])) {
-          $data['page arguments'] = $parent['page arguments'];
-        }
-        if (!isset($data['file']) && isset($parent['file'])) {
-          $data['file'] = $parent['file'];
-        }
-        if (!isset($data['file path']) && isset($parent['file path'])) {
-          $data['file path'] = $parent['file path'];
+        if (!isset($data['page callback']) && isset($parent['page callback'])) {
+          $data['page callback'] = $parent['page callback'];
+          if (!isset($data['page arguments']) && isset($parent['page arguments'])) {
+            $data['page arguments'] = $parent['page arguments'];
+          }
+          if (!isset($data['file']) && isset($parent['file'])) {
+            $data['file'] = $parent['file'];
+          }
+          if (!isset($data['file path']) && isset($parent['file path'])) {
+            $data['file path'] = $parent['file path'];
+          }
         }
       }
 
       if (isset($data['page callback'])) {
-        if (!is_array($data['page arguments'])) {
+        if (!isset($data['page arguments'])) {
           $data['page arguments'] = array();
         }
 
@@ -693,9 +695,13 @@ function me_admin_settings_form_validate($form, &$form_state) {
   // some of them don't really make sense, but that is up to the end user.
   $token_list = array();
   if (module_exists('token')) {
-    $token_list = array_map(create_function('$n', 'return "[$n]";'), array_keys(array_pop(token_get_list('global'))));
+    $tkl = token_get_list('global');
+    foreach ($tkl as $tl) {
+      $token_list = array_merge($token_list,array_map(create_function('$n', 'return "[$n]";'), array_keys($tl)));
+    }
   }
-  if (preg_match('/[^a-zA-Z]/', $form_state['values']['me_alias']) && !in_array($form_state['values']['me_alias'], $token_list)) {
+
+  if (preg_match('/[^a-zA-Z-]/', $form_state['values']['me_alias']) && !in_array($form_state['values']['me_alias'], $token_list)) {
     if (!empty($token_list)) {
       $message = t('The alias can only contain characters from a-z and A-Z, or one of the tokens specified in the "Replacement patterns for me alias" section.');
     }
