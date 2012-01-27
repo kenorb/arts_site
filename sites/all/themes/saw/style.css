@@ -4211,3 +4211,8 @@ ul#chatroom-user-list {
 	font-weight: bold !important;
 	color: #333;
 }
+
+div.node-form > div.admin {
+	clear: left;
+	padding-top: 10px;
+}
