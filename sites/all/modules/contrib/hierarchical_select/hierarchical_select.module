@@ -9,7 +9,7 @@
 
 
 // Make sure that the devel module is installed when you enable developer mode!
-define('HS_DEVELOPER_MODE', 1);
+define('HS_DEVELOPER_MODE', 0);
 
 // 6 hours cache life time for forms should be plenty.
 define('HS_CACHE_LIFETIME_DEFAULT', 21600);
@@ -1603,9 +1603,6 @@ function _hierarchical_select_form_set_error_class(&$element) {
  *   Only when the log is being reset, the stored log is returned.
  */
 function _hierarchical_select_log($item, $reset = FALSE) {
-	
-	file_put_contents ('C:\log.txt', print_r ($item, true) . "\n\n\n", FILE_APPEND);
-	
   static $log;
 
   if ($reset) {
