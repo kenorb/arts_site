@@ -3645,12 +3645,12 @@ td.multi-day .inner .view-field a {
 #content-profile-display-education .field-label {
 	font-family: inherit !important;
 	font-size: 14px !important;
-	
+	font-weight: bold !important;	
 }
 
 #content-profile-display-education .field-item {
 	padding-left: 3px;
-	font-weight: bold !important;
+	font-weight: normal !important;
 	display: list-item;
 }
 
@@ -4180,6 +4180,34 @@ ul#chatroom-user-list {
 	background-color: #fff;
 }
 
-.field-field-type-of-education {
+#content-profile-display-education {
+	
+}
+
+#content-profile-display-education .field-field-type-of-education {
 	display: none;
+}
+
+#content-profile-display-education .field-type-content-taxonomy .field-items {
+	padding: 3px;
+	margin-left: 0px !important;
+	font-size: 13px !important;
+	margin-bottom: 10px;
+}
+
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.odd,
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.even {
+	display: inline !important;
+	font-weight: normal;
+}
+
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.odd {
+	clear: both;
+	font-weight: bold;
+	color: #333;
+}
+
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item.even {
+	font-weight: bold !important;
+	color: #333;
 }
