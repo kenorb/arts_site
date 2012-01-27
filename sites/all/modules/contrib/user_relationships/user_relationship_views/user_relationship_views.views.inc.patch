@@ -1,0 +1,22 @@
+Index: user_relationship_views.views.inc
+===================================================================
+--- user_relationship_views.views.inc	(revision 544)
++++ user_relationship_views.views.inc	(working copy)
+@@ -86,7 +86,7 @@
+       ),
+       'relationship' => array( // this relationship brings in all fields the users table offers
+         'base' => 'users',
+-        'field' => 'uid',
++        'base_field' => 'uid',
+         'label' => 'requester',
+         'help' => t('Bring in data about the user who started the relationship, or link to relationships that they have established'),
+       ),
+@@ -117,7 +117,7 @@
+       ),
+       'relationship' => array( // this relationship brings in all fields the users table offers
+         'base' => 'users',
+-        'field' => 'uid',
++        'base_field' => 'uid',
+         'label' => 'requestee',
+         'help' => t('Bring in data about the user who accepted the relationship, or link to relationships that other users have established to this one'),
+       ),
