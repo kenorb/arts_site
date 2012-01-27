@@ -32,5 +32,7 @@
 	print drupal_render ($form ['autoassignrole_user']);
 	
 	print drupal_render ($form ['account']);
+	
+	print drupal_render ($form ['submit']);
 
 ?>
