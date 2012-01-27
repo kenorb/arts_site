@@ -122,7 +122,7 @@ table {
   min-width: 1200px;
   min-height: 100%;
   height: 100%;
-  color: #343331;
+  color: #000;
   background: #F0F5F9;  
 }
 p, td, li, ul, ol {
@@ -4188,8 +4188,12 @@ ul#chatroom-user-list {
 	display: none;
 }
 
+#content-profile-display-education .field-type-content-taxonomy .field-label {
+	margin-bottom: 6px;
+}
+
 #content-profile-display-education .field-type-content-taxonomy .field-items {
-	padding: 3px;
+	padding: 0px;
 	margin-left: 0px !important;
 	font-size: 13px !important;
 	margin-bottom: 10px;
@@ -4204,15 +4208,25 @@ ul#chatroom-user-list {
 #content-profile-display-education .field-type-content-taxonomy .field-items .field-item.odd {
 	clear: both;
 	font-weight: bold;
-	color: #333;
+	color: #000;
 }
 
 #content-profile-display-education .field-type-content-taxonomy .field-items .field-item.even {
 	font-weight: bold !important;
-	color: #333;
+	color: #000;
 }
 
 div.node-form > div.admin {
 	clear: left;
 	padding-top: 10px;
+}
+
+div.content-profile-display {
+    border: 1px solid #DDDDDD;
+    margin: 1em 0;
+    padding: 0 3px;
+}
+
+div.fieldgroup .content {
+    padding-left: 2px;
 }
