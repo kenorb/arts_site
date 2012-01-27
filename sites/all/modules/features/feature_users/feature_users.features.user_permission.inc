@@ -46,7 +46,15 @@ function feature_users_user_default_permissions() {
     'roles' => array(
       '0' => 'admin',
       '1' => 'anonymous user',
-      '2' => 'authenticated user',
+      '2' => 'art collector',
+      '3' => 'art student',
+      '4' => 'authenticated user',
+      '5' => 'moderator',
+      '6' => 'premium',
+      '7' => 'premium buyer',
+      '8' => 'premium seller',
+      '9' => 'student',
+      '10' => 'user admin',
     ),
   );
 
@@ -55,7 +63,16 @@ function feature_users_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'authenticated user',
+      '1' => 'anonymous user',
+      '2' => 'art collector',
+      '3' => 'art student',
+      '4' => 'authenticated user',
+      '5' => 'moderator',
+      '6' => 'premium',
+      '7' => 'premium buyer',
+      '8' => 'premium seller',
+      '9' => 'student',
+      '10' => 'user admin',
     ),
   );
 
