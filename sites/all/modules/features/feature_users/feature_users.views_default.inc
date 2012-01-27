@@ -1262,7 +1262,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Content: Date (field_event_date) - From date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['fields']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1281,8 +1281,6 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_value']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_date_value']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_date_value']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_date_value']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_event_date_value']['repeat']['show_repeat_rule'] = 'hide';
   /* Field: Workflow: Current state name */
   $handler->display->display_options['fields']['state']['id'] = 'state';
   $handler->display->display_options['fields']['state']['table'] = 'workflow_states';
@@ -1346,12 +1344,11 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['delete_node']['empty_zero'] = 0;
-  /* Sort criterion: Content: Date (field_event_date) - From date */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['sorts']['field_event_date_value']['field'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['field_event_date_value']['delta'] = '-1';
   /* Filter: Node: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -1399,7 +1396,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Content: Date (field_event_date) - From date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['fields']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1418,8 +1415,6 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_value']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_date_value']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_date_value']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_date_value']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_event_date_value']['repeat']['show_repeat_rule'] = 'hide';
   /* Field: Workflow: Current state name */
   $handler->display->display_options['fields']['state']['id'] = 'state';
   $handler->display->display_options['fields']['state']['table'] = 'workflow_states';

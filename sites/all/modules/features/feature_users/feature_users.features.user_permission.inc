@@ -186,15 +186,6 @@ function feature_users_user_default_permissions() {
     ),
   );
 
-  // Exported permission: create event content
-  $permissions['create event content'] = array(
-    'name' => 'create event content',
-    'roles' => array(
-      '0' => 'admin',
-      '1' => 'authenticated user',
-    ),
-  );
-
   // Exported permission: create faq
   $permissions['create faq'] = array(
     'name' => 'create faq',
@@ -258,15 +249,6 @@ function feature_users_user_default_permissions() {
   // Exported permission: delete any education content
   $permissions['delete any education content'] = array(
     'name' => 'delete any education content',
-    'roles' => array(
-      '0' => 'admin',
-      '1' => 'moderator',
-    ),
-  );
-
-  // Exported permission: delete any event content
-  $permissions['delete any event content'] = array(
-    'name' => 'delete any event content',
     'roles' => array(
       '0' => 'admin',
       '1' => 'moderator',
@@ -348,16 +330,6 @@ function feature_users_user_default_permissions() {
     'roles' => array(
       '0' => 'admin',
       '1' => 'moderator',
-    ),
-  );
-
-  // Exported permission: delete own event content
-  $permissions['delete own event content'] = array(
-    'name' => 'delete own event content',
-    'roles' => array(
-      '0' => 'admin',
-      '1' => 'authenticated user',
-      '2' => 'moderator',
     ),
   );
 
@@ -649,19 +621,6 @@ function feature_users_user_default_permissions() {
     ),
   );
 
-  // Exported permission: view revisions of any event content
-  $permissions['view revisions of any event content'] = array(
-    'name' => 'view revisions of any event content',
-    'roles' => array(
-      '0' => 'admin',
-      '1' => 'art collector',
-      '2' => 'moderator',
-      '3' => 'premium buyer',
-      '4' => 'premium seller',
-      '5' => 'user admin',
-    ),
-  );
-
   // Exported permission: view revisions of any faq content
   $permissions['view revisions of any faq content'] = array(
     'name' => 'view revisions of any faq content',
@@ -849,20 +808,6 @@ function feature_users_user_default_permissions() {
       '0' => 'admin',
       '1' => 'authenticated user',
       '2' => 'moderator',
-    ),
-  );
-
-  // Exported permission: view revisions of own event content
-  $permissions['view revisions of own event content'] = array(
-    'name' => 'view revisions of own event content',
-    'roles' => array(
-      '0' => 'admin',
-      '1' => 'art collector',
-      '2' => 'authenticated user',
-      '3' => 'moderator',
-      '4' => 'premium buyer',
-      '5' => 'premium seller',
-      '6' => 'user admin',
     ),
   );
 
