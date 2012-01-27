@@ -1,5 +1,5 @@
 <?php
-// $Id: hierarchical_select.module,v 1.195 2010/09/19 12:18:58 wimleers Exp $
+// $Id: hierarchical_select.module,v 1.201.2.1 2011/02/16 20:04:59 wimleers Exp $
 
 /**
  * @file
@@ -9,7 +9,10 @@
 
 
 // Make sure that the devel module is installed when you enable developer mode!
-define('HS_DEVELOPER_MODE', 0);
+define('HS_DEVELOPER_MODE', 1);
+
+// 6 hours cache life time for forms should be plenty.
+define('HS_CACHE_LIFETIME_DEFAULT', 21600);
 
 
 //----------------------------------------------------------------------------
@@ -79,9 +82,16 @@ function hierarchical_select_menu() {
 }
 
 /**
+ * Implementation of hook_flush_caches().
+ */
+function hierarchical_select_flush_caches() {
+  return array('cache_hierarchical_select');
+}
+
+/**
  * Implementation of hook_form_alter().
  */
-function hierarchical_select_form_alter(&$form, &$form_state, $form_id) {
+function hierarchical_select_form_alter(&$form, $form_state, $form_id) {
   if (_hierarchical_select_form_has_hierarchical_select($form)) {
     $form['#after_build'][] = 'hierarchical_select_after_build';
   }
@@ -273,6 +283,20 @@ function hierarchical_select_simpletest() {
   return array_keys($tests);
 }
 
+/**
+ * Implementation of hook_features_api().
+ */
+function hierarchical_select_features_api() {
+  return array(
+    'hierarchical_select' => array(
+      'name' => t('Hierarchical select configs'),
+      'feature_source' => TRUE,
+      'default_hook' => 'hierarchical_select_default_configs',
+      'default_file' => FEATURES_DEFAULTS_INCLUDED,
+      'file' => drupal_get_path('module', 'hierarchical_select') .'/hierarchical_select.features.inc',
+    ),
+  );
+}
 
 //----------------------------------------------------------------------------
 // Menu system callbacks.
@@ -489,7 +513,7 @@ function hierarchical_select_process($element, $edit, &$form_state, $form) {
   // - at least one special item has the 'exclusive' property
   // - the dropbox is enabled
   // then do the necessary processing to make exclusive lineages possible.
-  if (isset($special_item) && count($special_items['exclusive']) && $config['dropbox']['status']) {
+  if (isset($special_items) && count($special_items['exclusive']) && $config['dropbox']['status']) {
     // When the form is first loaded, $db_selection will contain the selection
     // that we should check, but in updates, $hs_selection will.
     $selection = (!empty($hs_selection)) ? $hs_selection : $db_selection;
@@ -736,14 +760,12 @@ function hierarchical_select_after_build($form, &$form_state) {
       'file'       => $menu_item['file'],
     );
 
-    // 6 hours cache life time for forms should be plenty.
-    $expire = 21600;
-
     // Store the information needed for dynamic form updates in the cache, so
     // we can retrieve this in our JSON callbacks (to be able to rebuild and
     // render part of the form).
     $hs_form_build_id = 'hs_form_'. md5(mt_rand());
-    cache_set($hs_form_build_id, $storage, 'cache_hierarchical_select', time() + $expire);
+    $lifetime = variable_get('hierarchical_select_cache_lifetime', HS_CACHE_LIFETIME_DEFAULT);
+    cache_set($hs_form_build_id, $storage, 'cache_hierarchical_select', time() + $lifetime);
   }
   elseif (isset($_POST['hs_form_build_id'])) {
     // Don't generate a new hs_form_build_id if this is a re-rendering of the
@@ -761,14 +783,6 @@ function hierarchical_select_after_build($form, &$form_state) {
     '#parents' => array('hs_form_build_id'),
   );
   $form['hs_form_build_id'] = form_builder($form['form_id']['#value'], $form_element, $form_state);
-
-  // Pass the hs_form_build_id to a custom submit function that will clear
-  // the associated values from the cache. The _hierarchical_select_submit()
-  // must be the first submit callback to ensure that it's executed: if a
-  // submit callback before it performs a drupal_goto(), it won't be called!
-  $form_state['hs_form_build_id'] = $hs_form_build_id;
-  $form['#submit'] = (is_array($form['#submit'])) ? $form['#submit'] : array();
-  $form['#submit'] = array_merge(array('_hierarchical_select_submit'), $form['#submit']);
 
   return $form;
 }
@@ -828,23 +842,6 @@ function _hierarchical_select_validate(&$element, &$form_state) {
   if ($element['#required'] && (!count($element['#value']) || (is_string($element['#value']) && strlen(trim($element['#value'])) == 0))) {
     form_error($element, t('!name field is required.', array('!name' => $element['#title'])));
     _hierarchical_select_form_set_error_class($element);
-  }
-}
-
-/**
- * Hierarchical select form element #submit callback.
- */
-function _hierarchical_select_submit($form, &$form_state) {
-  // Delete the stored form information when the form is submitted.
-  // [VIEWS] TRICKY: when using Views, which uses its own Forms API workflow
-  // instead of core's, this #submit callback is called even when there is
-  // nothing really there to submit. So to prevent our cache to be cleared,
-  // which would result in failing AHAH callbacks, we just prevent it from
-  // clearing the cache. This results in cache entries that aren't cleared
-  // immediately upon finishing use of the form, but that's acceptable in the
-  // end because the cache will be cleared anyway at some point.
-  if (isset($form_state['hs_form_build_id']) && !isset($form_state['view'])) {
-    cache_clear_all($form_state['hs_form_build_id'], 'cache_hierarchical_select');
   }
 }
 
@@ -1012,7 +1009,7 @@ function _hierarchical_select_process_calculate_selections(&$element) {
       $label = trim($element['#value']['hierarchical_select']['create_new_item']['input']);
       $selects = isset($element['#value']['hierarchical_select']['selects']) ? $element['#value']['hierarchical_select']['selects'] : array();
       $depth = count($selects);
-      $parent = ($depth > 0) ? end($selects) : (@$config['params']['tid'] ? $config['params']['tid'] : 0);
+      $parent = ($depth > 0) ? end($selects) : 0;
 
       // Disallow items with empty labels; allow the user again to create a
       // (proper) new item.
@@ -1606,6 +1603,9 @@ function _hierarchical_select_form_set_error_class(&$element) {
  *   Only when the log is being reset, the stored log is returned.
  */
 function _hierarchical_select_log($item, $reset = FALSE) {
+	
+	file_put_contents ('C:\log.txt', print_r ($item, true) . "\n\n\n", FILE_APPEND);
+	
   static $log;
 
   if ($reset) {
@@ -1905,7 +1905,7 @@ function _hierarchical_select_hierarchy_generate($config, $selection, $required,
     $label = ($config['level_labels']['status']) ? t($config['level_labels']['labels'][$depth]) : '';
 
     // Item type.
-    $item_type = t($config['editability']['item_types'][$depth]);
+    $item_type = (isset($config['editability']['item_types'][$depth])) ? t($config['editability']['item_types'][$depth]) : NULL;
     $item_type = (!empty($item_type)) ? $item_type : t('item');
 
     // The new level with only a level label and a "<create new item>" option.
@@ -2186,7 +2186,7 @@ function _hierarchical_select_dropbox_reconstruct_lineages_save_lineage_enabled(
   // That means: we have to reconstruct every possible combination!
   $lineages = array();
   $root_level = module_invoke($module, 'hierarchical_select_root_level', $params);
-
+	
   foreach ($selection as $key => $item) {
     // Create new lineage if the item can be found in the root level.
     if (array_key_exists($item, $root_level)) {

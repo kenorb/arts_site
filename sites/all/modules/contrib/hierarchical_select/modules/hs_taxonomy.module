@@ -1,5 +1,5 @@
 <?php
-// $Id: hs_taxonomy.module,v 1.54 2010/09/06 22:04:32 wimleers Exp $
+// $Id: hs_taxonomy.module,v 1.58 2011/02/06 09:38:48 wimleers Exp $
 
 /**
  * @file
@@ -24,14 +24,14 @@ function hs_taxonomy_form_taxonomy_form_vocabulary_alter(&$form, &$form_state) {
   }
 
   if (variable_get("taxonomy_hierarchical_select_$vid", 0)) {
-    $form['tags']['#attributes']['disabled'] = TRUE;
-    $form['tags']['#description'] = t(
+    $form['settings']['tags']['#attributes']['disabled'] = TRUE;
+    $form['settings']['tags']['#description'] = t(
       "This setting is irrelevant when you're using Hierarchical Select.
       <br />Use Hierarchical Select's %editability-settings instead.",
       array('%editability-settings' => t('Editability settings'))
     );
-    $form['multiple']['#attributes']['disabled'] = TRUE;
-    $form['multiple']['#description'] = t(
+    $form['settings']['multiple']['#attributes']['disabled'] = TRUE;
+    $form['settings']['multiple']['#description'] = t(
       "This setting is managed by the Hierarchical Select configuration, by
       the %enable-dropbox setting.",
       array('%enable-dropbox' => t('Enable the dropbox'))
@@ -60,9 +60,10 @@ function hs_taxonomy_form_taxonomy_form_vocabulary_alter(&$form, &$form_state) {
   // Add the Hierarchical Select config form.
   $module = 'hs_taxonomy';
   $params = array(
-    'vid'         => $vid,
-    'exclude_tid' => NULL,
-    'root_term'   => NULL,
+    'vid'                        => $vid,
+    'exclude_tid'                => NULL,
+    'root_term'                  => NULL,
+    'entity_count_for_node_type' => NULL,
   );
   $config_id = "taxonomy-$vid";
   $defaults = array(
@@ -214,9 +215,10 @@ function hs_taxonomy_form($vid, $value = 0, $help = NULL) {
     '#config'        => array(
       'module' => 'hs_taxonomy',
       'params' => array(
-        'vid'         => $vid,
-        'exclude_tid' => NULL,
-        'root_term'   => NULL,
+        'vid'                        => $vid,
+        'exclude_tid'                => NULL,
+        'root_term'                  => NULL,
+        'entity_count_for_node_type' => NULL,
       ),
     ),
     '#title'         => $title,
@@ -244,7 +246,8 @@ function hs_taxonomy_form_alter(&$form, $form_state, $form_id) {
     }
     else {
       // After preview the terms must be converted to objects.
-      if (isset($form_state['node_preview'])) {
+      reset($node->taxonomy);
+      if (!is_object(current($node->taxonomy))) {
         $node->taxonomy = taxonomy_preview_terms($node);
       }
       $terms = $node->taxonomy;
@@ -365,8 +368,9 @@ function hs_taxonomy_form_alter(&$form, $form_state, $form_id) {
 function hs_taxonomy_hierarchical_select_params() {
   $params = array(
     'vid',
-    'exclude_tid', // Allows a term to be excluded (necessary for the taxonomy_form_term form).
-    'root_term',   // Displays a fake "<root>" term in the root level (necessary for the taxonomy_form-term form).
+    'exclude_tid',                // Allows a term to be excluded (necessary for the taxonomy_form_term form).
+    'root_term',                  // Displays a fake "<root>" term in the root level (necessary for the taxonomy_form-term form).
+    'entity_count_for_node_type', // Restrict the entity count to a specific node type.
   );
   return $params;
 }
@@ -544,7 +548,13 @@ function hs_taxonomy_hierarchical_select_create_item($label, $parent, $params) {
  * Implementation of hook_hierarchical_select_entity_count().
  */
 function hs_taxonomy_hierarchical_select_entity_count($item, $params) {
-  return hs_taxonomy_term_count_nodes($item);
+  // Allow restricting entity count by node type.
+  if ($params['entity_count_for_node_type']){
+    return hs_taxonomy_term_count_nodes($item, $params['entity_count_for_node_type']);
+  }
+  else {
+    return hs_taxonomy_term_count_nodes($item);
+  }
 }
 
 /**
@@ -615,7 +625,7 @@ function hs_taxonomy_token_values($type, $object = NULL, $options = array()) {
       $node = $object;
 
       // Default values.
-      $values['save-lineage-termpath'] = $values['save-lineage-termpath-raw'] = FALSE;
+      $values['save-lineage-termpath'] = $values['save-lineage-termpath-raw'] = '';
 
       // If $node->taxonomy doesn't exist, these tokens cannot be created!
       if (!is_object($node) || !isset($node->taxonomy) || !is_array($node->taxonomy)) {
@@ -650,8 +660,10 @@ function hs_taxonomy_token_values($type, $object = NULL, $options = array()) {
           $terms = _hs_taxonomy_token_termpath_for_vid($selection, $vid);
         }
 
-        $values["save-lineage-termpath:$vid"] = implode($separator, array_map('check_plain', $terms));
-        $values["save-lineage-termpath-raw:$vid"] = implode($separator, $terms);
+        $terms_raw = $terms;
+        $terms = array_map('check_plain', $terms);
+        $values["save-lineage-termpath:$vid"] = !empty($options['pathauto']) ? $terms : implode($separator, $terms);
+        $values["save-lineage-termpath-raw:$vid"] = !empty($options['pathauto']) ? $terms_raw : implode($separator, $terms_raw);
       }
 
       // We use the terms of the first vocabulary that uses Hierarchical
@@ -659,8 +671,8 @@ function hs_taxonomy_token_values($type, $object = NULL, $options = array()) {
       $vids = array_intersect(array_keys($node->taxonomy), $hs_vids);
       if (!empty($vids)) {
         $vid = $vids[0];
-        $values['save-lineage-termpath'] = implode($separator, array_map('check_plain', $terms));
-        $values['save-lineage-termpath-raw'] = implode($separator, $terms);
+        $values['save-lineage-termpath'] = $values["save-lineage-termpath:$vid"];
+        $values['save-lineage-termpath-raw'] = $values["save-lineage-termpath-raw:$vid"];
       }
       break;
   }
@@ -743,17 +755,17 @@ function _hs_taxonomy_token_termpath_for_vid($selection, $vid) {
  */
 function hierarchical_select_taxonomy_form_vocabulary_validate($form, &$form_state) {
   // The "multiple select" setting doesn't exist for the forum vocabulary!
-  if (isset($form['multiple'])) {
+  if (isset($form['settings']['multiple'])) {
     // Enable Taxonomy's "multiple select" setting when:
     // - Hierarchical Select's "multiple select" setting is enabled, or:
     // - Hierarchical Select's "save term lineage" setting is enabled
     $multiple_select_enabled = ((isset($form_state['values']['hierarchical_select']['dropbox']['status']) && $form_state['values']['hierarchical_select']['dropbox']['status']) || $form_state['values']['hierarchical_select']['save_lineage']);
-    form_set_value($form['multiple'], (int) $multiple_select_enabled, $form_state);
+    form_set_value($form['settings']['multiple'], (int) $multiple_select_enabled, $form_state);
   }
 
   // If Hierarchical Select is enabled, disable freetagging.
   if ($form_state['values']['hierarchical_select_status']) {
-    form_set_value($form['tags'], 0, $form_state);
+    form_set_value($form['settings']['tags'], 0, $form_state);
   }
 }
 

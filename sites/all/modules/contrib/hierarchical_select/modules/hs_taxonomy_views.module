@@ -1,5 +1,5 @@
 <?php
-// $Id: hs_taxonomy_views.module,v 1.25 2010/08/26 11:16:19 wimleers Exp $
+// $Id: hs_taxonomy_views.module,v 1.27 2011/02/05 16:09:27 wimleers Exp $
 
 /**
  * @file
@@ -180,6 +180,9 @@ function hs_taxonomy_views_handlers() {
       'hs_taxonomy_views_handler_filter_term_node_tid' => array(
         'parent' => 'views_handler_filter_term_node_tid',
       ),
+      'hs_taxonomy_views_handler_filter_term_node_tid_depth' => array(
+        'parent' => 'hs_taxonomy_views_handler_filter_term_node_tid',
+      ),
     )
   );
 }
@@ -187,7 +190,7 @@ function hs_taxonomy_views_handlers() {
 /**
  * Implementation of hook_views_data_alter().
  */
-function hs_taxonomy_views_data_alter(&$data) {
+function hs_taxonomy_views_views_data_alter(&$data) {
   // Term view type, tid field.
   $data['term_data']['tid'] = array(
    'title' => t('Term ID'),
@@ -195,6 +198,9 @@ function hs_taxonomy_views_data_alter(&$data) {
    'field' => array(
      'handler'   => 'views_handler_field_numeric',
      'skip base' => array('node', 'node_revision'),
+   ),
+   'sort' => array(
+     'handler' => 'views_handler_sort',
    ),
    'argument' => array(
      'handler'   => 'views_handler_argument_numeric',
@@ -236,6 +242,21 @@ function hs_taxonomy_views_data_alter(&$data) {
       'hierarchy table' => 'term_hierarchy',
       'numeric'         => TRUE,
       'skip base'       => 'term_data',
+    ),
+  );
+
+  // Node view type, tid with depth field.
+  $data['node']['term_node_tid_depth'] = array(
+    'group' => t('Taxonomy'),
+    'title' => t('Term ID (with depth)'),
+    'help' => t('The depth filter is more complex, so provides fewer options.'),
+    'real field' => 'vid',
+    'argument' => array(
+      'handler' => 'views_handler_argument_term_node_tid_depth',
+      'accept depth modifier' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'hs_taxonomy_views_handler_filter_term_node_tid_depth',
     ),
   );
 }
@@ -560,8 +581,10 @@ function hs_taxonomy_views_hierarchical_select_config_info() {
       if (isset($view->display[$display_id]->display_options['filters']) && count($view->display[$display_id]->display_options['filters'])) {
         foreach ($view->display[$display_id]->display_options['filters'] as $filter) {
           if (isset($filter['type']) && $filter['type'] == 'hierarchical_select'
-              && isset($filter['table']) && $filter['table'] == 'term_node'
+            && ((isset($filter['table']) && $filter['table'] == 'term_node'
               && isset($filter['field']) && $filter['field'] == 'tid')
+             || (isset($filter['table']) && $filter['table'] == 'node'
+              && isset($filter['field']) && $filter['field'] == 'term_node_tid_depth')))
           {
             $vocabulary = taxonomy_vocabulary_load($filter['vid']);
             $filter_label = (!empty($filter['expose']['label'])) ? $filter['expose']['label'] : t('Taxonomy: Term');
