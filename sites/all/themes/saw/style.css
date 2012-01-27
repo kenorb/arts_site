@@ -3483,6 +3483,7 @@ a.vud-link-down:hover {
 }
 
 .rsvp_form_header {
+	display: none;
   font-weight: normal;
 }
 
