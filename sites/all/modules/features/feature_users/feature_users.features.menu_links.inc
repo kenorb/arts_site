@@ -55,7 +55,7 @@ function feature_users_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => '0',
     'external' => '0',
-    'has_children' => '0',
+    'has_children' => '1',
     'expanded' => '1',
     'weight' => '-49',
   );
@@ -113,6 +113,25 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-50',
     'parent_path' => 'manage/arts',
+  );
+  // Exported menu link: menu-my-content:node/add/event
+  $menu_links['menu-my-content:node/add/event'] = array(
+    'menu_name' => 'menu-my-content',
+    'link_path' => 'node/add/event',
+    'router_path' => 'node/add/event',
+    'link_title' => 'Add Event',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Add Event',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-50',
+    'parent_path' => 'manage/events',
   );
   // Exported menu link: menu-my-content:node/add/forum
   $menu_links['menu-my-content:node/add/forum'] = array(
@@ -224,6 +243,60 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-50',
   );
+  // Exported menu link: menu-profilemenu:user/me/edit
+  $menu_links['menu-profilemenu:user/me/edit'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'user/me/edit',
+    'router_path' => 'user/%/edit',
+    'link_title' => 'Account Settings',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-48',
+  );
+  // Exported menu link: menu-profilemenu:user/me/edit/profile
+  $menu_links['menu-profilemenu:user/me/edit/profile'] = array(
+    'menu_name' => 'menu-profilemenu',
+    'link_path' => 'user/me/edit/profile',
+    'router_path' => 'user/%/edit/profile',
+    'link_title' => 'Privacy Settings',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-47',
+  );
+  // Exported menu link: menu-toolbar:events
+  $menu_links['menu-toolbar:events'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'events',
+    'router_path' => 'events',
+    'link_title' => 'Calendar',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-45',
+  );
   // Exported menu link: menu-toolbar:faq
   $menu_links['menu-toolbar:faq'] = array(
     'menu_name' => 'menu-toolbar',
@@ -241,6 +314,24 @@ function feature_users_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '50',
+  );
+  // Exported menu link: menu-toolbar:market
+  $menu_links['menu-toolbar:market'] = array(
+    'menu_name' => 'menu-toolbar',
+    'link_path' => 'market',
+    'router_path' => 'market',
+    'link_title' => 'Market',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
   );
   // Exported menu link: menu-toolbar:messages
   $menu_links['menu-toolbar:messages'] = array(
@@ -404,6 +495,24 @@ function feature_users_menu_default_menu_links() {
     'expanded' => '0',
     'weight' => '-43',
   );
+  // Exported menu link: primary-links:events
+  $menu_links['primary-links:events'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'events',
+    'router_path' => 'events',
+    'link_title' => 'Events',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Events',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-46',
+  );
   // Exported menu link: primary-links:ideas/list
   $menu_links['primary-links:ideas/list'] = array(
     'menu_name' => 'primary-links',
@@ -421,6 +530,20 @@ function feature_users_menu_default_menu_links() {
     'has_children' => '0',
     'expanded' => '0',
     'weight' => '-44',
+  );
+  // Exported menu link: primary-links:market
+  $menu_links['primary-links:market'] = array(
+    'menu_name' => 'primary-links',
+    'link_path' => 'market',
+    'router_path' => 'market',
+    'link_title' => 'Market',
+    'options' => array(),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-48',
   );
   // Exported menu link: secondary-links:arts
   $menu_links['secondary-links:arts'] = array(
@@ -462,12 +585,15 @@ function feature_users_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('-');
   t('Account');
+  t('Account Settings');
   t('Add Art');
+  t('Add Event');
   t('Add Forum Topic');
   t('Add Item');
   t('Art');
   t('Arts');
   t('Buy Student Art');
+  t('Calendar');
   t('Chat');
   t('Contact');
   t('Events');
@@ -477,9 +603,11 @@ function feature_users_menu_default_menu_links() {
   t('Ideas');
   t('Items');
   t('Manage');
+  t('Market');
   t('Message');
   t('News');
   t('Online');
+  t('Privacy Settings');
   t('Sell My Art');
   t('Upgrade to premium?');
   t('reCAPTCHA issue queue');
