@@ -475,6 +475,16 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit own education content
+  $permissions['edit own education content'] = array(
+    'name' => 'edit own education content',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+      '2' => 'moderator',
+    ),
+  );
+
   // Exported permission: edit own faq
   $permissions['edit own faq'] = array(
     'name' => 'edit own faq',
