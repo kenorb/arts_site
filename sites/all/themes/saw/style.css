@@ -3614,7 +3614,7 @@ td.multi-day .inner .view-field a {
 }
 
 .profile-user-about-info {
-	padding: 12px 5px 5px 8px;
+	padding: 12px 5px 0px 8px;
 }
 
 .profile-user-about-info h2,
@@ -4224,7 +4224,7 @@ div.node-form > div.admin {
 div.content-profile-display {
     border: 1px solid #DDDDDD;
     margin: 1em 0;
-    padding: 0 3px;
+    padding: 0 0px;
 }
 
 div.fieldgroup .content {
