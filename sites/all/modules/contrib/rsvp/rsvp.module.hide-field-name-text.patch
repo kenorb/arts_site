@@ -1,0 +1,21 @@
+Index: rsvp.module
+===================================================================
+--- rsvp.module	(revision 541)
++++ rsvp.module	(working copy)
+@@ -3136,6 +3136,7 @@
+       '#suffix' => '</div>',
+     );
+     
++/*		
+     $form['rsvp_addedit_form']['rsvp_field']['field'] = array(
+       '#type' => 'item',
+       '#title' => t('Field name'),
+@@ -3143,7 +3144,7 @@
+       '#prefix' => '<div class="rsvp_form_fieldset">',
+       '#suffix' => '</div>',
+     );
+-
++*/
+     $form['rsvp_addedit_form']['rsvp_field']['startdate'] = array(
+       '#type' => 'select',
+       '#title' => t('Event Start'),
