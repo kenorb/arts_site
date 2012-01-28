@@ -4234,3 +4234,7 @@ div.fieldgroup .content {
 	box-shadow: 0 1px 4px #88AAFF;
 	padding: 6px;
 }
+
+#forum div.indent {
+	margin-left: 0px !important;
+}
