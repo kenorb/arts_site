@@ -16,7 +16,7 @@ function feature_market_ctools_plugin_api() {
 function feature_market_uc_product_default_classes() {
   $items = array(
     'item' => array(
-      'name' => t('Item'),
+      'name' => t('Market Item'),
       'module' => 'uc_product',
       'description' => '',
       'has_title' => '1',
