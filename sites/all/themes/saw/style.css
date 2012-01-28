@@ -769,7 +769,7 @@ a.author-privatemsg-icon,
     color: #292929 !important;
     margin: 5px 4px;
     font: bold 11px/32px myriad-pro,Arial,Helvetica,sans-serif;
-    padding: 5px 18px !important;
+    padding: 0px 18px !important;
 		height: 32px;
 		min-height: 32px;
     text-transform: uppercase;
@@ -4224,4 +4224,15 @@ div.content-profile-display {
 
 div.fieldgroup .content {
     padding-left: 2px;
+}
+
+.rsvp_form_fieldset fieldset .rsvp_form_fieldset:first-child {
+	display: none;
+}
+
+#chatroom-board {
+	border: 2px solid #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0 1px 4px #88AAFF;
+	padding: 6px;
 }
