@@ -459,21 +459,6 @@ function feature_users_default_fe_block_settings() {
     'cache' => '-1',
   );
 
-  $theme['views-calendar-calendar_block_1'] = array(
-    'module' => 'views',
-    'delta' => 'calendar-calendar_block_1',
-    'theme' => 'saw',
-    'status' => 0,
-    'weight' => '-58',
-    'region' => '',
-    'custom' => '1',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => '-1',
-  );
-
   $theme['views-friends-block_1'] = array(
     'module' => 'views',
     'delta' => 'friends-block_1',
@@ -1051,21 +1036,6 @@ art/*',
     'cache' => '-1',
   );
 
-  $theme['views-calendar-calendar_block_1'] = array(
-    'module' => 'views',
-    'delta' => 'calendar-calendar_block_1',
-    'theme' => 'saw_pushbutton',
-    'status' => '1',
-    'weight' => '-38',
-    'region' => 'right',
-    'custom' => '1',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => '-1',
-  );
-
   $theme['views-friends-block_1'] = array(
     'module' => 'views',
     'delta' => 'friends-block_1',
@@ -1636,21 +1606,6 @@ art/*',
     'weight' => '0',
     'region' => '',
     'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => '-1',
-  );
-
-  $theme['views-calendar-calendar_block_1'] = array(
-    'module' => 'views',
-    'delta' => 'calendar-calendar_block_1',
-    'theme' => 'garland',
-    'status' => '1',
-    'weight' => '0',
-    'region' => 'right',
-    'custom' => '1',
     'throttle' => '0',
     'visibility' => '0',
     'pages' => '',
