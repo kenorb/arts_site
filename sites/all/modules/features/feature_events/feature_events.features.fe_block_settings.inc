@@ -54,6 +54,36 @@ function feature_events_default_fe_block_settings() {
     'cache' => '-1',
   );
 
+  $theme['views-Events-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'Events-block_1',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'Events-block_2',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Events-calendar_block_1'] = array(
     'module' => 'views',
     'delta' => 'Events-calendar_block_1',
@@ -61,6 +91,52 @@ function feature_events_default_fe_block_settings() {
     'status' => '1',
     'weight' => '-63',
     'region' => 'right',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-events'] = array(
+    'module' => 'views',
+    'delta' => 'Events-events',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-events_page_block'] = array(
+    'module' => 'views',
+    'delta' => 'Events-events_page_block',
+    'theme' => 'saw',
+    'status' => '1',
+    'weight' => '-67',
+    'region' => 'content',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '1',
+    'pages' => 'events
+events/*',
+    'title' => '<none>',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-featured_events'] = array(
+    'module' => 'views',
+    'delta' => 'Events-featured_events',
+    'theme' => 'saw',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
     'custom' => '0',
     'throttle' => '0',
     'visibility' => '0',
@@ -210,9 +286,85 @@ calendar/*',
     'cache' => '-1',
   );
 
+  $theme['views-Events-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'Events-block_1',
+    'theme' => 'saw_pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'Events-block_2',
+    'theme' => 'saw_pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Events-calendar_block_1'] = array(
     'module' => 'views',
     'delta' => 'Events-calendar_block_1',
+    'theme' => 'saw_pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-events'] = array(
+    'module' => 'views',
+    'delta' => 'Events-events',
+    'theme' => 'saw_pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-events_page_block'] = array(
+    'module' => 'views',
+    'delta' => 'Events-events_page_block',
+    'theme' => 'saw_pushbutton',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '1',
+    'pages' => 'events
+events/*',
+    'title' => '<none>',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-featured_events'] = array(
+    'module' => 'views',
+    'delta' => 'Events-featured_events',
     'theme' => 'saw_pushbutton',
     'status' => 0,
     'weight' => '0',
@@ -366,9 +518,85 @@ calendar/*',
     'cache' => '-1',
   );
 
+  $theme['views-Events-block_1'] = array(
+    'module' => 'views',
+    'delta' => 'Events-block_1',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-block_2'] = array(
+    'module' => 'views',
+    'delta' => 'Events-block_2',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
   $theme['views-Events-calendar_block_1'] = array(
     'module' => 'views',
     'delta' => 'Events-calendar_block_1',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-events'] = array(
+    'module' => 'views',
+    'delta' => 'Events-events',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-events_page_block'] = array(
+    'module' => 'views',
+    'delta' => 'Events-events_page_block',
+    'theme' => 'garland',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'throttle' => '0',
+    'visibility' => '1',
+    'pages' => 'events
+events/*',
+    'title' => '<none>',
+    'cache' => '-1',
+  );
+
+  $theme['views-Events-featured_events'] = array(
+    'module' => 'views',
+    'delta' => 'Events-featured_events',
     'theme' => 'garland',
     'status' => 0,
     'weight' => '0',
