@@ -55,7 +55,8 @@
           <?php endif; ?>
         <?php print str_repeat('</div>', $forum->depth); ?>
       </td>
-      <?php if (!$forum->is_container): ?>
+      <?php if (true): ?>
+				<?php ?>
         <td class="topics">
           <?php print $forum->num_topics ?>
           <?php if ($forum->new_topics): ?>

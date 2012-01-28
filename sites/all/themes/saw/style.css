@@ -1933,17 +1933,15 @@ div.admin-panel .body {
   }
   
   #forum div.description {
+		display: none;
     font-size: 13px;
     margin: 0px 0px 0px 10px;
     color: #333;
     font-style: italic;
   }
   
-  
-  
-  #forum table tr:hover td,
+  hover td,
   table.views-table tr:hover td {
-    background-color: #ddd !important;
   }
   
   
