@@ -1,0 +1,10 @@
+name = Features Plumber UI
+description = Modify Features as they are being created.
+dependencies[] = features_plumber
+core = 6.x
+; Information added by drupal.org packaging script on 2011-05-12
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "features_plumber"
+datestamp = "1305159086"
+
