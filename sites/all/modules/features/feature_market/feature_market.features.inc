@@ -5,7 +5,10 @@
  */
 function feature_market_ctools_plugin_api() {
   list($module, $api) = func_get_args();
-  if ($module == "strongarm" && $api == "strongarm") {
+  if ($module == "features_plumber" && $api == "features_plumber_records") {
+    return array("version" => 1);
+  }
+  elseif ($module == "strongarm" && $api == "strongarm") {
     return array("version" => 1);
   }
 }
@@ -28,13 +31,4 @@ function feature_market_uc_product_default_classes() {
     ),
   );
   return $items;
-}
-
-/**
- * Implementation of hook_views_api().
- */
-function feature_market_views_api() {
-  return array(
-    'api' => '3.0',
-  );
 }

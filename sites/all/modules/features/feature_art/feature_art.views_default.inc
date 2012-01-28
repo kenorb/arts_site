@@ -724,7 +724,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['sorts']['random']['id'] = 'random';
   $handler->display->display_options['sorts']['random']['table'] = 'views';
   $handler->display->display_options['sorts']['random']['field'] = 'random';
-  /* Argument: Content: Date (field_event_date) - From date */
+  /* Argument: Broken/missing handler */
   $handler->display->display_options['arguments']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['arguments']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['arguments']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -913,7 +913,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['body']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['body']['hide_empty'] = 0;
   $handler->display->display_options['fields']['body']['empty_zero'] = 0;
-  /* Field: Content: Date (field_event_date) - From date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['fields']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -931,12 +931,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_value']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_date_value']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_date_value']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_date_value']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_event_date_value']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_event_date_value']['format'] = 'medium';
-  $handler->display->display_options['fields']['field_event_date_value']['repeat']['show_repeat_rule'] = 'hide';
-  $handler->display->display_options['fields']['field_event_date_value']['fromto']['fromto'] = 'value';
-  /* Field: Content: Date (field_event_date) - To date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_event_date_value2']['id'] = 'field_event_date_value2';
   $handler->display->display_options['fields']['field_event_date_value2']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value2']['field'] = 'field_event_date_value2';
@@ -954,11 +949,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_value2']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_date_value2']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_date_value2']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_date_value2']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_event_date_value2']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_event_date_value2']['format'] = 'medium';
-  $handler->display->display_options['fields']['field_event_date_value2']['repeat']['show_repeat_rule'] = 'hide';
-  $handler->display->display_options['fields']['field_event_date_value2']['fromto']['fromto'] = 'value2';
   /* Field: Node: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'node';
@@ -1040,7 +1030,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nid']['link_to_node'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Argument: Content: Date (field_event_date) - From date */
+  /* Argument: Broken/missing handler */
   $handler->display->display_options['arguments']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['arguments']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['arguments']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1048,9 +1038,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['arguments']['field_event_date_value']['style_plugin'] = 'default_summary';
   $handler->display->display_options['arguments']['field_event_date_value']['default_argument_type'] = 'php';
   $handler->display->display_options['arguments']['field_event_date_value']['default_argument_options']['code'] = 'return !arg(1) ? date(\'Y-m\', time()) : arg(1);';
-  $handler->display->display_options['arguments']['field_event_date_value']['date_fields'] = array(
-    'node_data_field_event_date.field_event_date_value' => 'node_data_field_event_date.field_event_date_value',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1339,7 +1326,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['body']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['body']['hide_empty'] = 0;
   $handler->display->display_options['fields']['body']['empty_zero'] = 0;
-  /* Field: Content: Date (field_event_date) - From date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['fields']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1357,12 +1344,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_value']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_date_value']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_date_value']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_date_value']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_event_date_value']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_event_date_value']['format'] = 'medium';
-  $handler->display->display_options['fields']['field_event_date_value']['repeat']['show_repeat_rule'] = 'hide';
-  $handler->display->display_options['fields']['field_event_date_value']['fromto']['fromto'] = 'value';
-  /* Field: Content: Date (field_event_date) - To date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_event_date_value2']['id'] = 'field_event_date_value2';
   $handler->display->display_options['fields']['field_event_date_value2']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value2']['field'] = 'field_event_date_value2';
@@ -1380,11 +1362,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['field_event_date_value2']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_event_date_value2']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_event_date_value2']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_event_date_value2']['link_to_node'] = 1;
-  $handler->display->display_options['fields']['field_event_date_value2']['label_type'] = 'none';
-  $handler->display->display_options['fields']['field_event_date_value2']['format'] = 'medium';
-  $handler->display->display_options['fields']['field_event_date_value2']['repeat']['show_repeat_rule'] = 'hide';
-  $handler->display->display_options['fields']['field_event_date_value2']['fromto']['fromto'] = 'value2';
   /* Field: Node: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'node';
@@ -1466,7 +1443,7 @@ function feature_art_views_default_views() {
   $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nid']['link_to_node'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Argument: Content: Date (field_event_date) - From date */
+  /* Argument: Broken/missing handler */
   $handler->display->display_options['arguments']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['arguments']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['arguments']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1474,9 +1451,6 @@ function feature_art_views_default_views() {
   $handler->display->display_options['arguments']['field_event_date_value']['style_plugin'] = 'default_summary';
   $handler->display->display_options['arguments']['field_event_date_value']['default_argument_type'] = 'php';
   $handler->display->display_options['arguments']['field_event_date_value']['default_argument_options']['code'] = 'return !arg(1) ? date(\'Y-m\', time()) : arg(1);';
-  $handler->display->display_options['arguments']['field_event_date_value']['date_fields'] = array(
-    'node_data_field_event_date.field_event_date_value' => 'node_data_field_event_date.field_event_date_value',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter: Node: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1511,6 +1485,8 @@ function feature_art_views_default_views() {
     t('Featured items'),
     t('Featured arts'),
     t('Featured events'),
+    t('Broken handler node_data_field_event_date.field_event_date_value'),
+    t('Broken handler node_data_field_event_date.field_event_date_value2'),
     t('More'),
     t('More »'),
     t('contact'),

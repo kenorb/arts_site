@@ -11,33 +11,6 @@ function feature_users_ctools_plugin_api() {
 }
 
 /**
- * Implementation of hook_default_fe_taxonomy_vocabulary().
- */
-function feature_users_default_fe_taxonomy_vocabulary() {
-  $export = array();
-
-  $fe_taxonomy_vocabulary = new stdClass;
-  $fe_taxonomy_vocabulary->name = 'Education';
-  $fe_taxonomy_vocabulary->description = '';
-  $fe_taxonomy_vocabulary->help = 'Type your name of schools, etc.';
-  $fe_taxonomy_vocabulary->relations = '1';
-  $fe_taxonomy_vocabulary->hierarchy = '0';
-  $fe_taxonomy_vocabulary->multiple = '0';
-  $fe_taxonomy_vocabulary->required = '0';
-  $fe_taxonomy_vocabulary->tags = '0';
-  $fe_taxonomy_vocabulary->module = 'features_education_taxonomy';
-  $fe_taxonomy_vocabulary->weight = '0';
-  $fe_taxonomy_vocabulary->nodes = array(
-    'education' => 'education',
-  );
-  $fe_taxonomy_vocabulary->machine_name = 'education_taxonomy';
-
-  $export['education_taxonomy'] = $fe_taxonomy_vocabulary;
-
-  return $export;
-}
-
-/**
  * Implementation of hook_flag_default_flags().
  */
 function feature_users_flag_default_flags() {
@@ -48,15 +21,14 @@ function feature_users_flag_default_flags() {
     'title' => 'Comment Abuse',
     'global' => '0',
     'types' => array(
-      '0' => 'art',
-      '1' => 'blog',
-      '2' => 'event',
-      '3' => 'forum',
+      '0' => 'story',
+      '1' => 'profile',
+      '2' => 'item',
+      '3' => 'idea',
       '4' => 'group',
-      '5' => 'idea',
-      '6' => 'item',
-      '7' => 'profile',
-      '8' => 'story',
+      '5' => 'forum',
+      '6' => 'blog',
+      '7' => 'art',
     ),
     'flag_short' => 'Flag as offensive',
     'flag_long' => 'Flag this content as offensive.',
@@ -144,11 +116,10 @@ function feature_users_flag_default_flags() {
     'title' => 'Add to favourites',
     'global' => '0',
     'types' => array(
-      '0' => 'profile',
-      '1' => 'item',
-      '2' => 'forum',
-      '3' => 'event',
-      '4' => 'art',
+      '0' => 'art',
+      '1' => 'forum',
+      '2' => 'item',
+      '3' => 'profile',
     ),
     'flag_short' => 'Add to favourites',
     'flag_long' => '',
@@ -195,9 +166,8 @@ function feature_users_flag_default_flags() {
     'title' => 'Bookmarks',
     'global' => '0',
     'types' => array(
-      '0' => 'art',
-      '1' => 'event',
-      '2' => 'forum',
+      '0' => 'forum',
+      '1' => 'art',
     ),
     'flag_short' => 'Bookmark this',
     'flag_long' => 'Add this post to your bookmarks',
