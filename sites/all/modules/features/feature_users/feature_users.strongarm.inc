@@ -19,6 +19,20 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'site_name';
+  $strongarm->value = 'Students Art World';
+  $export['site_name'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_mail';
+  $strongarm->value = 'contact@studentsartworld.com';
+  $export['site_mail'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'date_default_timezone';
   $strongarm->value = 0;
   $export['date_default_timezone'] = $strongarm;
@@ -294,6 +308,34 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'site_slogan';
+  $strongarm->value = '';
+  $export['site_slogan'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_mission';
+  $strongarm->value = '';
+  $export['site_mission'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_footer';
+  $strongarm->value = 'Copyright © 2008-2012 Students Art World';
+  $export['site_footer'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_frontpage';
+  $strongarm->value = 'node';
+  $export['site_frontpage'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_pattern';
   $strongarm->value = '[type]/[title-raw]';
   $export['pathauto_node_pattern'] = $strongarm;
@@ -408,6 +450,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'site_offline';
+  $strongarm->value = 0;
+  $export['site_offline'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'page_compression';
   $strongarm->value = '1';
   $export['page_compression'] = $strongarm;
@@ -437,7 +486,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1327711509;
+  $strongarm->value = 1327722566;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -6023,16 +6072,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => '0',
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,

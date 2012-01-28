@@ -207,7 +207,7 @@ function rsvp_add_guests_action_form($context) {
     '#default_value' => isset($context['guestarray']) ? $context['guestarray'] : '',
     '#required' => TRUE,
     '#rows' => '8',
-    '#description' => t('Enter email addresses or !site usernames that you want to add as guests each in a separate line.', array('!site'=>variable_get("site_name", "drupal"))),
+    '#description' => t('Enter email addresses or !site usernames that you want to add as guests. Each in a separate line.', array('!site'=>variable_get("site_name", "drupal"))),
   );
   
   $send = array(1 => t('Yes'), 0 => t('No'));
