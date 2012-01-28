@@ -43,7 +43,7 @@
   <tbody>
   <?php $index = -1; foreach ($forums as $child_id => $forum): ++$index; ?>
     <tr class='index-<?php echo $index; ?>' id="forum-list-<?php print $child_id; ?>" class="<?php print $forum->zebra; ?>">
-      <td <?php print $forum->is_container ? 'colspan="4" class="container"' : 'class="forum"'; ?>>
+      <td <?php print false ? 'colspan="4" class="container"' : 'class="forum"'; ?>>
         <?php /* Enclose the contents of this cell with X divs, where X is the
                * depth this forum resides at. This will allow us to use CSS
                * left-margin for indenting.
