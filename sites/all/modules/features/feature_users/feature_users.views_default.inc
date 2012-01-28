@@ -1262,7 +1262,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Date (field_event_date) - From date */
   $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['fields']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1344,7 +1344,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['delete_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['delete_node']['empty_zero'] = 0;
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Content: Date (field_event_date) - From date */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['sorts']['field_event_date_value']['field'] = 'field_event_date_value';
@@ -1396,7 +1396,7 @@ function feature_users_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Broken/missing handler */
+  /* Field: Content: Date (field_event_date) - From date */
   $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['fields']['field_event_date_value']['table'] = 'node_data_field_event_date';
   $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';

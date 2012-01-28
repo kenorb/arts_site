@@ -414,21 +414,6 @@ function feature_users_default_fe_block_settings() {
     'cache' => '-1',
   );
 
-  $theme['views-Featured-featured_events'] = array(
-    'module' => 'views',
-    'delta' => 'Featured-featured_events',
-    'theme' => 'saw',
-    'status' => 0,
-    'weight' => '12',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => '-1',
-  );
-
   $theme['views-affe25460ab5a0603ea7b3d6f2f9da88'] = array(
     'module' => 'views',
     'delta' => 'affe25460ab5a0603ea7b3d6f2f9da88',
@@ -1021,21 +1006,6 @@ art/*',
     'cache' => '-1',
   );
 
-  $theme['views-Featured-featured_events'] = array(
-    'module' => 'views',
-    'delta' => 'Featured-featured_events',
-    'theme' => 'saw_pushbutton',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => '-1',
-  );
-
   $theme['views-affe25460ab5a0603ea7b3d6f2f9da88'] = array(
     'module' => 'views',
     'delta' => 'affe25460ab5a0603ea7b3d6f2f9da88',
@@ -1616,21 +1586,6 @@ art/*',
   $theme['views-Featured-block_1'] = array(
     'module' => 'views',
     'delta' => 'Featured-block_1',
-    'theme' => 'garland',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'throttle' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => '-1',
-  );
-
-  $theme['views-Featured-featured_events'] = array(
-    'module' => 'views',
-    'delta' => 'Featured-featured_events',
     'theme' => 'garland',
     'status' => 0,
     'weight' => '0',
