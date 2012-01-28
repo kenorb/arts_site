@@ -23,8 +23,43 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 0;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 0;
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'sort' => array(
+      'bef_format' => 'default',
+      'combine' => 0,
+      'reset' => 0,
+      'reset_label' => '',
+    ),
+    'pager' => array(
+      'bef_format' => 'default',
+    ),
+    'title' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => '',
+        'bef_collapsible' => 0,
+        'bef_filter_description' => '',
+      ),
+    ),
+    'body' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => '',
+        'bef_collapsible' => 0,
+        'bef_filter_description' => '',
+      ),
+    ),
+  );
   $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '20,50,100,200,500';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 1;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'vud_node_widget' => 'vud_node_widget',
@@ -154,6 +189,15 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['sorts']['value']['field'] = 'value';
   $handler->display->display_options['sorts']['value']['relationship'] = 'votingapi_cache';
   $handler->display->display_options['sorts']['value']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['value']['expose']['label'] = 'Most popular';
+  /* Sort criterion: Node: Updated date */
+  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['table'] = 'node';
+  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['changed']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['changed']['expose']['label'] = 'Most recent';
   /* Filter: Node: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -166,6 +210,33 @@ function feature_ideas_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
+  /* Filter: Idea */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['ui_name'] = 'Idea';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Idea';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['optional'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['title']['case'] = 0;
+  /* Filter: Node: Body */
+  $handler->display->display_options['filters']['body']['id'] = 'body';
+  $handler->display->display_options['filters']['body']['table'] = 'node_revisions';
+  $handler->display->display_options['filters']['body']['field'] = 'body';
+  $handler->display->display_options['filters']['body']['operator'] = 'contains';
+  $handler->display->display_options['filters']['body']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['body']['expose']['operator'] = 'body_op';
+  $handler->display->display_options['filters']['body']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['body']['expose']['label'] = 'Description';
+  $handler->display->display_options['filters']['body']['expose']['identifier'] = 'body';
+  $handler->display->display_options['filters']['body']['expose']['optional'] = TRUE;
+  $handler->display->display_options['filters']['body']['expose']['single'] = TRUE;
+  $handler->display->display_options['filters']['body']['case'] = 0;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
@@ -194,6 +265,9 @@ function feature_ideas_views_default_views() {
     t('Vote'),
     t('Idea'),
     t('Submitted by'),
+    t('Most popular'),
+    t('Most recent'),
+    t('Description'),
     t('Page'),
   );
 
