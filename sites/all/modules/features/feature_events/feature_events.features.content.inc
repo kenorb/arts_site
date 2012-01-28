@@ -114,7 +114,7 @@ function feature_events_content_default_fields() {
     'widget_active' => '1',
     'type' => 'date',
     'required' => '0',
-    'multiple' => '1',
+    'multiple' => '0',
     'module' => 'date',
     'active' => '1',
     'granularity' => array(
@@ -127,7 +127,7 @@ function feature_events_content_default_fields() {
     'timezone_db' => 'UTC',
     'tz_handling' => 'site',
     'todate' => 'optional',
-    'repeat' => 1,
+    'repeat' => 0,
     'repeat_collapsed' => '1',
     'default_format' => 'medium',
     'widget' => array(
@@ -135,7 +135,7 @@ function feature_events_content_default_fields() {
       'default_value_code' => '',
       'default_value2' => 'blank',
       'default_value_code2' => '',
-      'input_format' => 'Y-m-d H:i:s',
+      'input_format' => 'm/d/Y - H:i',
       'input_format_custom' => '',
       'increment' => '5',
       'text_parts' => array(),
@@ -144,7 +144,7 @@ function feature_events_content_default_fields() {
       'label' => 'Date',
       'weight' => '-1',
       'description' => '',
-      'type' => 'date_popup_repeat',
+      'type' => 'date_popup',
       'module' => 'date',
     ),
   );
