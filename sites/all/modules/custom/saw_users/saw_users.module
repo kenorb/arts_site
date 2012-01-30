@@ -216,6 +216,15 @@ function saw_users_form_alter (&$form, &$form_state, $form_id)
 {
 	switch ($form_id)
 	{
+		case 'group_node_form':
+	
+			global $user;
+		
+			if (!in_array ('admin', $user -> roles))
+				unset ($form ['og_register']);
+			
+			break;
+			
 		case 'art_node_form':
 		case 'item_node_form':
 		
