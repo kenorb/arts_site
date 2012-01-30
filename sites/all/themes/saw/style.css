@@ -4200,16 +4200,21 @@ ul#chatroom-user-list {
 }
 
 #content-profile-display-education .field-type-content-taxonomy .field-items .field-item:first-child {
-	clear: both;
+	color: #000000;
+	display: list-item !important;
+	float: right;
 	font-weight: bold !important;
-	color: #000;
-	margin-left: 6px;
-	display: block !important;
+	margin-left: 0;
+}
+
+.field-type-content-taxonomy {
+	padding-bottom: 28px;
 }
 
 #content-profile-display-education .field-type-content-taxonomy .field-items .field-item {
-  display: list-item !important;
-  margin-left: 29px;
+	display: inline;
+	float: left;
+	margin-left: 0;
 }
 
 
