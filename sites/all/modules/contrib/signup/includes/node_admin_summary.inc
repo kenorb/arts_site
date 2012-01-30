@@ -1,5 +1,4 @@
 <?php
-// $Id: node_admin_summary.inc,v 1.1.2.2 2009/09/21 05:23:09 dww Exp $
 
 
 /**

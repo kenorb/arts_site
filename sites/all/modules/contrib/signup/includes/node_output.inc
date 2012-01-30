@@ -1,5 +1,4 @@
 <?php
-// $Id: node_output.inc,v 1.1.2.13 2010/12/28 17:48:12 ezrag Exp $
 
 
 /**

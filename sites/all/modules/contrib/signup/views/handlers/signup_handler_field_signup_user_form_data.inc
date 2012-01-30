@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_handler_field_signup_user_form_data.inc,v 1.1.2.1 2009/01/07 00:55:05 dww Exp $
 
 /**
  * Field handler to display custom (site-specific) signup form data.

@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_available_signups.view.php,v 1.1 2009/10/03 01:21:58 dww Exp $
 
 /**
  * @file

@@ -1,13 +1,12 @@
-; $Id: signup_roles.info,v 1.1.2.1 2010/10/14 19:40:45 ezrag Exp $
 name = Signup Roles
 description = "Allows the site to grant one or more roles to users who sign up for nodes."
 dependencies[] = signup
 package = Signup
 core = 6.x
 
-; Information added by drupal.org packaging script on 2011-01-09
-version = "6.x-1.0"
+; Information added by drupal.org packaging script on 2011-12-01
+version = "6.x-1.x-dev"
 core = "6.x"
 project = "signup"
-datestamp = "1294594325"
+datestamp = "1322742631"
 

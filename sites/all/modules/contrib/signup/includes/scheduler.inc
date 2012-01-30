@@ -1,5 +1,4 @@
 <?php
-// $Id: scheduler.inc,v 1.4 2008/11/06 10:20:48 dww Exp $
 
 
 /**

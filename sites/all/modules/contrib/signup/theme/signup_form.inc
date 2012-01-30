@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_form.inc,v 1.3.2.3 2010/12/28 17:28:47 ezrag Exp $
 
 
 /**

@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_handler_filter_signup_user_authenticated.inc,v 1.3.2.2 2008/12/19 01:00:36 dww Exp $
 
 /**
  * Filter signups based on if the user is anonymous or authenticated.

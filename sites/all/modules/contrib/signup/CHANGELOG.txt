@@ -1,4 +1,12 @@
-$Id: CHANGELOG.txt,v 1.115.2.70 2011/01/09 17:26:39 dww Exp $
+
+------------------------
+6.x-1.x-dev
+------------------------
+Bugs fixed since 6.x-1.0:
+= #856604 by dww: Removed duplicate entry in signup_theme().
+= #1020590 by dww: Removed includes/no_views.inc (missed during #582986).
+= #1020758 by dww: Fixed missing table prefix for query (introduced in #856604)
+
 
 ------------------------
 6.x-1.0 (2011-01-09)

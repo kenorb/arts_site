@@ -1,4 +1,3 @@
-/* $Id: admin.settings.js,v 1.3.2.3 2009/01/24 08:52:46 dww Exp $ */
 
 /**
  * Conditionally show/hide settings based on the signup form location.

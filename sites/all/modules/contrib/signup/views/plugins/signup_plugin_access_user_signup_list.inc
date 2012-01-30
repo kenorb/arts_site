@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_plugin_access_user_signup_list.inc,v 1.1 2009/07/22 21:47:01 dww Exp $
 
 /**
  * Validate whether an argument is a user who has permission to view signups.

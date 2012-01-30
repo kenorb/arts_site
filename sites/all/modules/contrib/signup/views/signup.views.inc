@@ -1,5 +1,4 @@
 <?php
-// $Id: signup.views.inc,v 1.4.2.9 2011/01/03 20:27:24 ezrag Exp $
 
 
 /**
@@ -291,6 +290,7 @@ function signup_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_user_current',
       'help' => t('This allows you to filter by whether or not the node was signed up by the logged in user of the view.'),
+      'accept_null' => TRUE,
     ),
   );
 

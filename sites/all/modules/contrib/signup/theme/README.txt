@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.1 2008/11/12 23:22:19 dww Exp $
 
 This directory contains separate include files for all of the theme
 functions provided by the Signup module.

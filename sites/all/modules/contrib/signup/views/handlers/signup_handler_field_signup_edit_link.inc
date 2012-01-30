@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_handler_field_signup_edit_link.inc,v 1.1.2.1 2009/01/25 03:10:58 dww Exp $
 
 /**
  * Field handler to generate a link to edit a given signup.

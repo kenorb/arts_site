@@ -1,5 +1,4 @@
 <?php
-// $Id: node_admin.inc,v 1.1.2.6 2010/12/28 17:48:12 ezrag Exp $
 
 
 /**

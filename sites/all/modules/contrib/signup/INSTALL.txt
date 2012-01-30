@@ -1,4 +1,3 @@
-$Id: INSTALL.txt,v 1.13.2.3 2010/12/28 17:48:12 ezrag Exp $
 
 It is assumed that you have Drupal up and running.  Be sure to check
 the http://drupal.org web site if you need assistance.  If you run

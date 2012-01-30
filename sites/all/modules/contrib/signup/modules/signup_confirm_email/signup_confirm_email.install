@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_confirm_email.install,v 1.1 2009/08/03 20:59:45 dww Exp $
 
 /**
  * Rebuild the site's menu to remove the stale menu item.

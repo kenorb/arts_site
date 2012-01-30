@@ -1,5 +1,4 @@
 <?php
-// $Id: signup.module,v 1.205.2.45 2011/01/03 20:45:19 ezrag Exp $
 
 
 /**
@@ -122,13 +121,6 @@ function signup_theme() {
       ),
     ),
     'signup_node_output_header' => array(
-      'file' => 'node.inc',
-      'path' => $path,
-      'arguments' => array(
-        'node' => NULL,
-      ),
-    ),
-    'signup_node_title' => array(
       'file' => 'node.inc',
       'path' => $path,
       'arguments' => array(
@@ -640,7 +632,7 @@ function signup_user($type, &$edit, &$account, $category = NULL) {
   switch ($type) {
     case 'register':
       // Get a list of nodes that should appear on the user registration form.
-      $query = db_query(db_rewrite_sql("SELECT n.nid FROM {node} n INNER JOIN signup s on n.nid=s.nid WHERE s.user_reg_form = 1 AND s.status = 1 AND n.status = 1"));
+      $query = db_query(db_rewrite_sql("SELECT n.nid FROM {node} n INNER JOIN {signup} s on n.nid = s.nid WHERE s.user_reg_form = 1 AND s.status = 1 AND n.status = 1"));
       while ($result = db_fetch_object($query)) {
         $nids[] = $result->nid;
       }

@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_user_vbo_admin_list.view.php,v 1.1.2.2 2010/12/28 19:50:30 ezrag Exp $
 
 /**
  * @file

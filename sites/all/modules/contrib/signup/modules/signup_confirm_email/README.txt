@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.1 2009/07/24 17:51:46 dww Exp $
 
 The Signup confirm e-mail module (signup_email_confirm) injects an
 e-mail address field on the signup form for authenticated users to

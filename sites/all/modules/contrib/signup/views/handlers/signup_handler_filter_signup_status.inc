@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_handler_filter_signup_status.inc,v 1.2.2.2 2008/12/19 01:00:36 dww Exp $
 
 /**
  * Filter nodes based on their signup status (open vs. closed).

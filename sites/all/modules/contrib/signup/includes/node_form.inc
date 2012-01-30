@@ -1,5 +1,4 @@
 <?php
-// $Id: node_form.inc,v 1.4.2.5 2011/01/03 20:45:19 ezrag Exp $
 
 
 /**

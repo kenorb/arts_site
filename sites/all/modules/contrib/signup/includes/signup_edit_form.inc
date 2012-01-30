@@ -1,5 +1,4 @@
 <?php
-// $Id: signup_edit_form.inc,v 1.1.2.6 2009/09/19 00:33:42 dww Exp $
 
 
 /**

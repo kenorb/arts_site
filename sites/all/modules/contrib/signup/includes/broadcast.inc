@@ -1,5 +1,4 @@
 <?php
-// $Id: broadcast.inc,v 1.1.2.3 2009/08/14 23:26:10 dww Exp $
 
 
 /**
