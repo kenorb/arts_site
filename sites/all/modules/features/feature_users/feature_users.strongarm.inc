@@ -486,7 +486,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1327722566;
+  $strongarm->value = 1327941082;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -761,7 +761,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'signup_fieldset_collapsed';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['signup_fieldset_collapsed'] = $strongarm;
 
   $strongarm = new stdClass;
