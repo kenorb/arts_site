@@ -4199,21 +4199,32 @@ ul#chatroom-user-list {
 	margin-bottom: 10px;
 }
 
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item:first-child {
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item {
+	margin-top: 20px;
 	color: #000000;
-	display: list-item !important;
-	float: right;
+	float: right !important;
 	font-weight: bold !important;
-	margin-left: 0;
+	margin-bottom: -17px;
+	position: relative;
+	top: 2px;	
 }
+
+#content-profile-display-education .field-type-content-taxonomy .field-items .field-item:last-child {
+	margin-top: 0;
+	float: left !important;
+	font-weight: normal !important;
+	display: block !important;
+}
+
 
 .field-type-content-taxonomy {
 	padding-bottom: 28px;
 }
 
 #content-profile-display-education .field-type-content-taxonomy .field-items .field-item {
-	display: inline;
-	float: left;
+	clear: both;
+	display: block !important;
+	float: right !important;
 	margin-left: 0;
 }
 
@@ -4268,4 +4279,69 @@ div.fieldgroup .content {
 
 .node-unpublished {
     background-color: transparent;
+}
+
+
+.dropbox {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 2px solid #FFFFFF;
+	border-radius: 9px 9px 9px 9px;
+	box-shadow: 2px 0 3px #DDDDDD;
+	display: inline-block;
+	margin: 6px 0;
+}
+
+.hierarchical-select-wrapper .dropbox table
+{
+	border: 0px !important;
+	background: #fff;
+}
+
+tr.dropbox-entry.odd {
+	background: inherit;
+}
+
+fieldset {
+  clear: left;
+  margin: 8px 0;
+  position: static;
+	margin-top: 5px;
+}
+
+.controlled-field {
+  height: auto !important;
+}
+ 
+
+.hierarchical-select-wrapper .dropbox {
+    display: inline-block;
+    margin: 0 0 0 8px;
+}
+
+.hierarchical-select .selects select {
+	width: 200px;
+}
+
+td.dropbox-remove *, td.dropbox-remove a:link, td.dropbox-remove a:visited
+{
+    color: #FF2288;
+    text-decoration: none;
+}
+
+#conditional-field-type-of-education .form-checkboxes .form-item {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.dropbox-selected-item {
+    font-weight: bold;
+		color: #000;
+}
+
+.dropbox-entry.first.last.dropbox-is-empty td {
+	color: #f66;
+}
+
+.dropbox table {
+	width: 400px !important;
 }

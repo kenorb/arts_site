@@ -22,10 +22,6 @@ function saw_theme (&$existing, $type, $theme, $path)
 
 function saw_user_register ($form)
 {
-
-	print_r ($form);
-	exit;
-
 	return _phptemplate_callback ('user_register', array ('form' => $form));
 }
 
@@ -72,10 +68,55 @@ function saw_preprocess_forum_list (&$variables) {
 	$numKeys			= count ($keys);
 	
 	for ($i = 0; $i < count ($keys); $i++)
-	{
-		if ($variables ['forums'] [$keys [$i]] -> depth == 0)
+	// Traversing all the forums
+		if ($variables ['forums'] [$keys [$i]])
 		{
-			unset ($variables ['forums'] [$keys [$i]]);
+		// This forum is a container
+			for ($j = 0; $j < count ($keys); $j++)
+			// Traversing all the forums again
+				if (@$variables ['forums'] [$keys [$j]] -> parents)
+				{
+					//var_dump ($variables ['forums'] [$keys [$j]]);
+
+					$unsetted = false;
+					
+					foreach ($variables ['forums'] [$keys [$j]] -> parents as $parent)
+					// Traversing this forum parents
+					{
+						if (($parent != 0 && in_array ($parent, $keys)) || $parent == $keys [$i])
+						// If this forum has visible parent container then the forum is destroyed
+						{
+							$variables ['forums'] [$keys [$i]] -> is_container = true;
+							
+							unset ($variables ['forums'] [$keys [$j]]);
+							
+							$unsetted = true;
+							
+							break;
+							
+						}
+						else
+						if ($parent == 0)
+							$variables ['forums'] [$keys [$i]] -> is_container = true;
+					}
+					
+					if ($unsetted)
+					{
+						$i = -1;
+						
+						break;
+					}
+				}
+			}
+
+	$keys					= array_keys ($variables ['forums']);
+	
+	for ($i = 0; $i < count ($keys); $i++)
+	{
+		if ($variables ['forums'] [$keys [$i]] -> is_container)
+		{
+			$variables ['forums'] [$keys [$i]] -> num_topics	= '';
+			$variables ['forums'] [$keys [$i]] -> num_posts		= '';
 		}
 	}
 }

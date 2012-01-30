@@ -93,7 +93,6 @@ function saw_users_get_user_stats ($userId = null)
 function _phptemplate_variables ($hook, $vars = array()) 
 {
   if ($hook == 'page') {
-	exit;
     saw_removetab ('personal heartbeat', $vars);
   }
 
@@ -214,8 +213,30 @@ function saw_users_menu_alter (&$items)
 
 function saw_users_form_alter (&$form, &$form_state, $form_id)
 {
+
 	switch ($form_id)
 	{
+	
+		case 'education_node_form':
+		
+			unset ($form ['title']);
+			unset ($form ['taxonomy']);
+			
+			$form ['print'] ['#attributes'] = array ('style' => 'display: none');
+			$form ['menu'] ['#attributes'] = array ('style' => 'display: none');
+			$form ['comment_settings'] ['#attributes'] = array ('style' => 'display: none');
+			$form ['author'] ['#attributes'] = array ('style' => 'display: none');
+			$form ['options'] ['#attributes'] = array ('style' => 'display: none');
+			$form ['revision_information'] ['#attributes'] = array ('style' => 'display: none');
+			
+			unset ($form ['#node'] -> nodewords);
+			unset ($form ['custom_breadcrumbs']);
+			unset ($form ['#content_extra_fields']);
+			
+
+		
+			break;
+	
 		case 'group_node_form':
 	
 			global $user;

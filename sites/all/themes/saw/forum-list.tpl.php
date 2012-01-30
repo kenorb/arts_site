@@ -35,9 +35,11 @@
   <thead>
     <tr>
       <th class="th-forum"><?php print t('Forum'); ?></th>
-      <th class="th-topics"><?php print t('Topics');?></th>
-      <th class="th-posts"><?php print t('Posts'); ?></th>
-      <th class="th-last-post"><?php print t('Last post'); ?></th>
+			<?php if (!@reset ($forums)->is_container): ?>
+				<th class="th-topics"><?php print t('Topics');?></th>
+				<th class="th-posts"><?php print t('Posts'); ?></th>
+				<th class="th-last-post"><?php print t('Last post'); ?></th>
+			<?php endif; ?>
     </tr>
   </thead>
   <tbody>
@@ -57,15 +59,17 @@
       </td>
       <?php if (true): ?>
 				<?php ?>
-        <td class="topics">
-          <?php print $forum->num_topics ?>
-          <?php if ($forum->new_topics): ?>
-            <br />
-            <a href="<?php print $forum->new_url; ?>"><?php print $forum->new_text; ?></a>
-          <?php endif; ?>
-        </td>
-        <td class="posts"><?php print $forum->num_posts ?></td>
-        <td class="last-reply"><?php print $forum->last_reply ?></td>
+				<?php if (!$forum->is_container): ?>
+					<td class="topics">
+						<?php print $forum->num_topics ?>
+						<?php if ($forum->new_topics): ?>
+							<br />
+							<a href="<?php print $forum->new_url; ?>"><?php print $forum->new_text; ?></a>
+						<?php endif; ?>
+					</td>
+					<td class="posts"><?php print $forum->num_posts ?></td>
+					<td class="last-reply"><?php print $forum->last_reply ?></td>
+				<?php endif; ?>
       <?php endif; ?>
     </tr>
   <?php endforeach; ?>
