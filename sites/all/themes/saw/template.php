@@ -45,7 +45,6 @@ function saw_preprocess_page (&$vars)
 	removetab ('Track Page Visits', $vars);
 	removetab ('friends_gallery', $vars);
 	removetab ('edit panel', $vars);
-	removetab ('signups', $vars);
 	removetab ('votes', $vars);
 	removetab ('activity', $vars);
 }
