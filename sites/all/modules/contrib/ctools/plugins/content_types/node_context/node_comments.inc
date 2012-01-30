@@ -1,5 +1,4 @@
 <?php
-// $Id: node_comments.inc,v 1.2.2.7 2010/10/29 20:13:15 merlinofchaos Exp $
 
 if (module_exists('comment')) {
   /**
@@ -24,10 +23,6 @@ if (module_exists('comment')) {
 
 function ctools_node_comments_content_type_render($subtype, $conf, $panel_args, $context) {
   $node = isset($context->data) ? drupal_clone($context->data) : NULL;
-	
-  if (empty($node) && @$panel_args[0])
-    $node = node_load (array('uid' => $panel_args[0], 'type' => 'profile'));
-
   $block = new stdClass();
   $block->module = 'comments';
   $block->delta  = $node->nid;

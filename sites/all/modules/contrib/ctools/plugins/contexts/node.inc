@@ -1,5 +1,4 @@
 <?php
-// $Id: node.inc,v 1.11.2.5 2010/05/20 01:43:03 sdboyer Exp $
 
 /**
  * @file
@@ -28,6 +27,7 @@ $plugin = array(
     '#type' => 'textfield',
     '#description' => t('Enter the node ID of a node for this context.'),
   ),
+  'placeholder name' => 'nid',
 );
 
 /**

@@ -1,5 +1,4 @@
 <?php
-// $Id: token.inc,v 1.1.2.2 2010/02/23 21:00:59 merlinofchaos Exp $
 
 /**
  * @file
