@@ -99,9 +99,22 @@ input[disabled], select[disabled], textarea[disabled] {
 	color: #888;
 }
 
+table.sticky-enabled {
+	border: 1px solid #ddd !important;
+}
+
 table.sticky-enabled tr {
 	background: none;
-	border: none;
+	border-bottom: 1px solid #dde !important;
+}
+
+table.sticky-enabled thead tr {
+	background: none;
+	border-bottom: 1px solid #ddd !important;
+}
+
+table.sticky-enabled tr:hover {
+	background: #ffb !important;
 }
 
 input[type=checkbox],
@@ -759,6 +772,7 @@ input[type=submit],
 .comment .reply a,
 a.author-pane-link,
 a.author-privatemsg-icon,
+#continue-shopping-link a,
 .node ul.links li a {
     cursor: pointer;
     background: url("images/buttons.png") repeat-x scroll 0 0 transparent;
@@ -803,6 +817,7 @@ span.flag-throbber {
 
 .comment .reply a,
 a.author-pane-link,
+#continue-shopping-link a,
 a.author-privatemsg-icon {
 	padding: 10px 15px !important;
 }
@@ -821,6 +836,7 @@ input[type=button]:hover,
 input[type=submit]:hover,
 .comment .reply a:hover,
 a.author-pane-link:hover,
+#continue-shopping-link a:hover,
 a.author-privatemsg-icon:hover {
 	border-color: #F6D2CC #F6D2CC #F2BFB6;
 	color: #D75A46 !important;
@@ -1850,6 +1866,7 @@ div.admin-panel .body {
 
   #forum,
   table.views-table {
+		border: 1px solid #ddd;
   }
   
   #forum table {
@@ -3252,9 +3269,49 @@ div.admin-panel .body {
 .views-table,
 #main .sticky-enabled {
 	width: 100%;
-	border-collapse: collapse;
-	margin: 6px;
-	border: 1px solid #ddd !important;
+	border-collapse: collapse !important;
+	margin: 0px;
+	border: 0;
+}
+
+
+#cart-form-products td,
+#uc-cart-pane-quotes .solid-border {
+	padding: 4px 10px !important;
+}
+
+
+#uc-paypal-ec-form {
+	float: left;
+}
+
+#cart-form-buttons {
+	background-color: #EEEEEE;
+	border: 1px solid #CCCCEE;
+	border-radius: 7px 7px 7px 7px;
+	margin: 0.5em 0;
+	padding: 10px;
+	text-align: right;
+}
+
+#continue-shopping-link {
+}
+
+#cart-form-products,
+#uc-cart-pane-quotes .solid-border {
+	border-radius: 7px 7px 7px 7px;
+	background-color: rgba(255, 255, 255, 0.4);
+	border: 1px solid #ccc;
+}
+
+#uc-cart-pane-quotes {
+	width: 400px;
+	margin: 0 auto;
+}
+
+#cart-form-products {
+	border: 0;
+	box-shadow: 0 0 0px;
 }
 
 .views-table th,
@@ -3262,6 +3319,7 @@ div.admin-panel .body {
 	padding: 7px 5px;
 	background: #eaeff3 url('images/table-th-background.png') repeat-x;
 	border: 0;
+	border-bottom: 1px solid #ccc;
 }
 
 #features-form-links a {
@@ -4386,4 +4444,16 @@ fieldset.location .description {
 	padding-left: 0px;
 	text-align: center;
 	display: block;
+}
+
+#uc-google-checkout-cart-form {
+	margin-bottom: 18px;
+}
+
+#uc-google-checkout-cart-form div {
+	margin-top: 15px;
+}
+
+#uc-paypal-ec-form > div {
+	margin-top: 16px
 }
