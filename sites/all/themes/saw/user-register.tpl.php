@@ -46,8 +46,8 @@
 	$list = array (
 		'group_basic',
 		'user_registration_help',
-		'account',
 		'autoassignrole_user',
+		'account',
 		'legal',
 		'submit'
 	);
