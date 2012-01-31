@@ -8,7 +8,7 @@ $configs = array();
 $config = array(
   'config_id'       => 'content-taxonomy-field_college',
   'save_lineage'    => 1,
-  'enforce_deepest' => 0,
+  'enforce_deepest' => 1,
   'entity_count'    => 0,
   'require_entity'  => 0,
   'resizable'       => 1,
@@ -21,7 +21,7 @@ $config = array(
     ),
   ),
   'dropbox' => array(
-    'status'    => 0,
+    'status'    => 1,
     'title'     => 'All selections',
     'limit'     => 0,
     'reset_hs'  => 1,
@@ -60,7 +60,7 @@ $config = array(
     ),
   ),
   'dropbox' => array(
-    'status'    => 0,
+    'status'    => 1,
     'title'     => 'All selections',
     'limit'     => 0,
     'reset_hs'  => 1,
@@ -95,11 +95,10 @@ $config = array(
     'labels' => array(
       0 => '',
       1 => '',
-      2 => '',
     ),
   ),
   'dropbox' => array(
-    'status'    => 0,
+    'status'    => 1,
     'title'     => 'All selections',
     'limit'     => 0,
     'reset_hs'  => 1,
@@ -109,12 +108,10 @@ $config = array(
     'item_types' => array(
       0 => '',
       1 => '',
-      2 => '',
     ),
     'allowed_levels' => array(
       0 => 1,
       1 => 1,
-      2 => 1,
     ),
     'allow_new_levels' => 0,
     'max_levels'       => 2,
@@ -138,7 +135,7 @@ $config = array(
     ),
   ),
   'dropbox' => array(
-    'status'    => 0,
+    'status'    => 1,
     'title'     => 'All selections',
     'limit'     => 0,
     'reset_hs'  => 1,

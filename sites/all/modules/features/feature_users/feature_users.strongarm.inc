@@ -423,14 +423,14 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_picture_dimensions';
-  $strongarm->value = '85x85';
+  $strongarm->value = '256x256';
   $export['user_picture_dimensions'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_picture_file_size';
-  $strongarm->value = '30';
+  $strongarm->value = '80';
   $export['user_picture_file_size'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -486,7 +486,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1327941082;
+  $strongarm->value = 1328024573;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -898,7 +898,7 @@ function feature_users_strongarm() {
       ),
     ),
     'dropbox' => array(
-      'status' => 0,
+      'status' => 1,
       'title' => 'All selections',
       'limit' => '0',
       'reset_hs' => '1',
@@ -1020,7 +1020,7 @@ function feature_users_strongarm() {
       ),
     ),
     'dropbox' => array(
-      'status' => 0,
+      'status' => 1,
       'title' => 'All selections',
       'limit' => '0',
       'reset_hs' => '1',
@@ -1050,7 +1050,7 @@ function feature_users_strongarm() {
   $strongarm->value = array(
     'config_id' => 'content-taxonomy-field_college',
     'save_lineage' => '1',
-    'enforce_deepest' => '0',
+    'enforce_deepest' => '1',
     'entity_count' => '0',
     'require_entity' => '0',
     'resizable' => '1',
@@ -1063,7 +1063,7 @@ function feature_users_strongarm() {
       ),
     ),
     'dropbox' => array(
-      'status' => 0,
+      'status' => 1,
       'title' => 'All selections',
       'limit' => '0',
       'reset_hs' => '1',
@@ -3727,7 +3727,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_profile';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['comment_subject_field_profile'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -3991,80 +3991,80 @@ function feature_users_strongarm() {
   $strongarm->name = 'image_captcha_fonts_preview_map_cache';
   $strongarm->value = array(
     'a60fb7b7785018bc608512ddf0ef9669' => (object) array(
-  'filename' => 'sites/all/modules/contrib/captcha/image_captcha/fonts/Tuffy/Tuffy.ttf',
-  'basename' => 'Tuffy.ttf',
-  'name' => 'Tuffy',
-),
+      'filename' => 'sites/all/modules/contrib/captcha/image_captcha/fonts/Tuffy/Tuffy.ttf',
+      'basename' => 'Tuffy.ttf',
+      'name' => 'Tuffy',
+    ),
     '2b55c667e0cf90112fd3ad79bf7a634e' => (object) array(
-  'filename' => 'sites/all/modules/contrib/captcha/image_captcha/fonts/Tuffy/Tuffy_Bold.ttf',
-  'basename' => 'Tuffy_Bold.ttf',
-  'name' => 'Tuffy_Bold',
-),
+      'filename' => 'sites/all/modules/contrib/captcha/image_captcha/fonts/Tuffy/Tuffy_Bold.ttf',
+      'basename' => 'Tuffy_Bold.ttf',
+      'name' => 'Tuffy_Bold',
+    ),
     'f36285dfa81137d37fe06003d5568523' => (object) array(
-  'filename' => 'sites/all/modules/contrib/captcha/image_captcha/fonts/Tesox/tesox.ttf',
-  'basename' => 'tesox.ttf',
-  'name' => 'tesox',
-),
+      'filename' => 'sites/all/modules/contrib/captcha/image_captcha/fonts/Tesox/tesox.ttf',
+      'basename' => 'tesox.ttf',
+      'name' => 'tesox',
+    ),
     '33135439efddfbd5df79c81d836100c2' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/akruti2.ttf',
-  'basename' => 'akruti2.ttf',
-  'name' => 'akruti2',
-),
+      'filename' => 'sites/all/libraries/fonts/akruti2.ttf',
+      'basename' => 'akruti2.ttf',
+      'name' => 'akruti2',
+    ),
     'f536dc7aa748aa7a6491d14485149087' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TAMu_Kalyani.ttf',
-  'basename' => 'TAMu_Kalyani.ttf',
-  'name' => 'TAMu_Kalyani',
-),
+      'filename' => 'sites/all/libraries/fonts/TAMu_Kalyani.ttf',
+      'basename' => 'TAMu_Kalyani.ttf',
+      'name' => 'TAMu_Kalyani',
+    ),
     'e817889009544b15e747bb176330e3c5' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TSCu_paranarb.ttf',
-  'basename' => 'TSCu_paranarb.ttf',
-  'name' => 'TSCu_paranarb',
-),
+      'filename' => 'sites/all/libraries/fonts/TSCu_paranarb.ttf',
+      'basename' => 'TSCu_paranarb.ttf',
+      'name' => 'TSCu_paranarb',
+    ),
     '2443e1707e447073d66b84a7c49f61eb' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/akruti1b.ttf',
-  'basename' => 'akruti1b.ttf',
-  'name' => 'akruti1b',
-),
+      'filename' => 'sites/all/libraries/fonts/akruti1b.ttf',
+      'basename' => 'akruti1b.ttf',
+      'name' => 'akruti1b',
+    ),
     '32737c4397d1fa834a551cb34c0bc99c' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TSCu_Comic.ttf',
-  'basename' => 'TSCu_Comic.ttf',
-  'name' => 'TSCu_Comic',
-),
+      'filename' => 'sites/all/libraries/fonts/TSCu_Comic.ttf',
+      'basename' => 'TSCu_Comic.ttf',
+      'name' => 'TSCu_Comic',
+    ),
     '583c25344c042ff6f30365646fd9e4fb' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TSCu_paranari.ttf',
-  'basename' => 'TSCu_paranari.ttf',
-  'name' => 'TSCu_paranari',
-),
+      'filename' => 'sites/all/libraries/fonts/TSCu_paranari.ttf',
+      'basename' => 'TSCu_paranari.ttf',
+      'name' => 'TSCu_paranari',
+    ),
     '9db03305d1811d0240e45c88615de86f' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/akruti2b.ttf',
-  'basename' => 'akruti2b.ttf',
-  'name' => 'akruti2b',
-),
+      'filename' => 'sites/all/libraries/fonts/akruti2b.ttf',
+      'basename' => 'akruti2b.ttf',
+      'name' => 'akruti2b',
+    ),
     'e7212d62cb413a1eaa41965386041077' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TSCu_Paranar.ttf',
-  'basename' => 'TSCu_Paranar.ttf',
-  'name' => 'TSCu_Paranar',
-),
+      'filename' => 'sites/all/libraries/fonts/TSCu_Paranar.ttf',
+      'basename' => 'TSCu_Paranar.ttf',
+      'name' => 'TSCu_Paranar',
+    ),
     'd1d8265a8afb6eb19c2abc3d8a848198' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TSCu_Times.ttf',
-  'basename' => 'TSCu_Times.ttf',
-  'name' => 'TSCu_Times',
-),
+      'filename' => 'sites/all/libraries/fonts/TSCu_Times.ttf',
+      'basename' => 'TSCu_Times.ttf',
+      'name' => 'TSCu_Times',
+    ),
     '620cf0147b3420f646454a390cd58824' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/akruti1.ttf',
-  'basename' => 'akruti1.ttf',
-  'name' => 'akruti1',
-),
+      'filename' => 'sites/all/libraries/fonts/akruti1.ttf',
+      'basename' => 'akruti1.ttf',
+      'name' => 'akruti1',
+    ),
     'b04e870ab015d2e35ac0cfe5ab004c6e' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TAMu_Kadampari.ttf',
-  'basename' => 'TAMu_Kadampari.ttf',
-  'name' => 'TAMu_Kadampari',
-),
+      'filename' => 'sites/all/libraries/fonts/TAMu_Kadampari.ttf',
+      'basename' => 'TAMu_Kadampari.ttf',
+      'name' => 'TAMu_Kadampari',
+    ),
     '5ce706cc868a19359424616fdbba9d94' => (object) array(
-  'filename' => 'sites/all/libraries/fonts/TAMu_Maduram.ttf',
-  'basename' => 'TAMu_Maduram.ttf',
-  'name' => 'TAMu_Maduram',
-),
+      'filename' => 'sites/all/libraries/fonts/TAMu_Maduram.ttf',
+      'basename' => 'TAMu_Maduram.ttf',
+      'name' => 'TAMu_Maduram',
+    ),
   );
   $export['image_captcha_fonts_preview_map_cache'] = $strongarm;
 
@@ -6856,16 +6856,16 @@ function feature_users_strongarm() {
     'display' => array(
       'weight' => '0',
       'hide' => array(
-        'name' => 1,
+        'name' => 0,
         'street' => 0,
-        'additional' => 1,
+        'additional' => 0,
         'city' => 0,
-        'province' => 1,
+        'province' => 0,
         'postal_code' => 0,
         'country' => 0,
         'locpick' => 0,
         'phone' => 0,
-        'province_name' => 1,
+        'province_name' => 0,
         'country_name' => 0,
         'map_link' => 0,
         'coords' => 0,
@@ -7202,11 +7202,10 @@ function feature_users_strongarm() {
       'labels' => array(
         0 => '',
         1 => '',
-        2 => '',
       ),
     ),
     'dropbox' => array(
-      'status' => 0,
+      'status' => 1,
       'title' => 'All selections',
       'limit' => '0',
       'reset_hs' => '1',
@@ -7216,12 +7215,10 @@ function feature_users_strongarm() {
       'item_types' => array(
         0 => '',
         1 => '',
-        2 => '',
       ),
       'allowed_levels' => array(
         0 => 1,
         1 => 1,
-        2 => 1,
       ),
       'allow_new_levels' => 0,
       'max_levels' => '2',
@@ -7263,6 +7260,200 @@ function feature_users_strongarm() {
   $strongarm->name = 'comment_page';
   $strongarm->value = '0';
   $export['comment_page'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_location';
+  $strongarm->value = 'sites/all/libraries/shadowbox';
+  $export['shadowbox_location'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_active_type';
+  $strongarm->value = 'disable';
+  $export['shadowbox_active_type'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_pages';
+  $strongarm->value = 'admin*
+img_assist*
+node/add/*
+node/*/edit
+users/*
+user/*';
+  $export['shadowbox_pages'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_animate';
+  $strongarm->value = 1;
+  $export['shadowbox_animate'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_animate_fade';
+  $strongarm->value = 1;
+  $export['shadowbox_animate_fade'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_animation_sequence';
+  $strongarm->value = 'wh';
+  $export['shadowbox_animation_sequence'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_resize_duration';
+  $strongarm->value = '0.35';
+  $export['shadowbox_resize_duration'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_fade_duration';
+  $strongarm->value = '0.35';
+  $export['shadowbox_fade_duration'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_initial_height';
+  $strongarm->value = 160;
+  $export['shadowbox_initial_height'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_initial_width';
+  $strongarm->value = 320;
+  $export['shadowbox_initial_width'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_overlay_color';
+  $strongarm->value = '000';
+  $export['shadowbox_overlay_color'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_overlay_opacity';
+  $strongarm->value = '0.85';
+  $export['shadowbox_overlay_opacity'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_viewport_padding';
+  $strongarm->value = 20;
+  $export['shadowbox_viewport_padding'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_enabled';
+  $strongarm->value = 1;
+  $export['shadowbox_enabled'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_display_nav';
+  $strongarm->value = 1;
+  $export['shadowbox_display_nav'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_continuous_galleries';
+  $strongarm->value = 0;
+  $export['shadowbox_continuous_galleries'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_display_counter';
+  $strongarm->value = 1;
+  $export['shadowbox_display_counter'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_counter_type';
+  $strongarm->value = 'default';
+  $export['shadowbox_counter_type'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_counter_limit';
+  $strongarm->value = '10';
+  $export['shadowbox_counter_limit'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_slideshow_delay';
+  $strongarm->value = '0';
+  $export['shadowbox_slideshow_delay'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_autoplay_movies';
+  $strongarm->value = 1;
+  $export['shadowbox_autoplay_movies'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_show_movie_controls';
+  $strongarm->value = 1;
+  $export['shadowbox_show_movie_controls'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_overlay_listen';
+  $strongarm->value = 1;
+  $export['shadowbox_overlay_listen'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_enable_keys';
+  $strongarm->value = 1;
+  $export['shadowbox_enable_keys'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_handle_oversize';
+  $strongarm->value = 'resize';
+  $export['shadowbox_handle_oversize'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_handle_unsupported';
+  $strongarm->value = 'link';
+  $export['shadowbox_handle_unsupported'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'shadowbox_use_sizzle';
+  $strongarm->value = 0;
+  $export['shadowbox_use_sizzle'] = $strongarm;
 
   return $export;
 }
