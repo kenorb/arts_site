@@ -51,6 +51,9 @@
 		'legal',
 		'submit'
 	);
+	
+	print drupal_render ($form ['autoassignrole_user']);
+	print drupal_render ($form ['account']);
 		
 	
 	foreach ($list as $name)
