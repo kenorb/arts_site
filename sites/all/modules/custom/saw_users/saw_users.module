@@ -213,10 +213,8 @@ function saw_users_menu_alter (&$items)
 
 function saw_users_form_alter (&$form, &$form_state, $form_id)
 {
-
 	switch ($form_id)
 	{
-	
 		case 'education_node_form':
 		
 			unset ($form ['title']);
@@ -276,6 +274,7 @@ function saw_users_form_alter (&$form, &$form_state, $form_id)
 					'#weight'					=> 24.5
 				)
 			);
+			
 
 			$form ['#validate'] []	= 'saw_users_node_stock_level_validate';
 			$form ['#submit'] []		= 'saw_users_node_stock_level_submit';

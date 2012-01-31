@@ -4345,3 +4345,7 @@ td.dropbox-remove *, td.dropbox-remove a:link, td.dropbox-remove a:visited
 .dropbox table {
 	width: 400px !important;
 }
+
+fieldset.location .description {
+	display: none;
+}
