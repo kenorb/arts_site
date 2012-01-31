@@ -52,11 +52,13 @@
 										<tr class="bottom">
 											<td colspan="3" class="items">
 												<?php
+												
 													$menu = module_invoke('menu', 'block', 'view', 'menu-profilemenu');
 													
-													saw_users_alter_profilemenu ($menu);
+													saw_users_alter_profilemenu ($menu ['content']);
 													
 													echo str_replace ('>-<', '><div class="separator"></div><', $menu ['content']); ?>
+													
 											</td>
 										</tr>
 									</table>
