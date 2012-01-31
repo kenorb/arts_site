@@ -486,7 +486,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1328024573;
+  $strongarm->value = 1328039123;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -939,7 +939,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cckfp_values';
-  $strongarm->value = 'a:2:{s:9:"education";a:5:{s:23:"field_type_of_education";i:1;s:12:"field_school";i:1;s:13:"field_college";i:1;s:16:"field_university";i:1;s:18:"field_school_other";i:0;}s:7:"profile";a:7:{s:11:"group_basic";i:1;s:14:"field_about_me";i:1;s:15:"field_full_name";i:1;s:16:"field_first_name";i:1;s:15:"field_last_name";i:1;s:12:"field_gender";i:1;s:14:"field_birthday";i:1;}}';
+  $strongarm->value = 'a:2:{s:9:"education";a:5:{s:23:"field_type_of_education";i:1;s:12:"field_school";i:1;s:13:"field_college";i:1;s:16:"field_university";i:1;s:18:"field_school_other";i:0;}s:7:"profile";a:7:{s:11:"group_basic";i:0;s:14:"field_about_me";i:1;s:15:"field_full_name";i:1;s:16:"field_first_name";i:1;s:15:"field_last_name";i:1;s:12:"field_gender";i:1;s:14:"field_birthday";i:1;}}';
   $export['cckfp_values'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -2259,8 +2259,7 @@ function feature_users_strongarm() {
     'admin_user_create_use' => 0,
     'registration_hide' => array(
       0 => 'field_about_me',
-      1 => 'field_location',
-      2 => 'other',
+      1 => 'other',
     ),
     'autoassignrole_use' => array(),
   );
