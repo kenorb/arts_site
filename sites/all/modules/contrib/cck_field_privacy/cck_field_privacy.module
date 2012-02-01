@@ -322,6 +322,11 @@ function _cck_field_privacy_add_padlock(&$elements, &$needpadlock) {
     if (isset($elements[$field]) && $elements[$field]) {    
       if (array_key_exists($field, $needpadlock)) { // form element is handled by cckfp
         $lockimg = "<a href='#' id='". $field ."link'><img src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
+				if ($elements[$field]['tids'])
+				{
+					$elements[$field]['tids']['#title'] .= " " . $lockimg;
+				}
+				else
         if (isset($elements[$field][0]['#type'])) { // content sub field first
           switch ($elements[$field][0]['#type']) {
             case "link" : // link widget
