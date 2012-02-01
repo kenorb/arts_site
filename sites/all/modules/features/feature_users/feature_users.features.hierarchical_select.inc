@@ -188,5 +188,125 @@ $config = array(
 );
 
 $configs['taxonomy-4'] = $config;
+$config = array(
+  'config_id'       => 'taxonomy-views-Arts-default-tid',
+  'save_lineage'    => 0,
+  'enforce_deepest' => 0,
+  'entity_count'    => 0,
+  'require_entity'  => 0,
+  'resizable'       => 1,
+  'level_labels' => array(
+    'status' => 0,
+    'labels' => array(
+    ),
+  ),
+  'dropbox' => array(
+    'status'    => 0,
+    'title'     => 'All selections',
+    'limit'     => 0,
+    'reset_hs'  => 1,
+  ),
+  'editability' => array(
+    'status' => 0,
+    'item_types' => array(
+    ),
+    'allowed_levels' => array(
+    ),
+    'allow_new_levels' => 0,
+    'max_levels'       => 3,
+  ),
+);
+
+$configs['taxonomy-views-Arts-default-tid'] = $config;
+$config = array(
+  'config_id'       => 'taxonomy-views-Arts-default-tid_1',
+  'save_lineage'    => 0,
+  'enforce_deepest' => 0,
+  'entity_count'    => 0,
+  'require_entity'  => 0,
+  'resizable'       => 1,
+  'level_labels' => array(
+    'status' => 0,
+    'labels' => array(
+    ),
+  ),
+  'dropbox' => array(
+    'status'    => 0,
+    'title'     => 'All selections',
+    'limit'     => 0,
+    'reset_hs'  => 1,
+  ),
+  'editability' => array(
+    'status' => 0,
+    'item_types' => array(
+    ),
+    'allowed_levels' => array(
+    ),
+    'allow_new_levels' => 0,
+    'max_levels'       => 3,
+  ),
+);
+
+$configs['taxonomy-views-Arts-default-tid_1'] = $config;
+$config = array(
+  'config_id'       => 'taxonomy-views-Arts-page_3-tid',
+  'save_lineage'    => 0,
+  'enforce_deepest' => 0,
+  'entity_count'    => 0,
+  'require_entity'  => 0,
+  'resizable'       => 1,
+  'level_labels' => array(
+    'status' => 0,
+    'labels' => array(
+    ),
+  ),
+  'dropbox' => array(
+    'status'    => 0,
+    'title'     => 'All selections',
+    'limit'     => 0,
+    'reset_hs'  => 1,
+  ),
+  'editability' => array(
+    'status' => 0,
+    'item_types' => array(
+    ),
+    'allowed_levels' => array(
+    ),
+    'allow_new_levels' => 0,
+    'max_levels'       => 3,
+  ),
+);
+
+$configs['taxonomy-views-Arts-page_3-tid'] = $config;
+$config = array(
+  'config_id'       => 'taxonomy-views-Arts-page_3-tid_1',
+  'save_lineage'    => 0,
+  'enforce_deepest' => 0,
+  'entity_count'    => 0,
+  'require_entity'  => 0,
+  'resizable'       => 1,
+  'level_labels' => array(
+    'status' => 0,
+    'labels' => array(
+    ),
+  ),
+  'dropbox' => array(
+    'status'    => 0,
+    'title'     => 'All selections',
+    'limit'     => 0,
+    'reset_hs'  => 1,
+  ),
+  'editability' => array(
+    'status' => 0,
+    'item_types' => array(
+    ),
+    'allowed_levels' => array(
+    ),
+    'allow_new_levels' => 0,
+    'max_levels'       => 3,
+  ),
+);
+
+$configs['taxonomy-views-Arts-page_3-tid_1'] = $config;
 return $configs;
 }
