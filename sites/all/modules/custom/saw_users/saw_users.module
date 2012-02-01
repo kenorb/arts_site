@@ -213,7 +213,7 @@ function saw_users_form_alter (&$form, &$form_state, $form_id)
 			unset ($form ['title']);
 			unset ($form ['taxonomy']);
 
-		$form ['revision_information'] ['#attributes'] = array ('style' => 'display: none');
+	//	$form ['revision_information'] ['#attributes'] = array ('style' => 'display: none');
 
 			$form ['print'] ['#attributes'] = array ('style' => 'display: none');
 			$form ['menu'] ['#attributes'] = array ('style' => 'display: none');
