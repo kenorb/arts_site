@@ -212,7 +212,7 @@ function saw_users_form_alter (&$form, &$form_state, $form_id)
 		
 			unset ($form ['title']);
 			unset ($form ['taxonomy']);
-
+/*
 	//	$form ['revision_information'] ['#attributes'] = array ('style' => 'display: none');
 
 			$form ['print'] ['#attributes'] = array ('style' => 'display: none');
@@ -224,6 +224,7 @@ function saw_users_form_alter (&$form, &$form_state, $form_id)
 			unset ($form ['#node'] -> nodewords);
 			unset ($form ['custom_breadcrumbs']);
 			unset ($form ['#content_extra_fields']);
+		*/
 		
 			break;
 	
