@@ -346,10 +346,13 @@ function saw_users_username_from_id ($userId)
 function saw_users_flush_caches ()
 {
 	// #511: Hide 'By Term' tab for group page
-  $default_views = array_keys (module_invoke ('og_views', 'views_default_views'));
-  $views_status = variable_get ('views_defaults', array());
-	$views_status ['posts_by_term'] = true; // true means disable
-  variable_set ('views_defaults', $views_status);
-	
-  views_invalidate_cache ();
+	$views = module_invoke ('og_views', 'views_default_views')
+	if ($views && is_array ($views))
+	{
+		$default_views = array_keys ($views);
+		$views_status = variable_get ('views_defaults', array());
+		$views_status ['posts_by_term'] = true; // true means disable
+		variable_set ('views_defaults', $views_status);
+		views_invalidate_cache ();
+	}
 }
