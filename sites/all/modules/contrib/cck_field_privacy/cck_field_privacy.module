@@ -103,7 +103,7 @@ function cck_field_privacy_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
 
   if ($user->uid != $node->uid) {
     $node_user = user_load(array('uid' => $node->uid));
-    if ($op == 'view') {
+    if ($op == 'view' || $op == 'load') {
       //Check to see if the database table is in 'trouble' status
       if (variable_get('cckfp_trouble', FALSE)) {
         return;
@@ -136,7 +136,7 @@ function cck_field_privacy_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
               }
             }
             if ($access_clear == FALSE) {
-              $node->$field_name['#access'] = FALSE;
+              unset ($node->$field_name);
               $node->content[$field_name]['#access'] = FALSE;
             }
             else {
