@@ -1,3 +1,19 @@
+var cck_field_privacy_refresh = function ()
+{
+	for (field_name in Drupal.settings.cck_field_privacy.default_value) {
+
+	var field_states = Drupal.settings.cck_field_privacy.default_value[field_name];		
+	
+	if (!$('#'+ field_name +'link').hasDescription)
+	{
+		for (var k in field_states)
+			break;
+	
+		$('#'+ field_name +'link').html ('<span class="cckfp_currently_showing_container cckfp_show_for_' + k.toLowerCase () + '">(<span class="cckfp_currently_showing_for">' + k.charAt (0).toLowerCase () + k.slice (1)  + '</span> <span class="cckfp_currently_showing">can see this field</span>)</span>');
+	}
+}
+}
+
 var cck_field_privacy = {
   init: function() {
 	
@@ -5,25 +21,20 @@ var cck_field_privacy = {
 			return;
 			
 		cck_field_privacy_already_initialized = true;
+		
+		for (field_name in Drupal.settings.cck_field_privacy.default_value) {
+			$('#'+ field_name +'link').bind('click', cck_field_privacy.click); // bind padlock elements
+		}
+
 	
     if (typeof(Drupal) == 'undefined' || typeof(Drupal.settings) == 'undefined') return; // abort
-		
-    for (field_name in Drupal.settings.cck_field_privacy.default_value) {
-      $('#'+ field_name +'link').bind('click', cck_field_privacy.click); // bind padlock elements
-		
-			var field_states = Drupal.settings.cck_field_privacy.default_value[field_name];		
-			
-			if (!$('#'+ field_name +'link').hasDescription)
-			{
-				for (var k in field_states)
-					break;
-			
-				$('#'+ field_name +'link').append ('<span class="cckfp_currently_showing_container"><span class="cckfp_currently_showing">(Field may be shown by </span> <span class="cckfp_currently_showing_for">' + k.charAt (0).toLowerCase () + k.slice (1)  + ')</span></span>');
-			}
-		}
+
+		cck_field_privacy_refresh ();
+
   },
 
   click: function() {
+	
     var field_states = '';
     var field_name = $(this).attr('id').substr(0, $(this).attr('id').length-4),
     field_states = Drupal.settings.cck_field_privacy.default_value[field_name];
@@ -64,6 +75,9 @@ var cck_field_privacy = {
 	          type: Drupal.settings.cck_field_privacy.content_type,
 	          'settings[]': settings
 	        });
+					
+					cck_field_privacy_refresh ();
+					
 	        return true;
 	      }
 	      return true;
@@ -88,6 +102,9 @@ var cck_field_privacy = {
 				};
 		  }(field_name)) 
 		});
+		
+		
+		
 		return false;
   } 
 };
