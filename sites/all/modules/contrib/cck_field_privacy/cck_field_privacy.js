@@ -1,9 +1,26 @@
 var cck_field_privacy = {
   init: function() {
+	
+		if (window.cck_field_privacy_already_initialized)
+			return;
+			
+		cck_field_privacy_already_initialized = true;
+	
     if (typeof(Drupal) == 'undefined' || typeof(Drupal.settings) == 'undefined') return; // abort
+		
     for (field_name in Drupal.settings.cck_field_privacy.default_value) {
       $('#'+ field_name +'link').bind('click', cck_field_privacy.click); // bind padlock elements
-    }
+		
+			var field_states = Drupal.settings.cck_field_privacy.default_value[field_name];		
+			
+			if (!$('#'+ field_name +'link').hasDescription)
+			{
+				for (var k in field_states)
+					break;
+			
+				$('#'+ field_name +'link').append ('<span class="cckfp_currently_showing_container"><span class="cckfp_currently_showing">(Field may be shown by </span> <span class="cckfp_currently_showing_for">' + k.charAt (0).toLowerCase () + k.slice (1)  + ')</span></span>');
+			}
+		}
   },
 
   click: function() {
@@ -16,7 +33,7 @@ var cck_field_privacy = {
 		var checkboxes = '';
 		for(var rel in rels){
 		  // don't use rels[rel] as a value; this will cause issues with translations!
-			checkboxes += "<div><label><input type='checkbox' value='"+rel+"' name='"+rels[rel]+"' />"+rels[rel]+"</label></div>";
+			checkboxes += "<div><label><input type='checkbox' value='"+rel+"' name='"+rels[rel]+"' />" + rels[rel].charAt(0).toUpperCase() + rels[rel].slice(1) + "</label></div>";
     }
 				
     // display prompt
@@ -63,7 +80,7 @@ var cck_field_privacy = {
 	        	var name = $(this).attr('name');    		
 	        	if ($(this).is(':checked')) {
 	  					// Uncheck all other checkboxes.
-	  					$("input[name!='"+$(this).attr('name')+"']").each(function(){
+	  					$(this).parent ().parent ().parent ().parent ().find("input[name!='"+$(this).attr('name')+"']").each(function(){
 	  						$(this).attr('checked',false);
 	  					});
 					  }

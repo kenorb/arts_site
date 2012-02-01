@@ -267,7 +267,7 @@ function cck_field_privacy_form_alter(&$form, &$form_state, $form_id) {
                 case "date_popup" :
                 case "date_text" :
                   if (isset($form['#field_info'][$field]['widget']['label'])) {
-                    $form['#field_info'][$field]['widget']['label'] .= " <a href='#' id='". $field ."link'><img src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
+                    $form['#field_info'][$field]['widget']['label'] .= " <a href='#' id='". $field ."link'><img class='cckfp_privacy_settings_icon' src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
                   } 
                   else {
                     $needpadlock[$field] = TRUE;
@@ -321,7 +321,7 @@ function _cck_field_privacy_add_padlock(&$elements, &$needpadlock) {
   foreach (element_children($elements) as $field) {
     if (isset($elements[$field]) && $elements[$field]) {    
       if (array_key_exists($field, $needpadlock)) { // form element is handled by cckfp
-        $lockimg = "<a href='#' id='". $field ."link'><img src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
+        $lockimg = "<a href='#' id='". $field ."link'><img class='cckfp_privacy_settings_icon' src='". base_path() . drupal_get_path('module', 'cck_field_privacy') ."/padlock.png' alt='". t('Privacy') ."' /></a>";
 				if ($elements[$field]['tids'])
 				{
 					$elements[$field]['tids']['#title'] .= " " . $lockimg;

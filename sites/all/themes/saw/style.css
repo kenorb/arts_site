@@ -4462,3 +4462,22 @@ fieldset.location .description {
 	vertical-align: middle;
 	width: 100%;
 }
+
+.cckfp_currently_showing_container {
+	font-size: 14px;
+	vertical-align: 11%;
+	color: #000;
+}
+
+.cckfp_currently_showing {
+	font-weight: bold;
+}
+
+.cckfp_currently_showing_for {
+	font-weight: bold;
+	color: #a4d;
+}
+
+.cckfp_privacy_settings_icon {
+	display: none;
+}
