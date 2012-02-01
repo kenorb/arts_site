@@ -346,7 +346,7 @@ function saw_users_username_from_id ($userId)
 function saw_users_flush_caches ()
 {
 	// #511: Hide 'By Term' tab for group page
-	$views = module_invoke ('og_views', 'views_default_views')
+	$views = module_invoke ('og_views', 'views_default_views');
 	if ($views && is_array ($views))
 	{
 		$default_views = array_keys ($views);
