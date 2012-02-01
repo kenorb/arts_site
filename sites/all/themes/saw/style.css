@@ -417,7 +417,8 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 
 #home {
   background: url("images/mlogo.png") no-repeat scroll 47px 16px transparent;
-	width: 25%;
+	width: 337px;
+	min-width: 337px;
 }
 .secondary-links, .secondary-links a:link, .secondary-links a:visited {
   color: #fefffa;
@@ -2027,12 +2028,12 @@ div.admin-panel .body {
   .login-box {
     padding-top: 13px;
 		text-align: right;
-		width: 25%;
+		min-width: 313px;
+		width: 313px;
 		padding-right: 32px;
   }
 	
 	td.primary-links {
-		width: 50%;
 		text-align: center;
 	}
 
