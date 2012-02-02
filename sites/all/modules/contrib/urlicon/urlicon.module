@@ -143,7 +143,7 @@ function _urlicon_format_favicon($match) {
   $domain = check_url(str_replace('.', '_', $url['host']));
 
 	$domainUrl			= implode ('.', array_splice (explode ('.', $url ['host']), -2));
-	$domainReferer	= @implode ('.', array_splice (explode ('.', $_SERVER ['HTTP_REFERER']), -2));
+	$domainReferer	= @implode ('.', array_splice (explode ('.', $_SERVER ['HTTP_HOST']), -2));
 	
   //check if favicon exists locally
 	if ($domainUrl == $domainReferer)
