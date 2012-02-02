@@ -487,7 +487,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1328103801;
+  $strongarm->value = 1328215896;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -885,11 +885,11 @@ function feature_users_strongarm() {
   $strongarm->name = 'hs_config_content-taxonomy-field_university';
   $strongarm->value = array(
     'config_id' => 'content-taxonomy-field_university',
-    'save_lineage' => 1,
-    'enforce_deepest' => 0,
-    'entity_count' => 0,
-    'require_entity' => 0,
-    'resizable' => 1,
+    'save_lineage' => '1',
+    'enforce_deepest' => '1',
+    'entity_count' => '0',
+    'require_entity' => '0',
+    'resizable' => '1',
     'level_labels' => array(
       'status' => 0,
       'labels' => array(
@@ -901,14 +901,14 @@ function feature_users_strongarm() {
     'dropbox' => array(
       'status' => 1,
       'title' => 'All selections',
-      'limit' => 0,
-      'reset_hs' => 1,
+      'limit' => '0',
+      'reset_hs' => '1',
     ),
     'editability' => array(
-      'status' => 0,
+      'status' => 1,
       'item_types' => array(
-        0 => '',
-        1 => '',
+        0 => 'university',
+        1 => 'item',
         2 => '',
       ),
       'allowed_levels' => array(
@@ -917,7 +917,7 @@ function feature_users_strongarm() {
         2 => 1,
       ),
       'allow_new_levels' => 0,
-      'max_levels' => 2,
+      'max_levels' => '2',
     ),
   );
   $export['hs_config_content-taxonomy-field_university'] = $strongarm;
@@ -1007,11 +1007,11 @@ function feature_users_strongarm() {
   $strongarm->name = 'hs_config_content-taxonomy-field_school';
   $strongarm->value = array(
     'config_id' => 'content-taxonomy-field_school',
-    'save_lineage' => 1,
-    'enforce_deepest' => 0,
-    'entity_count' => 0,
-    'require_entity' => 0,
-    'resizable' => 1,
+    'save_lineage' => '1',
+    'enforce_deepest' => '1',
+    'entity_count' => '0',
+    'require_entity' => '0',
+    'resizable' => '1',
     'level_labels' => array(
       'status' => 0,
       'labels' => array(
@@ -1023,14 +1023,14 @@ function feature_users_strongarm() {
     'dropbox' => array(
       'status' => 1,
       'title' => 'All selections',
-      'limit' => 0,
-      'reset_hs' => 1,
+      'limit' => '0',
+      'reset_hs' => '1',
     ),
     'editability' => array(
-      'status' => 0,
+      'status' => 1,
       'item_types' => array(
-        0 => '',
-        1 => '',
+        0 => 'school',
+        1 => 'item',
         2 => '',
       ),
       'allowed_levels' => array(
@@ -1039,7 +1039,7 @@ function feature_users_strongarm() {
         2 => 1,
       ),
       'allow_new_levels' => 0,
-      'max_levels' => 2,
+      'max_levels' => '2',
     ),
   );
   $export['hs_config_content-taxonomy-field_school'] = $strongarm;
@@ -1050,11 +1050,11 @@ function feature_users_strongarm() {
   $strongarm->name = 'hs_config_content-taxonomy-field_college';
   $strongarm->value = array(
     'config_id' => 'content-taxonomy-field_college',
-    'save_lineage' => 1,
-    'enforce_deepest' => 1,
-    'entity_count' => 0,
-    'require_entity' => 0,
-    'resizable' => 1,
+    'save_lineage' => '1',
+    'enforce_deepest' => '1',
+    'entity_count' => '0',
+    'require_entity' => '0',
+    'resizable' => '1',
     'level_labels' => array(
       'status' => 0,
       'labels' => array(
@@ -1066,23 +1066,23 @@ function feature_users_strongarm() {
     'dropbox' => array(
       'status' => 1,
       'title' => 'All selections',
-      'limit' => 0,
-      'reset_hs' => 1,
+      'limit' => '0',
+      'reset_hs' => '1',
     ),
     'editability' => array(
-      'status' => 0,
+      'status' => 1,
       'item_types' => array(
-        0 => '',
-        1 => '',
+        0 => 'college',
+        1 => 'item',
         2 => '',
       ),
       'allowed_levels' => array(
         0 => 1,
         1 => 1,
-        2 => 1,
+        2 => 0,
       ),
       'allow_new_levels' => 0,
-      'max_levels' => 2,
+      'max_levels' => '2',
     ),
   );
   $export['hs_config_content-taxonomy-field_college'] = $strongarm;
@@ -7191,11 +7191,11 @@ function feature_users_strongarm() {
   $strongarm->name = 'hs_config_content-taxonomy-field_school_other';
   $strongarm->value = array(
     'config_id' => 'content-taxonomy-field_school_other',
-    'save_lineage' => 1,
-    'enforce_deepest' => 0,
-    'entity_count' => 0,
-    'require_entity' => 0,
-    'resizable' => 1,
+    'save_lineage' => '1',
+    'enforce_deepest' => '1',
+    'entity_count' => '0',
+    'require_entity' => '0',
+    'resizable' => '1',
     'level_labels' => array(
       'status' => 0,
       'labels' => array(
@@ -7206,21 +7206,21 @@ function feature_users_strongarm() {
     'dropbox' => array(
       'status' => 1,
       'title' => 'All selections',
-      'limit' => 0,
-      'reset_hs' => 1,
+      'limit' => '0',
+      'reset_hs' => '1',
     ),
     'editability' => array(
-      'status' => 0,
+      'status' => 1,
       'item_types' => array(
-        0 => '',
-        1 => '',
+        0 => 'school',
+        1 => 'item',
       ),
       'allowed_levels' => array(
         0 => 1,
         1 => 1,
       ),
       'allow_new_levels' => 0,
-      'max_levels' => 2,
+      'max_levels' => '2',
     ),
   );
   $export['hs_config_content-taxonomy-field_school_other'] = $strongarm;

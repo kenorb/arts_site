@@ -27,16 +27,16 @@ $config = array(
     'reset_hs'  => 1,
   ),
   'editability' => array(
-    'status' => 0,
+    'status' => 1,
     'item_types' => array(
-      0 => '',
-      1 => '',
+      0 => 'college',
+      1 => 'item',
       2 => '',
     ),
     'allowed_levels' => array(
       0 => 1,
       1 => 1,
-      2 => 1,
+      2 => 0,
     ),
     'allow_new_levels' => 0,
     'max_levels'       => 2,
@@ -47,7 +47,7 @@ $configs['content-taxonomy-field_college'] = $config;
 $config = array(
   'config_id'       => 'content-taxonomy-field_school',
   'save_lineage'    => 1,
-  'enforce_deepest' => 0,
+  'enforce_deepest' => 1,
   'entity_count'    => 0,
   'require_entity'  => 0,
   'resizable'       => 1,
@@ -66,10 +66,10 @@ $config = array(
     'reset_hs'  => 1,
   ),
   'editability' => array(
-    'status' => 0,
+    'status' => 1,
     'item_types' => array(
-      0 => '',
-      1 => '',
+      0 => 'school',
+      1 => 'item',
       2 => '',
     ),
     'allowed_levels' => array(
@@ -86,7 +86,7 @@ $configs['content-taxonomy-field_school'] = $config;
 $config = array(
   'config_id'       => 'content-taxonomy-field_school_other',
   'save_lineage'    => 1,
-  'enforce_deepest' => 0,
+  'enforce_deepest' => 1,
   'entity_count'    => 0,
   'require_entity'  => 0,
   'resizable'       => 1,
@@ -104,10 +104,10 @@ $config = array(
     'reset_hs'  => 1,
   ),
   'editability' => array(
-    'status' => 0,
+    'status' => 1,
     'item_types' => array(
-      0 => '',
-      1 => '',
+      0 => 'school',
+      1 => 'item',
     ),
     'allowed_levels' => array(
       0 => 1,
@@ -122,7 +122,7 @@ $configs['content-taxonomy-field_school_other'] = $config;
 $config = array(
   'config_id'       => 'content-taxonomy-field_university',
   'save_lineage'    => 1,
-  'enforce_deepest' => 0,
+  'enforce_deepest' => 1,
   'entity_count'    => 0,
   'require_entity'  => 0,
   'resizable'       => 1,
@@ -141,10 +141,10 @@ $config = array(
     'reset_hs'  => 1,
   ),
   'editability' => array(
-    'status' => 0,
+    'status' => 1,
     'item_types' => array(
-      0 => '',
-      1 => '',
+      0 => 'university',
+      1 => 'item',
       2 => '',
     ),
     'allowed_levels' => array(
