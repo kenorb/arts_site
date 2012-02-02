@@ -194,6 +194,34 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_faq';
+  $strongarm->value = 0;
+  $export['spam_filter_faq'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_chatroom';
+  $strongarm->value = 0;
+  $export['spam_filter_chatroom'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_chat';
+  $strongarm->value = 0;
+  $export['spam_filter_chat'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_simplenews';
+  $strongarm->value = 0;
+  $export['spam_filter_simplenews'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'rsvp_connector';
   $strongarm->value = 'date';
   $export['rsvp_connector'] = $strongarm;
@@ -1697,6 +1725,13 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'abuse_node-13';
+  $strongarm->value = TRUE;
+  $export['abuse_node-13'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'signup_date_field_idea';
   $strongarm->value = '0';
   $export['signup_date_field_idea'] = $strongarm;
@@ -1764,6 +1799,41 @@ function feature_users_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'spam_log_level';
+  $strongarm->value = '1';
+  $export['spam_log_level'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_log_delete';
+  $strongarm->value = '604800';
+  $export['spam_log_delete'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_sign_start';
+  $strongarm->value = 7;
+  $export['spam_sign_start'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_sign_end';
+  $strongarm->value = 96;
+  $export['spam_sign_end'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_sign_key';
+  $strongarm->value = '4ee02eb11af9bf033094de8c89a62bb2';
+  $export['spam_sign_key'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'custom_breadcrumbs_menu_theme';
   $strongarm->value = array(
     'saw' => array(
@@ -1783,6 +1853,132 @@ function feature_users_strongarm() {
   $strongarm->name = 'enable_revisions_page_art';
   $strongarm->value = 1;
   $export['enable_revisions_page_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_comments';
+  $strongarm->value = 1;
+  $export['spam_filter_comments'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_blog';
+  $strongarm->value = 1;
+  $export['spam_filter_blog'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_product';
+  $strongarm->value = 1;
+  $export['spam_filter_product'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_art';
+  $strongarm->value = 1;
+  $export['spam_filter_art'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_item';
+  $strongarm->value = 1;
+  $export['spam_filter_item'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_membership';
+  $strongarm->value = 0;
+  $export['spam_filter_membership'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_panel';
+  $strongarm->value = 0;
+  $export['spam_filter_panel'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_education';
+  $strongarm->value = 0;
+  $export['spam_filter_education'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_event';
+  $strongarm->value = 1;
+  $export['spam_filter_event'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_group';
+  $strongarm->value = 0;
+  $export['spam_filter_group'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_idea';
+  $strongarm->value = 1;
+  $export['spam_filter_idea'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_page';
+  $strongarm->value = 1;
+  $export['spam_filter_page'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_profile';
+  $strongarm->value = 0;
+  $export['spam_filter_profile'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_story';
+  $strongarm->value = 0;
+  $export['spam_filter_story'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_users';
+  $strongarm->value = 1;
+  $export['spam_filter_users'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_visitor_action';
+  $strongarm->value = '1';
+  $export['spam_visitor_action'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filtered_message';
+  $strongarm->value = '<p>Your posting on Students Art from %IP has been automatically flagged by our spam filters as being inappropriate for this website.</p><p>At Students Art we work very hard behind the scenes to keep our web pages free of spam.  Unfortunately, sometimes we accidentally block legitimate content.  If you are attempting to post legitimate content to this website, you can help us to improve our spam filters by emailing the following information to a site administrator:</p><p>%LINK</p>';
+  $export['spam_filtered_message'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_threshold';
+  $strongarm->value = '95';
+  $export['spam_threshold'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -7453,6 +7649,69 @@ user/*';
   $strongarm->name = 'shadowbox_use_sizzle';
   $strongarm->value = 0;
   $export['shadowbox_use_sizzle'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_duplicate_blacklist_message';
+  $strongarm->value = '<p>You are currently not allowed to post content to Students Art World, as previous content posted by your IP address (%IP) has been flagged as potential spam.</p><p>If you have not posted spam to Students Art World, please report this error along with your IP address to a site administrator.  We apologize for any inconvenience.</p>';
+  $export['spam_filter_duplicate_blacklist_message'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_contact_mail_user';
+  $strongarm->value = 0;
+  $export['spam_filter_contact_mail_user'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_contact_mail_page';
+  $strongarm->value = 0;
+  $export['spam_filter_contact_mail_page'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_forum';
+  $strongarm->value = 1;
+  $export['spam_filter_forum'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_notifications';
+  $strongarm->value = 0;
+  $export['spam_filter_notifications'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_duplicate_threshold';
+  $strongarm->value = '5';
+  $export['spam_filter_duplicate_threshold'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_duplicate_post_message';
+  $strongarm->value = '<p>You have attempted to post the same identical content multiple times, causing your posts to be flagged as potential spam.  If this has happened in error, please report this error along with your IP address (%IP) to a Students Art World site administrator.  We apologize for any inconvenience.</p>';
+  $export['spam_filter_duplicate_post_message'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_duplicate_blacklist';
+  $strongarm->value = '15';
+  $export['spam_filter_duplicate_blacklist'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'spam_filter_duplicate_blacklist_action';
+  $strongarm->value = '1';
+  $export['spam_filter_duplicate_blacklist_action'] = $strongarm;
 
   return $export;
 }
