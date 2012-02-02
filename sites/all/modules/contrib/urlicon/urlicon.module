@@ -142,9 +142,12 @@ function _urlicon_format_favicon($match) {
   $domain = explode('.', $url['host']);
   $domain = check_url(str_replace('.', '_', $url['host']));
 
-		
+	
+	
+	$refererURL = parse_url ($_SERVER ['HTTP_REFERER']);
+	
   //check if favicon exists locally
-	if (strpos ($_SERVER ['HTTP_HOST'], $url['host']) !== false || strpos ($url['host'], $_SERVER ['HTTP_HOST']) !== false)
+	if ($url ['host'] == $refererURL ['host'])
 		return theme('urlicon', $match[3], $favicon, $match[1], array('alt' => '', 'title' => t('favicon')));
 	else
   if ($url['host'] AND !file_exists($dir .'/'. $domain .'.ico')) {
