@@ -1009,7 +1009,7 @@ function _hierarchical_select_process_calculate_selections(&$element) {
       $label = trim($element['#value']['hierarchical_select']['create_new_item']['input']);
       $selects = isset($element['#value']['hierarchical_select']['selects']) ? $element['#value']['hierarchical_select']['selects'] : array();
       $depth = count($selects);
-      $parent = ($depth > 0) ? end($selects) : 0;
+      $parent = ($depth > 0) ? end($selects) : (@$config['params']['tid'] ? $config['params']['tid'] : 0);
 
       // Disallow items with empty labels; allow the user again to create a
       // (proper) new item.
