@@ -38,7 +38,7 @@ $config = array(
       1 => 1,
       2 => 0,
     ),
-    'allow_new_levels' => 0,
+    'allow_new_levels' => 1,
     'max_levels'       => 2,
   ),
 );
@@ -75,9 +75,9 @@ $config = array(
     'allowed_levels' => array(
       0 => 1,
       1 => 1,
-      2 => 1,
+      2 => 0,
     ),
-    'allow_new_levels' => 0,
+    'allow_new_levels' => 1,
     'max_levels'       => 2,
   ),
 );
@@ -113,7 +113,7 @@ $config = array(
       0 => 1,
       1 => 1,
     ),
-    'allow_new_levels' => 0,
+    'allow_new_levels' => 1,
     'max_levels'       => 2,
   ),
 );
@@ -150,9 +150,9 @@ $config = array(
     'allowed_levels' => array(
       0 => 1,
       1 => 1,
-      2 => 1,
+      2 => 0,
     ),
-    'allow_new_levels' => 0,
+    'allow_new_levels' => 1,
     'max_levels'       => 2,
   ),
 );
