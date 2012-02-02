@@ -4493,3 +4493,60 @@ fieldset.location .description {
 .cckfp_show_for_friends {
 	color: #28d;
 }
+
+
+#system-modules table.package td:nth-child(2) {
+	min-width: 250px;
+}
+
+#system-modules table.package td:nth-child(3) {
+	min-width: 100px;
+}
+
+#system-modules .admin-dependencies,
+#system-modules .admin-required {
+/*
+	max-height: 50px;
+	height: 30px;
+	overflow-y: auto;
+*/
+	display: none;
+}
+
+div.node div.content table {
+	border: 1px solid #0292cc !important;
+	border-collapse: collapse !important;
+	width: 100% !important;
+	border-radius: 6px;
+}
+
+div.node div.content table tr {
+	border: 1px solid #ccc;
+}
+
+div.node div.content table tr:hover {
+	background-color: #ffb;
+}
+
+div.node div.content table th {
+	border: 0 !important;
+	color: #0292cc;
+	
+}
+
+div.node div.content table thead th {
+	border: 1px solid #ccc;
+	background: url('images/node-table-thead-th-background.png') repeat-x;
+	color: #fff;
+	font-size: 16px;
+	font-weight: normal;
+	padding: 14px 10px;
+	text-align: center;
+	border: 1px solid #48d;
+}
+
+div.node div.content table td,
+div.node div.content table th {
+	border: 1px solid #ccc;
+	padding: 4px 10px;
+}
