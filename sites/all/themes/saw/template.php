@@ -93,7 +93,6 @@ function saw_preprocess_forum_list (&$variables) {
 							$unsetted = true;
 							
 							break;
-							
 						}
 						else
 						if ($parent == 0)
