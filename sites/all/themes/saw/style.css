@@ -2588,7 +2588,6 @@ div.admin-panel .body {
 		border-bottom: 1px solid #AAAAAA;
 		margin-left: 238px;
 		border-left: 2px solid #AAAAAA;
-		background-color: #fff;
 		position: relative;
     top: -1px;
 	}
@@ -2610,7 +2609,6 @@ div.admin-panel .body {
 	}
 	
 	.user-arts-slideshow-smalls {
-    background: url('images/slideshow-small-container-background.png') repeat-x;
     border-top-right-radius: 7px;
     box-shadow: 2px 0 5px #AAAAAA;
     border-right: 2px solid #AAAAAA;
@@ -2619,7 +2617,6 @@ div.admin-panel .body {
 	}
 	
   #user-arts-slideshow-container .teaser {
-		background: url("images/buttons.png") repeat-x scroll 0 0 transparent !important;
 		border-bottom: 2px solid #AAAAAA;
 		border-bottom-left-radius: 7px;
 		border-bottom-right-radius: 7px;
@@ -2640,13 +2637,9 @@ div.admin-panel .body {
   #user-arts-slideshow-container .big-area {
   	padding: 5px 11px 4px 9px;
   	border-right: 1px dotted #888;
-		border-top: 1px solid #aaa;
 		border-left: 2px solid #aaa;
 		border-right: 2px solid #aaa;
 		border-top-left-radius: 7px;
-		background-color: #fff !important;
-		box-shadow: 2px 0 5px #AAAAAA;
-		
   }
 
   #user-arts-slideshow-container img,
@@ -2664,7 +2657,6 @@ div.admin-panel .body {
   div.field.field-type-filefield.field-field-image div.field-item img,
   #field_image_values img {
     /*border: 1px solid #888;*/
-    background-color: #fff;
     padding: 4px;
     margin: 2px 2px;
     border-radius: 3px;
