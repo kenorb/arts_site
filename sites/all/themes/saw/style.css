@@ -4239,52 +4239,6 @@ ul#chatroom-user-list {
 	background-color: #fff;
 }
 
-#content-profile-display-education {
-}
-
-#content-profile-display-education .field-field-type-of-education {
-	display: none;
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-label {
-	margin-bottom: 6px;
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-items {
-	padding: 0px;
-	margin-left: 0px !important;
-	font-size: 13px !important;
-	margin-bottom: 10px;
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item {
-	margin-top: 20px;
-	color: #000000;
-	float: right !important;
-	font-weight: bold !important;
-	margin-bottom: -17px;
-	position: relative;
-	top: 2px;	
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item:last-child {
-	margin-top: 0;
-	float: left !important;
-	font-weight: normal !important;
-	display: block !important;
-}
-
-
-.field-type-content-taxonomy {
-	padding-bottom: 28px;
-}
-
-#content-profile-display-education .field-type-content-taxonomy .field-items .field-item {
-	clear: both;
-	display: block !important;
-	float: right !important;
-	margin-left: 0;
-}
 
 
 
@@ -4582,4 +4536,41 @@ div.comment-is-spam {
 
 .view.view-Ideas .views-field-name {
 	white-space: nowrap;
+}
+
+.hierarchical-select-tree {
+}
+
+.hierarchical-select-tree .sublabel {
+}
+
+.hierarchical-select-tree .lineage {
+	border-bottom: 1px dotted #ccc;
+	padding-bottom: 4px;
+	margin-bottom: 5px;
+}
+
+.hierarchical-select-tree .lineage:last-child {
+	border: 0;
+}
+
+
+.hierarchical-select-tree .lineage .label {
+	clear: left;
+	float: left;
+}
+
+.hierarchical-select-tree .lineage .sublabel {
+	float: right;
+	clear: right;
+	font-weight: bold;
+	display: list-item;
+}
+
+.clear-both {
+	clear: both;
+}
+
+.field.field-type-text.field-field-type-of-education {
+	display: none;
 }

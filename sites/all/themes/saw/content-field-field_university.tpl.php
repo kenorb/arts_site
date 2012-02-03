@@ -1,0 +1,1 @@
+<?php include 'content-field-education-generic-field.tpl.php'; ?>
