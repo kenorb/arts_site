@@ -285,9 +285,13 @@ function saw_users_node_stock_level_get ($nodeId)
 	return (int)db_result (db_query ('SELECT stock FROM {uc_product_stock} WHERE nid = %d', $nodeId));
 }
 
-function saw_users_node_stock_level_set ($nodeId, $level)
+function saw_users_node_stock_level_set ($nodeType, $nodeId, $level)
 {
-	db_query ("UPDATE {uc_product_stock} SET stock = '%d' WHERE nid = %d", (int)$level, $nodeId);
+	if (db_result (db_query("SELECT nid FROM {uc_product_stock} WHERE nid = %d", $nodeId))) {
+		db_query ("UPDATE {uc_product_stock} SET stock = '%d' WHERE nid = %d", $level, $nodeId);
+	} else {
+		db_query ("INSERT INTO {uc_product_stock} (sku, stock, nid, active) VALUES ('%s', '%d', '%d', 1)", $nodeType . ' ' . $nodeId, $level, $nodeId);
+	}
 }
 
 
@@ -300,9 +304,27 @@ function saw_users_node_stock_level_validate ($form, &$form_state)
 	}
 }
 
+function saw_users_nodeapi (&$node, $op, $a3 = NULL, $a4 = NULL)
+{
+	
+	if ($node -> type !== 'art' && $node -> type !== 'item')
+		return;
+
+	switch ($op)
+	{
+		case 'insert':
+		case 'update':
+		
+			module_load_include ('module', 'ubercart', 'shipping/uc_quote/uc_quote');
+		
+			saw_users_node_stock_level_set ($node -> type, $node -> nid, $node -> stock_level_unlimited ? 10001 : $node -> stock_level);	
+		
+			break;
+	}
+}
+
 function saw_users_node_stock_level_submit ($form, &$form_state)
 {
-	saw_users_node_stock_level_set ($form ['nid'] ['#value'], $form ['#post'] ['stock_level_unlimited'] ? 10001 : $form ['#post'] ['stock_level']);	
 }
 
 /**
