@@ -1057,3 +1057,18 @@ EOT;
 	{
 		_db_query ("UPDATE system SET weight = 10 WHERE name='saw_users'");
 	}
+	
+	function saw_users_update_19 ()
+	{
+		saw_users_update_8 ();
+		saw_users_update_9 ();
+		saw_users_update_10 ();
+		saw_users_update_11 ();
+		saw_users_update_12 ();
+		saw_users_update_13 ();
+		saw_users_update_14 ();
+		saw_users_update_15 ();
+		saw_users_update_16 ();
+		saw_users_update_17 ();
+		saw_users_update_18 ();
+	}
