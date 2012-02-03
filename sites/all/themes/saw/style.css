@@ -3933,12 +3933,11 @@ ul.pager li.pager-ellipsis:hover {
 }
 
 .node div.links {
-	background: #fff url('images/node-links-background.png') repeat-x 0px -20px !important;
 	min-height: 42px;
-	border-bottom: 1px dotted #d6d;
 	display: block !important;
 	margin-bottom: 10px;
 	padding: 12px 7px;
+	clear: both;
 }
 
 #main .node.sticky .links {
