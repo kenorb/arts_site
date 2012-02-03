@@ -159,7 +159,7 @@ function saw_users_user_register_validate ($form, &$form_state)
 	
 	$mail = trim ($form_state ['values']['mail']);
 	
-	if (!@$form_state ['values']['user_roles'])
+	if (!@$form_state ['values']['user_roles'] || !is_array ($form_state ['values']['user_roles']))
 		return;
 	
 	foreach ($form_state ['values']['user_roles'] as $id => $value)
