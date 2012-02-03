@@ -225,7 +225,10 @@ h2 a:hover {
 }
 
 .views-exposed-form label {
-	font-size: 14px !important;
+	color: #0088AA;
+	font-size: 13px !important;
+	font-weight: bold !important;
+	text-shadow: 0 1px 1px #FFFFFF;
 }
 
 .block-views .views-exposed-widget label {
@@ -767,6 +770,10 @@ div.messages.error {
   width: 60px;
 }
 
+ul.links li {
+	padding: 0;
+}
+
 .flag-action,
 input[type=button],
 input[type=submit],
@@ -774,7 +781,9 @@ input[type=submit],
 a.author-pane-link,
 a.author-privatemsg-icon,
 #continue-shopping-link a,
-.node ul.links li a {
+.node ul.links li a,
+#forum ul.links li a
+{
     cursor: pointer;
     background: url("images/buttons.png") repeat-x scroll 0 0 transparent;
     border-color: #E3E2E2 #D7D7D7 #D2D2D2;
@@ -819,7 +828,9 @@ span.flag-throbber {
 .comment .reply a,
 a.author-pane-link,
 #continue-shopping-link a,
-a.author-privatemsg-icon {
+a.author-privatemsg-icon,
+#forum ul.links li a
+{
 	padding: 10px 15px !important;
 }
 
@@ -838,7 +849,9 @@ input[type=submit]:hover,
 .comment .reply a:hover,
 a.author-pane-link:hover,
 #continue-shopping-link a:hover,
-a.author-privatemsg-icon:hover {
+a.author-privatemsg-icon:hover,
+#forum ul.links li a:hover
+{
 	border-color: #F6D2CC #F6D2CC #F2BFB6;
 	color: #D75A46 !important;
 	cursor: pointer;
@@ -1283,7 +1296,6 @@ div.admin-panel .body {
 /* view-filters: BEGIN */
 
   .view-filters .views-exposed-widget label {
-    color: #3a6c87;
     display: inline;
   }
   
@@ -1865,10 +1877,6 @@ div.admin-panel .body {
 
 /* #forum: BEGIN */
 
-  #forum,
-  table.views-table {
-		border: 1px solid #ddd;
-  }
   
   #forum table {
     width: 100%;
@@ -1934,16 +1942,6 @@ div.admin-panel .body {
   .views-exposed-widget select:focus {
   }
   
-  
-  #forum .links a {
-    border: 2px solid #336699;
-    border-radius: 7px 7px 7px 7px;
-    font-size: 0.95em;
-    padding: 5px 12px;
-    text-transform: lowercase;
-    color: #239;
-  }
-
   #forum tr.index-0 td {
     height: 44px;
   }
@@ -3610,9 +3608,8 @@ span.cke_skin_kama {
 }
 
 .views-exposed-form {
-	background: #eaeff3 url('images/table-th-background.png') repeat-x;
-	box-shadow: 1px 1px 3px #fff;
-	border: 1px solid #ccc;
+	background: none !important;
+	border: 0 !important;
 }
 
 .calendar-calendar td .inner div.day a {
@@ -4577,4 +4574,12 @@ div.comment-is-spam {
 	color: #fff;
 	font-weight: bold;
 	padding: 6px 10px;
+}
+
+.view-content table {
+	border: 1px solid #ddd;
+}
+
+.view.view-Ideas .views-field-name {
+	white-space: nowrap;
 }

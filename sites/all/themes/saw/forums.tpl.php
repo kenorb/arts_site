@@ -23,7 +23,7 @@
 	<form action="/forum/search/" method="get">
 		<ul class="links">
 			<li class="search">
-				<span>find</span> <input type="text" name="keys" />
+				<span>Search</span> <input type="text" name="keys" />
 				<input type="text" style="display:none" name="forum" value="<?php echo @$variables ['tid'] ? $variables ['tid'] : 'All'; ?>" />
 				<input type="submit" value="go" />
 			</li>
