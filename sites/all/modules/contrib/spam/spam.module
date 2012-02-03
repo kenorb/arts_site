@@ -1721,18 +1721,22 @@ function spam_feedback_insert($feedback) {
 function spam_links($type, $id, $content) {
   $links = array();
   if (spam_invoke_module($type, 'filter_content_type', $content)) {
-    if (user_access('administer spam')) {
+    if (user_access('administer spam') || user_access('mark as spam')) {
       $score = (int)db_result(db_query("SELECT score FROM {spam_tracker} WHERE content_type = '%s' AND content_id = '%s'", $type, $id));
 
       if ($score >= variable_get('spam_threshold', SPAM_DEFAULT_THRESHOLD)) {
         $links['spam'] = array('title' => t('spam (@score)', array('@score' => $score)));
         $token = drupal_get_token("not spam $type $id");
-        $links['mark-as-not-spam'] = array('href' => "spam/$type/$id/not_spam", 'title' => t('mark as not spam'), 'query' => array('token' => $token));
+				
+				if (user_access('administer spam'))
+					$links['mark-as-not-spam'] = array('href' => "spam/$type/$id/not_spam", 'title' => t('mark as not spam'), 'query' => array('token' => $token));
       }
       else {
         $token = drupal_get_token("spam $type $id");
         $links['spam'] = array('title' => t('not spam (@score)', array('@score' => $score)));
-        $links['mark-as-spam'] = array('href' => "spam/$type/$id/spam", 'title' => t('mark as spam'), 'query' => array('token' => $token));
+				
+				if (user_access('administer spam'))
+					$links['mark-as-spam'] = array('href' => "spam/$type/$id/spam", 'title' => t('mark as spam'), 'query' => array('token' => $token));
       }
     }
   }
