@@ -59,14 +59,14 @@ function feature_users_content_default_fields() {
     'module' => 'content_taxonomy',
     'active' => '1',
     'save_term_node' => 0,
-    'vid' => '4',
+    'vid' => '9',
     'parent' => '73',
     'parent_php_code' => '',
     'depth' => '2',
     'widget' => array(
       'default_value' => array(
         'field_college' => array(
-          'tids' => NULL,
+          'tids' => array(),
         ),
       ),
       'default_value_php' => NULL,
@@ -131,17 +131,18 @@ function feature_users_content_default_fields() {
     'module' => 'content_taxonomy',
     'active' => '1',
     'save_term_node' => 0,
-    'vid' => '4',
+    'vid' => '9',
     'parent' => '74',
     'parent_php_code' => '',
     'depth' => '2',
     'widget' => array(
       'default_value' => array(
         'field_school' => array(
-          'tids' => NULL,
+          'tids' => array(),
         ),
       ),
       'default_value_php' => NULL,
+      'expand_all' => 0,
       'label' => 'School',
       'weight' => '8',
       'description' => '',
@@ -203,14 +204,14 @@ function feature_users_content_default_fields() {
     'module' => 'content_taxonomy',
     'active' => '1',
     'save_term_node' => 0,
-    'vid' => '2',
+    'vid' => '9',
     'parent' => '75',
     'parent_php_code' => '',
     'depth' => '2',
     'widget' => array(
       'default_value' => array(
         'field_school_other' => array(
-          'tids' => NULL,
+          'tids' => array(),
         ),
       ),
       'default_value_php' => NULL,
@@ -338,14 +339,14 @@ other|Other',
     'module' => 'content_taxonomy',
     'active' => '1',
     'save_term_node' => 0,
-    'vid' => '4',
+    'vid' => '9',
     'parent' => '72',
     'parent_php_code' => '',
     'depth' => '2',
     'widget' => array(
       'default_value' => array(
         'field_university' => array(
-          'tids' => NULL,
+          'tids' => array(),
         ),
       ),
       'default_value_php' => NULL,
