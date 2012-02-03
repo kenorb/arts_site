@@ -1,0 +1,22 @@
+Index: spam.module
+===================================================================
+--- spam.module	(revision 608)
++++ spam.module	(working copy)
+@@ -532,7 +532,7 @@
+     'page arguments' => array(1, 2, array('redirect' => TRUE)),
+     'load arguments' => array(2, 3),
+     'type' => MENU_CALLBACK,
+-    'access arguments' => array('administer spam'),
++    'access arguments' => array('mark as spam'),
+   );
+   $items['spam/%spam_mark/%/not_spam'] = array(
+     'page callback' => 'spam_mark_as_not_spam_callback',
+@@ -635,7 +635,7 @@
+  * Drupal _perm hook.
+  */
+ function spam_perm() {
+-  return array('administer spam', 'bypass filters');
++  return array('administer spam', 'mark as spam', 'bypass filters');
+ }
+ 
+ /**
