@@ -41,7 +41,7 @@
 	//print_r ($form ['autoassignrole_user']);
 	//exit;
 	
-	$form ['autoassignrole_user'] ['#description'] = t('<a href="/page/account-types">See the benefits for each type of account</a>') . '.';
+	$form ['autoassignrole_user'] ['#description'] = t('<a target="account_types" href="/page/account-types">See the benefits for each type of account</a> (Link will open a new tab)');
 	
 	$list = array (
 		'group_basic',
