@@ -11,51 +11,6 @@ function feature_users_ctools_plugin_api() {
 }
 
 /**
- * Implementation of hook_default_fe_taxonomy_vocabulary().
- */
-function feature_users_default_fe_taxonomy_vocabulary() {
-  $export = array();
-
-  $fe_taxonomy_vocabulary = new stdClass;
-  $fe_taxonomy_vocabulary->name = 'Education';
-  $fe_taxonomy_vocabulary->description = '';
-  $fe_taxonomy_vocabulary->help = 'Type your name of schools, etc.';
-  $fe_taxonomy_vocabulary->relations = '1';
-  $fe_taxonomy_vocabulary->hierarchy = '0';
-  $fe_taxonomy_vocabulary->multiple = '1';
-  $fe_taxonomy_vocabulary->required = '0';
-  $fe_taxonomy_vocabulary->tags = '0';
-  $fe_taxonomy_vocabulary->module = 'features_education_taxonomy';
-  $fe_taxonomy_vocabulary->weight = '0';
-  $fe_taxonomy_vocabulary->nodes = array(
-    'education' => 'education',
-  );
-  $fe_taxonomy_vocabulary->machine_name = 'education_taxonomy';
-
-  $export['education_taxonomy'] = $fe_taxonomy_vocabulary;
-
-  $fe_taxonomy_vocabulary = new stdClass;
-  $fe_taxonomy_vocabulary->name = 'Forums';
-  $fe_taxonomy_vocabulary->description = '';
-  $fe_taxonomy_vocabulary->help = '';
-  $fe_taxonomy_vocabulary->relations = '1';
-  $fe_taxonomy_vocabulary->hierarchy = '1';
-  $fe_taxonomy_vocabulary->multiple = '0';
-  $fe_taxonomy_vocabulary->required = '0';
-  $fe_taxonomy_vocabulary->tags = '0';
-  $fe_taxonomy_vocabulary->module = 'forum';
-  $fe_taxonomy_vocabulary->weight = '-10';
-  $fe_taxonomy_vocabulary->nodes = array(
-    'forum' => 'forum',
-  );
-  $fe_taxonomy_vocabulary->machine_name = 'forum_vocabulary';
-
-  $export['forum_vocabulary'] = $fe_taxonomy_vocabulary;
-
-  return $export;
-}
-
-/**
  * Implementation of hook_flag_default_flags().
  */
 function feature_users_flag_default_flags() {
