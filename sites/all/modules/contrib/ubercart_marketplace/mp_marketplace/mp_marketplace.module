@@ -201,7 +201,7 @@ function mp_marketplace_can_view_seller() {
   if (user_access('administer sellers')) {
     return TRUE;
   }
-  elseif (user_access('act as seller') && ($user->uid == arg(1))) {
+  elseif (user_access('act as seller') && ($user->uid == arg(1) || arg(1) == 'me')) {
     switch (arg(3)) {
       case '':
         return TRUE;
