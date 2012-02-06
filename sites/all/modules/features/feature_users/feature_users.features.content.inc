@@ -66,7 +66,7 @@ function feature_users_content_default_fields() {
     'widget' => array(
       'default_value' => array(
         'field_college' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
@@ -138,11 +138,10 @@ function feature_users_content_default_fields() {
     'widget' => array(
       'default_value' => array(
         'field_school' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
-      'expand_all' => 0,
       'label' => 'School',
       'weight' => '8',
       'description' => '',
@@ -204,14 +203,14 @@ function feature_users_content_default_fields() {
     'module' => 'content_taxonomy',
     'active' => '1',
     'save_term_node' => 0,
-    'vid' => '4',
+    'vid' => '2',
     'parent' => '75',
     'parent_php_code' => '',
     'depth' => '2',
     'widget' => array(
       'default_value' => array(
         'field_school_other' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
@@ -346,7 +345,7 @@ other|Other',
     'widget' => array(
       'default_value' => array(
         'field_university' => array(
-          'tids' => array(),
+          'tids' => NULL,
         ),
       ),
       'default_value_php' => NULL,
@@ -722,7 +721,7 @@ Male',
     ),
     'widget_active' => '1',
     'type' => 'text',
-    'required' => '0',
+    'required' => '1',
     'multiple' => '0',
     'module' => 'text',
     'active' => '1',
