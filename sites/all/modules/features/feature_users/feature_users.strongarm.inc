@@ -861,7 +861,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1328537572;
+  $strongarm->value = 1328554252;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
