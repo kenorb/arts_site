@@ -373,7 +373,7 @@ td#home a:hover img, td#home a:link img, td#home a:visited img {
 .primary-links, .primary-links a:link, .primary-links a:visited {
   margin-top: 20px;
   color: #fefffa;
-  padding: 5px;
+  padding: 5px 11px;
 	text-shadow: 1px 1px 0px #000;
 }
 .primary-links a:hover {
@@ -4003,7 +4003,7 @@ li.statistics_counter {
 }
 
 #banner li.menu-4023 {
-	padding-left: 244px !important
+	padding-left: 316px !important;
 }
 
 .imagecache-Thumb_200 {
