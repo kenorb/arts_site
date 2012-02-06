@@ -431,8 +431,7 @@ function feature_users_user_default_permissions() {
     'name' => 'view revisions',
     'roles' => array(
       '0' => 'admin',
-      '1' => 'anonymous user',
-      '2' => 'moderator',
+      '1' => 'moderator',
     ),
   );
 

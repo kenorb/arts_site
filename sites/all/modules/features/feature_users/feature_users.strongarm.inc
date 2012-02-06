@@ -4904,7 +4904,7 @@ function feature_users_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_education';
   $strongarm->value = array(
-    0 => 'status',
+    0 => 'revision',
     1 => 'moderate',
   );
   $export['node_options_education'] = $strongarm;
