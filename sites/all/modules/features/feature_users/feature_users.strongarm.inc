@@ -861,7 +861,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1328554252;
+  $strongarm->value = 1328590221;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass;
@@ -4138,7 +4138,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'spam_filter_users';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['spam_filter_users'] = $strongarm;
 
   $strongarm = new stdClass;
