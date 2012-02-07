@@ -134,6 +134,9 @@ function removetab ($label, &$vars)
 
 function saw_breadcrumb ($vars)
 {
+	if (count ($vars) == 1 && $vars [0] == '<a href="/node" class="active">Content</a>')
+		$vars = array ();
+
 	if (!$vars)
 		$vars [] = '<a href="/">Home</a>';
 	
