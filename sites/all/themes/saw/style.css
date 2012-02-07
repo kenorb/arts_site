@@ -4444,17 +4444,6 @@ fieldset.location .description {
 	min-width: 100px;
 }
 
-#system-modules .admin-dependencies,
-#system-modules .admin-required {
-/*
-	max-height: 50px;
-	height: 30px;
-	overflow-y: auto;
-*/
-	display: none;
-}
-
-
 div.typename-page div.content table {
 	border: 1px solid #0292cc !important;
 	border-collapse: collapse !important;
