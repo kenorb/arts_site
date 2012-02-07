@@ -1072,3 +1072,8 @@ EOT;
 		saw_users_update_17 ();
 		saw_users_update_18 ();
 	}
+	
+	function saw_users_update_20 ()
+	{
+		db_query ("UPDATE users SET access = created WHERE access = 0");
+	}

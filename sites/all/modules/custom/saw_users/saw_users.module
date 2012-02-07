@@ -381,3 +381,9 @@ function saw_users_flush_caches ()
 		views_invalidate_cache ();
 	}
 }
+
+function saw_users_user ($op, &$edit, &$account, $category = NULL)
+{
+  if ($op == 'insert')
+		db_query ("UPDATE users SET access='%s' WHERE uid=%d", $account -> created, $account -> uid);
+}
