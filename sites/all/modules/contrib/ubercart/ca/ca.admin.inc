@@ -182,9 +182,7 @@ function ca_predicate_meta_form($form_state, $pid) {
     '#type' => 'textarea',
     '#title' => t('Description'),
     '#description' => t('Enter a description that summarizes the use and intent of the predicate.'),
-    '#default_value' => $pid ?
-                        (isset($predicate['#description']) ? $predicate['#description'] : '') :
-                        '',
+    '#default_value' => $pid ? $predicate['#description'] : '',
   );
 
   // Accommodate the mandatory custom prefix for predicate classes.
@@ -243,9 +241,8 @@ function ca_predicate_meta_form_submit($form, &$form_state) {
   $form_state['redirect'] = CA_UI_PATH;
   $save = FALSE;
 
-  // Load the original predicate, if any.
-  $predicate = array();
-  if ($form_state['values']['predicate_pid'] !== 0) {
+  // Load the original predicate.
+  if ($form_state['values']['pid'] !== 0) {
     $predicate = ca_load_predicate($form_state['values']['predicate_pid']);
     $predicate['#pid'] = $form_state['values']['predicate_pid'];
   }
@@ -255,7 +252,7 @@ function ca_predicate_meta_form_submit($form, &$form_state) {
 
   // Compare the values from the form submission with what is already set.
   foreach ($fields as $field) {
-    if (!isset($predicate['#'. $field]) || $form_state['values']['predicate_'. $field] != $predicate['#'. $field]) {
+    if ($form_state['values']['predicate_'. $field] != $predicate['#'. $field]) {
       $predicate['#'. $field] = $form_state['values']['predicate_'. $field];
       $save = TRUE;
     }
@@ -376,13 +373,13 @@ function ca_actions_form($form_state, $pid, $title = TRUE) {
 
   foreach ($predicate['#actions'] as $key => $action) {
     // Add it to the form if the action's callback exists.
-    $callback = isset($action_data[$action['#name']]['#callback']) ? $action_data[$action['#name']]['#callback'] : '';
+    $callback = $action_data[$action['#name']]['#callback'];
 
     if (function_exists($callback)) {
       $form['actions'][$i] = array(
         '#type' => 'fieldset',
         '#title' => t('Action: @title', array('@title' => $action_data[$action['#name']]['#title'])),
-        '#description' => isset($action_data[$action['#name']]['#description']) ?  $action_data[$action['#name']]['#description'] : '',
+        '#description' => $action_data[$action['#name']]['#description'],
         '#collapsible' => TRUE,
         '#collapsed' => isset($_SESSION['ca_action_focus']) && $i == $_SESSION['ca_action_focus'] ? FALSE : TRUE,
       );

@@ -11,10 +11,10 @@
  */
 function uc_attribute_admin() {
   $header = array(
-    array('data' => t('Name'), 'field' => 'name', 'sort' => 'asc'),
-    array('data' => t('Label'), 'field' => 'label'),
+    array('data' => t('Name'), 'field' => 'a.name', 'sort' => 'asc'),
+    array('data' => t('Label'), 'field' => 'a.label'),
     t('Required'),
-    array('data' => t('List position'), 'field' => 'ordering'),
+    array('data' => t('List position'), 'field' => 'a.ordering'),
     t('Number of options'),
     t('Display type'),
     t('Operations'),
@@ -24,9 +24,8 @@ function uc_attribute_admin() {
 
   $rows = array();
 
-  $result = pager_query("SELECT aid, name, label, required, ordering, display FROM {uc_attributes}". tablesort_sql($header), 30, 0);
+  $result = pager_query("SELECT a.aid, a.name, a.label, a.required, a.ordering, a.display, COUNT(ao.oid) AS options FROM {uc_attributes} AS a LEFT JOIN {uc_attribute_options} AS ao ON a.aid = ao.aid GROUP BY a.aid, a.name, a.label, a.ordering, a.required, a.display". tablesort_sql($header), 30, 0, "SELECT COUNT(aid) FROM {uc_attributes}");
   while ($attr = db_fetch_object($result)) {
-    $attr->options = db_result(db_query('SELECT COUNT(*) FROM {uc_attribute_options} WHERE aid = %d', $attr->aid));
     if (empty($attr->label)) {
       $attr->label = $attr->name;
     }
@@ -1203,11 +1202,17 @@ function uc_product_adjustments_form($form_state, $node) {
  */
 function uc_product_adjustments_form_submit($form, &$form_state) {
   foreach ($form_state['values']['body'] as $value) {
-    db_query("DELETE FROM {uc_product_adjustments} WHERE nid = %d AND combination = '%s'",
-      $form_state['values']['nid'], $value['combo_array']);
     if (!empty($value['model']) && $value['model'] != $form_state['values']['default']) {
-      db_query("INSERT INTO {uc_product_adjustments} (nid, combination, model) VALUES (%d, '%s', '%s')",
-        $form_state['values']['nid'], $value['combo_array'], $value['model']);
+      db_query("UPDATE {uc_product_adjustments} SET model = '%s' WHERE nid = %d AND combination = '%s'",
+        $value['model'], $form_state['values']['nid'], $value['combo_array']);
+      if (!db_affected_rows()) {
+        db_query("INSERT INTO {uc_product_adjustments} (nid, combination, model) VALUES (%d, '%s', '%s')",
+          $form_state['values']['nid'], $value['combo_array'], $value['model']);
+      }
+    }
+    else {
+      db_query("DELETE FROM {uc_product_adjustments} WHERE nid = %d AND combination = '%s'",
+        $form_state['values']['nid'], $value['combo_array']);
     }
   }
   drupal_set_message(t('Product adjustments have been saved.'));

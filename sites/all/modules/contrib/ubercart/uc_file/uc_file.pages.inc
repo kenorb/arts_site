@@ -129,13 +129,7 @@ function uc_file_user_downloads($account) {
     $row++;
   }
 
-  $output = theme('uc_file_user_downloads', $header, $files);
-
-  if (user_access('administer users')) {
-    $output .= drupal_get_form('uc_file_user_form', $account);
-  }
-
-  return $output;
+  return theme('uc_file_user_downloads', $header, $files);
 }
 
 /**

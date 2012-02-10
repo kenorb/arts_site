@@ -68,6 +68,11 @@ function uc_payment_settings_form() {
 function uc_payment_methods_form() {
   $methods = _payment_method_list();
 
+  $form['methods_info'] = array(
+    '#value' => '<div><strong>'. t('Payment methods') .'</strong><br />'
+              . t('The settings forms below are for the payment methods defined by enabled modules. Click a name to expand its options and adjust the settings accordingly. Methods are listed in order of appearance on the checkout screen, determined by the list position setting (current value shown in parentheses).') .'</div><br />',
+  );
+
   $form['pmtable'] = array(
     '#theme' => 'uc_payment_method_table',
     '#summary callback' => 'summarize_form',
@@ -80,7 +85,6 @@ function uc_payment_methods_form() {
 
       $form['pmtable'][$method['id']]['uc_payment_method_'. $method['id'] .'_checkout'] = array(
         '#type' => 'checkbox',
-        '#title' => $method['name'],
         '#summary callback' => 'summarize_checkbox',
         '#summary arguments' => array(
           t('@payment is enabled for checkout.', array('@payment' => $method['name'])),
@@ -88,10 +92,12 @@ function uc_payment_methods_form() {
         ),
         '#default_value' => variable_get('uc_payment_method_'. $method['id'] .'_checkout', $method['checkout']),
       );
+      $form['pmtable'][$method['id']]['name'] = array(
+        '#value' => $method['name'],
+      );
       $form['pmtable'][$method['id']]['uc_payment_method_'. $method['id'] .'_weight'] = array(
         '#type' => 'weight',
         '#default_value' => variable_get('uc_payment_method_'. $method['id'] .'_weight', $method['weight']),
-        '#attributes' => array('class' => 'uc-payment-method-weight'),
       );
 
       if (isset($method['no_gateway']) && $method['no_gateway'] === TRUE) {
@@ -138,11 +144,6 @@ function uc_payment_methods_form() {
       }
     }
   }
-  else {
-    $form['pmtable'] = array(
-      '#value' => '<p>' . t('No payment methods are available.') . '</p>',
-    );
-  }
 
   return system_settings_form($form);
 }
@@ -154,24 +155,24 @@ function uc_payment_methods_form() {
  * @ingroup themeable
  */
 function theme_uc_payment_method_table($form) {
-  drupal_add_tabledrag('uc-payment-methods', 'order', 'sibling', 'uc-payment-method-weight');
-
-  $header = array(t('Payment method'), t('List position'), t('Default gateway'));
+  $header = array(t('Enabled'), t('Payment method'), t('List position'), t('Default gateway'));
 
   foreach (element_children($form) as $method) {
-    $row = array(
-      drupal_render($form[$method]['uc_payment_method_'. $method .'_checkout']),
+    $rows[] = array(
+      array('data' => drupal_render($form[$method]['uc_payment_method_'. $method .'_checkout']), 'align' => 'center'),
+      drupal_render($form[$method]['name']),
       drupal_render($form[$method]['uc_payment_method_'. $method .'_weight']),
       drupal_render($form[$method]['uc_payment_'. $method .'_gateway']),
     );
+  }
 
+  if (empty($rows)) {
     $rows[] = array(
-      'data' => $row,
-      'class' => 'draggable',
+      array('data' => t('No payment methods founds.'), 'colspan' => 5),
     );
   }
 
-  return theme('table', $header, $rows, array('id' => 'uc-payment-methods'));
+  return theme('table', $header, $rows);
 }
 
 /**

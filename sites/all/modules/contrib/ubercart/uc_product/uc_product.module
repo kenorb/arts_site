@@ -569,7 +569,7 @@ function uc_product_form(&$node) {
     '#type' => 'textfield',
     '#title' => t('Default quantity to add to cart'),
     '#default_value' => isset($node->default_qty) ? $node->default_qty : 1,
-    '#description' => t('Use 0 to disable the quantity field next to the add to cart button.'),
+    '#description' => t('Leave blank or zero to disable the quantity field next to the add to cart button, if it is enabled <a href="!settings_url">in general</a>. If it is disabled, this field is ignored.', array('!settings_url' => url('admin/store/settings/products/edit'))),
     '#weight' => 27,
     '#size' => 5,
     '#maxlength' => 6,
@@ -1006,7 +1006,7 @@ function uc_product_form_node_type_form_alter(&$form, &$form_state) {
 function uc_product_i18nsync_fields_alter($fields, $type) {
   if (uc_product_is_product($type)) {
     $fields['uc_products']['#title'] = t('Product fields');
-    $fields['uc_products']['#options'] = array(
+    $fields['uc_products']['#options'] = array (
       'model' => t('SKU'),
       'list_price' => t('List price'),
       'cost' => t('Cost'),
@@ -1782,16 +1782,11 @@ function uc_product_is_product_form($form) {
  *   An associative array of model numbers. The key for '- Any -' is the empty
  *   string.
  */
-function uc_product_get_models($nid, $add_blank = TRUE) {
-  // Keep backward compatibility with previous versions of 6.x-2.x, where
-  // first argument was a product object.
-  if (is_object($nid)) {
-    $nid = $nid->nid;
-  }
+function uc_product_get_models($node, $add_blank = TRUE) {
   // Get any modules' SKUs on this node.
-  $models = module_invoke_all('uc_product_models', $nid);
+  $models = module_invoke_all('uc_product_models', $node);
   // Add the base SKU of the node.
-  $models[] = db_result(db_query("SELECT model FROM {uc_products} WHERE nid = %d", $nid));
+  $models[] = $node->model;
 
   // Now we map the SKUs to the keys, for form handling, etc.
   $models = drupal_map_assoc($models);
@@ -2061,7 +2056,7 @@ function uc_product_feature_save($data) {
     }
   }
 
-  if (!empty($data['pfid']) && db_result(db_query("SELECT COUNT(*) FROM {uc_product_features} WHERE pfid = %d", intval($data['pfid'])))) {
+  if(!empty($data['pfid']) && db_result(db_query("SELECT COUNT(*) FROM {uc_product_features} WHERE pfid = %d", intval($data['pfid'])))) {
     // First attempt to update an existing row.
     db_query("UPDATE {uc_product_features} SET description = '%s' WHERE pfid = %d", $data['description'], intval($data['pfid']));
     drupal_set_message(t('The product feature has been updated.'));

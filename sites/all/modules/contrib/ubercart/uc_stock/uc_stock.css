@@ -4,9 +4,9 @@
  */
 .uc-stock-table tr.odd:hover,
 .uc-stock-table tr.even:hover {
-  background-color: #ddd;
+  background-color: #DDD;
 }
 
 tbody tr.uc-stock-below-threshold {
-  background-color: #ddd;
+  background-color: #DDD;
 }

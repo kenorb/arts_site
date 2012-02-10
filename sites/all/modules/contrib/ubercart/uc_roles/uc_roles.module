@@ -362,7 +362,7 @@ function uc_roles_user_submit(&$edit, &$account, $category) {
 
   // If a new temporary role is added.
   // Grant a new role.
-  if (!empty($edit['new_role']) && $category == 'account') {
+  if ($edit['new_role'] && $category == 'account') {
     // Save our role info, but don't save the user; user.module will do it.
     uc_roles_grant(
       $account,
@@ -373,10 +373,10 @@ function uc_roles_user_submit(&$edit, &$account, $category) {
 
     // Push in values so user.module will save in the roles.
     $edit['roles'][$edit['new_role_add']] = _uc_roles_get_name($edit['new_role_add']);
-  }
 
-  // Reset the new role form.
-  $edit['new_role'] = $edit['new_role_add'] = $edit['new_role_add_qty'] = $edit['new_role_add_granularity'] = NULL;
+    // Reset the new role form.
+    $edit['new_role'] = $edit['new_role_add'] = $edit['new_role_add_qty'] = $edit['new_role_add_granularity'] = NULL;
+  }
 
   // Check if any temporary role actions were taken.
   if (isset($edit['table'])) {
@@ -398,9 +398,6 @@ function uc_roles_user_submit(&$edit, &$account, $category) {
     }
   }
 
-  // Reset the expiration table.
-  $edit['table'] = NULL;
-
   // If a user's role is removed using Drupal, then so is any expiration data.
   if (isset($edit['roles']) && is_array($edit['roles'])) {
     foreach ($account->roles as $rid => $role) {
@@ -416,7 +413,7 @@ function uc_roles_user_submit(&$edit, &$account, $category) {
  */
 function uc_roles_user_validate(&$edit, &$account, $category) {
   // Validate the amount of time for the expiration.
-  if (!empty($edit['new_role']) && $category == 'account') {
+  if ($edit['new_role'] && $category == 'account') {
     if (intval($edit['new_role_add_qty']) < 1) {
       form_set_error('new_role_add_qty', t('The expiration length must be a positive integer'));
     }
@@ -640,7 +637,7 @@ function uc_roles_uc_message() {
  * @ingroup forms
  */
 function uc_roles_feature_form($form_state, $node, $feature) {
-  $models = uc_product_get_models($node->nid);
+  $models = uc_product_get_models($node);
 
   // Check if editing or adding to set default values.
   if (!empty($feature)) {

@@ -10,7 +10,7 @@
  */
 class UbercartTestHelper extends DrupalWebTestCase {
 
-  /** User with privileges to do everything. */
+  /** User with privileges to do everthing. */
   protected $adminUser;
 
   /** Authenticated but unprivileged user. */
