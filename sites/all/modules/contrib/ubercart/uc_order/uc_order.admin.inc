@@ -284,17 +284,16 @@ function uc_order_panes_form() {
 
   foreach ($panes as $pane) {
     foreach ($pane['show'] as $view) {
-      $form['panes'][$view][$pane['id']]['title'] = array(
-        '#value' => $pane['title'],
-      );
       $form['panes'][$view][$pane['id']]['uc_order_pane_'. $pane['id'] .'_show_'. $view] = array(
         '#type' => 'checkbox',
+        '#title' => $pane['title'],
         '#default_value' => variable_get('uc_order_pane_'. $pane['id'] .'_show_'. $view, $pane['enabled']),
       );
       $form['panes'][$view][$pane['id']]['uc_order_pane_'. $pane['id'] .'_enabled'] = &$form['panes'][$view][$pane['id']]['uc_order_pane_'. $pane['id'] .'_show_'. $view];
       $form['panes'][$view][$pane['id']]['uc_order_pane_'. $pane['id'] .'_weight_'. $view] = array(
         '#type' => 'weight',
         '#default_value' => variable_get('uc_order_pane_'. $pane['id'] .'_weight_'. $view, $pane['weight']),
+        '#attributes' => array('class' => 'uc-order-pane-' . $view . '-weight'),
       );
       $form['panes'][$view][$pane['id']]['uc_order_pane_'. $pane['id'] .'_weight'] = &$form['panes'][$view][$pane['id']]['uc_order_pane_'. $pane['id'] .'_weight_'. $view];
       $form['panes'][$view][$pane['id']]['weight'] = variable_get('uc_order_pane_'. $pane['id'] .'_weight_'. $view, $pane['weight']);
@@ -315,6 +314,7 @@ function uc_order_panes_form() {
     $fieldset = array(
       '#theme' => 'uc_pane_sort_table',
       '#pane_prefix' => 'uc_order_pane',
+      '#draggable' => 'uc-order-pane-' . $view . '-weight',
       '#type' => 'fieldset',
       '#title' => t('Order panes on !screen screen', array('!screen' => $titles[$view])),
       '#summary callback' => '_uc_order_panes_summarize',
@@ -619,7 +619,7 @@ function uc_order_select_form_submit($form, &$form_state) {
 /**
  * Creates a new order and redirect to its edit screen.
  */
-function uc_order_create() {
+function uc_order_create($account = NULL) {
   drupal_add_js(array('ucURL' => array('adminOrders' => url('admin/store/orders/'))), 'setting');
   drupal_add_js(drupal_get_path('module', 'uc_order') .'/uc_order.js');
 
@@ -632,7 +632,7 @@ function uc_order_create() {
            . uc_store_get_icon('file:menu_customers_small') .' '
            . t('Create a new customer.') .'</div>';
   $output .= '<div id="customer-select"></div><br />'
-           . drupal_get_form('uc_order_create_form');
+           . drupal_get_form('uc_order_create_form', $account);
 
   return $output;
 }
@@ -643,7 +643,7 @@ function uc_order_create() {
  * @see uc_order_create_form_submit()
  * @ingroup forms
  */
-function uc_order_create_form() {
+function uc_order_create_form(&$form_state, $account) {
   $form['customer'] = array(
     '#type' => 'fieldset',
     '#title' => t('New order customer'),
@@ -652,24 +652,24 @@ function uc_order_create_form() {
   );
   $form['customer']['uid'] = array(
     '#type' => 'hidden',
-    '#default_value' => 0,
+    '#default_value' => isset($account) ? $account->uid : 0,
   );
   $form['customer']['text']['uid_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Customer number'),
-    '#default_value' => 0,
+    '#default_value' => isset($account) ? $account->uid : 0,
     '#maxlength' => 10,
     '#size' => 10,
     '#disabled' => TRUE,
   );
   $form['customer']['primary_email'] = array(
     '#type' => 'hidden',
-    '#default_value' => '',
+    '#default_value' => isset($account) ? $account->mail : '',
   );
   $form['customer']['text']['primary_email_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Primary e-mail'),
-    '#default_value' => '',
+    '#default_value' => isset($account) ? $account->mail : '',
     '#maxlength' => 64,
     '#size' => 32,
     '#disabled' => TRUE,

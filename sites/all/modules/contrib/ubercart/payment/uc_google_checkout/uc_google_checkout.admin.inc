@@ -239,7 +239,7 @@ function uc_google_checkout_taxes_settings_submit($form, &$form_state) {
 }
 
 /**
- * Menu callback function that presents payment terminal form to adminstrator.
+ * Menu callback function that presents payment terminal form to administrator.
  */
 function uc_google_checkout_terminal($order) {
   $order_id = $order->order_id;
@@ -315,6 +315,7 @@ function uc_google_checkout_terminal_form($form_state, $order, $amount = 0) {
       '#type' => 'textarea',
       '#title' => t('Refund Comment'),
       '#weight' => 2,
+      '#wysiwyg' => FALSE,
     );
   }
   else {

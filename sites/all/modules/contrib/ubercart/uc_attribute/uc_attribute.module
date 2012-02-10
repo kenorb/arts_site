@@ -37,7 +37,7 @@ function uc_attribute_help($path, $arg) {
     // Help message for adjusting the options on a product or class.
     case 'node/%/edit/options':
     case 'admin/store/products/classes/%/options':
-      return t('Use the checkboxes to enable options for attributes and the radio buttons to specify defaults for the enabled options. Use the other fields to override the default settings for each option. Attributes with no enabled options will be displayed as text fields.');
+      return '<p>' . t('Use the checkboxes to enable options for attributes and the radio buttons to specify the default option. Attributes with no enabled options will be displayed as text fields. Drag and drop the options to reorder them.') . '</p><p>' . t('The cost, price and weight fields will make adjustments against the original product, so you may enter positive or negative amounts here, or enter 0 if the option should make no adjustment.') . '</p>';
 
     // Help message for the product Adjustments tab.
     case 'node/%/edit/adjustments':
@@ -390,15 +390,13 @@ function uc_attribute_nodeapi(&$node, $op, $arg3 = NULL, $arg4 = NULL) {
 /**
  * Implements hook_uc_product_models().
  */
-function uc_attribute_uc_product_models($node) {
+function uc_attribute_uc_product_models($nid) {
   $models = array();
 
   // Get all the SKUs for all the attributes on this node.
-  $adjustments = db_query("SELECT model FROM {uc_product_adjustments} WHERE nid = %d", $node->nid);
-  while ($adjustment = db_fetch_object($adjustments)) {
-    if (!in_array($adjustment->model, $models)) {
-      $models[] = $adjustment->model;
-    }
+  $adjustments = db_query("SELECT DISTINCT model FROM {uc_product_adjustments} WHERE nid = %d", $nid);
+  while ($adjustment = db_result($adjustments)) {
+    $models[] = $adjustment;
   }
 
   return $models;
@@ -423,11 +421,12 @@ function uc_attribute_order_product_alter(&$product, $order) {
   // Convert the attribute and option ids to their current names. This
   // preserves the important data in case the attributes or options are
   // changed later.
-  if (is_array($product->data['attributes']) && is_numeric(key($product->data['attributes']))) {
+  $first_key = array_shift(array_keys($product->data['attributes']));
+  if (is_array($product->data['attributes']) && is_numeric($first_key)) {
     $attributes = array();
     $options = _uc_cart_product_get_options($product);
     foreach ($options as $aid => $option) {
-      $attributes[$option['attribute']][] = $option['name'];
+      $attributes[$option['attribute']][$option['oid']] = $option['name'];
     }
     $product->data['attributes'] = $attributes;
   }

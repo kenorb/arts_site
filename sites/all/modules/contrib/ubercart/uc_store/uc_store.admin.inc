@@ -6,7 +6,7 @@
  */
 
 /**
- * Display dashboard to other admin pages for the store.
+ * Displays dashboard to other admin pages for the store.
  */
 function uc_store_admin() {
   $tree = menu_navigation_links('navigation', 2);
@@ -51,7 +51,7 @@ function uc_store_admin() {
 }
 
 /**
- * Display customer administration page.
+ * Displays customer administration page.
  */
 function uc_store_customers($message = NULL, $query = NULL, $count_query = NULL, $page_length = 25) {
   if (!module_exists('uc_order')) {
@@ -150,7 +150,7 @@ function uc_store_customers($message = NULL, $query = NULL, $count_query = NULL,
 }
 
 /**
- * Display the customer search page.
+ * Displays the customer search page.
  */
 function uc_store_customer_search() {
   $output = drupal_get_form('uc_store_customer_search_form');
@@ -211,8 +211,8 @@ function uc_store_customer_search() {
 /**
  * The customer search form.
  *
- * @ingroup forms
  * @see uc_store_customer_search_form_submit()
+ * @ingroup forms
  */
 function uc_store_customer_search_form() {
   $form = array();
@@ -268,6 +268,8 @@ function uc_store_customer_search_form() {
 }
 
 /**
+ * Submit handler for uc_store_customer_search_form().
+ *
  * @see uc_store_customer_search_form()
  */
 function uc_store_customer_search_form_submit($form, &$form_state) {
@@ -297,7 +299,7 @@ function uc_store_customer_search_form_submit($form, &$form_state) {
 }
 
 /**
- * Display main reports page.
+ * Displays main reports page.
  */
 function uc_store_reports() {
   $menu = menu_get_item('admin/store/reports');
@@ -310,7 +312,7 @@ function uc_store_reports() {
 }
 
 /**
- * Display store configuration page.
+ * Displays store configuration page.
  */
 function uc_store_configuration_page() {
   $menu = menu_get_item('admin/store/settings');
@@ -322,7 +324,7 @@ function uc_store_configuration_page() {
 }
 
 /**
- * Display store help page.
+ * Displays store help page.
  */
 function uc_store_ubercart_help() {
   $output = '<p>'. t('Use the following links to find documentation and support:') .'</p>';
@@ -336,7 +338,7 @@ function uc_store_ubercart_help() {
 }
 
 /**
- * Display the tokens help page.
+ * Displays the tokens help page.
  */
 function uc_store_ubercart_help_tokens() {
   $output = '<p>'. t('Tokens are bracketed phrases you can use in certain text fields and boxes as placeholders for some other text. Tokens represent things like store variables, links to certain pages, order information, etc.  Tokens are used by including the token listed below in a text field that uses them.  The description for the textfields will alert you to which groups of tokens listed below may be used.') .'</p>';
@@ -347,7 +349,7 @@ function uc_store_ubercart_help_tokens() {
 }
 
 /**
- * Display an overview of the country settings.
+ * Displays an overview of the country settings.
  */
 function uc_country_settings_overview() {
   // Theme all the pages beneath this path into summary overviews.
@@ -543,6 +545,7 @@ function uc_country_formats_form() {
         '#default_value' => variable_get('uc_address_format_'. $country->country_id, ''),
         '#description' => t('Uses the variables mentioned in the instructions to format an address for this country.'),
         '#rows' => 6,
+        '#wysiwyg' => FALSE,
       );
     }
   }
@@ -556,6 +559,8 @@ function uc_country_formats_form() {
 }
 
 /**
+ * Submit handler for uc_country_formats_form().
+ *
  * @see uc_country_formats_form()
  */
 function uc_country_formats_form_submit($form, &$form_state) {
@@ -566,7 +571,7 @@ function uc_country_formats_form_submit($form, &$form_state) {
 }
 
 /**
- * Display an overview of the store settings.
+ * Displays an overview of the store settings.
  */
 function uc_store_store_settings_overview() {
   // Theme all the pages beneath this path into summary overviews.
@@ -574,12 +579,13 @@ function uc_store_store_settings_overview() {
 }
 
 /**
- * Summarize the store's address settings.
+ * Summarizes the store's address settings.
  *
  * @param $form
- *   The form passed from the summarizer
+ *   The form passed from the summarizer.
+ *
  * @return
- *   An array of summary information
+ *   An array of summary information.
  */
 function _uc_store_address_summarize($form) {
   $address = trim(uc_store_address());
@@ -590,7 +596,7 @@ function _uc_store_address_summarize($form) {
 }
 
 /**
- * Display the form for store settings.
+ * Displays the form for store settings.
  *
  * @ingroup forms
  */
@@ -652,8 +658,9 @@ function uc_store_store_settings_form() {
 }
 
 /**
- * Validation handler for uc_store_store_settings_form.
- * Validate store e-mail address
+ * Validation handler for uc_store_store_settings_form().
+ *
+ * Validates store e-mail address
  */
 function uc_store_store_settings_form_validate($form, &$form_state) {
   $mail = trim($form_state['values']['uc_store_email']);
@@ -728,7 +735,7 @@ function uc_store_display_settings_form() {
 }
 
 /**
- * Display the form for format settings.
+ * Displays the form for format settings.
  *
  * @ingroup forms
  */
@@ -873,8 +880,8 @@ function uc_store_format_settings_form() {
 /**
  * Form to enter initials for an administrative user.
  *
- * @ingroup forms
  * @see uc_store_initials_submit()
+ * @ingroup forms
  */
 function uc_store_initials() {
   $form['username'] = array(
@@ -901,6 +908,8 @@ function uc_store_initials() {
 }
 
 /**
+ * Submit handler for uc_store_initials() form.
+ *
  * @see uc_store_initials()
  */
 function uc_store_initials_submit($form, &$form_state) {
@@ -920,7 +929,7 @@ function uc_store_initials_submit($form, &$form_state) {
 }
 
 /**
- * List of extensible TAPIr tables used by Ubercart.
+ * Lists extensible TAPIr tables used by Ubercart.
  */
 function uc_store_tables() {
   $output = '<p>'. t('The following tables are used to display various parts of your store to your administrators and customers. Click on a table id to configure the display of that table.');
@@ -930,7 +939,7 @@ function uc_store_tables() {
 }
 
 /**
- * Display a list of orders made by a customer.
+ * Displays a list of orders made by a customer.
  */
 function uc_store_customer_orders($uid) {
   $result = pager_query("SELECT * FROM {uc_orders} WHERE uid = %d AND "
@@ -1017,11 +1026,13 @@ function uc_store_customer_orders($uid) {
 }
 
 /**
- * Disable a country so it remains installed but is no longer selectable.
+ * Disables a country so it remains installed but is no longer selectable.
  */
 function uc_country_disable($country_id) {
   $result = db_query("SELECT * FROM {uc_countries} WHERE country_id = %d", $country_id);
   if (($country = db_fetch_object($result))) {
+    // Version is positive if the country is enabled.
+    // Version is negative if the country is disabled.
     if ($country->version > 0) {
       db_query("UPDATE {uc_countries} SET version = %d WHERE country_id = %d",
                0 - $country->version, $country_id);
@@ -1038,7 +1049,7 @@ function uc_country_disable($country_id) {
 }
 
 /**
- * Enable a disabled country.
+ * Enables a disabled country.
  */
 function uc_country_enable($country_id) {
   $result = db_query("SELECT * FROM {uc_countries} WHERE country_id = %d", $country_id);
@@ -1060,8 +1071,8 @@ function uc_country_enable($country_id) {
 /**
  * Form to completely remove a country.
  *
- * @ingroup forms
  * @see uc_country_remove_form_submit()
+ * @ingroup forms
  */
 function uc_country_remove_form($form_state, $country_id) {
   // Fetch the country name from the database.
@@ -1085,6 +1096,8 @@ function uc_country_remove_form($form_state, $country_id) {
 }
 
 /**
+ * Submit handler for uc_country_remove_form().
+ *
  * @see uc_country_remove_form()
  */
 function uc_country_remove_form_submit($form, &$form_state) {
@@ -1113,7 +1126,7 @@ function uc_country_remove_form_submit($form, &$form_state) {
 }
 
 /**
- * Update a country to its latest version.
+ * Updates a country to its latest version.
  */
 function uc_country_update($country_id, $version) {
   $result = db_query("SELECT * FROM {uc_countries} WHERE country_id = %d", $country_id);
@@ -1148,10 +1161,9 @@ function uc_country_update($country_id, $version) {
 /**
  * Form for enabling/weighting price alterers and selecting a price formatter.
  *
+ * @see uc_price_settings_form_submit()
+ * @see theme_uc_price_settings_form()
  * @ingroup forms
- * @see
- *   theme_uc_price_settings_form()
- *   uc_price_settings_form_submit()
  */
 function uc_price_settings_form() {
   $options = array();
@@ -1223,10 +1235,10 @@ function uc_price_settings_form() {
 }
 
 /**
- * Render the price handler form, adding tabledrag.
+ * Renders the price handler form, adding tabledrag.
  *
- * @ingroup themeable
  * @see uc_price_settings_form()
+ * @ingroup themeable
  */
 function theme_uc_price_settings_form($form) {
   // Add the tabledrag to the alterer table.
@@ -1256,6 +1268,8 @@ function theme_uc_price_settings_form($form) {
 }
 
 /**
+ * Submit handler for uc_price_settings_form().
+ *
  * @see uc_price_settings_form()
  */
 function uc_price_settings_form_submit($form, &$form_state) {
@@ -1272,4 +1286,65 @@ function uc_price_settings_form_submit($form, &$form_state) {
   variable_set('uc_price_handler_config', $config);
 
   drupal_set_message(t('Price handler configuration saved.'));
+}
+
+
+
+/**
+ * Implements hook_store_status().
+ */
+function uc_store_store_status() {
+  $messages = array();
+
+  // Check to see if there are any updated CIF files that need to be installed.
+  $countries = array();
+  $result = db_query("SELECT * FROM {uc_countries}");
+  while ($country = db_fetch_object($result)) {
+    $countries[t($country->country_name)] = $country;
+  }
+  uksort($countries, 'strnatcasecmp');
+  $files = _country_import_list();
+
+  $updates = array();
+  if (is_array($countries)) {
+    foreach ($countries as $country) {
+      if ($country->version < $files[$country->country_id]['version'] && $country->version > 0) {
+        $updates[] = $country->country_name;
+      }
+      unset($files[$country->country_id]);
+    }
+  }
+
+  if (count($updates)) {
+    $messages[] = array(
+      'status' => 'warning',
+      'title'  => t('Countries'),
+      'desc'   => t('Updates are available for the following installed countries:  %countries. You may update these countries on the !link page.', array('%countries' => implode(', ', $updates), '!link' => l('country settings', 'admin/store/settings/countries/edit'))),
+    );
+  }
+  else {
+    $messages[] = array(
+      'status' => 'ok',
+      'title'  => t('Countries'),
+      'desc'   => t('Country definitions are up-to-date.'),
+    );
+  }
+
+  // Check to see if the store e-mail address has been set.
+  if (variable_get('uc_store_email', '') == '') {
+    $messages[] = array(
+      'status' => 'error',
+      'title'  => t('Store settings'),
+      'desc'   => t('Store e-mail address has not been set. Please enter it !link.', array('!link' => l('here', 'admin/store/settings/store/edit'))),
+    );
+  }
+  else {
+    $messages[] = array(
+      'status' => 'ok',
+      'title'  => t('Store settings'),
+      'desc'   => t('Store e-mail address is set.'),
+    );
+  }
+
+  return $messages;
 }
