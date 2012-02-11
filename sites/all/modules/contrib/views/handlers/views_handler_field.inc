@@ -22,6 +22,13 @@ class views_handler_field extends views_handler {
   var $aliases = array();
 
   /**
+   * @var array
+   * Stores additional fields which get's added to the query.
+   * The generated aliases are stored in $aliases.
+   */
+  var $additional_fields = array();
+
+  /**
    * Construct a new field handler.
    */
   function construct() {
@@ -535,10 +542,10 @@ class views_handler_field extends views_handler {
         ),
       );
       $form['alter']['alt'] = array(
-        '#title' => t('Alt text'),
+        '#title' => t('Title text'),
         '#type' => 'textfield',
         '#default_value' => $this->options['alter']['alt'],
-        '#description' => t('Text to place as "alt" text which most browsers display as a tooltip when hovering over the link.'),
+        '#description' => t('Text to place as "title" text which most browsers display as a tooltip when hovering over the link.'),
         '#process' => array('views_process_dependency'),
         '#dependency' => array(
           'edit-options-alter-make-link' => array(1)
@@ -740,7 +747,7 @@ If you would like to have the characters %5B and %5D please use the html entity 
       '#type' => 'checkbox',
       '#title' => t('Hide if empty'),
       '#default_value' => $this->options['hide_empty'],
-      '#description' => t('Enable to hide this field if it is empty. Note that the field label or rewritten output may still be displayed. To hide labels, check the style or row style settings for empty fields. To hide rewritten content, check the "Do not rewrite if empty" checkbox.'),
+      '#description' => t('Enable to hide this field if it is empty. Note that the field label or rewritten output may still be displayed. To hide labels, check the style or row style settings for empty fields. To hide rewritten content, check the "Hide rewriting if empty" checkbox.'),
       '#fieldset' => 'empty_field_behavior',
     );
 
@@ -854,7 +861,13 @@ If you would like to have the characters %5B and %5D please use the html entity 
       $value = $this->render_altered($alter, $tokens);
     }
 
-    if ((($this->options['hide_empty'] && empty($value)) || ($this->options['hide_alter_empty'] && empty($this->original_value))) && ($value !== 0 || $this->options['empty_zero'])) {
+    // Check whether the value is empty and return nothing, so the field isn't rendered.
+    // First check whether the field should be hidden if the value(hide_alter_empty = TRUE) /the rewrite is empty (hide_alter_empty = FALSE).
+    // For numeric values you can specify whether "0"/0 should be empty.
+    if ((($this->options['hide_empty'] && empty($value))
+        || ($this->options['hide_alter_empty'] && empty($this->original_value)))
+      && (($value !== 0 && $value !== '0')
+        || $this->options['empty_zero'])) {
       return '';
     }
 

@@ -50,7 +50,29 @@ class views_plugin_display extends views_plugin {
     if ($this->is_default_display() && isset($options['defaults'])) {
       unset($options['defaults']);
     }
-    $this->unpack_options($this->options, $options);
+
+    // Cache for unpack_options, but not if we are in the ui.
+    static $unpack_options = array();
+    if (empty($view->editing)) {
+      $cid = 'unpack_options:' . md5(serialize(array($this->options, $options)));
+      if (empty($unpack_options[$cid])) {
+        $cache = views_cache_get($cid, TRUE);
+        if (!empty($cache->data)) {
+          $this->options = $cache->data;
+        }
+        else {
+          $this->unpack_options($this->options, $options);
+          views_cache_set($cid, $this->options, TRUE);
+        }
+        $unpack_options[$cid] = $this->options;
+      }
+      else {
+        $this->options = $unpack_options[$cid];
+      }
+    }
+    else {
+      $this->unpack_options($this->options, $options);
+    }
 
     // Translate changed settings:
     $items_per_page = $this->get_option('items_per_page');
@@ -155,7 +177,7 @@ class views_plugin_display extends views_plugin {
     foreach (array_filter(variable_get('views_display_extenders', array())) as $extender) {
       $data = views_fetch_plugin_data('display_extender', $extender);
       views_include_handler($data['handler'], $data, 'display_extender');
-      $this->extender[$extender] = new $data['handler']($view, $this);
+      $this->extender[$extender] = new $data['handler']($this->view, $this);
     }
     parent::construct();
   }
@@ -2073,12 +2095,12 @@ class views_plugin_display extends views_plugin {
         }
         break;
 
+      case 'link_display':
+        $this->set_option('link_url', $form_state['values']['link_url']);
       case 'title':
       case 'css_class':
-      case 'link_display':
       case 'display_comment':
         $this->set_option($section, $form_state['values'][$section]);
-        $this->set_option('link_url', $form_state['values']['link_url']);
         break;
       case 'enabled':
       case 'use_ajax':
@@ -2759,4 +2781,3 @@ class views_plugin_display extends views_plugin {
 /**
  * @}
  */
-
