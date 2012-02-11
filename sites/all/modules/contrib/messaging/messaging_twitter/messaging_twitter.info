@@ -5,9 +5,9 @@ package = "Messaging"
 dependencies[] = messaging
 dependencies[] = twitter
 core = 6.x
-; Information added by drupal.org packaging script on 2010-08-01
-version = "6.x-4.0-beta7"
+; Information added by drupal.org packaging script on 2011-02-16
+version = "6.x-2.4"
 core = "6.x"
 project = "messaging"
-datestamp = "1280696475"
+datestamp = "1297899425"
 
