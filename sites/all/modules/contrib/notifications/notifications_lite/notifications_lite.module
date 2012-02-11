@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_lite.module,v 1.1.4.6.2.3.4.11 2010/07/22 11:57:49 jareyero Exp $
 /**
  * @file
  *   Simple notifications API

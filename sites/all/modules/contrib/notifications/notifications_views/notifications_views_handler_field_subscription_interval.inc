@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_views_handler_field_subscription_interval.inc,v 1.1.2.1.2.1 2010/03/12 12:51:06 jareyero Exp $
 
 /**
  * Field handler to translate a node type into its readable form.

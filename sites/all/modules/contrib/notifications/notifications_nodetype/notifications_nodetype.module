@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_nodetype.module,v 1.1.2.5 2010/04/26 17:15:32 jareyero Exp $
 /**
  * @file
  * Notifications content type extension

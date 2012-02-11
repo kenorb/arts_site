@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_views_handler_field_body.inc,v 1.1.2.1 2009/02/20 18:43:18 jareyero Exp $
 
 /**
  * Field handler

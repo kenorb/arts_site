@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_api.test,v 1.1.2.1.2.8.2.2.2.15 2010/07/21 10:55:30 jareyero Exp $
 require_once drupal_get_path('module', 'notifications') . '/tests/notifications_test_case.inc';
 /**
  * Class for testing notifications module.

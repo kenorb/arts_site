@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_queue.class.inc,v 1.1.2.10 2010/07/24 10:16:12 jareyero Exp $
 /**
  * Notifications module. Queue processing.
  * 

@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_custom.admin.inc,v 1.1.4.10 2010/06/21 18:08:07 jareyero Exp $
 
 /**
  * @file

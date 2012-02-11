@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_test_case.inc,v 1.1.2.1.4.13 2010/07/21 10:55:30 jareyero Exp $
 
 // Base class and some utility functions need this one
 require_once drupal_get_path('module', 'messaging') . '/tests/messaging_test_case.inc';

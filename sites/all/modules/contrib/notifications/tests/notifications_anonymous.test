@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_anonymous.test,v 1.1.2.4 2010/07/21 10:55:30 jareyero Exp $
 /**
  * Class for testing anonymous subscriptions
  */

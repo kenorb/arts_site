@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_content.test,v 1.1.2.10.2.4.4.21 2010/07/21 10:55:30 jareyero Exp $
 /**
  * Class for testing notifications module.
  * Tests basic API functions

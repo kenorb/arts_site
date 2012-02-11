@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_anonymous.pages.inc,v 1.1.2.18 2010/06/09 16:21:55 jareyero Exp $
 /**
  * @file
  *   Notifications for anonymous users

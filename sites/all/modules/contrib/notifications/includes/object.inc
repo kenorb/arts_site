@@ -1,5 +1,4 @@
 <?php
-// $Id: object.inc,v 1.1.2.17 2010/07/24 10:16:12 jareyero Exp $
 /**
  * @file
  * Notifications object and fields

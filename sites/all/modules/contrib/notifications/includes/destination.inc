@@ -1,5 +1,4 @@
 <?php
-// $Id: destination.inc,v 1.1.2.12 2010/07/21 10:55:30 jareyero Exp $
 /**
  * @file
  *   Destination management

@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_ui.install,v 1.1.2.4.2.3.2.2 2010/07/24 11:27:42 jareyero Exp $
 
 /**
  * Implementation of hook_uninstall()

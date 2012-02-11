@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_anonymous.module,v 1.1.2.22 2010/04/30 16:46:01 jareyero Exp $
 /**
  * @file
  *   Notifications for anonymous users

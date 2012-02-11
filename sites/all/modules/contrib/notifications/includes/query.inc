@@ -1,5 +1,4 @@
 <?php
-// $Id: query.inc,v 1.1.2.7 2010/06/01 09:58:22 jareyero Exp $
 /**
  * @file
  * Notifications query API - Helper functions to build monster queries

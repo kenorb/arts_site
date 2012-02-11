@@ -1,5 +1,4 @@
 <?php
-// $Id: user.inc,v 1.1.2.3 2010/04/23 11:09:32 jareyero Exp $
 /**
  * @file
  * Notifications node API for use by plug-in modules providing user related features

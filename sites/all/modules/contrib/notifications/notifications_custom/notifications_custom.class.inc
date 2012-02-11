@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_custom.class.inc,v 1.1.2.5 2010/06/21 18:08:07 jareyero Exp $
 /**
  * @file
  * Drupal Notifications Framework - Default class file

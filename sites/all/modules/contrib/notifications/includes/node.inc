@@ -1,5 +1,4 @@
 <?php
-// $Id: node.inc,v 1.1.2.2 2010/05/20 11:33:28 jareyero Exp $
 /**
  * @file
  * Notifications node API for use by plug-in modules providing node related features

@@ -1,5 +1,4 @@
 <?php
-// $Id: notifications_event.class.inc,v 1.1.2.13 2010/07/22 11:57:49 jareyero Exp $
 /**
  * @file
  * Drupal Notifications Framework - Default class file

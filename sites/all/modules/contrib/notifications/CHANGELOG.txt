@@ -1,4 +1,7 @@
-// $Id: CHANGELOG.txt,v 1.1.2.11.2.51.2.31.2.25 2010/08/01 20:58:18 jareyero Exp $
+
+6.x-4.x-beta7 to .............
+-------------------------------
+- Removed 'node-url' token, now added by token module >= 6.x-1.14, by Dave Reid, #845250
 
 6.x-4.x-beta6 to 6.x-4.x-beta7
 -------------------------------
