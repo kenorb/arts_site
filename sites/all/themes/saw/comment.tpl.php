@@ -35,7 +35,7 @@
       </td>
       <td class="links-area">
 				<span class="clinks">
-					<?php if (user_access ('administer spam') || ($user -> uid && @$user -> uid == $comment -> uid)): ?>
+					<?php if (user_access ('administer comments') || ($user -> uid && @$user -> uid == $comment -> uid)): ?>
 						<a href="/comment/edit/<?php echo $comment -> cid; ?>" title="Edit comment"><img src="/sites/all/themes/saw/images/comment_edit.png" alt="Edit" /></a>
 						<a href="/comment/delete/<?php echo $comment -> cid; ?>" title="Delete comment"><img src="/sites/all/themes/saw/images/trash-can-delete.png" alt="Delete" /></a>
 					<?php endif; ?>
