@@ -1126,3 +1126,8 @@ EOT;
 			_db_query ($row);
 	
 	}
+
+	function saw_users_update_22 ()
+	{
+		db_query ("DELETE FROM menu_links WHERE menu_name = 'menu-menu-footerpos1' AND link_path = 'forum/148' LIMIT 1");
+	}
