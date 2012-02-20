@@ -35,8 +35,10 @@
       </td>
       <td class="links-area">
 				<span class="clinks">
-					<a href="/comment/edit/<?php echo $comment -> cid; ?>" title="Edit comment"><img src="/sites/all/themes/saw/images/comment_edit.png" alt="Edit" /></a>
-					<a href="/comment/delete/<?php echo $comment -> cid; ?>" title="Delete comment"><img src="/sites/all/themes/saw/images/trash-can-delete.png" alt="Delete" /></a>
+					<?php if (user_access ('administer spam') || ($user -> uid && @$user -> uid == $comment -> uid)): ?>
+						<a href="/comment/edit/<?php echo $comment -> cid; ?>" title="Edit comment"><img src="/sites/all/themes/saw/images/comment_edit.png" alt="Edit" /></a>
+						<a href="/comment/delete/<?php echo $comment -> cid; ?>" title="Delete comment"><img src="/sites/all/themes/saw/images/trash-can-delete.png" alt="Delete" /></a>
+					<?php endif; ?>
 					<?php if ($comment -> is_spam): ?>
 						<?php if (user_access ('administer spam')): ?>
 							<a href="/spam/comment/<?php echo $comment -> cid; ?>/not_spam?token=<?php echo drupal_get_token ('not spam comment ' . $comment -> cid); ?>" title="Mark as not a spam"><img src="/sites/all/themes/saw/images/flag_green.png" alt="Mark as not a spam" /></a>
@@ -44,7 +46,9 @@
 							<span title="Marked as spam" class="comment-is-spam"><img src="/sites/all/themes/saw/images/flag_red.png" alt="Marked as spam" /></span>
 						<?php endif; ?>
 					<?php else: ?>
-						<a href="/spam/comment/<?php echo $comment -> cid; ?>/spam?token=<?php echo drupal_get_token ('spam comment ' . $comment -> cid); ?>" title="Mark as spam"><img src="/sites/all/themes/saw/images/flag_red.png" alt="Mark as spam" /></a>
+						<?php if (user_access ('administer spam')): ?>
+							<a href="/spam/comment/<?php echo $comment -> cid; ?>/spam?token=<?php echo drupal_get_token ('spam comment ' . $comment -> cid); ?>" title="Mark as spam"><img src="/sites/all/themes/saw/images/flag_red.png" alt="Mark as spam" /></a>
+						<?php endif; ?>
 					<?php endif; ?>
 				</span>
 			</td>
