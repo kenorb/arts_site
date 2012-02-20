@@ -23,6 +23,132 @@ function feature_users_menu_default_menu_links() {
     'weight' => '0',
     'parent_path' => 'http://drupal.org',
   );
+  // Exported menu link: menu-menu-footerpos1:contact
+  $menu_links['menu-menu-footerpos1:contact'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'contact',
+    'router_path' => 'contact',
+    'link_title' => 'Contact Us',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
+  // Exported menu link: menu-menu-footerpos1:faq
+  $menu_links['menu-menu-footerpos1:faq'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'faq',
+    'router_path' => 'faq',
+    'link_title' => 'Help & Support',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
+  // Exported menu link: menu-menu-footerpos1:forum
+  $menu_links['menu-menu-footerpos1:forum'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'forum',
+    'router_path' => 'forum',
+    'link_title' => 'Forum',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'system',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-50',
+  );
+  // Exported menu link: menu-menu-footerpos1:legal
+  $menu_links['menu-menu-footerpos1:legal'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'legal',
+    'router_path' => 'legal',
+    'link_title' => 'Terms & Conditions',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
+  // Exported menu link: menu-menu-footerpos1:node/1
+  $menu_links['menu-menu-footerpos1:node/1'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'node/1',
+    'router_path' => 'node/%',
+    'link_title' => 'About Us',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'About Us',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '-49',
+  );
+  // Exported menu link: menu-menu-footerpos1:node/28
+  $menu_links['menu-menu-footerpos1:node/28'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'node/28',
+    'router_path' => 'node/%',
+    'link_title' => 'Premium & User Accounts',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
+  // Exported menu link: menu-menu-footerpos1:node/53
+  $menu_links['menu-menu-footerpos1:node/53'] = array(
+    'menu_name' => 'menu-menu-footerpos1',
+    'link_path' => 'node/53',
+    'router_path' => 'node/%',
+    'link_title' => 'Privacy Policy',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Privacy Policy',
+      ),
+    ),
+    'module' => 'menu',
+    'hidden' => '0',
+    'external' => '0',
+    'has_children' => '0',
+    'expanded' => '0',
+    'weight' => '0',
+  );
   // Exported menu link: menu-my-content:manage/arts
   $menu_links['menu-my-content:manage/arts'] = array(
     'menu_name' => 'menu-my-content',
@@ -584,6 +710,7 @@ function feature_users_menu_default_menu_links() {
   // Translatables
   // Included for use with string extractors like potx.
   t('-');
+  t('About Us');
   t('Account');
   t('Account Settings');
   t('Add Art');
@@ -596,9 +723,12 @@ function feature_users_menu_default_menu_links() {
   t('Calendar');
   t('Chat');
   t('Contact');
+  t('Contact Us');
   t('Events');
+  t('Forum');
   t('Forum Topics');
   t('Help');
+  t('Help & Support');
   t('Home');
   t('Ideas');
   t('Items');
@@ -607,8 +737,11 @@ function feature_users_menu_default_menu_links() {
   t('Message');
   t('News');
   t('Online');
+  t('Premium & User Accounts');
+  t('Privacy Policy');
   t('Privacy Settings');
   t('Sell My Art');
+  t('Terms & Conditions');
   t('Upgrade to premium?');
   t('reCAPTCHA issue queue');
 
