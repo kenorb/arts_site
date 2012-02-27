@@ -40,6 +40,16 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: access comments
+  $permissions['access comments'] = array(
+    'name' => 'access comments',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: access content
   $permissions['access content'] = array(
     'name' => 'access content',
@@ -114,6 +124,15 @@ function feature_users_user_default_permissions() {
     'name' => 'administer chats',
     'roles' => array(
       '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: administer comments
+  $permissions['administer comments'] = array(
+    'name' => 'administer comments',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
     ),
   );
 
@@ -221,6 +240,36 @@ function feature_users_user_default_permissions() {
     ),
   );
 
+  // Exported permission: delete all comment replies
+  $permissions['delete all comment replies'] = array(
+    'name' => 'delete all comment replies',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+      '2' => 'user admin',
+    ),
+  );
+
+  // Exported permission: delete any comment
+  $permissions['delete any comment'] = array(
+    'name' => 'delete any comment',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+      '2' => 'user admin',
+    ),
+  );
+
+  // Exported permission: delete any comments at anytime
+  $permissions['delete any comments at anytime'] = array(
+    'name' => 'delete any comments at anytime',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'moderator',
+      '2' => 'user admin',
+    ),
+  );
+
   // Exported permission: delete any forum topic
   $permissions['delete any forum topic'] = array(
     'name' => 'delete any forum topic',
@@ -244,6 +293,39 @@ function feature_users_user_default_permissions() {
     'roles' => array(
       '0' => 'admin',
       '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: delete own comments
+  $permissions['delete own comments'] = array(
+    'name' => 'delete own comments',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'authenticated user',
+      '4' => 'moderator',
+      '5' => 'premium',
+      '6' => 'premium buyer',
+      '7' => 'premium seller',
+      '8' => 'student',
+      '9' => 'user admin',
+    ),
+  );
+
+  // Exported permission: delete own comments at anytime
+  $permissions['delete own comments at anytime'] = array(
+    'name' => 'delete own comments at anytime',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'art collector',
+      '2' => 'art student',
+      '3' => 'moderator',
+      '4' => 'premium',
+      '5' => 'premium buyer',
+      '6' => 'premium seller',
+      '7' => 'student',
+      '8' => 'user admin',
     ),
   );
 
@@ -362,6 +444,33 @@ function feature_users_user_default_permissions() {
   // Exported permission: modify own cck field privacy
   $permissions['modify own cck field privacy'] = array(
     'name' => 'modify own cck field privacy',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: move all replies up
+  $permissions['move all replies up'] = array(
+    'name' => 'move all replies up',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: post comments
+  $permissions['post comments'] = array(
+    'name' => 'post comments',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'anonymous user',
+      '2' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: post comments without approval
+  $permissions['post comments without approval'] = array(
+    'name' => 'post comments without approval',
     'roles' => array(
       '0' => 'admin',
       '1' => 'authenticated user',

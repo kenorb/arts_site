@@ -23,6 +23,23 @@ function saw_users_init ()
 		drupal_set_message (t('To vote, please !1 login !2 or !3 register!4', array ('!1' => '<a href="/user">', '!2' => '</a>', '!3' => '<a href="/user/register">', '!4' => '</a>.')), 'warning');
 }
 
+function saw_users_preprocess_node (&$variables)
+{
+	$node = $variables['node'];
+	
+	switch ($node->type)
+	{
+		case 'profile':
+		
+			if (arg(0) == 'node' && arg(1) == $node->nid && arg(2) == "")
+			{
+				// If we are postitive we are on node/N where N is the NID of a profile
+				// node, then redirect to the user profile page instead.
+				drupal_goto("user/$node->uid");
+			}
+	}
+}
+
 /**
  * Views SQL Query modifier
  * Provides:
